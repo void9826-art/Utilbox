@@ -1,0 +1,6 @@
+# Keep line endings consistent between Windows checkouts and Linux CI/Vercel
+# builders, so a clone never shows the whole tree as modified.
+* text=auto eol=lf
+
+# Windows-only test runners stay CRLF so PowerShell reads them natively.
+*.ps1 text eol=crlf
