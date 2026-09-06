@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { downloadBytes } from "@/lib/download";
 import { closePdf, openPdf } from "@/lib/pdf";
 import { formatBytes, yieldToBrowser } from "@/lib/utils";
+import { stampProducer } from "@/lib/pdf-meta";
 
 import { PdfDropzone, pdfErrorMessage } from "./_shared";
 
@@ -75,8 +76,7 @@ export default function MergePdf() {
     try {
       const { PDFDocument } = await import("pdf-lib");
       const merged = await PDFDocument.create();
-      merged.setCreator("Utilbox");
-      merged.setProducer("Utilbox");
+      stampProducer(merged);
 
       for (const [index, entry] of entries.entries()) {
         try {

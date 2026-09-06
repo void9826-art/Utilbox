@@ -10,6 +10,7 @@ import { downloadZip } from "@/lib/download";
 import { stripExtension } from "@/lib/files";
 import { parsePageRanges, summarisePages } from "@/lib/pdf";
 import { formatBytes, yieldToBrowser } from "@/lib/utils";
+import { stampProducer } from "@/lib/pdf-meta";
 
 import { NumberField, parseNumber } from "../calculators/_shared";
 import { PdfDropzone, pdfErrorMessage, readPdfInfo, type PdfInfo } from "./_shared";
@@ -114,8 +115,7 @@ export default function SplitPdf() {
 
       for (const [index, output] of plan.outputs.entries()) {
         const doc = await PDFDocument.create();
-        doc.setCreator("Utilbox");
-        doc.setProducer("Utilbox");
+        stampProducer(doc);
 
         const pages = await doc.copyPages(
           source,

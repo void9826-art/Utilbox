@@ -11,6 +11,7 @@ import { downloadBytes } from "@/lib/download";
 import { withExtension } from "@/lib/files";
 import { parsePageRanges, summarisePages } from "@/lib/pdf";
 import { formatBytes } from "@/lib/utils";
+import { stampProducer } from "@/lib/pdf-meta";
 
 import { PageGrid, PageTile, PdfDropzone, pdfErrorMessage, readPdfInfo, type PdfInfo } from "./_shared";
 
@@ -156,8 +157,7 @@ export function PagePicker({
         setResult({ kind: "zip", count: files.length });
       } else {
         const output = await PDFDocument.create();
-        output.setCreator("Utilbox");
-        output.setProducer("Utilbox");
+        stampProducer(output);
 
         const pages = await output.copyPages(
           source,

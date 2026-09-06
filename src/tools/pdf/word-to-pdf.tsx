@@ -12,6 +12,7 @@ import { downloadBytes } from "@/lib/download";
 import { MAX_FILE_SIZE, stripExtension, type AcceptOptions } from "@/lib/files";
 import type { PageSizeId } from "@/lib/pdf-document";
 import { formatBytes, formatNumber } from "@/lib/utils";
+import { stampProducer } from "@/lib/pdf-meta";
 
 import { SelectField } from "../calculators/_shared";
 
@@ -144,8 +145,7 @@ export default function WordToPdf() {
 
       const doc = await PDFDocument.create();
       doc.setTitle(stripExtension(file.name));
-      doc.setCreator("Utilbox");
-      doc.setProducer("Utilbox");
+      stampProducer(doc);
 
       const serif = fontFamily === "serif";
       const fonts = {

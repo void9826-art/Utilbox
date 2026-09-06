@@ -10,10 +10,12 @@ import { Badge } from "@/components/ui/surfaces";
 import { parseJson, sortKeysDeep } from "@/lib/json";
 import { formatBytes } from "@/lib/utils";
 
+import { siteConfig } from "@/config/site";
+
 import { SelectField } from "../calculators/_shared";
 
 const SAMPLE = `{
-  "name": "Utilbox",
+  "name": "${siteConfig.name}",
   "tools": 73,
   "categories": ["pdf", "calculators", "image"],
   "offline": true,

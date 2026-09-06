@@ -12,6 +12,7 @@ import { stripExtension } from "@/lib/files";
 import { canvasToBlob } from "@/lib/image";
 import { closePdf, openPdf, renderPage } from "@/lib/pdf";
 import { formatBytes, yieldToBrowser } from "@/lib/utils";
+import { stampProducer } from "@/lib/pdf-meta";
 
 import { PdfDropzone, pdfErrorMessage } from "./_shared";
 
@@ -53,8 +54,7 @@ export default function CompressPdf() {
       setProgress({ done: 0, total });
 
       const output = await PDFDocument.create();
-      output.setCreator("Utilbox");
-      output.setProducer("Utilbox");
+      stampProducer(output);
 
       for (let pageNumber = 1; pageNumber <= total; pageNumber += 1) {
         const page = await source.getPage(pageNumber);

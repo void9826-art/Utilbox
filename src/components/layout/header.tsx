@@ -9,6 +9,7 @@ import { Kbd, useToolSearch } from "@/components/layout/search-dialog";
 import { ThemeToggle } from "@/components/layout/theme";
 import { Logo } from "@/components/layout/logo";
 import { CATEGORIES } from "@/config/categories";
+import { siteConfig } from "@/config/site";
 import { TOOL_COUNT, TOOLS_BY_CATEGORY, toolHref } from "@/config/tools";
 import { cn } from "@/lib/utils";
 
@@ -86,7 +87,7 @@ export function Header() {
           <Link
             href="/"
             className="mr-1 shrink-0 rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-            aria-label="Utilbox home"
+            aria-label={`${siteConfig.name} home`}
           >
             <Logo />
           </Link>

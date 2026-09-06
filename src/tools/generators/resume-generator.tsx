@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Field, Input } from "@/components/ui/field";
 import { Alert } from "@/components/ui/surfaces";
 import { downloadBlob } from "@/lib/download";
+import { stampProducer } from "@/lib/pdf-meta";
 
 interface Entry {
   id: string;
@@ -75,8 +76,7 @@ export default function ResumeGenerator() {
 
       const doc = await PDFDocument.create();
       doc.setTitle(name ? `${name} — CV` : "Curriculum vitae");
-      doc.setCreator("Utilbox");
-      doc.setProducer("Utilbox");
+      stampProducer(doc);
 
       const fonts = {
         regular: await doc.embedFont(StandardFonts.Helvetica),

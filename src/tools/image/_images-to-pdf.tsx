@@ -11,8 +11,9 @@ import { Segmented, Slider } from "@/components/ui/field";
 import { downloadBytes } from "@/lib/download";
 import type { AcceptOptions } from "@/lib/files";
 import { canvasToBlob, decodeImage, renderToCanvas } from "@/lib/image";
-import { PAGE_SIZES, type PageSizeId } from "@/lib/pdf-document";
+import {PAGE_SIZES, type PageSizeId} from "@/lib/pdf-document";
 import { formatBytes, yieldToBrowser } from "@/lib/utils";
+import { stampProducer } from "@/lib/pdf-meta";
 
 import { SelectField } from "../calculators/_shared";
 import { nextImageId } from "./_shared";
@@ -121,8 +122,7 @@ export function ImagesToPdf({ accept, inputAccept, hint, fileNoun }: ImagesToPdf
     try {
       const { PDFDocument } = await import("pdf-lib");
       const doc = await PDFDocument.create();
-      doc.setCreator("Utilbox");
-      doc.setProducer("Utilbox");
+      stampProducer(doc);
 
       // 1 mm = 72/25.4 PDF points.
       const margin = marginMm * (72 / 25.4);

@@ -36,7 +36,7 @@ your contact details, or switch on ads and analytics. Everything is optional.
 | `npm run lint`         | ESLint                                                            |
 | `npm run typecheck`    | `tsc --noEmit`                                                    |
 | `npm test`             | Unit tests for the calculation, parsing and formatting libraries  |
-| `npm run validate`     | Checks the registry is complete and every icon resolves           |
+| `npm run validate`     | Registry completeness, icon resolution, branding, colour contrast |
 | `npm run generate:tools` | Rewrites `src/tools/index.tsx` from the registry                |
 
 Further suites need the production server running. One is plain Node; the rest
@@ -83,6 +83,14 @@ src/
     <category>/<slug>.tsx  one file per tool
     index.tsx              generated map of lazily-imported tools
 ```
+
+### The brand name lives in one place
+
+`siteConfig.name` in `src/config/site.ts`, overridable with
+`NEXT_PUBLIC_SITE_NAME`. Nothing else — including the `setCreator` and
+`setProducer` fields stamped into every generated PDF — carries the literal, so
+a rename cannot leave the old name inside files people have already downloaded.
+`npm run validate` fails if the name reappears in the source.
 
 ### The registry is the source of truth
 

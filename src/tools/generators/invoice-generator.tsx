@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Field, Input } from "@/components/ui/field";
 import { downloadBlob } from "@/lib/download";
 import { formatMoney, roundMoney, toMinor, fromMinor } from "@/lib/money";
+import { stampProducer } from "@/lib/pdf-meta";
 
 import { CURRENCIES, NumberField, SelectField, parseNumber } from "../calculators/_shared";
 
@@ -141,8 +142,7 @@ export default function InvoiceGenerator() {
 
       const doc = await PDFDocument.create();
       doc.setTitle(`Invoice ${invoiceNumber}`);
-      doc.setCreator("Utilbox");
-      doc.setProducer("Utilbox");
+      stampProducer(doc);
 
       const fonts = {
         regular: await doc.embedFont(StandardFonts.Helvetica),
