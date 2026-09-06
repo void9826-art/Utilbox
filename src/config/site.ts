@@ -17,13 +17,16 @@ const rawUrl = env(
 );
 
 export const siteConfig = {
-  name: env("NEXT_PUBLIC_SITE_NAME", "Utilbox"),
-  /** Used in <title> templates. Kept short so titles stay under ~60 chars. */
-  shortName: env("NEXT_PUBLIC_SITE_SHORT_NAME", "Utilbox"),
+  name: env("NEXT_PUBLIC_SITE_NAME", "Utilboxes"),
+  /**
+   * Appended to every page title as ` | ${shortName}`, so its length is part
+   * of all 87 of them. `npm run validate` reports the remaining headroom.
+   */
+  shortName: env("NEXT_PUBLIC_SITE_SHORT_NAME", "Utilboxes"),
   url: rawUrl.replace(/\/+$/, ""),
   tagline: "Free tools for work, school, and everyday life",
   description:
-    "Convert files, calculate anything, and clean up text right in your browser. Utilbox is a set of fast, free utilities that keep your files on your device.",
+    "Convert files, calculate anything, and clean up text right in your browser. Utilboxes is a set of fast, free utilities that keep your files on your device.",
   locale: "en_US",
   themeColor: { light: "#ffffff", dark: "#171717" },
 
