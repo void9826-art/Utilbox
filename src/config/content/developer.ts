@@ -254,7 +254,7 @@ export const developerContent: Record<string, ToolContent> = {
   },
 
   "url-decoder": {
-    seoTitle: "URL Decoder — Decode Percent-Encoding and Query Strings",
+    seoTitle: "URL Decoder — Decode Percent-Encoding and Queries",
     seoDescription:
       "Decode percent-encoded URLs and break a query string into a readable table of parameters. Handles double-encoding.",
     intro:

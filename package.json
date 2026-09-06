@@ -9,7 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "generate:tools": "node scripts/generate-tool-map.mjs",
-    "validate": "node scripts/validate-registry.mjs && node scripts/check-icons.mjs && node scripts/check-branding.mjs && node scripts/contrast.mjs",
+    "validate": "node scripts/validate-registry.mjs && node scripts/check-icons.mjs && node scripts/check-branding.mjs && node scripts/check-titles.mjs && node scripts/contrast.mjs",
     "test": "node --experimental-strip-types scripts/test-lib.mjs && node --experimental-strip-types scripts/test-expression.mjs && node --experimental-strip-types scripts/test-ooxml.mjs && node --experimental-strip-types scripts/verify-examples.mjs",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
     "prepare": "node scripts/copy-pdf-worker.mjs",

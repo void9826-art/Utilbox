@@ -217,7 +217,7 @@ export const calculatorContent: Record<string, ToolContent> = {
   },
 
   "grade-calculator": {
-    seoTitle: "Grade Calculator — Marks to Percentage and Letter Grade",
+    seoTitle: "Grade Calculator — Marks to Percentage and Grade",
     seoDescription:
       "Turn marks into a percentage and a letter grade, combine weighted assessments, and find out what you need on the final exam.",
     intro:

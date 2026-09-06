@@ -36,7 +36,7 @@ your contact details, or switch on ads and analytics. Everything is optional.
 | `npm run lint`         | ESLint                                                            |
 | `npm run typecheck`    | `tsc --noEmit`                                                    |
 | `npm test`             | Unit tests for the calculation, parsing and formatting libraries  |
-| `npm run validate`     | Registry completeness, icon resolution, branding, colour contrast |
+| `npm run validate`     | Registry, icons, branding, title lengths, colour contrast          |
 | `npm run generate:tools` | Rewrites `src/tools/index.tsx` from the registry                |
 
 Further suites need the production server running. One is plain Node; the rest
@@ -91,6 +91,12 @@ src/
 `setProducer` fields stamped into every generated PDF — carries the literal, so
 a rename cannot leave the old name inside files people have already downloaded.
 `npm run validate` fails if the name reappears in the source.
+
+The name is also part of every page title, since layout.tsx appends
+` | ${shortName}` to all 87 of them. `check-titles.mjs` measures the result
+against a 65-character budget and reports the remaining headroom, so a longer
+brand name fails the check rather than silently truncating titles in search
+results.
 
 ### The registry is the source of truth
 

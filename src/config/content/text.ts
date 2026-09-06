@@ -166,7 +166,7 @@ export const textContent: Record<string, ToolContent> = {
   },
 
   "sort-lines": {
-    seoTitle: "Sort Lines — Alphabetical, Numeric and Natural Sorting",
+    seoTitle: "Sort Lines — Alphabetical, Numeric, Natural Order",
     seoDescription:
       "Sort lines alphabetically, numerically, by length or randomly, with natural sorting that puts item2 before item10.",
     intro:
