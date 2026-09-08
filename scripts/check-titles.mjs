@@ -22,12 +22,14 @@ const shortName = (() => {
     return process.env.NEXT_PUBLIC_SITE_SHORT_NAME.trim();
   }
   const source = fs.readFileSync(path.join("src", "config", "site.ts"), "utf8");
-  const match = source.match(/env\("NEXT_PUBLIC_SITE_SHORT_NAME",\s*"([^"]+)"\)/);
-  if (!match) {
-    console.error("Could not read the default short name out of src/config/site.ts.");
-    process.exit(1);
-  }
-  return match[1];
+  // The short name falls back to the site name rather than repeating it, so
+  // the default is an identifier here, not a string literal.
+  const literal = source.match(/env\("NEXT_PUBLIC_SITE_SHORT_NAME",\s*"([^"]+)"\)/);
+  if (literal) return literal[1];
+  const derived = source.match(/env\("NEXT_PUBLIC_SITE_NAME",\s*"([^"]+)"\)/);
+  if (derived) return derived[1];
+  console.error("Could not read the default short name out of src/config/site.ts.");
+  process.exit(1);
 })();
 
 const suffix = ` | ${shortName}`;
