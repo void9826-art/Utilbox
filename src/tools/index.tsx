@@ -12,7 +12,7 @@ const Loading = () => <ToolSkeleton />;
 
 /**
  * Every tool is a separate lazily-loaded chunk, so visiting one tool page never
- * downloads the code for the other 72.
+ * downloads the code for the other 77.
  */
 const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "merge-pdf": dynamic(() => import("./pdf/merge-pdf"), { loading: Loading }),
@@ -54,6 +54,11 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "crop-image": dynamic(() => import("./image/crop-image"), { loading: Loading }),
   "rotate-image": dynamic(() => import("./image/rotate-image"), { loading: Loading }),
   "image-converter": dynamic(() => import("./image/image-converter"), { loading: Loading }),
+  "webp-to-png": dynamic(() => import("./image/webp-to-png"), { loading: Loading }),
+  "avif-to-jpg": dynamic(() => import("./image/avif-to-jpg"), { loading: Loading }),
+  "image-color-palette": dynamic(() => import("./image/image-color-palette"), { loading: Loading }),
+  "exif-remover": dynamic(() => import("./image/exif-remover"), { loading: Loading }),
+  "favicon-generator": dynamic(() => import("./image/favicon-generator"), { loading: Loading }),
   "currency-converter": dynamic(() => import("./converters/currency-converter"), { loading: Loading }),
   "length-converter": dynamic(() => import("./converters/length-converter"), { loading: Loading }),
   "weight-converter": dynamic(() => import("./converters/weight-converter"), { loading: Loading }),

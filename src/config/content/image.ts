@@ -4,6 +4,213 @@ const LOCAL_NOTE =
   "Images are decoded by the browser, redrawn on a canvas and re-encoded on your own machine. Nothing is uploaded, so there is no waiting on a queue and no copy of your photos anywhere else.";
 
 export const imageContent: Record<string, ToolContent> = {
+  "webp-to-png": {
+    seoTitle: "WebP to PNG Converter — Free, Keeps Transparency",
+    seoDescription:
+      "Convert WebP images to PNG with transparency preserved, or to JPG for smaller files. Batch conversion in your browser, with no upload and no watermark.",
+    intro:
+      "Turn WebP images into PNG files that keep their transparency, or into JPGs for the smallest size. Convert a whole batch at once.",
+    howToUse: [
+      "Add one or more WebP images.",
+      "Choose PNG to keep transparency, or JPG for smaller photo files.",
+      "Press Convert.",
+      "Download the files one at a time or together as a ZIP.",
+    ],
+    howItWorks: [
+      "Your browser decodes each WebP to raw pixels, draws them onto a canvas and encodes them again in the format you picked. PNG is lossless, so the PNG holds exactly the pixels the WebP decoded to — including its alpha channel, which is why transparent backgrounds stay transparent.",
+      "A lossy WebP has already discarded some detail when it was first saved, and converting cannot bring that back. What PNG does guarantee is that nothing further is lost, however many times the file is edited and saved again.",
+      "Expect the PNG to be larger than the WebP — often several times larger for photographs — because storing photographic detail losslessly takes space. For photos where transparency does not matter, JPG gives a much smaller file.",
+      LOCAL_NOTE,
+    ],
+    faq: [
+      {
+        question: "Will the PNG keep the transparent background?",
+        answer:
+          "Yes. PNG supports full alpha transparency, so transparent and semi-transparent pixels come through unchanged. JPG does not, so if you choose JPG the transparent areas are filled with the background colour you pick.",
+      },
+      {
+        question: "Why is the PNG bigger than the WebP?",
+        answer:
+          "WebP uses more modern compression, and lossy WebP throws detail away to save space. PNG stores every pixel exactly, which for a photograph usually means a much larger file.",
+      },
+      {
+        question: "Can I convert animated WebP files?",
+        answer: "Only the first frame is converted. The animation is not carried over.",
+      },
+      {
+        question: "How many files can I convert at once?",
+        answer:
+          "There is no fixed limit on the number of files, and each can be up to 50 MB. Very large batches use more memory, so on a phone it is kinder to work in smaller groups.",
+      },
+    ],
+  },
+
+  "avif-to-jpg": {
+    seoTitle: "AVIF to JPG Converter — Free Online, No Upload",
+    seoDescription:
+      "Convert AVIF images to JPG or PNG so older apps, email clients and editors can open them. Batch conversion that runs in your browser — nothing is uploaded.",
+    intro:
+      "Convert AVIF images to JPG or PNG for apps that cannot open AVIF yet. Add a batch and download them all together.",
+    howToUse: [
+      "Add one or more .avif files.",
+      "Choose JPG for photos or PNG for images with transparency.",
+      "Press Convert.",
+      "Download the files individually or as a ZIP.",
+    ],
+    howItWorks: [
+      "AVIF is an image format built on the AV1 video codec. It compresses far better than JPG, which is why many websites now serve it — and why images saved from those sites often arrive as .avif files that older software refuses to open.",
+      "Current versions of Chrome, Edge, Firefox and Safari can decode AVIF themselves, so this tool uses your browser's own decoder: each file is decoded to pixels, drawn on a canvas and encoded as JPG or PNG. A browser too old to decode AVIF will report the file as unreadable, and updating it fixes that.",
+      "A JPG is usually larger than the AVIF it came from at a similar visual quality; that is the price of compatibility. Choose PNG when the image has transparency or sharp text you want to keep lossless.",
+      LOCAL_NOTE,
+    ],
+    faq: [
+      {
+        question: "Which browsers can convert AVIF here?",
+        answer:
+          "Any browser that can display AVIF: current Chrome, Edge and Firefox, and Safari 16 or later. Older browsers cannot decode the format, and the tool will say the file could not be opened.",
+      },
+      {
+        question: "Is the JPG lower quality than the AVIF?",
+        answer:
+          "JPG re-encodes the image, so a little detail is lost at any quality below 100. At the default setting the difference is hard to see. Choose PNG for a lossless copy of what the AVIF decoded to.",
+      },
+      {
+        question: "What happens to transparency?",
+        answer:
+          "JPG cannot store it, so transparent areas are filled with the background colour you choose. PNG keeps transparency exactly.",
+      },
+      {
+        question: "Does it convert animated AVIF?",
+        answer: "Only the first frame is converted.",
+      },
+    ],
+  },
+
+  "image-color-palette": {
+    seoTitle: "Extract Colors From Image Online — Palette Finder",
+    seoDescription:
+      "Extract the dominant colors from any image online. Get HEX, RGB and HSL codes, each color's share of the picture, and CSS or JSON to copy — no upload.",
+    intro:
+      "Upload a photo, logo or screenshot and get its main colours as HEX, RGB and HSL codes. Click anywhere on the image to sample a single point.",
+    howToUse: [
+      "Add an image.",
+      "Choose how many colours you want in the palette.",
+      "Copy any colour code, or copy the whole palette as CSS variables, a Tailwind theme or JSON.",
+      "Click a point on the image to read the colour at that spot.",
+    ],
+    howItWorks: [
+      "The image is scaled down and read pixel by pixel in your browser. Similar pixels are grouped into buckets — 32,768 of them, five bits per colour channel — so a photo with millions of pixels becomes a few thousand weighted colours that can be analysed instantly.",
+      "Those colours are clustered with k-means in CIELAB colour space. Distance in CIELAB matches how different two colours look to the eye far more closely than distance in RGB, so the palette favours colours that are visibly distinct rather than several near-identical shades of one background.",
+      "The starting points are chosen deterministically — the most common colour first, then whichever colour is furthest from those already chosen — so the same image always gives the same palette. A colour's share is the proportion of the image's opaque pixels closest to it; transparent pixels are ignored.",
+      "Each colour also shows whether white or black text reads better on top of it, with the WCAG contrast ratio, which helps when turning a palette into a design.",
+    ],
+    faq: [
+      {
+        question: "Why is a small but striking colour missing from the palette?",
+        answer:
+          "The palette is weighted by how much of the image each colour covers, so a tiny accent can be absorbed into a larger neighbouring cluster. Increase the number of colours, or click the spot on the image to sample it directly.",
+      },
+      {
+        question: "Are the colours exact?",
+        answer:
+          "Palette colours are the average of their cluster, so they are representative rather than copied from one pixel. The click-to-sample colour is read from a single pixel of the scaled-down copy of your image.",
+      },
+      {
+        question: "What does the contrast ratio mean?",
+        answer:
+          "It is the WCAG 2 contrast between the colour and white or black text. 4.5:1 is the minimum for normal body text at level AA; 3:1 is enough for large text.",
+      },
+      {
+        question: "Is my image uploaded?",
+        answer: "No. The pixels are read and clustered on your own device.",
+      },
+    ],
+  },
+
+  "exif-remover": {
+    seoTitle: "Remove EXIF Data From Photo Online — EXIF Viewer",
+    seoDescription:
+      "See and remove EXIF data from photos online — GPS location, camera details and dates. Works on JPG, PNG and WebP without re-compressing, and nothing is uploaded.",
+    intro:
+      "See what a photo reveals about where and how it was taken, then remove that metadata before you share it. The image itself is not re-compressed.",
+    howToUse: [
+      "Add one or more JPG, PNG or WebP photos.",
+      "Review the metadata found in each photo — location, device details and dates are flagged at the top.",
+      "Choose whether to keep the colour profile and, for JPGs, the rotation setting.",
+      "Press Remove metadata, then download the cleaned photos.",
+    ],
+    howItWorks: [
+      "Photos carry more than pixels. A camera or phone writes EXIF data into the file — usually the date and time and the device make and model, often lens and exposure settings, sometimes a serial number and, if location services were on, GPS coordinates precise enough to identify a home. Editing apps add XMP and IPTC blocks with software names, authors and edit history.",
+      "This tool reads that metadata, then removes it by cutting the metadata blocks out of the file's structure: EXIF, XMP, IPTC and comment segments in a JPEG; EXIF, text and timestamp chunks in a PNG; EXIF and XMP chunks in a WebP. The compressed image data is copied byte for byte, so there is no re-encoding and no loss of quality.",
+      "Two things are kept by default because removing them changes how the photo looks. The ICC colour profile tells software how to display the colours. And phones often store a picture sideways with an EXIF instruction to rotate it; deleting that would show the photo on its side, so for JPGs a new, minimal EXIF block containing only the rotation value is written back. Both can be switched off.",
+      "After cleaning, each file is read again with the same metadata parser and the tool reports what, if anything, is still present — so the result is checked rather than assumed. Extra images some phones append after the main photo, such as depth maps, are also dropped from JPGs.",
+    ],
+    faq: [
+      {
+        question: "Don't social networks remove EXIF data anyway?",
+        answer:
+          "Many large platforms strip location from public uploads, but email attachments, messaging apps sending original-quality files, cloud share links and many websites pass the file on untouched. Removing it yourself means you do not have to rely on each service.",
+      },
+      {
+        question: "Will removing EXIF reduce image quality?",
+        answer:
+          "No. The image data is not decoded or re-compressed; only the metadata blocks are cut out, so the pixels are identical.",
+      },
+      {
+        question: "Why is the rotation kept?",
+        answer:
+          "Phones often save photos sideways and rely on an EXIF flag to display them upright. Keeping just that one value stops the cleaned photo appearing rotated, and it reveals nothing about you.",
+      },
+      {
+        question: "Can it clean HEIC or RAW files?",
+        answer:
+          "Not at the moment. Convert HEIC photos to JPG first with the HEIC to JPG converter, then check the JPG here.",
+      },
+    ],
+  },
+
+  "favicon-generator": {
+    seoTitle: "Favicon Generator — ICO, PNG and Apple Touch Icons",
+    seoDescription:
+      "Free favicon generator: create favicon.ico, PNG icons, an Apple touch icon, Android icons and a web manifest from an image or a letter, right in your browser.",
+    intro:
+      "Create every favicon file a website needs from one image, or from a letter or emoji, and download them as a ready-to-use ZIP with the HTML to paste in.",
+    howToUse: [
+      "Upload a square logo or icon, or switch to Letter or emoji and type one or two characters.",
+      "Adjust the shape, padding and background until the small previews read clearly.",
+      "Enter your site name for the web manifest.",
+      "Download the ZIP, upload the files to your site's root folder, and paste the HTML into the head of your pages.",
+    ],
+    howItWorks: [
+      "Browsers, phones and operating systems each look for a different icon file. The ZIP contains favicon.ico with 16, 32 and 48-pixel images for browser tabs and Windows; 16 and 32-pixel PNGs; a 180-pixel apple-touch-icon.png for iPhone and iPad home screens; 192 and 512-pixel PNGs for Android and installable web apps; and a site.webmanifest that points to them.",
+      "Each icon is drawn once at 512 pixels and then scaled down in halving steps, which keeps small sizes smoother than a single jump from a large image. The .ico file stores each size as an embedded PNG — a variant Windows has supported since Vista and every current browser reads — so transparency survives intact.",
+      "The Apple touch icon always gets a solid background, because iOS shows transparent areas as black and applies its own rounded corners. The other icons use the shape and transparency you choose.",
+      "Detail disappears at 16 pixels. The enlarged previews show exactly what a browser tab will display, so simplify the design until the 16-pixel version is still recognisable.",
+    ],
+    faq: [
+      {
+        question: "Do I still need favicon.ico?",
+        answer:
+          "Browsers request /favicon.ico automatically even when no icon is declared, and some tools and feed readers only look there. Shipping it alongside the PNG files covers every case.",
+      },
+      {
+        question: "Where do I put the files?",
+        answer:
+          "Upload them to the root of your site so they are served from addresses like example.com/favicon.ico, then paste the HTML into the head of your pages. If the files live in a subfolder, change the paths in the HTML and the manifest to match.",
+      },
+      {
+        question: "Why doesn't my new favicon show up?",
+        answer:
+          "Browsers cache favicons aggressively. Open the icon's address directly, hard-refresh the page, or check in a private window.",
+      },
+      {
+        question: "Can I use an SVG?",
+        answer:
+          "Yes. SVG uploads are rasterised at each size. An SVG without width and height attributes needs a viewBox so its proportions are known.",
+      },
+    ],
+  },
+
   "compress-image": {
     seoTitle: "Compress Image Online — Reduce Photo Size Free",
     seoDescription:
@@ -196,11 +403,11 @@ export const imageContent: Record<string, ToolContent> = {
   },
 
   "heic-to-jpg": {
-    seoTitle: "HEIC to JPG Converter — Free iPhone Photo Converter",
+    seoTitle: "HEIC to JPG Converter Online — Batch, No Upload",
     seoDescription:
-      "Convert iPhone HEIC photos to JPG so Windows, older software and websites can open them. Batch conversion, entirely in your browser.",
+      "Free HEIC to JPG converter online. Convert iPhone photos in batches with no limit on how many files you add — it runs in your browser, so nothing is uploaded.",
     intro:
-      "Convert iPhone HEIC photos into JPGs that open anywhere. Batch conversion with an adjustable quality setting.",
+      "Convert iPhone HEIC photos to JPG online. Add as many photos as you like, convert them in one batch, and download them together as a ZIP.",
     howToUse: [
       "Add your .heic or .heif files — several at once is fine.",
       "Choose the output quality.",

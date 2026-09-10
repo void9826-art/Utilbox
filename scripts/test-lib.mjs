@@ -180,3 +180,109 @@ ct("trim removes empty rows", trimTable([["a","b"],["",""],["c","d"]]).length ==
 ct("trim removes empty cols", trimTable([["a","","b"],["c","","d"]])[0].length === 2);
 
 console.log(f4 === 0 ? "TABLE DETECTION TESTS OK" : `${f4} FAILURES`);
+
+/* ---- palette, ico, metadata stripping, file sniffing (appended) ---- */
+import { extractPalette, contrastRatio, rgbToHex } from "../src/lib/palette.ts";
+import { encodeIco, readIcoDirectory } from "../src/lib/ico.ts";
+import { stripMetadata, readTiffOrientation } from "../src/lib/metadata-strip.ts";
+import { sniffFileKind } from "../src/lib/files.ts";
+let f5 = 0;
+const cm = (n, c, d = "") => { if (!c) { console.log(`FAIL ${n} ${d}`); f5++; } };
+const asciiBytes = (s) => [...s].map((ch) => ch.charCodeAt(0));
+const asText = (bytes) => Array.from(bytes, (b) => String.fromCharCode(b)).join("");
+
+/* palette */
+const px = [];
+for (let i = 0; i < 60; i++) px.push(220, 20, 30, 255);
+for (let i = 0; i < 40; i++) px.push(20, 40, 200, 255);
+for (let i = 0; i < 25; i++) px.push(0, 255, 0, 0); // fully transparent: ignored
+const pal = extractPalette(px, 4);
+cm("palette finds two colours", pal.length === 2, JSON.stringify(pal));
+cm("palette most common first", pal[0].hex === "#dc141e" && Math.abs(pal[0].share - 0.6) < 1e-9, JSON.stringify(pal[0]));
+cm("palette ignores transparent", Math.abs(pal[0].share + pal[1].share - 1) < 1e-9);
+cm("palette deterministic", JSON.stringify(extractPalette(px, 4)) === JSON.stringify(pal));
+cm("palette empty image", extractPalette([0, 0, 0, 0], 5).length === 0);
+cm("contrast black on white", Math.abs(contrastRatio({ r: 0, g: 0, b: 0 }, { r: 255, g: 255, b: 255 }) - 21) < 1e-9);
+cm("rgbToHex pads", rgbToHex({ r: 255, g: 8, b: 0 }) === "#ff0800");
+
+/* ico */
+const fakePng = (n) => Uint8Array.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, ...new Array(n).fill(7)]);
+const ico = encodeIco([{ size: 16, png: fakePng(10) }, { size: 256, png: fakePng(20) }]);
+const dir = readIcoDirectory(ico);
+cm("ico entry count", dir.length === 2);
+cm("ico 256 stored as zero", ico[6 + 16] === 0 && dir[1].width === 256, JSON.stringify(dir));
+cm("ico offsets", dir[0].offset === 38 && dir[1].offset === 56, JSON.stringify(dir));
+cm("ico embedded png detected", dir.every((entry) => entry.isPng));
+cm("ico total length", ico.length === 38 + 18 + 28, String(ico.length));
+
+/* jpeg: JFIF, EXIF (orientation 6, Make "Cam"), ICC, comment, scan with stuffing, trailer */
+const u16 = (n) => [n >> 8, n & 255];
+const seg = (marker, payload) => [0xff, marker, ...u16(payload.length + 2), ...payload];
+const tiff = [0x49, 0x49, 0x2a, 0x00, 8, 0, 0, 0, 2, 0,
+  0x12, 0x01, 3, 0, 1, 0, 0, 0, 6, 0, 0, 0,
+  0x0f, 0x01, 2, 0, 4, 0, 0, 0, ...asciiBytes("Cam"), 0,
+  0, 0, 0, 0];
+const scan = [0x12, 0xff, 0x00, 0x34, 0xff, 0xd0, 0x56];
+const jpeg = Uint8Array.from([0xff, 0xd8,
+  ...seg(0xe0, [...asciiBytes("JFIF"), 0, 1, 1, 0, 0, 1, 0, 1, 0, 0]),
+  ...seg(0xe1, [...asciiBytes("Exif"), 0, 0, ...tiff]),
+  ...seg(0xe2, [...asciiBytes("ICC_PROFILE"), 0, 1, 1, 9, 9]),
+  ...seg(0xfe, asciiBytes("secret comment")),
+  ...seg(0xdb, [0, ...new Array(64).fill(1)]),
+  ...seg(0xda, [1, 1, 0, 0, 63, 0]),
+  ...scan, 0xff, 0xd9, ...asciiBytes("TRAILER")]);
+const cleaned = stripMetadata(jpeg, "jpeg", { keepColorProfile: true, keepOrientation: true });
+const jt = asText(cleaned.bytes);
+cm("jpeg orientation read", cleaned.orientation === 6, String(cleaned.orientation));
+cm("jpeg comment removed", !jt.includes("secret"));
+cm("jpeg exif tags removed", !jt.includes("Cam"));
+cm("jpeg icc kept", jt.includes("ICC_PROFILE"));
+cm("jpeg trailer dropped", !jt.includes("TRAILER"));
+cm("jpeg scan byte-identical", jt.includes(asText([...scan, 0xff, 0xd9])));
+cm("jpeg orientation segment after JFIF", cleaned.bytes[20] === 0xff && cleaned.bytes[21] === 0xe1);
+cm("jpeg orientation segment readable", readTiffOrientation(cleaned.bytes.subarray(30, 56)) === 6);
+const bare = stripMetadata(jpeg, "jpeg", { keepColorProfile: false, keepOrientation: false });
+const bt = asText(bare.bytes);
+cm("jpeg icc removed on request", !bt.includes("ICC_PROFILE"));
+cm("jpeg no exif block without orientation", !bt.includes("Exif"));
+let rejected = false;
+try { stripMetadata(Uint8Array.of(1, 2, 3), "jpeg", { keepColorProfile: true, keepOrientation: true }); } catch { rejected = true; }
+cm("jpeg rejects non-jpeg", rejected);
+
+/* png */
+const u32 = (n) => [(n >>> 24) & 255, (n >>> 16) & 255, (n >>> 8) & 255, n & 255];
+const chunk = (type, data) => [...u32(data.length), ...asciiBytes(type), ...data, 0, 0, 0, 0];
+const png = Uint8Array.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a,
+  ...chunk("IHDR", new Array(13).fill(0)), ...chunk("tEXt", asciiBytes("Author\0Jane")),
+  ...chunk("iCCP", [1, 2, 3]), ...chunk("eXIf", [1, 2]), ...chunk("IDAT", [9, 9, 9]), ...chunk("IEND", [])]);
+const pt = asText(stripMetadata(png, "png", { keepColorProfile: true, keepOrientation: true }).bytes);
+cm("png text removed", !pt.includes("Jane") && !pt.includes("tEXt"));
+cm("png exif removed", !pt.includes("eXIf"));
+cm("png keeps image chunks", pt.includes("IHDR") && pt.includes("iCCP") && pt.includes("IDAT") && pt.endsWith("IEND\0\0\0\0"));
+
+/* webp */
+const u32le = (n) => [n & 255, (n >>> 8) & 255, (n >>> 16) & 255, (n >>> 24) & 255];
+const wchunk = (fourcc, data) => [...asciiBytes(fourcc), ...u32le(data.length), ...data, ...(data.length % 2 ? [0] : [])];
+const wbody = [...asciiBytes("WEBP"), ...wchunk("VP8X", [0x2c, 0, 0, 0, 0, 0, 0, 0, 0, 0]), ...wchunk("ICCP", [1, 2, 3]),
+  ...wchunk("VP8 ", [5, 5, 5, 5]), ...wchunk("EXIF", asciiBytes("GPSDATA")), ...wchunk("XMP ", asciiBytes("<x/>"))];
+const webp = Uint8Array.from([...asciiBytes("RIFF"), ...u32le(wbody.length), ...wbody]);
+const wout = stripMetadata(webp, "webp", { keepColorProfile: true, keepOrientation: true }).bytes;
+const wt = asText(wout);
+cm("webp exif and xmp removed", !wt.includes("GPSDATA") && !wt.includes("XMP "));
+cm("webp riff size rewritten", new DataView(wout.buffer).getUint32(4, true) === wout.length - 8);
+cm("webp vp8x flags cleared", wout[20] === 0x20, String(wout[20]));
+cm("webp image chunk kept", wt.includes("VP8 "));
+
+/* sniffing */
+const ftypBox = (major, compat) => Uint8Array.from([...u32(16 + 4 * compat.length), ...asciiBytes("ftyp"),
+  ...asciiBytes(major), 0, 0, 0, 0, ...compat.flatMap(asciiBytes)]);
+cm("sniff avif named only in compatible brands", (await sniffFileKind(new File([ftypBox("mif1", ["mif1", "avif", "miaf"])], "a"))) === "avif");
+cm("sniff heic", (await sniffFileKind(new File([ftypBox("heic", ["mif1", "heic"])], "a"))) === "heic");
+cm("sniff m4a", (await sniffFileKind(new File([ftypBox("M4A ", ["M4A ", "isom"])], "a"))) === "audio");
+cm("sniff ogg", (await sniffFileKind(new File([Uint8Array.from([...asciiBytes("OggS"), 0, 2])], "a"))) === "audio");
+cm("sniff svg behind prolog", (await sniffFileKind(new File(['<?xml version="1.0"?>\n<!-- c -->\n<svg xmlns="http://www.w3.org/2000/svg"></svg>'], "a"))) === "svg");
+cm("sniff html is not svg", (await sniffFileKind(new File(["<html><body>hi</body></html>"], "a"))) === "unknown");
+cm("sniff jpeg unchanged", (await sniffFileKind(new File([Uint8Array.of(0xff, 0xd8, 0xff, 0xe0)], "a"))) === "jpeg");
+
+console.log(f5 === 0 ? "IMAGE LIB TESTS OK" : `${f5} FAILURES`);
+if (fails + f2 + f3 + f4 + f5 > 0) process.exitCode = 1;
