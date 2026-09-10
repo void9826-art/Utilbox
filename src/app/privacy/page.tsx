@@ -12,11 +12,12 @@ export const metadata: Metadata = buildMetadata({
   path: "/privacy",
 });
 
-const UPDATED = "2026-09-05";
+const UPDATED = "2026-09-10";
 
 export default function PrivacyPage() {
   const localTools = TOOLS.filter((tool) => tool.processing === "client").length;
   const lookupTools = TOOLS.filter((tool) => tool.processing === "client-with-lookup");
+  const serverTools = TOOLS.filter((tool) => tool.processing === "server-lookup");
 
   return (
     <StaticPage
@@ -42,26 +43,37 @@ export default function PrivacyPage() {
       </p>
       <p>
         The same applies to image tools, text tools, developer tools, calculators and generators. Some
-        of them download a library on first use — the OCR language model, for example, or the HEIC
-        decoder. Those are the same public files for every visitor and contain nothing about you. Two
-        of them are served from public code CDNs rather than from us, so those CDNs see your IP
+        of them download a library on first use — the OCR language model, for example, the HEIC
+        decoder, or the speech-recognition model used by the voice-to-text tool. Those are the same
+        public files for every visitor and contain nothing about you. Some of them are served from
+        public code CDNs or from Hugging Face rather than from us, so those hosts see your IP
         address and nothing else, in the same way any website you visit does. Nothing you typed,
         chose or opened is part of that request.
       </p>
 
       <h2>The exceptions</h2>
       <p>
-        {lookupTools.length === 0
+        {lookupTools.length + serverTools.length === 0
           ? "Every tool currently runs entirely in your browser."
           : "These tools contact a server, and it is worth being precise about what they send:"}
       </p>
-      {lookupTools.length > 0 ? (
+      {lookupTools.length + serverTools.length > 0 ? (
         <ul>
           {lookupTools.map((tool) => (
             <li key={tool.slug}>
               <Link href={`/${tool.category}/${tool.slug}`}>{tool.name}</Link> — fetches published
               reference exchange rates. The request contains only a three-letter currency code such as{" "}
               <code>USD</code>. The amount you type is converted in your browser and is never sent.
+            </li>
+          ))}
+          {serverTools.map((tool) => (
+            <li key={tool.slug}>
+              <Link href={`/${tool.category}/${tool.slug}`}>{tool.name}</Link> — sends the domain name
+              or web address you type, and nothing else, to this site&apos;s own server. The server makes
+              the connection or lookup a browser is not permitted to make and returns the result. We do
+              not save what was checked; the address is sent in the request body, so standard hosting
+              logs record that a check ran but not what it was for. Where the check fetches another
+              website, that website sees our server&apos;s address, not yours.
             </li>
           ))}
         </ul>

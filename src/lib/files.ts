@@ -12,7 +12,24 @@ export const MAX_FILE_SIZE = {
   document: 25 * 1024 * 1024,
 } as const;
 
-export type FileKind = "pdf" | "jpeg" | "png" | "webp" | "gif" | "bmp" | "heic" | "docx" | "unknown";
+export type FileKind =
+  | "pdf"
+  | "jpeg"
+  | "png"
+  | "webp"
+  | "gif"
+  | "bmp"
+  | "heic"
+  | "avif"
+  | "svg"
+  | "audio"
+  | "docx"
+  | "unknown";
+
+const HEIC_BRANDS = ["heic", "heix", "hevc", "hevx", "heim", "heis", "mif1", "msf1"];
+const AVIF_BRANDS = ["avif", "avis"];
+/** MP4-family brands that carry audio: voice memos, M4A and 3GP voice notes. */
+const AUDIO_BRANDS = ["M4A ", "M4B ", "mp41", "mp42", "isom", "iso2", "3gp4", "3gp5", "3gp6", "3g2a", "dash", "qt  "];
 
 const SIGNATURES: Array<{ kind: FileKind; offset: number; bytes: number[] }> = [
   { kind: "pdf", offset: 0, bytes: [0x25, 0x50, 0x44, 0x46] }, // %PDF
@@ -46,15 +63,38 @@ export async function sniffFileKind(file: File): Promise<FileKind> {
     if (matches(header, signature.offset, signature.bytes)) return signature.kind;
   }
 
-  // RIFF....WEBP
+  // RIFF....WEBP / RIFF....WAVE
   if (readAscii(header, 0, 4) === "RIFF" && readAscii(header, 8, 4) === "WEBP") return "webp";
+  if (readAscii(header, 0, 4) === "RIFF" && readAscii(header, 8, 4) === "WAVE") return "audio";
 
-  // ISO base media file with an HEIC/HEIF brand.
+  // ISO base media file. The major brand alone is not enough: AVIF files are
+  // often labelled "mif1" and only name AVIF among their compatible brands.
   if (readAscii(header, 4, 4) === "ftyp") {
-    const brand = readAscii(header, 8, 4);
-    if (["heic", "heix", "hevc", "hevx", "heim", "heis", "mif1", "msf1"].includes(brand)) {
-      return "heic";
+    const boxSize = (header[0] << 24) | (header[1] << 16) | (header[2] << 8) | header[3];
+    const brands = [readAscii(header, 8, 4)];
+    for (let offset = 16; offset + 4 <= Math.min(boxSize, header.length); offset += 4) {
+      brands.push(readAscii(header, offset, 4));
     }
+    if (brands.some((brand) => AVIF_BRANDS.includes(brand))) return "avif";
+    if (HEIC_BRANDS.includes(brands[0])) return "heic";
+    if (AUDIO_BRANDS.includes(brands[0])) return "audio";
+  }
+
+  // Audio containers used by voice notes and recorders.
+  if (readAscii(header, 0, 4) === "OggS") return "audio"; // WhatsApp and Telegram voice notes
+  if (readAscii(header, 0, 3) === "ID3") return "audio"; // MP3 with tags
+  if (readAscii(header, 0, 4) === "fLaC") return "audio";
+  if (readAscii(header, 0, 5) === "#!AMR") return "audio";
+  if (matches(header, 0, [0x1a, 0x45, 0xdf, 0xa3])) return "audio"; // WebM / Matroska
+  // An MPEG audio or ADTS AAC frame: 11 set sync bits. JPEG (FF D8) was matched above.
+  if (header[0] === 0xff && (header[1] & 0xe0) === 0xe0) return "audio";
+
+  // SVG is text, and its <svg> tag can sit behind an XML prolog or a comment.
+  // readAscii maps bytes one-to-one, so a UTF-8 byte order mark arrives as three characters.
+  const firstText = readAscii(header, 0, 64).replace(/^\xEF\xBB\xBF/, "").trimStart();
+  if (firstText.startsWith("<")) {
+    const prefix = await file.slice(0, 4096).text();
+    if (/<svg[\s>]/i.test(prefix)) return "svg";
   }
 
   // DOCX is a ZIP container; the ZIP magic alone is not enough to be sure.
@@ -73,7 +113,8 @@ export class FileRejectedError extends Error {
 }
 
 export interface AcceptOptions {
-  kinds: FileKind[];
+  /** "any" skips content checks, for tools that only read raw bytes (checksums). */
+  kinds: FileKind[] | "any";
   maxBytes: number;
   /** Human-readable label used in error messages, e.g. "PDF". */
   label: string;
@@ -94,6 +135,7 @@ export async function acceptFile(file: File, options: AcceptOptions): Promise<Fi
   }
 
   const kind = await sniffFileKind(file);
+  if (options.kinds === "any") return kind;
   if (!options.kinds.includes(kind)) {
     throw new FileRejectedError(
       `"${file.name}" does not look like a valid ${options.label} file.`,

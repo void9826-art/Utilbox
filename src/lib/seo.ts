@@ -125,6 +125,15 @@ const INSTRUMENT_NOUNS = new Set([
   "lookup",
   "tool",
   "tools",
+  "checker",
+  "builder",
+  "planner",
+  "tracker",
+  "extractor",
+  "remover",
+  "verifier",
+  "tester",
+  "viewer",
 ]);
 
 export function howToTitle(name: string): string {

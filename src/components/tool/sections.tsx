@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-import { ChevronRight, Lock, ShieldCheck } from "lucide-react";
+import { ChevronRight, Lock, Server, ShieldCheck } from "lucide-react";
 
 import { ToolCard } from "@/components/tool/tool-card";
 import { Card } from "@/components/ui/surfaces";
@@ -46,28 +46,34 @@ export function Breadcrumbs({ crumbs }: { crumbs: Crumb[] }) {
 /* -------------------------------------------------------------------------- */
 
 export function PrivacyBadge({ tool }: { tool: ToolMeta }) {
-  const localOnly = tool.processing === "client";
+  const badge =
+    tool.processing === "client"
+      ? {
+          Icon: Lock,
+          label: tool.requiresFile ? "Files never leave your device" : "Runs entirely in your browser",
+          title: "This tool runs entirely in your browser. Nothing is uploaded.",
+        }
+      : tool.processing === "client-with-lookup"
+        ? {
+            Icon: ShieldCheck,
+            label: "Your input stays in your browser",
+            title: "Your input stays in your browser. Only public reference data is fetched.",
+          }
+        : {
+            // Said plainly: a badge claiming "stays in your browser" here would be false.
+            Icon: Server,
+            label: "Checked by this site's server",
+            title:
+              "The domain or URL you enter is sent to this site's own server, which runs the check and sends back the result. It is not saved.",
+          };
 
   return (
     <span
       className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-2.5 py-1 text-[0.6875rem] font-medium text-fg-muted"
-      title={
-        localOnly
-          ? "This tool runs entirely in your browser. Nothing is uploaded."
-          : "Your input stays in your browser. Only public reference data is fetched."
-      }
+      title={badge.title}
     >
-      {localOnly ? (
-        <>
-          <Lock className="size-3 text-fg-muted" aria-hidden="true" />
-          {tool.requiresFile ? "Files never leave your device" : "Runs entirely in your browser"}
-        </>
-      ) : (
-        <>
-          <ShieldCheck className="size-3 text-fg-muted" aria-hidden="true" />
-          Your input stays in your browser
-        </>
-      )}
+      <badge.Icon className="size-3 text-fg-muted" aria-hidden="true" />
+      {badge.label}
     </span>
   );
 }

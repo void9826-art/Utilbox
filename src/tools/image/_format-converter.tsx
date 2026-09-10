@@ -4,14 +4,20 @@ import * as React from "react";
 
 import { Field, Input, Segmented, Slider } from "@/components/ui/field";
 import { Alert } from "@/components/ui/surfaces";
-import type { OutputFormat, ProcessOptions } from "@/lib/image";
+import { FORMAT_LABELS, type OutputFormat, type ProcessOptions } from "@/lib/image";
 import type { AcceptOptions } from "@/lib/files";
 
 import { BatchImageTool } from "./_batch-tool";
 
+const ALL_FORMATS: OutputFormat[] = ["image/jpeg", "image/png", "image/webp"];
+
 export interface FormatConverterProps {
   /** Fixed output format, or undefined to let the visitor choose. */
   targetFormat?: OutputFormat;
+  /** The formats offered when the visitor chooses. Defaults to all three. */
+  formats?: OutputFormat[];
+  /** The format selected on first load when the visitor chooses. */
+  defaultFormat?: OutputFormat;
   accept?: AcceptOptions;
   inputAccept?: string;
   hint?: React.ReactNode;
@@ -28,6 +34,8 @@ export interface FormatConverterProps {
  */
 export function FormatConverter({
   targetFormat,
+  formats = ALL_FORMATS,
+  defaultFormat,
   accept,
   inputAccept,
   hint,
@@ -36,7 +44,9 @@ export function FormatConverter({
   zipName,
   defaultQuality = 88,
 }: FormatConverterProps) {
-  const [chosenFormat, setChosenFormat] = React.useState<OutputFormat>(targetFormat ?? "image/jpeg");
+  const [chosenFormat, setChosenFormat] = React.useState<OutputFormat>(
+    targetFormat ?? defaultFormat ?? formats[0],
+  );
   const [quality, setQuality] = React.useState(defaultQuality);
   const [background, setBackground] = React.useState("#ffffff");
 
@@ -73,11 +83,7 @@ export function FormatConverter({
                 ariaLabel="Output format"
                 value={chosenFormat}
                 onChange={setChosenFormat}
-                options={[
-                  { value: "image/jpeg", label: "JPG" },
-                  { value: "image/png", label: "PNG" },
-                  { value: "image/webp", label: "WebP" },
-                ]}
+                options={formats.map((option) => ({ value: option, label: FORMAT_LABELS[option] }))}
                 className="sm:max-w-sm"
               />
             </div>

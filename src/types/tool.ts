@@ -17,7 +17,13 @@ export type ProcessingMode =
   /** Everything happens in the visitor's browser. Nothing is uploaded. */
   | "client"
   /** Runs in the browser but fetches non-personal reference data (e.g. FX rates). */
-  | "client-with-lookup";
+  | "client-with-lookup"
+  /**
+   * The visitor's input (a domain or URL, never a file) is sent to this site's
+   * own API route, which performs a network check a browser is not allowed to
+   * make — opening a TLS connection, a DNS query, or fetching another site.
+   */
+  | "server-lookup";
 
 export interface ToolMeta {
   slug: string;
