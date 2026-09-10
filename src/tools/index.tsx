@@ -12,7 +12,7 @@ const Loading = () => <ToolSkeleton />;
 
 /**
  * Every tool is a separate lazily-loaded chunk, so visiting one tool page never
- * downloads the code for the other 77.
+ * downloads the code for the other 82.
  */
 const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "merge-pdf": dynamic(() => import("./pdf/merge-pdf"), { loading: Loading }),
@@ -28,6 +28,10 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "rotate-pdf": dynamic(() => import("./pdf/rotate-pdf"), { loading: Loading }),
   "delete-pdf-pages": dynamic(() => import("./pdf/delete-pdf-pages"), { loading: Loading }),
   "extract-pdf-pages": dynamic(() => import("./pdf/extract-pdf-pages"), { loading: Loading }),
+  "pdf-add-page-numbers": dynamic(() => import("./pdf/pdf-add-page-numbers"), { loading: Loading }),
+  "pdf-table-to-excel": dynamic(() => import("./pdf/pdf-table-to-excel"), { loading: Loading }),
+  "pdf-metadata-editor": dynamic(() => import("./pdf/pdf-metadata-editor"), { loading: Loading }),
+  "pdf-resize-page": dynamic(() => import("./pdf/pdf-resize-page"), { loading: Loading }),
   "percentage-calculator": dynamic(() => import("./calculators/percentage-calculator"), { loading: Loading }),
   "age-calculator": dynamic(() => import("./calculators/age-calculator"), { loading: Loading }),
   "gpa-calculator": dynamic(() => import("./calculators/gpa-calculator"), { loading: Loading }),
@@ -93,6 +97,7 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "html-formatter": dynamic(() => import("./developer/html-formatter"), { loading: Loading }),
   "css-formatter": dynamic(() => import("./developer/css-formatter"), { loading: Loading }),
   "timestamp-converter": dynamic(() => import("./developer/timestamp-converter"), { loading: Loading }),
+  "checksum-verifier": dynamic(() => import("./developer/checksum-verifier"), { loading: Loading }),
 };
 
 export function ToolMount({ slug }: { slug: string }) {

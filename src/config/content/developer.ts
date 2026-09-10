@@ -4,6 +4,48 @@ const PRIVACY_NOTE =
   "Everything runs in this page. Nothing you paste is transmitted, logged or stored, which is what makes it safe to drop a production payload in here while you are debugging.";
 
 export const developerContent: Record<string, ToolContent> = {
+  "checksum-verifier": {
+    seoTitle: "Verify File Checksum Online — MD5, SHA-1, SHA-256",
+    seoDescription:
+      "Verify a file checksum online. Calculate MD5, SHA-1, SHA-256 and SHA-512 and compare with the published value — any file size, never uploaded.",
+    intro:
+      "Check that a download is exactly what its publisher released. Add the file, paste the published checksum, and get a clear match or mismatch.",
+    howToUse: [
+      "Add the file you downloaded.",
+      "Paste the checksum from the download page — the algorithm is detected from its length.",
+      "Press Calculate checksums.",
+      "Read the verdict: the checksums either match exactly or they do not.",
+    ],
+    howItWorks: [
+      "A cryptographic hash turns any file into a short fingerprint. Change a single bit anywhere in the file and the fingerprint changes completely, so if the hash of your copy equals the one the publisher printed, your copy is identical to theirs — nothing was corrupted in transit or swapped along the way.",
+      "The file is read from your disk in chunks and fed to every selected algorithm at once, so even a multi-gigabyte disk image is read only once and memory use stays flat. The hashing runs as WebAssembly in your browser, and the file is never uploaded — which matters for exactly the files people check, such as installers, backups and disk images.",
+      "SHA-256 is the one to rely on. MD5 and SHA-1 still catch accidental corruption, but both are broken against deliberate tampering: it is practical to craft two different files with the same MD5 or SHA-1. When a publisher offers SHA-256 or SHA-512, compare that.",
+      "The comparison ignores letter case and surrounding spaces, and accepts the “hash  filename” lines written by sha256sum and the “SHA256 (file) = hash” lines written by BSD and macOS tools.",
+    ],
+    faq: [
+      {
+        question: "Where do I find the checksum to compare against?",
+        answer:
+          "On the download page, in the release notes, or in a file such as SHA256SUMS next to the download. Take it from the publisher's own site over HTTPS — a checksum from the same untrusted mirror as the file proves little.",
+      },
+      {
+        question: "What does a mismatch mean?",
+        answer:
+          "The files are not identical. The download may be incomplete or corrupted, so download it again — or the checksum may be for a different version or file.",
+      },
+      {
+        question: "Is MD5 still good enough?",
+        answer:
+          "For spotting accidental corruption, yes. For proving a file has not been tampered with, no — use SHA-256 or SHA-512 where the publisher provides them.",
+      },
+      {
+        question: "Is there a file size limit?",
+        answer:
+          "No fixed limit. Large files simply take longer — roughly the time your disk takes to read them plus the hashing — while memory use stays the same.",
+      },
+    ],
+  },
+
   "json-formatter": {
     seoTitle: "JSON Formatter — Pretty Print and Minify JSON Online",
     seoDescription:

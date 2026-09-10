@@ -4,6 +4,7 @@ import {
   CheckCheck,
   Clock,
   Code2,
+  Fingerprint,
   Link2,
   Palette,
   Table2,
@@ -135,6 +136,24 @@ export const developerTools: ToolMeta[] = [
     processing: "client",
     popular: true,
     addedOn: "2026-09-05",
+  },
+  {
+    slug: "checksum-verifier",
+    name: "File Checksum Verifier",
+    category: "developer",
+    description: "Calculate MD5, SHA-1, SHA-256 or SHA-512 and compare with a published hash.",
+    keywords: [
+      "verify file checksum online",
+      "sha256 checksum",
+      "md5 checksum",
+      "file hash calculator",
+      "check file integrity",
+    ],
+    icon: Fingerprint,
+    related: ["base64-encoder", "uuid-generator", "json-validator", "url-encoder"],
+    requiresFile: true,
+    processing: "client",
+    addedOn: "2026-09-10",
   },
 ];
 

@@ -4,6 +4,189 @@ const LOCAL_NOTE =
   "The file is read into your browser's memory, changed there, and handed straight back to you. Nothing is uploaded, so there is no queue and no copy sitting on a server afterwards.";
 
 export const pdfContent: Record<string, ToolContent> = {
+  "pdf-add-page-numbers": {
+    seoTitle: "Add Page Numbers to PDF Online — Free, No Upload",
+    seoDescription:
+      "Add page numbers to a PDF online for free. Choose the position, format and first number, skip the cover page or number a range — all in your browser.",
+    intro:
+      "Number the pages of a PDF in seconds. Choose where the numbers go and how they read, then download the numbered copy.",
+    howToUse: [
+      "Add a PDF.",
+      "Choose the position and a format such as “Page 1 of 10”.",
+      "Set the first number, and tick the option to skip the cover page if you need to.",
+      "Press Add page numbers, check the preview, then download.",
+    ],
+    howItWorks: [
+      "The numbers are written onto each page as real text in the standard Helvetica font, so they stay sharp at any zoom, can be searched, and add only a few kilobytes. The rest of the page is not altered: its original content is kept exactly as it was and the number is drawn on top.",
+      "Pages are not always stored the way they are displayed. Scans and landscape pages are often saved upright with a rotation instruction that the viewer applies. The tool reads each page's rotation and visible area, works out where the bottom or top edge ends up on screen, and turns the number to match — so a number set to bottom centre lands at the bottom centre of the page as you see it, reading the right way up.",
+      "When you skip the cover or number only a range, counting starts on the first numbered page, and the “of N” total counts only the pages that are numbered. Set a different first number to continue on from an earlier document.",
+      LOCAL_NOTE,
+    ],
+    faq: [
+      {
+        question: "Can I start from a number other than 1?",
+        answer: "Yes. Enter any first number — useful when a document continues on from an earlier part.",
+      },
+      {
+        question: "Can I leave the cover page unnumbered?",
+        answer:
+          "Tick “Don't number the first page”. Numbering then begins on page 2, starting from the first number you chose.",
+      },
+      {
+        question: "Does it work on scanned PDFs?",
+        answer:
+          "Yes. The number is drawn over the scanned image like any other page. If the scan has dark edges, increase the distance from the edge or change the colour so the number stays readable.",
+      },
+      {
+        question: "Does it change anything else in the document?",
+        answer:
+          "No. Text, images, links and bookmarks are left as they were; only the numbers are added. Password-protected PDFs need the password removed first.",
+      },
+    ],
+  },
+
+  "pdf-table-to-excel": {
+    seoTitle: "Extract Table From PDF to Excel — Free, Multi-Page",
+    seoDescription:
+      "Extract tables from a PDF to Excel or CSV. A table spread over many pages is joined into one sheet, repeated headers are removed and figures become numbers.",
+    intro:
+      "Pull a table out of a PDF into a spreadsheet. A table that runs across many pages comes out as one continuous sheet, with the repeated headers removed.",
+    howToUse: [
+      "Add a PDF that contains a table.",
+      "Enter the pages the table is on, such as 3-7, or leave it blank to scan every page.",
+      "Check the preview, and move the column sensitivity slider if columns are split or merged.",
+      "Download the table as an Excel workbook or a CSV file.",
+    ],
+    howItWorks: [
+      "A PDF does not store tables. It stores pieces of text at coordinates that only look like rows and columns. The tool reads every text fragment with its position, groups fragments on the same baseline into rows, and finds the left edges that many rows share — those become the columns.",
+      "Long reports usually split one table over several pages and repeat the header at the top of each. With One sheet selected, the pages you chose are stacked into a single table, and when a page opens with the same header row as the first page, that repeat is removed, so the result can be sorted and filtered straight away. Choose Sheet per page to keep them apart instead.",
+      "Figures such as 1,234.50, $980 or (45.00) are converted to plain numbers a spreadsheet can add up, with brackets read as negative. Values with leading zeros, such as account codes, are left as text so the zeros are kept, and ambiguous formats such as 1.234,50 are not guessed at.",
+      "This works on PDFs that contain real text — exports from accounting systems, spreadsheets and reporting tools. A scanned table is a picture, with no text to read.",
+    ],
+    faq: [
+      {
+        question: "How is this different from PDF to Excel?",
+        answer:
+          "PDF to Excel puts each page on its own sheet exactly as laid out. This tool is built for one table that spans many pages: it joins the pages into a single sheet, removes repeated headers and converts formatted figures to numbers.",
+      },
+      {
+        question: "Why are some columns merged or split?",
+        answer:
+          "Columns are inferred from where text starts on the page. Move the column sensitivity slider down to split columns that sit close together, or up to merge columns that were split.",
+      },
+      {
+        question: "Can it read a scanned PDF?",
+        answer:
+          "No. A scan holds an image of the table rather than text. The Image to Text tool can recover the words, but the columns would need rebuilding by hand.",
+      },
+      {
+        question: "What about cells that wrap onto two lines?",
+        answer:
+          "They usually appear as an extra row with most columns empty. Check the preview and tidy those rows in your spreadsheet.",
+      },
+    ],
+  },
+
+  "pdf-metadata-editor": {
+    seoTitle: "Edit PDF Metadata Online — Title, Author, Keywords",
+    seoDescription:
+      "Edit or remove PDF metadata online: title, author, subject, keywords, creator, producer, dates and language. The document stays in your browser.",
+    intro:
+      "View and change the properties stored inside a PDF — title, author, keywords, dates and more — or clear them before you share the file.",
+    howToUse: [
+      "Add a PDF — its current properties are filled in.",
+      "Edit any field, or press Clear all to empty them.",
+      "Choose whether to remove the XMP metadata stream.",
+      "Save, check the values read back from the new file, and download it.",
+    ],
+    howItWorks: [
+      "PDF properties live in the document information dictionary: fields for the title, author, subject and keywords, the application that created the document, the software that produced the PDF, and when it was created and last modified. Search engines and document systems read them, and the title is what many PDF viewers show in the window bar instead of the file name.",
+      "Many PDFs also carry a second copy of this information as an XMP metadata stream, and some readers prefer that copy. Changing the title here while an old XMP stream stays behind can leave different programs showing different titles. Removing the XMP stream makes the fields you set the only metadata the file contains.",
+      "Only the properties are rewritten; pages, fonts, images and bookmarks are carried over unchanged. Empty fields are removed from the file rather than saved as blanks. After saving, the new file is opened again and its properties are read back, so what you see is what the file really contains.",
+      LOCAL_NOTE,
+    ],
+    faq: [
+      {
+        question: "Why does my PDF viewer still show the old title?",
+        answer:
+          "Some viewers read the XMP copy first. Save again with “Remove the XMP metadata stream” ticked, then close and reopen the file in case the viewer cached it.",
+      },
+      {
+        question: "Can I remove all metadata before sharing a PDF?",
+        answer:
+          "Press Clear all, keep “Remove the XMP metadata stream” ticked, and save. The document properties and the XMP stream are removed. Other content — comments, form data, or text inside the pages themselves — is not affected.",
+      },
+      {
+        question: "Does editing metadata change the document's content?",
+        answer: "No. The pages are copied as they are; only the properties change.",
+      },
+      {
+        question: "Why can't I edit an encrypted PDF?",
+        answer:
+          "Encryption locks the file's structure, including its properties. Remove the password in a PDF reader you trust, then edit the properties here.",
+      },
+    ],
+  },
+
+  "pdf-resize-page": {
+    seoTitle: "Convert PDF A4 to Letter — PDF Page Size Converter",
+    seoDescription:
+      "Convert PDF pages from A4 to US Letter, or Letter to A4, online. Content is scaled to fit and centred, text stays sharp, and nothing is uploaded.",
+    intro:
+      "Change the paper size of a PDF — A4 to Letter, Letter to A4, or to Legal, A3 or A5 — so it prints without cropped edges or lopsided margins.",
+    howToUse: [
+      "Add a PDF — its current page sizes are listed.",
+      "Choose the paper size you need.",
+      "Choose Scale to fit, or Keep content size to change only the paper around the content.",
+      "Convert, check the page sizes read back from the saved file, and download.",
+    ],
+    howItWorks: [
+      "A4 (210 × 297 mm) is used almost everywhere outside North America; US Letter (8.5 × 11 in) is used in the United States and Canada. They are close but not the same shape — A4 is narrower and taller — so printing one on the other either crops the edges or shrinks the page with uneven margins, depending on the printer.",
+      "In Scale to fit mode each page's content is scaled by the largest factor that fits the new paper without cropping, then centred. From A4 to Letter that factor is 94.1%, leaving a little extra space at the sides; from Letter to A4 it is 97.3%, with extra space at the top and bottom.",
+      "Because the page's own drawing instructions are scaled rather than the page being turned into a picture, text stays sharp and selectable. Landscape pages stay landscape, pages already at the chosen size are left alone, and link and form-field areas are moved to match the scaled content.",
+      "Keep content size changes only the paper: the content is centred at its original size, which adds margin when the new paper is larger and cuts off the edges when it is smaller.",
+    ],
+    formula: {
+      expression: "scale = min(new width ÷ old width, new height ÷ old height)",
+      where: [
+        "new width, new height — the target paper, in points (1 pt = 1/72 in)",
+        "old width, old height — the current page, in points",
+      ],
+      note: "A4 is 595.28 × 841.89 pt and Letter is 612 × 792 pt, so A4 to Letter scales by min(612 ÷ 595.28, 792 ÷ 841.89) = 94.1%.",
+    },
+    example: {
+      scenario: "A US Letter report that has to print on A4",
+      steps: [
+        "Add the PDF; its pages are listed as US Letter portrait.",
+        "Choose A4 and Scale to fit.",
+        "Press Convert to A4.",
+      ],
+      result:
+        "Every page becomes 595.28 × 841.89 pt. The content is scaled to 97.3% and centred, leaving about 13 mm of extra space above and below it.",
+    },
+    faq: [
+      {
+        question: "Will the text be blurry after resizing?",
+        answer:
+          "No. The page content is scaled as vector drawing instructions, not as an image, so text and line art stay sharp and text stays selectable.",
+      },
+      {
+        question: "Why is there extra white space?",
+        answer:
+          "A4 and Letter have different proportions, so fitting one dimension leaves space in the other. The content is never stretched out of shape.",
+      },
+      {
+        question: "Does it handle PDFs with mixed page sizes?",
+        answer: "Yes. Every page is fitted on its own, and pages that are already the chosen size are left untouched.",
+      },
+      {
+        question: "What happens to comments and highlights?",
+        answer:
+          "Link and form-field areas are moved with the content. Markup such as highlights and freehand drawings may no longer line up exactly, so flatten or remove comments before converting if they matter.",
+      },
+    ],
+  },
+
   "merge-pdf": {
     seoTitle: "Merge PDF Files Online — Free, No Upload",
     seoDescription:

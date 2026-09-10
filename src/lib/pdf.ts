@@ -378,3 +378,61 @@ export function trimTable(rows: string[][]): string[][] {
 
   return nonEmptyRows.map((row) => keep.map((column) => row[column] ?? ""));
 }
+
+/**
+ * Stacks the tables from several pages into one, the way a long report splits
+ * a single table across pages. Rows are padded to the widest table, and when a
+ * later page opens with the same header row as the first, that repeat is
+ * dropped so the result can be sorted and filtered as one table.
+ */
+export function joinTables(
+  tables: string[][][],
+  options: { dropRepeatedHeaders: boolean },
+): { rows: string[][]; droppedHeaders: number } {
+  const columns = tables.reduce(
+    (widest, table) => table.reduce((max, row) => Math.max(max, row.length), widest),
+    0,
+  );
+  const normalise = (row: string[]) => row.map((cell) => cell.trim().toLowerCase()).join(" ");
+
+  const rows: string[][] = [];
+  let header: string | null = null;
+  let droppedHeaders = 0;
+
+  for (const table of tables) {
+    table.forEach((raw, index) => {
+      const row = Array.from({ length: columns }, (_, column) => raw[column] ?? "");
+      const key = normalise(row);
+      if (header === null) {
+        header = key;
+      } else if (options.dropRepeatedHeaders && index === 0 && key === header) {
+        droppedHeaders += 1;
+        return;
+      }
+      rows.push(row);
+    });
+  }
+
+  return { rows, droppedHeaders };
+}
+
+/**
+ * Rewrites a formatted figure as a plain number string a spreadsheet stores as
+ * a number: "1,234.50" → "1234.50", "$980" → "980", "(45.00)" → "-45.00".
+ * Anything else — including codes with leading zeros and European "1.234,50" —
+ * comes back unchanged, because guessing wrong would corrupt the value.
+ */
+export function normaliseNumericCell(value: string): string {
+  const trimmed = value.trim();
+  const match = trimmed.match(/^(\()?([-+−]?)\s*[$€£¥₹]?\s*(\d{1,3}(?:,\d{3})+|\d+)(\.\d+)?(\))?$/);
+  if (!match) return value;
+
+  const [, open, sign, integer, fraction = "", close] = match;
+  if (Boolean(open) !== Boolean(close)) return value;
+
+  const digits = integer.replace(/,/g, "");
+  if (/^0\d/.test(digits)) return value;
+
+  const negative = Boolean(open) || sign === "-" || sign === "−";
+  return `${negative ? "-" : ""}${digits}${fraction}`;
+}

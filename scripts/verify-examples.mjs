@@ -113,5 +113,13 @@ const birth = Date.UTC(2001, 2, 15);
 const today = Date.UTC(2026, 8, 5);
 check("age total days", Math.round((today - birth) / 86400000), 9305);
 
+/* pdf-resize-page: the formula note and the Letter-to-A4 worked example */
+import { fitToPaper, PAPER_SIZES } from "../src/lib/pdf-geometry.ts";
+const a4ToLetter = fitToPaper({ x: 0, y: 0, ...PAPER_SIZES.a4 }, PAPER_SIZES.letter, "fit");
+check("A4 to Letter scale %", Number((a4ToLetter.scale * 100).toFixed(1)), 94.1);
+const letterToA4 = fitToPaper({ x: 0, y: 0, ...PAPER_SIZES.letter }, PAPER_SIZES.a4, "fit");
+check("Letter to A4 scale %", Number((letterToA4.scale * 100).toFixed(1)), 97.3);
+check("Letter to A4 space above and below, mm", Math.round((letterToA4.translateY / 72) * 25.4), 13);
+
 console.log(problems === 0 ? "ALL DOCUMENTED EXAMPLES MATCH THE CODE" : `${problems} EXAMPLE(S) DISAGREE WITH THE CODE`);
 if (problems > 0) process.exitCode = 1;

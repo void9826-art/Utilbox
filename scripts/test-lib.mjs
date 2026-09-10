@@ -286,3 +286,50 @@ cm("sniff jpeg unchanged", (await sniffFileKind(new File([Uint8Array.of(0xff, 0x
 
 console.log(f5 === 0 ? "IMAGE LIB TESTS OK" : `${f5} FAILURES`);
 if (fails + f2 + f3 + f4 + f5 > 0) process.exitCode = 1;
+
+/* ---- pdf page geometry, table joining (appended) ---- */
+import { placeLabel, fitToPaper, identifyPaper, normaliseRotation, formatLabel, PAPER_SIZES } from "../src/lib/pdf-geometry.ts";
+import { joinTables, normaliseNumericCell } from "../src/lib/pdf.ts";
+let f6 = 0;
+const cg = (n, c, d = "") => { if (!c) { console.log(`FAIL ${n} ${d}`); f6++; } };
+
+const a4 = { x: 0, y: 0, width: 595.28, height: 841.89 };
+const p0 = placeLabel({ box: a4, rotation: 0, position: "bottom-center", textWidth: 40, fontSize: 10, margin: 20 });
+cg("label unrotated bottom centre", near(p0.x, (595.28 - 40) / 2) && near(p0.y, 20) && p0.rotate === 0, JSON.stringify(p0));
+// Rotated 90° the reader sees a landscape page whose bottom edge is the page's right-hand side.
+const p90 = placeLabel({ box: a4, rotation: 90, position: "bottom-center", textWidth: 40, fontSize: 10, margin: 20 });
+cg("label rotated 90", near(p90.x, 595.28 - 20) && near(p90.y, (841.89 - 40) / 2) && p90.rotate === 90, JSON.stringify(p90));
+const p270 = placeLabel({ box: a4, rotation: 270, position: "top-left", textWidth: 40, fontSize: 10, margin: 20 });
+cg("label rotated 270", near(p270.x, 568.08) && near(p270.y, 821.89) && p270.rotate === 270, JSON.stringify(p270));
+const p180 = placeLabel({ box: { x: 10, y: 20, width: 600, height: 800 }, rotation: -180, position: "bottom-right", textWidth: 50, fontSize: 10, margin: 30 });
+cg("label rotated 180 with offset box", near(p180.x, 90) && near(p180.y, 790) && p180.rotate === 180, JSON.stringify(p180));
+cg("normalise rotation", normaliseRotation(-90) === 270 && normaliseRotation(450) === 90);
+cg("format page of", formatLabel("pageOf", 3, 12) === "Page 3 of 12");
+cg("identify letter landscape", identifyPaper(792, 612) === "letter");
+cg("identify unknown size", identifyPaper(500, 500) === null);
+
+const toLetter = fitToPaper(a4, PAPER_SIZES.letter, "fit");
+cg("A4 to Letter", near(toLetter.scale, 792 / 841.89, 1e-9) && toLetter.width === 612 && toLetter.height === 792, JSON.stringify(toLetter));
+const toA4 = fitToPaper({ x: 0, y: 0, width: 612, height: 792 }, PAPER_SIZES.a4, "fit");
+cg("Letter to A4 is 97.3%", Number((toA4.scale * 100).toFixed(1)) === 97.3, String(toA4.scale));
+cg("Letter to A4 centred", near(toA4.translateY, (841.89 - 792 * toA4.scale) / 2) && near(toA4.translateX, 0), JSON.stringify(toA4));
+const wide = fitToPaper({ x: 0, y: 0, width: 842, height: 595 }, PAPER_SIZES.letter, "fit");
+cg("landscape stays landscape", wide.width === 792 && wide.height === 612);
+const shifted = fitToPaper({ x: 50, y: 50, width: 612, height: 792 }, PAPER_SIZES.letter, "center");
+cg("crop box offset removed", near(shifted.translateX, -50) && near(shifted.translateY, -50) && shifted.scale === 1);
+
+const joinedT = joinTables([[["Item", "Qty"], ["A", "1"]], [["Item", "Qty"], ["B", "2", "x"]]], { dropRepeatedHeaders: true });
+cg("join drops repeated header", joinedT.droppedHeaders === 1 && joinedT.rows.length === 3, JSON.stringify(joinedT));
+cg("join pads to widest", joinedT.rows.every((row) => row.length === 3));
+cg("join keeps headers when asked", joinTables([[["H"], ["a"]], [["H"], ["b"]]], { dropRepeatedHeaders: false }).rows.length === 4);
+cg("numeric thousands", normaliseNumericCell("1,234.50") === "1234.50");
+cg("numeric currency", normaliseNumericCell("$980") === "980");
+cg("numeric brackets negative", normaliseNumericCell("(45.00)") === "-45.00");
+cg("numeric leading zero kept", normaliseNumericCell("00123") === "00123");
+cg("numeric european untouched", normaliseNumericCell("1.234,50") === "1.234,50");
+cg("numeric text untouched", normaliseNumericCell("Widget") === "Widget");
+cg("numeric unbalanced bracket untouched", normaliseNumericCell("(45") === "(45");
+cg("numeric bad grouping untouched", normaliseNumericCell("12,34") === "12,34");
+
+console.log(f6 === 0 ? "PDF GEOMETRY TESTS OK" : `${f6} FAILURES`);
+if (f6 > 0) process.exitCode = 1;
