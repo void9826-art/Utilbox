@@ -12,7 +12,7 @@ const Loading = () => <ToolSkeleton />;
 
 /**
  * Every tool is a separate lazily-loaded chunk, so visiting one tool page never
- * downloads the code for the other 92.
+ * downloads the code for the other 97.
  */
 const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "merge-pdf": dynamic(() => import("./pdf/merge-pdf"), { loading: Loading }),
@@ -47,6 +47,11 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "tax-calculator": dynamic(() => import("./calculators/tax-calculator"), { loading: Loading }),
   "salary-calculator": dynamic(() => import("./calculators/salary-calculator"), { loading: Loading }),
   "scientific-calculator": dynamic(() => import("./calculators/scientific-calculator"), { loading: Loading }),
+  "paint-coverage-calculator": dynamic(() => import("./calculators/paint-coverage-calculator"), { loading: Loading }),
+  "pet-age-calculator": dynamic(() => import("./calculators/pet-age-calculator"), { loading: Loading }),
+  "take-home-pay-calculator": dynamic(() => import("./calculators/take-home-pay-calculator"), { loading: Loading }),
+  "ev-charging-cost-calculator": dynamic(() => import("./calculators/ev-charging-cost-calculator"), { loading: Loading }),
+  "subscription-cost-tracker": dynamic(() => import("./calculators/subscription-cost-tracker"), { loading: Loading }),
   "compress-image": dynamic(() => import("./image/compress-image"), { loading: Loading }),
   "resize-image": dynamic(() => import("./image/resize-image"), { loading: Loading }),
   "jpg-to-png": dynamic(() => import("./image/jpg-to-png"), { loading: Loading }),

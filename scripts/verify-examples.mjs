@@ -145,5 +145,38 @@ const scooter150 = estimateHorsepower(150, "scooter");
 check("150 cc scooter low", Math.round(scooter150.low), 9);
 check("150 cc scooter high", Math.round(scooter150.high), 14);
 
+/* paint-coverage-calculator, pet-age-calculator, ev-charging-cost-calculator, subscription-cost-tracker */
+import { paintNeeded, bestCans, chargeCost, dogHumanAge, dogEpigeneticAge, catHumanAge, monthlyCost, yearlyCost } from "../src/lib/household.ts";
+const bedroom = paintNeeded({ length: 4, width: 3, height: 2.5, doors: 1, windows: 1, doorArea: 1.9, windowArea: 1.5, coats: 2, coverage: 12, wastePercent: 10, includeCeiling: false });
+check("paint walls m²", bedroom.wallArea, 35);
+check("paint area m²", Number(bedroom.paintableArea.toFixed(1)), 31.6);
+check("paint before waste L", Number(((bedroom.paintableArea * 2) / 12).toFixed(2)), 5.27);
+check("paint with waste L", Number(bedroom.paint.toFixed(2)), 5.79);
+check("paint tins", bestCans(bedroom.paint, "metric").counts.map((entry) => `${entry.count}x${entry.size}`).join("+"), "1x5+1x1");
+check("labrador 6 chart", dogHumanAge(6, "large"), 45);
+check("labrador 6 dna", Number(dogEpigeneticAge(6).toFixed(1)), 59.7);
+check("cat senior at 10", catHumanAge(10), 56);
+const evCharge = chargeCost({ batteryKwh: 60, fromPercent: 20, toPercent: 80, efficiencyPercent: 90, pricePerKwh: 0.15 });
+check("ev energy added", evCharge.energyAdded, 36);
+check("ev from grid", evCharge.energyFromGrid, 40);
+check("ev charge cost", Number(evCharge.cost.toFixed(2)), 6);
+check("ev full charge cost", Number(((60 / 0.9) * 0.15).toFixed(2)), 10);
+check("weekly as monthly", Number(monthlyCost(6.99, "weekly").toFixed(2)), 30.29);
+check("yearly as monthly", Number(monthlyCost(99, "yearly").toFixed(2)), 8.25);
+check("subscriptions per month", Number((15.49 + Number(monthlyCost(6.99, "weekly").toFixed(2)) + Number(monthlyCost(99, "yearly").toFixed(2))).toFixed(2)), 54.03);
+check("subscriptions per year", Number((yearlyCost(15.49, "monthly") + yearlyCost(6.99, "weekly") + yearlyCost(99, "yearly")).toFixed(2)), 648.36);
+
+/* take-home-pay-calculator: £40,000 and £30,000 in England */
+import { ukTakeHome } from "../src/lib/take-home.ts";
+const england = { region: "england", pensionPercent: 0, pensionType: "salary-sacrifice", studentLoan: "none", postgraduateLoan: false };
+const forty = ukTakeHome({ ...england, gross: 40000 });
+check("uk 40k income tax", Number(forty.lines[0].amount.toFixed(2)), 5486);
+check("uk 40k national insurance", Number(forty.lines[1].amount.toFixed(2)), 2194.4);
+check("uk 40k take-home", Number(forty.net.toFixed(2)), 32319.6);
+check("uk 40k monthly", Number((forty.net / 12).toFixed(2)), 2693.3);
+const thirty = ukTakeHome({ ...england, gross: 30000 });
+check("uk 30k take-home", Number(thirty.net.toFixed(2)), 25119.6);
+check("uk 30k monthly", Number((thirty.net / 12).toFixed(2)), 2093.3);
+
 console.log(problems === 0 ? "ALL DOCUMENTED EXAMPLES MATCH THE CODE" : `${problems} EXAMPLE(S) DISAGREE WITH THE CODE`);
 if (problems > 0) process.exitCode = 1;

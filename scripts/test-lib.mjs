@@ -447,3 +447,71 @@ cs("1998 cc in cubic inches", Number((1998 / CC_PER_CUBIC_INCH).toFixed(1)) === 
 
 console.log(f8 === 0 ? "SCHEMA/STYLES/SIZING TESTS OK" : `${f8} FAILURES`);
 if (f8 > 0) process.exitCode = 1;
+
+/* ---- household maths and take-home pay (appended) ---- */
+import { paintNeeded, bestCans, wallpaperRolls, chargeCost, dogHumanAge, dogEpigeneticAge, catHumanAge, monthlyCost, yearlyCost, nextRenewal } from "../src/lib/household.ts";
+import { ukTakeHome, caTakeHome, auTakeHome, inTakeHome, indiaSurcharge, ontarioHealthPremium, helpRepayment, medicareLevy, lowIncomeTaxOffset } from "../src/lib/take-home.ts";
+let f9 = 0;
+const ch = (n, c, d = "") => { if (!c) { console.log(`FAIL ${n} ${d}`); f9++; } };
+
+const room = paintNeeded({ length: 4, width: 3, height: 2.5, doors: 1, windows: 1, doorArea: 1.9, windowArea: 1.5, coats: 2, coverage: 12, wastePercent: 10, includeCeiling: false });
+ch("paint areas", near(room.wallArea, 35) && near(room.paintableArea, 31.6), JSON.stringify(room));
+ch("paint litres", near(room.paint, 5.79333, 1e-4), String(room.paint));
+const tins = bestCans(room.paint, "metric");
+ch("tins 5 L + 1 L", tins.total === 6 && tins.counts.length === 2 && tins.counts[0].size === 5 && tins.counts[1].size === 1, JSON.stringify(tins));
+ch("no tins for no paint", bestCans(0, "metric").counts.length === 0);
+const gallons = bestCans(1.3, "imperial");
+ch("gallon and two quarts", gallons.total === 1.5 && gallons.counts.reduce((s, c) => s + c.count, 0) === 3, JSON.stringify(gallons));
+const paper = wallpaperRolls({ perimeter: 14, height: 2.5, rollWidth: 0.53, rollLength: 10.05, patternRepeat: 0.26, trim: 0.1 });
+ch("wallpaper rolls", paper.dropsPerRoll === 3 && paper.drops === 27 && paper.rolls === 9, JSON.stringify(paper));
+ch("wallpaper roll too short", wallpaperRolls({ perimeter: 10, height: 3, rollWidth: 0.5, rollLength: 2, patternRepeat: 0, trim: 0 }) === null);
+
+const charge = chargeCost({ batteryKwh: 60, fromPercent: 20, toPercent: 80, efficiencyPercent: 90, pricePerKwh: 0.15 });
+ch("ev charge", near(charge.energyAdded, 36) && near(charge.energyFromGrid, 40) && near(charge.cost, 6), JSON.stringify(charge));
+
+ch("dog large 6", dogHumanAge(6, "large") === 45);
+ch("dog interpolation", near(dogHumanAge(2.5, "small"), 26));
+ch("dog giant puppy", near(dogHumanAge(0.5, "giant"), 6));
+ch("dog past chart", dogHumanAge(17, "small") === 84);
+ch("dog dna formula", Number(dogEpigeneticAge(6).toFixed(1)) === 59.7 && dogEpigeneticAge(0.5) === null);
+ch("cat 10", catHumanAge(10) === 56);
+ch("cat 6 months", near(catHumanAge(0.5), 10));
+
+ch("weekly to monthly", Number(monthlyCost(6.99, "weekly").toFixed(2)) === 30.29);
+ch("yearly totals", near(yearlyCost(15.49, "monthly") + yearlyCost(6.99, "weekly") + yearlyCost(99, "yearly"), 648.36));
+ch("renewal clamps to month end", nextRenewal("2026-01-31", "monthly", new Date(2026, 8, 11)) === "2026-09-30", nextRenewal("2026-01-31", "monthly", new Date(2026, 8, 11)));
+ch("renewal weekly", nextRenewal("2026-09-01", "weekly", new Date(2026, 8, 11)) === "2026-09-15");
+ch("renewal invalid", nextRenewal("soon", "monthly", new Date()) === null);
+
+const ukBase = { gross: 40000, region: "england", pensionPercent: 0, pensionType: "salary-sacrifice", studentLoan: "none", postgraduateLoan: false };
+const line = (result, label) => result.lines.find((entry) => entry.label.startsWith(label))?.amount ?? 0;
+ch("uk £40k take-home", near(ukTakeHome(ukBase).net, 32319.6, 0.005), JSON.stringify(ukTakeHome(ukBase)));
+ch("uk £30k take-home", near(ukTakeHome({ ...ukBase, gross: 30000 }).net, 25119.6, 0.005));
+ch("uk allowance taper at £110k", near(line(ukTakeHome({ ...ukBase, gross: 110000 }), "Income Tax"), 33432, 0.005));
+ch("scotland £40k tax", near(line(ukTakeHome({ ...ukBase, region: "scotland" }), "Income Tax"), 5551.07, 0.005));
+ch("uk salary sacrifice and plan 2", near(ukTakeHome({ ...ukBase, gross: 60000, studentLoan: "plan2", pensionPercent: 5 }).net, 41132.05, 0.005));
+
+const ontario = caTakeHome(60000, "on");
+ch("ontario $60k take-home", near(ontario.net, 47339.75, 0.01), JSON.stringify(ontario));
+const bc = caTakeHome(100000, "bc");
+ch("cpp and ei maximums", near(line(bc, "CPP"), 4646.45, 0.005) && near(line(bc, "EI"), 1123.07, 0.005), JSON.stringify(bc));
+ch("ontario health premium", ontarioHealthPremium(59435) === 600 && ontarioHealthPremium(25000) === 300 && near(ontarioHealthPremium(38000), 420));
+
+const aus = auTakeHome(90000, false);
+ch("australia $90k", near(line(aus, "Income tax"), 17520) && near(line(aus, "Medicare"), 1800) && near(aus.net, 70680) && near(aus.extras[0].amount, 10800), JSON.stringify(aus));
+ch("lito", near(lowIncomeTaxOffset(40000), 575));
+ch("medicare shade-in", near(medicareLevy(30000), 277.8));
+ch("help marginal", near(helpRepayment(100000), 4570.8));
+
+const newRegime = { regime: "new", deductions: 0, employeePf: 0, professionalTax: 0 };
+const india15 = inTakeHome({ ...newRegime, gross: 1500000 });
+ch("india 15 lakh new regime", near(line(india15, "Income tax"), 93750) && near(line(india15, "Health"), 3750) && near(india15.net, 1402500), JSON.stringify(india15));
+ch("india rebate to 12.75 lakh salary", inTakeHome({ ...newRegime, gross: 1275000 }).totalDeductions === 0);
+const relief = inTakeHome({ ...newRegime, gross: 1285000 });
+ch("india 87A marginal relief", near(line(relief, "Income tax"), 10000) && near(line(relief, "Health"), 400), JSON.stringify(relief));
+const oldRegime = inTakeHome({ gross: 1000000, regime: "old", deductions: 150000, employeePf: 0, professionalTax: 0 });
+ch("india old regime", near(line(oldRegime, "Income tax"), 72500) && near(line(oldRegime, "Health"), 2900), JSON.stringify(oldRegime));
+ch("india surcharge marginal relief", near(indiaSurcharge(5010000, "new"), 7000), String(indiaSurcharge(5010000, "new")));
+
+console.log(f9 === 0 ? "HOUSEHOLD/TAKE-HOME TESTS OK" : `${f9} FAILURES`);
+if (f9 > 0) process.exitCode = 1;

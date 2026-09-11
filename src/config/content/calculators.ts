@@ -4,6 +4,279 @@ const FINANCE_DISCLAIMER =
   "This calculator is a general illustration, not financial advice. Lenders apply their own fees, rounding rules and day-count conventions, so a real quote will differ. Always check the figures with the provider before committing.";
 
 export const calculatorContent: Record<string, ToolContent> = {
+  "paint-coverage-calculator": {
+    seoTitle: "Paint Calculator — How Much Paint Do I Need?",
+    seoDescription:
+      "How much paint do I need? Work out litres or gallons for a room from its size, doors, windows and coats, get the tins to buy, and count wallpaper rolls too.",
+    intro:
+      "Enter a room's size to see how much paint to buy — including the best mix of tins — or how many rolls of wallpaper you need.",
+    howToUse: [
+      "Choose Paint or Wallpaper, and metric or US units.",
+      "Enter the room's length, width and wall height.",
+      "For paint, add doors, windows, coats and the coverage printed on the tin; for wallpaper, the roll size and pattern repeat.",
+      "Read how much to buy and which tins or how many rolls.",
+    ],
+    howItWorks: [
+      "Wall area is the room's perimeter multiplied by its height: 2 × (length + width) × height. Doors and windows are subtracted using typical sizes you can change, and the ceiling can be added. The paint needed is that area multiplied by the number of coats, divided by the paint's coverage, plus an allowance for waste.",
+      "Coverage is printed on the tin, usually as square metres per litre or square feet per gallon. Interior wall paints typically cover about 10–14 m² per litre, or 350–400 ft² per gallon, on a smooth surface that has been painted before. Bare plaster, rough textures and big colour changes use more.",
+      "The tin suggestion searches every combination of standard sizes — 10, 5, 2.5 and 1 litre, or 5-gallon buckets, gallons and quarts — for the fewest containers that cover what you need.",
+      "Wallpaper is counted in drops, the full-height strips. Each drop is the wall height plus the pattern repeat plus a trimming allowance; a roll gives as many whole drops as fit its length; and the room needs as many drops as the roll width divides into the perimeter. Doors and windows are not subtracted, because offcuts rarely match the pattern.",
+    ],
+    formula: {
+      expression: "paint = (2 × (L + W) × H − doors − windows) × coats ÷ coverage × (1 + waste)",
+      where: [
+        "L, W, H — room length, width and wall height",
+        "coverage — the area one litre or gallon covers in one coat",
+        "waste — the allowance for spills, rollers and touch-ups",
+      ],
+      note: "Wallpaper rolls = ⌈perimeter ÷ roll width⌉ ÷ ⌊roll length ÷ (height + repeat + trim)⌋, rounded up.",
+    },
+    example: {
+      scenario: "A 4 × 3 m bedroom with 2.5 m walls, one door, one window and two coats",
+      steps: [
+        "Walls: 2 × (4 + 3) × 2.5 = 35 m².",
+        "Minus a 1.9 m² door and a 1.5 m² window: 31.6 m².",
+        "31.6 m² × 2 coats ÷ 12 m² per litre = 5.27 L, plus 10% = 5.79 L.",
+      ],
+      result: "About 5.8 litres — one 5 L tin and one 1 L tin.",
+    },
+    faq: [
+      {
+        question: "How much does a litre of paint cover?",
+        answer: "Typically 10–14 m² per coat for interior wall paint on a smooth surface. The exact figure is printed on the tin.",
+      },
+      {
+        question: "Do I need two coats?",
+        answer:
+          "Usually. A second coat evens out colour and sheen, and is almost always needed when changing colour significantly or painting new plaster.",
+      },
+      {
+        question: "Does it include the ceiling?",
+        answer:
+          "Tick Include the ceiling to add length × width. Ceilings are usually painted with a different, flat paint, so you may prefer to work them out separately.",
+      },
+      {
+        question: "How many extra rolls of wallpaper should I buy?",
+        answer:
+          "The calculation already ignores doors and windows, which leaves some spare. Buy one more roll from the same batch number if you want room for mistakes or later repairs, because rolls from different batches can differ slightly in colour.",
+      },
+    ],
+  },
+
+  "pet-age-calculator": {
+    seoTitle: "Dog Age in Human Years Calculator — Dogs and Cats",
+    seoDescription:
+      "Convert a dog's age to human years using its size or breed, compare it with the 2020 DNA-based formula, and work out a cat's age in human years too.",
+    intro:
+      "Find out how old your dog or cat is in human years. Dogs are adjusted for size, because large breeds age faster than small ones.",
+    howToUse: [
+      "Choose Dog or Cat.",
+      "Enter your pet's age in years and months.",
+      "For a dog, choose the breed — or choose by weight for a mixed breed.",
+      "Read the human-equivalent age, life stage and the full chart for that size.",
+    ],
+    howItWorks: [
+      "The old rule that one dog year equals seven human years is wrong in both directions. Dogs mature very quickly — a one-year-old dog is roughly as developed as a teenager — and then age more slowly, at a pace that depends on size.",
+      "For dogs the calculator uses the size-based chart widely used by veterinary practices: the first year counts as about 15 human years (12 for giant breeds), the second adds about 9, and each year after that adds from 4 years for small dogs to 7 for giant ones. Breeds are grouped by typical adult weight — small up to 9 kg (20 lb), medium to 23 kg (50 lb), large to 45 kg (100 lb) and giant above that — and ages between whole years are interpolated.",
+      "It also shows a newer estimate from a 2020 study by researchers at the University of California, San Diego, who compared age-related chemical marks on DNA in Labrador retrievers and people: human age ≈ 16 × ln(dog age) + 31. It was measured in one breed, so treat it as an interesting comparison rather than the answer.",
+      "For cats the calculator follows International Cat Care's chart: a cat is about 15 in human terms at one year and 24 at two, and each year after that adds about four human years.",
+    ],
+    formula: {
+      expression: "dog: size chart      DNA estimate = 16 × ln(dog age) + 31      cat = 24 + 4 × (age − 2)",
+      where: ["ln — the natural logarithm", "ages in years; the cat formula applies from two years old"],
+      note: "The DNA-based estimate applies from one year old.",
+    },
+    example: {
+      scenario: "A 6-year-old Labrador Retriever",
+      steps: [
+        "Labradors are large dogs.",
+        "The large-dog chart gives 45 human years at age 6.",
+        "The DNA formula gives 16 × ln 6 + 31 = 59.7.",
+      ],
+      result: "About 45 in human years by the size chart, or about 60 by the DNA-based formula.",
+    },
+    faq: [
+      {
+        question: "Is one dog year really seven human years?",
+        answer:
+          "No. Dogs age fastest in their first two years and more slowly afterwards, and larger dogs age faster than smaller ones. The seven-year rule has no scientific basis.",
+      },
+      {
+        question: "Why do big dogs age faster?",
+        answer:
+          "Large and giant breeds have shorter lifespans and reach old age sooner. The biological reasons are still being studied, which is why the chart adds more human years per year for bigger dogs.",
+      },
+      {
+        question: "When is a cat a senior?",
+        answer: "Feline life-stage guidelines class cats over 10 years old as seniors — about 56 in human terms.",
+      },
+      {
+        question: "My dog is a mixed breed. Which size do I choose?",
+        answer: "Choose by weight: enter your dog's healthy adult weight and the calculator picks the size group.",
+      },
+    ],
+    disclaimer:
+      "These are rules of thumb for comparing life stages, not a health assessment. Your vet can judge how your pet is ageing far better than any chart.",
+  },
+
+  "take-home-pay-calculator": {
+    seoTitle: "UK Take-Home Pay Calculator 2026/27 — Plus CA, AU, IN",
+    seoDescription:
+      "Work out take-home pay after tax for the 2026/27 UK tax year, including National Insurance, pension and student loans — plus Canada, Australia and India.",
+    intro:
+      "See what you actually take home from a salary after income tax, National Insurance, pension and student loans — with versions for Canada, Australia and India.",
+    howToUse: [
+      "Choose the country.",
+      "Enter your gross salary, per year or per month.",
+      "Add the details that apply: Scotland, pension and student loan in the UK; province in Canada; a HELP debt in Australia; tax regime and deductions in India.",
+      "Read your take-home pay per year, month and week, and the breakdown of every deduction.",
+    ],
+    howItWorks: [
+      "UK, tax year 6 April 2026 to 5 April 2027: the Personal Allowance is £12,570, reduced by £1 for every £2 of income over £100,000. In England, Wales and Northern Ireland income tax is 20% up to £50,270, 40% up to £125,140 and 45% above; Scotland has six bands from 19% to 48%. Employee National Insurance is 8% between £12,570 and £50,270 and 2% above. Student loans are repaid at 9% above the plan threshold (Plan 1 £26,900, Plan 2 £29,385, Plan 4 £33,795, Plan 5 £25,000) and postgraduate loans at 6% above £21,000. Salary sacrifice reduces tax, National Insurance and loan repayments; a net pay arrangement reduces tax only.",
+      "Canada, 2026: federal tax from 14% to 33%, plus provincial tax for Ontario, British Columbia or Alberta, each after the basic personal amount and credits for CPP and EI. Ontario's surtax and Health Premium are included. CPP is 5.95% of earnings between $3,500 and $74,600, CPP2 is 4% up to $85,000, and EI is 1.63% up to $68,900.",
+      "Australia, 2026–27 for residents: no tax up to $18,200, then 15%, 30% from $45,000, 37% from $135,000 and 45% from $190,000, less the low income tax offset, plus the 2% Medicare levy. HELP repayments use the marginal system: 15% of income above $69,528, rising in later tiers. Employer super at 12% is paid on top of salary and shown separately.",
+      "India, FY 2026–27: the new regime's slabs run from nil up to ₹4 lakh to 30% above ₹24 lakh, with a ₹75,000 standard deduction and no tax on taxable income up to ₹12 lakh thanks to the section 87A rebate, with marginal relief just above it. The old regime keeps the ₹2.5 lakh exemption, 5–30% slabs, a ₹50,000 standard deduction and deductions such as 80C. Surcharge, with marginal relief, and the 4% health and education cess apply to both.",
+    ],
+    example: {
+      scenario: "A £40,000 salary in England with no pension or student loan",
+      steps: [
+        "Income Tax: (£40,000 − £12,570) × 20% = £5,486.",
+        "National Insurance: (£40,000 − £12,570) × 8% = £2,194.40.",
+        "£40,000 − £5,486 − £2,194.40.",
+      ],
+      result: "£32,319.60 a year, or £2,693.30 a month.",
+    },
+    faq: [
+      {
+        question: "How much is £30,000 after tax in the UK?",
+        answer:
+          "In England, Wales and Northern Ireland in 2026/27, £25,119.60 a year, or £2,093.30 a month, assuming no pension contributions or student loan.",
+      },
+      {
+        question: "Why is my payslip different?",
+        answer:
+          "Payroll works out tax and National Insurance each pay period using your tax code, so one-off payments, benefits in kind, emergency tax codes and pension schemes all change the figures. The calculator shows the full-year position.",
+      },
+      {
+        question: "Does salary sacrifice save more than a normal pension scheme?",
+        answer:
+          "Salary sacrifice reduces National Insurance as well as income tax, so for the same contribution it usually leaves more in your pocket than relief at source.",
+      },
+      {
+        question: "Which Indian tax regime is better for me?",
+        answer:
+          "The new regime is better unless your deductions — 80C, HRA, home loan interest and so on — are large. Switch the regime in the calculator to compare both on your own figures.",
+      },
+    ],
+    disclaimer:
+      "An estimate for a single employee with no other income, not tax advice. Real payslips differ because tax is worked out per pay period and depends on your tax code, benefits, other income and claims. Not included: Ontario's and British Columbia's low-income tax reductions, Quebec, Australia's Medicare levy surcharge, higher-rate relief on UK relief-at-source pensions, and India's rounding of tax to the nearest ₹10.",
+  },
+
+  "ev-charging-cost-calculator": {
+    seoTitle: "EV Charging Cost Calculator — Per Charge and Per Mile",
+    seoDescription:
+      "Work out what it costs to charge an electric car at home or in public — per charge, per mile or kilometre, and per month — and compare it with petrol.",
+    intro:
+      "See what charging an electric car really costs: for a single charge, per mile or kilometre, and per month, compared with running a petrol car.",
+    howToUse: [
+      "Choose One charge or Cost per distance.",
+      "For one charge, enter the battery size, the start and end charge levels and your electricity price.",
+      "For running costs, enter your car's consumption, the distance you drive and how much charging is done in public.",
+      "Add a petrol car's fuel economy and fuel price to compare.",
+    ],
+    howItWorks: [
+      "The energy a charge adds is the battery capacity multiplied by the change in charge level: taking a 60 kWh battery from 20% to 80% adds 36 kWh. Charging is not perfectly efficient — some energy is lost as heat in the charger and battery — so more is drawn from the grid than ends up in the battery. Home charging typically loses around 10%, which is the default efficiency here.",
+      "Running cost per mile or kilometre comes from the car's consumption — shown on its dashboard or in its specification as kWh per 100 km, kWh per 100 miles or miles per kWh. Divided by charging efficiency and multiplied by your electricity price, it gives the cost of each mile or kilometre. Public rapid chargers usually cost several times more per kWh than home electricity, so the share of public charging matters.",
+      "The petrol comparison converts fuel economy into fuel used per mile or kilometre and multiplies by the fuel price, using exact gallon sizes: a US gallon is 3.785 litres and a UK gallon 4.546 litres, which is why UK mpg figures look higher for the same car.",
+    ],
+    formula: {
+      expression: "cost per charge = battery × (end % − start %) ÷ efficiency × price per kWh",
+      where: [
+        "battery — usable battery capacity in kWh",
+        "efficiency — the share of grid electricity that reaches the battery",
+      ],
+      note: "Running cost per distance = consumption ÷ efficiency × electricity price.",
+    },
+    example: {
+      scenario: "Charging a 60 kWh battery from 20% to 80% at $0.15 per kWh",
+      steps: [
+        "Energy added: 60 kWh × (80% − 20%) = 36 kWh.",
+        "Drawn from the grid at 90% efficiency: 36 ÷ 0.9 = 40 kWh.",
+        "40 kWh × $0.15.",
+      ],
+      result: "$6.00 for the charge.",
+    },
+    faq: [
+      {
+        question: "How much does it cost to fully charge an electric car?",
+        answer:
+          "Divide the battery size by the charging efficiency and multiply by your electricity price. A 60 kWh battery at $0.15 per kWh costs about $10.00 from empty to full at home.",
+      },
+      {
+        question: "Is it cheaper to charge at home?",
+        answer:
+          "Almost always. Home electricity — especially on an off-peak tariff — usually costs far less per kWh than public rapid charging.",
+      },
+      {
+        question: "Why does my car use more energy in winter?",
+        answer:
+          "Cold batteries are less efficient and heating the cabin draws power, so consumption rises in cold weather. Use a winter figure from your car's trip computer for a realistic estimate.",
+      },
+      {
+        question: "Should I charge to 100%?",
+        answer:
+          "Many manufacturers recommend charging to around 80% for everyday use and to 100% before long trips. Check your car's handbook, as advice differs between battery types.",
+      },
+    ],
+  },
+
+  "subscription-cost-tracker": {
+    seoTitle: "Subscription Cost Calculator — Track and Print Costs",
+    seoDescription:
+      "Add up every subscription to see what they really cost per month and per year, spot what to cancel, see upcoming renewals, and print or export the list.",
+    intro:
+      "List your subscriptions — streaming, software, gym, cloud storage — and see the true monthly and yearly total, the renewals coming up, and what cancelling would save.",
+    howToUse: [
+      "Add each subscription with its price and how often it bills.",
+      "Optionally add the next renewal date and a category.",
+      "Tick Cancel? on the ones you are unsure about to see what dropping them would save.",
+      "Print the list or export it as CSV. It is also kept in this browser for next time.",
+    ],
+    howItWorks: [
+      "Subscriptions bill on different cycles, which hides their real cost. The tracker converts each one to a monthly and a yearly figure — a weekly charge is multiplied by 52 and divided by 12, a quarterly one divided by three, a yearly one divided by twelve — and adds them up, so a $6.99 weekly plan appears as the $30.29 a month it really costs.",
+      "Totals by category show where the money goes, and ticking the subscriptions you might cancel shows the monthly and yearly saving. Renewal dates roll forward by each subscription's billing cycle, so the list of upcoming renewals stays current, and dates at the end of a month renew on the last day of shorter months.",
+      "Your list is saved in this browser's local storage and never sent to a server. Clearing your browser data removes it, so export a CSV if you want a copy.",
+    ],
+    example: {
+      scenario: "Three subscriptions: $15.49 monthly, $6.99 weekly and $99 yearly",
+      steps: [
+        "$15.49 monthly stays $15.49 a month.",
+        "$6.99 × 52 ÷ 12 = $30.29 a month.",
+        "$99 ÷ 12 = $8.25 a month.",
+      ],
+      result: "$54.03 a month, or $648.36 a year.",
+    },
+    faq: [
+      {
+        question: "How do I find all my subscriptions?",
+        answer:
+          "Search your email for “receipt”, “renewal” and “subscription”, check the subscription pages in the Apple App Store and Google Play, and scan the last three months of bank and card statements for repeat charges.",
+      },
+      {
+        question: "Is my list saved?",
+        answer: "Yes, in this browser only, using local storage. Nothing is uploaded, and the list does not sync to your other devices.",
+      },
+      {
+        question: "How are weekly subscriptions converted to monthly?",
+        answer: "A year has 52 weeks and 12 months, so a weekly price is multiplied by 52 and divided by 12 — about 4.33 weeks per month, not 4.",
+      },
+      {
+        question: "Can I print my list?",
+        answer: "Yes. Press Print list for a clean table of every subscription with its monthly and yearly cost, without the editing controls.",
+      },
+    ],
+  },
+
   "percentage-calculator": {
     seoTitle: "Percentage Calculator — Percent Of, Increase & Change",
     seoDescription:
