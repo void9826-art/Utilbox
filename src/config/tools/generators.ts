@@ -1,4 +1,4 @@
-import { Barcode, Dices, Fingerprint, KeyRound, PenLine, QrCode, ReceiptText, UserRound } from "lucide-react";
+import { Barcode, Bot, Dices, Fingerprint, KeyRound, PenLine, QrCode, ReceiptText, UserRound } from "lucide-react";
 
 import type { ToolMeta } from "@/types/tool";
 
@@ -101,5 +101,23 @@ export const generatorTools: ToolMeta[] = [
     requiresFile: false,
     processing: "client",
     addedOn: "2026-09-05",
+  },
+  {
+    slug: "robots-txt-generator",
+    name: "Robots.txt Generator and Tester",
+    category: "generators",
+    description: "Build a robots.txt file and test which URLs each crawler may fetch.",
+    keywords: [
+      "robots.txt generator",
+      "robots.txt tester",
+      "block ai crawlers robots.txt",
+      "robots txt checker",
+      "disallow googlebot",
+    ],
+    icon: Bot,
+    related: ["og-preview", "ssl-expiry-checker", "favicon-generator", "url-encoder"],
+    requiresFile: false,
+    processing: "client",
+    addedOn: "2026-09-10",
   },
 ];

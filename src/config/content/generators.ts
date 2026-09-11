@@ -1,6 +1,48 @@
 import type { ToolContent } from "@/types/tool";
 
 export const generatorContent: Record<string, ToolContent> = {
+  "robots-txt-generator": {
+    seoTitle: "Robots.txt Generator and Tester — Free Online",
+    seoDescription:
+      "Create a robots.txt file with presets for blocking AI crawlers, then test which URLs Googlebot, Bingbot or any bot may crawl, with the deciding rule explained.",
+    intro:
+      "Build a robots.txt file from simple settings, or paste an existing one and test exactly which URLs each crawler may fetch — and which rule decides it.",
+    howToUse: [
+      "Start from a preset, such as Allow everything or Block AI training crawlers.",
+      "Add the paths each crawler should stay out of, and your sitemap address.",
+      "Copy or download the file and upload it to the root of your site as /robots.txt.",
+      "Switch to Test URLs, choose a crawler and enter addresses to see whether each is allowed.",
+    ],
+    howItWorks: [
+      "A robots.txt file is a set of groups. Each group names one or more crawlers in User-agent lines and lists Allow and Disallow rules for them. A crawler follows only the groups that name it, merged together, and falls back to the User-agent: * group only when no group names it — so a Googlebot group replaces the * rules for Googlebot rather than adding to them.",
+      "When several rules match a URL, the most specific — the rule with the longest path — wins, and when an Allow and a Disallow are equally long, Allow wins. An asterisk matches any run of characters and a dollar sign marks the end of the URL, so Disallow: /*.pdf$ blocks every PDF but not /report.pdf?download=1. The tester applies exactly these rules, from RFC 9309, which Google and Bing follow.",
+      "robots.txt controls crawling, not indexing. A blocked page can still appear in search results if other sites link to it; to keep a page out of search, let it be crawled and give it a noindex robots meta tag. And it is a request, not a lock: reputable crawlers honour it, but it does not stop anyone determined to fetch your pages.",
+      "The AI crawler preset adds a group for the tokens AI companies publish for their training and answer-engine crawlers. Google-Extended and Applebot-Extended are control tokens rather than separate crawlers: blocking them opts content out of AI training without affecting Google Search or Apple's search features.",
+    ],
+    faq: [
+      {
+        question: "Where do I put robots.txt?",
+        answer:
+          "At the root of each host, so it is served from https://example.com/robots.txt. A file in a subfolder is ignored, and each subdomain needs its own.",
+      },
+      {
+        question: "Does Disallow remove a page from Google?",
+        answer:
+          "No. It stops Googlebot fetching the page, but the address can still be indexed from links. Put a noindex meta tag on a crawlable page to keep it out of results.",
+      },
+      {
+        question: "Will blocking AI crawlers stop my content being used by AI?",
+        answer:
+          "It stops crawlers that respect robots.txt from collecting new content. It does not remove anything already collected, and crawlers that ignore the file are not affected.",
+      },
+      {
+        question: "Why is Crawl-delay flagged?",
+        answer:
+          "Google ignores Crawl-delay and adjusts its crawl rate automatically based on how your server responds. Bing and Yandex do honour it.",
+      },
+    ],
+  },
+
   "qr-code-generator": {
     seoTitle: "QR Code Generator — Free, No Watermark, No Expiry",
     seoDescription:

@@ -4,6 +4,174 @@ const PRIVACY_NOTE =
   "Everything runs in this page. Nothing you paste is transmitted, logged or stored, which is what makes it safe to drop a production payload in here while you are debugging.";
 
 export const developerContent: Record<string, ToolContent> = {
+  "ssl-expiry-checker": {
+    seoTitle: "SSL Certificate Expiry Checker — Check Any Domain",
+    seoDescription:
+      "Check an SSL certificate's expiry date for any domain, plus whether its chain is trusted, the name matches, and which TLS version the server uses.",
+    intro:
+      "Enter a domain to see exactly when its SSL certificate expires, who issued it, and whether browsers and apps will trust it.",
+    howToUse: [
+      "Type the domain, such as example.com, or paste a full address.",
+      "Leave the port at 443 for a website, or choose the port of a mail or other TLS service.",
+      "Press Check certificate.",
+      "Read the expiry date and any chain or name problems, and add a renewal reminder to your calendar if you like.",
+    ],
+    howItWorks: [
+      "Browsers do not let web pages see certificate details, so this check runs on this site's server. It opens a TLS connection to the domain as a browser would — sending the domain name so the server presents the right certificate — reads the certificate and the chain the server sends, and closes the connection. Nothing about the check is stored.",
+      "Three things must all be right for a certificate to work. It must be within its validity dates; it must name the domain being visited, either exactly or through a wildcard such as *.example.com; and it must chain up to a root certificate authority that devices trust. The tool checks all three, verifying the chain against the root certificates bundled with Node.js, which follow Mozilla's trusted list.",
+      "The most common problem after expiry is a missing intermediate certificate. Desktop browsers can often fetch the missing piece themselves, so the site looks fine in Chrome while phone apps, API clients, payment providers and older devices refuse to connect. A chain error is worth fixing even when your browser shows a padlock.",
+      "Public certificate lifetimes are being shortened in stages under CA/Browser Forum rules — to a maximum of 200 days from March 2026, falling to 47 days by 2029 — so automated renewal and regular expiry checks matter more each year. Before connecting, every address the domain points to is checked to be on the public internet, so the tool cannot be used to probe private networks.",
+    ],
+    faq: [
+      {
+        question: "When should I renew my certificate?",
+        answer:
+          "With at least two weeks to spare. Automated clients such as Certbot for Let's Encrypt try to renew when about 30 days remain, so a certificate with fewer than 30 days left often means automatic renewal has stopped working.",
+      },
+      {
+        question: "Why does my browser show a padlock when this tool reports a chain problem?",
+        answer:
+          "Browsers can fill in a missing intermediate certificate from their cache or by downloading it. Many other clients cannot, so they fail where the browser succeeds. Configure your server to send the full chain.",
+      },
+      {
+        question: "Can it check mail servers?",
+        answer:
+          "Yes, on ports that use TLS from the first byte: 465 for SMTP, 993 for IMAP and 995 for POP3. Ports that upgrade a plain connection with STARTTLS, such as 25 and 587, are not supported.",
+      },
+      {
+        question: "Is the domain I check stored?",
+        answer:
+          "No. The domain is sent to this site's server only to make the connection, and the result goes straight back to your browser without being saved.",
+      },
+    ],
+  },
+
+  "email-syntax-checker": {
+    seoTitle: "Check If Email Address Is Valid — Format and MX",
+    seoDescription:
+      "Check if an email address is in a valid format, with a plain-English reason when it isn't, typo suggestions like gmial.com, and optional MX record lookups.",
+    intro:
+      "Paste one address or a whole list to check each is correctly formatted. Anything wrong is explained, likely typos are corrected, and domains can be checked for mail servers.",
+    howToUse: [
+      "Paste one email address per line.",
+      "Read the verdict next to each address — problems are explained in plain English.",
+      "Press Use this to accept a suggested correction, such as gmail.com for gmial.com.",
+      "Optionally press Check mail servers to confirm each domain can receive email.",
+    ],
+    howItWorks: [
+      "The format check follows the rules mail servers apply (RFC 5321 and RFC 5322): exactly one @; up to 64 characters before it, made of letters, digits, dots and a small set of symbols such as + and _; no leading, trailing or doubled dots; and a domain made of labels of letters, digits and hyphens with a real ending. The whole address can be at most 254 characters.",
+      "Some addresses are technically legal but rejected by most websites — quoted names such as \"john smith\"@example.com, IP addresses in brackets, and international characters. Those pass with a note, so you decide rather than the tool guessing.",
+      "The mail server check looks up the domain's MX records, which say where its email is delivered. A domain with no MX record can still receive mail at its own address; a domain with a “null MX” record has declared it accepts no email; and a domain that does not exist cannot receive anything. Only the domain name is sent for this lookup, never the full address.",
+      "No check can prove a mailbox exists without sending it an email. Many mail servers accept every address at a domain and bounce undeliverable mail later, and probing them address by address is unreliable and treated as abuse — so this tool deliberately stops at format and domain.",
+    ],
+    faq: [
+      {
+        question: "Does a valid result mean the email address exists?",
+        answer:
+          "No. It means the address is correctly formed and, if you ran the MX check, that its domain can receive email. Whether that particular mailbox exists can only be confirmed by sending a message to it.",
+      },
+      {
+        question: "Is a plus sign allowed in an email address?",
+        answer:
+          "Yes. Addresses like jane+newsletter@example.com are valid, and many providers deliver them to jane@example.com. Some websites wrongly reject them.",
+      },
+      {
+        question: "Do capital letters make an address invalid?",
+        answer:
+          "No. Domains are not case-sensitive, and in practice almost every mail provider treats the part before the @ as case-insensitive too.",
+      },
+      {
+        question: "Is my list uploaded?",
+        answer:
+          "The format check runs entirely in your browser. If you run the mail server check, only the domain names — the part after each @ — are sent to this site's server for a DNS lookup.",
+      },
+    ],
+  },
+
+  "password-strength-checker": {
+    seoTitle: "Password Strength Checker — Private, Nothing Sent",
+    seoDescription:
+      "Test how strong a password really is. See the estimated time to crack it, the patterns that weaken it and how to fix them — checked in your browser, never sent.",
+    intro:
+      "Type a password to see how quickly it could be guessed and exactly what makes it weak. The check runs on your device; the password is never sent anywhere.",
+    howToUse: [
+      "Type or paste a password into the box.",
+      "Read the strength score and the estimated time to crack it.",
+      "Look at the patterns found — dictionary words, dates, keyboard runs — and the suggestions.",
+      "Clear the box when you have finished.",
+    ],
+    howItWorks: [
+      "Counting character types is a poor measure of strength: “P@ssw0rd1!” ticks every box but falls almost instantly, because attackers try common words with predictable substitutions first. This tool uses zxcvbn, an estimator originally developed at Dropbox, which looks for the patterns people actually use — dictionary words and names, look-alike substitutions, keyboard runs such as qwerty, repeats, sequences and dates — and estimates how many guesses an attacker would need.",
+      "That guess count becomes a crack time under four scenarios: an online attack limited to 100 guesses an hour, an online attack at 10 guesses a second, an offline attack on a slow password hash at 10,000 guesses a second, and an offline attack on a fast hash at 10 billion guesses a second. The score from 0 to 4 summarises the result; aim for 4 and treat anything below 3 as weak.",
+      "The estimator and its word lists are downloaded to your browser the first time you use the tool and run there. The password is not sent to this site or anyone else — which is also why the tool does not check it against lists of breached passwords, since that would mean contacting an outside service.",
+      "The estimate describes how guessable a password is, not whether it is safe. A strong password that has leaked in a breach, or that is reused on several sites, is still unsafe.",
+    ],
+    faq: [
+      {
+        question: "Is it safe to type my real password here?",
+        answer:
+          "The check runs entirely in your browser and nothing is transmitted — you can confirm this in your browser's developer tools. Even so, the safest habit is to test a password with the same structure rather than the real one.",
+      },
+      {
+        question: "What makes a password strong?",
+        answer:
+          "Length and unpredictability. A passphrase of four or more random, unrelated words, or a long random string from a password manager, beats a short password stuffed with symbols.",
+      },
+      {
+        question: "Why is my long password rated weak?",
+        answer:
+          "Length only helps when it is unpredictable. A lyric, a keyboard pattern or a word repeated several times is long, but guessing tools try exactly those things first.",
+      },
+      {
+        question: "Does it check whether my password has been leaked?",
+        answer:
+          "No. That requires sending part of a hash of the password to a breach database, and this tool deliberately contacts nothing. Use your password manager's breach monitoring for that.",
+      },
+    ],
+  },
+
+  "og-preview": {
+    seoTitle: "Open Graph Preview Tool — Test Social Share Cards",
+    seoDescription:
+      "Preview how a link appears on Facebook, LinkedIn, X and chat apps. Check a page's Open Graph and Twitter tags for problems, or write new tags and copy them.",
+    intro:
+      "See how a page will look when its link is shared, and find out why a preview is missing its image or showing the wrong title. Or write the tags from scratch.",
+    howToUse: [
+      "Enter a page address and press Preview — or switch to Write tags to create them.",
+      "Read the list of problems, such as a missing og:image or an image that is too small.",
+      "Compare the Facebook, X and chat-app style previews.",
+      "Fix the tags on your page, or copy the generated tags into its head.",
+    ],
+    howItWorks: [
+      "When a link is shared, the platform's crawler downloads the page and reads its Open Graph tags — og:title, og:description, og:image and og:url — along with X's twitter:card tags. Pages without them get a bare link, or a preview built from whatever the crawler can guess.",
+      "Browsers cannot read another site's HTML, so the page is fetched by this site's server. Only public http and https addresses are allowed, redirects are followed up to five times with each one re-checked, and no more than the head of the page is read. The tags come back to your browser, where the previews are drawn; the preview image is loaded directly from the page's own server.",
+      "The checks flag what most often breaks previews: missing tags, http image addresses, images below the 200 × 200 pixel minimum Facebook accepts, images smaller than the recommended 1200 × 630, missing image descriptions, and overlong titles.",
+      "Platforms cache previews, sometimes for days. After fixing your tags, use the platform's own tool — such as Facebook's Sharing Debugger — to make it fetch the page again.",
+    ],
+    faq: [
+      {
+        question: "Why is my link preview showing an old image?",
+        answer:
+          "The platform cached the page when it was first shared. Update the tags, then ask the platform to fetch the page again — Facebook's Sharing Debugger and LinkedIn's Post Inspector both do this.",
+      },
+      {
+        question: "What size should an og:image be?",
+        answer:
+          "1200 × 630 pixels, a 1.91:1 ratio, works well across Facebook, LinkedIn and X's large card. Keep important content away from the edges, because some layouts crop the image.",
+      },
+      {
+        question: "Do I need Twitter tags if I have Open Graph tags?",
+        answer:
+          "X reads og:title, og:description and og:image when its own tags are missing, but it uses twitter:card to decide the card type. Add twitter:card with the value summary_large_image for a large picture.",
+      },
+      {
+        question: "Can it preview pages behind a login?",
+        answer:
+          "No. It sees the page as a logged-out visitor, the same way a platform's crawler does — which is exactly what matters for previews.",
+      },
+    ],
+  },
+
   "checksum-verifier": {
     seoTitle: "Verify File Checksum Online — MD5, SHA-1, SHA-256",
     seoDescription:

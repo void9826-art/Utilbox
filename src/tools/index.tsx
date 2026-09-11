@@ -12,7 +12,7 @@ const Loading = () => <ToolSkeleton />;
 
 /**
  * Every tool is a separate lazily-loaded chunk, so visiting one tool page never
- * downloads the code for the other 82.
+ * downloads the code for the other 87.
  */
 const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "merge-pdf": dynamic(() => import("./pdf/merge-pdf"), { loading: Loading }),
@@ -80,6 +80,7 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "resume-generator": dynamic(() => import("./generators/resume-generator"), { loading: Loading }),
   "lorem-ipsum-generator": dynamic(() => import("./generators/lorem-ipsum-generator"), { loading: Loading }),
   "uuid-generator": dynamic(() => import("./generators/uuid-generator"), { loading: Loading }),
+  "robots-txt-generator": dynamic(() => import("./generators/robots-txt-generator"), { loading: Loading }),
   "word-counter": dynamic(() => import("./text/word-counter"), { loading: Loading }),
   "character-counter": dynamic(() => import("./text/character-counter"), { loading: Loading }),
   "case-converter": dynamic(() => import("./text/case-converter"), { loading: Loading }),
@@ -98,6 +99,10 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "css-formatter": dynamic(() => import("./developer/css-formatter"), { loading: Loading }),
   "timestamp-converter": dynamic(() => import("./developer/timestamp-converter"), { loading: Loading }),
   "checksum-verifier": dynamic(() => import("./developer/checksum-verifier"), { loading: Loading }),
+  "ssl-expiry-checker": dynamic(() => import("./developer/ssl-expiry-checker"), { loading: Loading }),
+  "email-syntax-checker": dynamic(() => import("./developer/email-syntax-checker"), { loading: Loading }),
+  "password-strength-checker": dynamic(() => import("./developer/password-strength-checker"), { loading: Loading }),
+  "og-preview": dynamic(() => import("./developer/og-preview"), { loading: Loading }),
 };
 
 export function ToolMount({ slug }: { slug: string }) {

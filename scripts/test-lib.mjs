@@ -333,3 +333,66 @@ cg("numeric bad grouping untouched", normaliseNumericCell("12,34") === "12,34");
 
 console.log(f6 === 0 ? "PDF GEOMETRY TESTS OK" : `${f6} FAILURES`);
 if (f6 > 0) process.exitCode = 1;
+
+/* ---- email syntax, robots.txt, network guard (appended) ---- */
+import { checkEmail } from "../src/lib/email.ts";
+import { parseRobots, evaluateUrl, matchesPattern, buildRobots } from "../src/lib/robots.ts";
+import { isPublicAddress, assertPublicHostname, parseHostInput } from "../src/lib/net-guard.ts";
+let f7 = 0;
+const ce = (n, c, d = "") => { if (!c) { console.log(`FAIL ${n} ${d}`); f7++; } };
+
+const okMail = checkEmail("Jane.Doe@Example.com");
+ce("email valid", okMail.valid && okMail.asciiDomain === "example.com", JSON.stringify(okMail));
+const doubleDot = checkEmail("jane..doe@example.com");
+ce("email double dot", !doubleDot.valid && doubleDot.problems.some((p) => /two dots/.test(p)), JSON.stringify(doubleDot));
+ce("email transposition typo", checkEmail("sam@gmial.com").suggestion === "sam@gmail.com", JSON.stringify(checkEmail("sam@gmial.com")));
+ce("email .con typo", checkEmail("sam@hotmail.con").suggestion === "sam@hotmail.com");
+ce("email no suggestion for ordinary domain", checkEmail("sam@company.com").suggestion === null);
+ce("email domain without dot", !checkEmail("jane@example").valid);
+ce("email space", !checkEmail("jane doe@example.com").valid);
+ce("email missing local part", !checkEmail("@example.com").valid);
+ce("email no at sign", checkEmail("jane.example.com").problems[0] === "It has no @ sign.");
+const quotedMail = checkEmail('"john smith"@example.com');
+ce("email quoted local part warns", quotedMail.valid && quotedMail.warnings.length > 0, JSON.stringify(quotedMail));
+const idnMail = checkEmail("user@bücher.de");
+ce("email idn to punycode", idnMail.valid && idnMail.asciiDomain === "xn--bcher-kva.de", JSON.stringify(idnMail));
+ce("email numeric ending", !checkEmail("a@example.123").valid);
+ce("email role address", checkEmail("info@company.org").warnings.some((w) => /role/.test(w)));
+ce("email local part over 64", !checkEmail(`${"a".repeat(65)}@example.com`).valid);
+ce("email hyphen label", !checkEmail("user@-example.com").valid);
+ce("email forbidden character", checkEmail("us(er@example.com").problems.some((p) => /not allowed/.test(p)));
+ce("email mailto prefix", checkEmail("mailto:jane@example.com").valid);
+
+const robotsFile = parseRobots(["User-agent: *", "Disallow: /private/", "Allow: /private/public-page", "", "User-agent: Googlebot", "Disallow: /*.pdf$", "Disallow: /search", "", "Sitemap: https://example.com/sitemap.xml", "Noindex: /x"].join("\n"));
+ce("robots groups", robotsFile.groups.length === 2, JSON.stringify(robotsFile.groups));
+ce("robots sitemap", robotsFile.sitemaps[0] === "https://example.com/sitemap.xml");
+ce("robots noindex warning", robotsFile.warnings.some((w) => /2019/.test(w.message)));
+ce("robots * group blocks", !evaluateUrl(robotsFile, "Bingbot", "https://example.com/private/x").allowed);
+ce("robots longest rule allows", evaluateUrl(robotsFile, "Bingbot", "/private/public-page").allowed);
+ce("robots named group replaces *", evaluateUrl(robotsFile, "Googlebot", "/private/x").allowed);
+ce("robots $ anchor", !evaluateUrl(robotsFile, "Googlebot", "/files/report.pdf").allowed && evaluateUrl(robotsFile, "Googlebot", "/files/report.pdf?x=1").allowed);
+ce("robots prefix includes query", !evaluateUrl(robotsFile, "googlebot/2.1", "/search?q=a").allowed);
+ce("robots.txt always allowed", evaluateUrl(parseRobots("User-agent: *\nDisallow: /"), "x", "/robots.txt").allowed);
+ce("robots tie goes to allow", evaluateUrl(parseRobots("User-agent: *\nDisallow: /page\nAllow: /page"), "x", "/page").allowed);
+ce("robots stacked user-agents", !evaluateUrl(parseRobots("User-agent: a\nUser-agent: b\nDisallow: /"), "b", "/x").allowed);
+ce("robots empty disallow ends group", evaluateUrl(parseRobots("User-agent: a\nDisallow:\n\nUser-agent: b\nDisallow: /"), "a", "/x").allowed);
+ce("robots no catastrophic backtracking", matchesPattern(`/${"*a".repeat(30)}b`, `/${"a".repeat(5000)}`) === false);
+ce("robots utf-8 path equivalence", !evaluateUrl(parseRobots("User-agent: *\nDisallow: /café"), "x", "/caf%c3%a9").allowed);
+const builtRobots = buildRobots([{ agents: ["*"], allow: [], disallow: [] }, { agents: ["GPTBot"], allow: [], disallow: ["/"] }], ["https://example.com/sitemap.xml"]);
+ce("robots build round trip", !evaluateUrl(parseRobots(builtRobots), "GPTBot", "/").allowed && evaluateUrl(parseRobots(builtRobots), "Googlebot", "/").allowed, builtRobots);
+ce("robots build blocks injected lines", !buildRobots([{ agents: ["*\nDisallow: /"], allow: [], disallow: [] }], []).includes("\nDisallow: /\n"));
+
+for (const [address, expected] of [["8.8.8.8", true], ["10.1.2.3", false], ["172.16.0.1", false], ["172.32.0.1", true], ["169.254.169.254", false], ["100.64.0.1", false], ["127.0.0.1", false], ["0.0.0.0", false], ["224.0.0.1", false], ["192.168.1.1", false], ["2606:4700:4700::1111", true], ["::1", false], ["::", false], ["fe80::1", false], ["fd12:3456::1", false], ["::ffff:10.0.0.1", false], ["::ffff:8.8.8.8", true], ["64:ff9b::a00:1", false], ["2001:db8::1", false], ["not an ip", false]]) {
+  ce(`isPublicAddress ${address}`, isPublicAddress(address) === expected);
+}
+const throwsGuard = (fn) => { try { fn(); return false; } catch { return true; } };
+ce("hostname localhost rejected", throwsGuard(() => assertPublicHostname("localhost")));
+ce("hostname .local rejected", throwsGuard(() => assertPublicHostname("printer.local")));
+ce("hostname IP rejected", throwsGuard(() => assertPublicHostname("1.2.3.4")));
+ce("hostname single label rejected", throwsGuard(() => assertPublicHostname("intranet")));
+ce("hostname normalised", assertPublicHostname("Example.COM.") === "example.com");
+ce("host input URL with port", JSON.stringify(parseHostInput("https://example.com:8443/path")) === JSON.stringify({ host: "example.com", port: 8443 }));
+ce("host input IDN", parseHostInput("bücher.de").host === "xn--bcher-kva.de");
+
+console.log(f7 === 0 ? "EMAIL/ROBOTS/NETWORK GUARD TESTS OK" : `${f7} FAILURES`);
+if (f7 > 0) process.exitCode = 1;
