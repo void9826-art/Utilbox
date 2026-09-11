@@ -10,6 +10,7 @@ import {
   QrCode,
   ReceiptText,
   UserRound,
+  Wifi,
 } from "lucide-react";
 
 import type { ToolMeta } from "@/types/tool";
@@ -158,6 +159,24 @@ export const generatorTools: ToolMeta[] = [
     keywords: ["utm link builder", "utm builder", "campaign url builder", "google analytics utm", "utm qr code"],
     icon: Link,
     related: ["qr-code-generator", "og-preview", "url-encoder", "schema-generator"],
+    requiresFile: false,
+    processing: "client",
+    addedOn: "2026-09-10",
+  },
+  {
+    slug: "qr-code-wifi-vcard",
+    name: "Wi-Fi and vCard QR Code Generator",
+    category: "generators",
+    description: "Make QR codes for Wi-Fi, contact cards, menus and events, with printable cards.",
+    keywords: [
+      "wifi qr code generator",
+      "vcard qr code generator",
+      "menu qr code",
+      "event qr code",
+      "printable wifi qr card",
+    ],
+    icon: Wifi,
+    related: ["qr-code-generator", "utm-builder", "barcode-generator", "favicon-generator"],
     requiresFile: false,
     processing: "client",
     addedOn: "2026-09-10",

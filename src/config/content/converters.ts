@@ -40,6 +40,44 @@ function unitContent(options: {
 }
 
 export const converterContent: Record<string, ToolContent> = {
+  "timezone-meeting-planner": {
+    seoTitle: "Time Zone Meeting Planner — Find Overlapping Hours",
+    seoDescription:
+      "Plan meetings across time zones. Compare cities side by side in an hour-by-hour grid, see where working hours overlap, and copy the times for your invite.",
+    intro:
+      "Add the cities your team works in to see their hours side by side, find the hours when everyone is at work, and copy a meeting time for all of them.",
+    howToUse: [
+      "Add each city or time zone — the first one is the reference.",
+      "Choose the meeting date and the working hours to aim for.",
+      "Look for the hours marked ✓, which fall within working hours everywhere.",
+      "Select an hour to see it in every city, then copy the times into your invite.",
+    ],
+    howItWorks: [
+      "Each column is one hour in the reference city. For every city the tool works out the local time at that moment from your browser's built-in time-zone database — the same IANA rules operating systems use — so daylight saving, half-hour offsets such as India's and 45-minute offsets such as Nepal's are all correct for the date you choose.",
+      "An hour counts as good for a city when the whole hour falls inside the working hours you set, on a weekday. Early mornings and evenings are marked separately from night and weekends, so when there is no perfect overlap you can see the least disruptive compromise.",
+      "Daylight saving starts and ends on different dates in different countries — the United States changes its clocks weeks before Europe does — so the overlap between two cities can shift by an hour for part of the year. Choosing the actual meeting date, not just today, avoids that trap.",
+    ],
+    faq: [
+      {
+        question: "What is the best meeting time for London and New York?",
+        answer:
+          "On most weekdays, 14:00–17:00 in London, which is 09:00–12:00 in New York. For a few weeks in spring and autumn, when only one country has changed its clocks, the overlap moves by an hour.",
+      },
+      {
+        question: "Does it handle daylight saving time?",
+        answer: "Yes. Local times are worked out for the date you choose, using each place's time-zone rules on that date.",
+      },
+      {
+        question: "Why do some cities show times like 18:30?",
+        answer: "Some time zones are offset from UTC by half or three-quarters of an hour, such as India (UTC+5:30) and Nepal (UTC+5:45).",
+      },
+      {
+        question: "Can I add a time zone that isn't in the city list?",
+        answer: "Yes. Type any IANA time zone name, such as America/Bogota or Pacific/Fiji, into the box and press Add.",
+      },
+    ],
+  },
+
   "shoe-size-converter": {
     seoTitle: "Shoe Size Converter — US, UK, EU and Japan Sizes",
     seoDescription:

@@ -4,6 +4,89 @@ const PRIVACY_NOTE =
   "Your text is processed by JavaScript running in this page and is never sent over the network. That matters when you are pasting a draft, a client brief, meeting notes or anything else you would rather not hand to a server.";
 
 export const textContent: Record<string, ToolContent> = {
+  "voice-to-text": {
+    seoTitle: "Voice Message to Text Converter — Free, Private",
+    seoDescription:
+      "Turn voice messages and short audio clips into text with Whisper speech recognition that runs in your browser. Works with voice notes, MP3, M4A and WAV.",
+    intro:
+      "Transcribe a voice note or a short recording into text. The speech recognition model runs on your device, so the audio is never uploaded.",
+    howToUse: [
+      "Add an audio file — a WhatsApp or Telegram voice note, a phone recording, or an MP3, M4A, WAV, OGG or WebM clip.",
+      "Choose the language, or leave it on automatic, and pick the faster or more accurate model.",
+      "Press Transcribe. The first time, the model downloads; after that it is cached.",
+      "Copy the text or download it — with timestamps and subtitles if you turned them on.",
+    ],
+    howItWorks: [
+      "Transcription uses Whisper, OpenAI's open-source speech recognition model, converted to run in the browser with Transformers.js and ONNX Runtime Web. Your browser first decodes the audio file and resamples it to 16 kHz mono, the format Whisper expects; the model then turns 30-second windows of sound into text, overlapping them slightly so words at the edges are not lost.",
+      "The model files are the only thing downloaded — about 40 MB for the faster model and about 80 MB for the more accurate one — fetched once from Hugging Face and then cached by the browser. The audio itself stays on your device and is not sent to this site, OpenAI or anyone else, which matters for private voice messages.",
+      "Recognition runs on your own processor in a background thread, so a one-minute clip can take a few seconds on a recent laptop and a minute or more on an older phone. Clips up to 10 minutes are accepted.",
+      "Whisper is accurate on clear speech but can mishear names and specialist terms, struggles when people talk over each other, and occasionally invents words during long silences. Read the transcript before relying on it.",
+    ],
+    faq: [
+      {
+        question: "Can I record straight from my microphone?",
+        answer:
+          "Not at the moment. The tool transcribes audio files, which covers voice notes saved from messaging apps and recordings from your phone's voice memo app.",
+      },
+      {
+        question: "Which audio formats work?",
+        answer:
+          "Anything your browser can decode: MP3, M4A and AAC, WAV, OGG and Opus voice notes, WebM and FLAC. If a file will not decode in one browser, try another, such as Chrome or Firefox, or convert it to MP3.",
+      },
+      {
+        question: "How do I save a WhatsApp voice message as a file?",
+        answer:
+          "On a phone, press and hold the voice message, choose Share, and save it to your files. On WhatsApp for desktop or the web, open the message menu and choose Download.",
+      },
+      {
+        question: "Is the audio really kept private?",
+        answer:
+          "Yes. Only the model is downloaded; the recording is decoded and transcribed on your device. You can confirm in your browser's developer tools that no request carries the audio.",
+      },
+    ],
+  },
+
+  "resume-ats-checker": {
+    seoTitle: "Resume ATS Checker Free — Keyword Match and Format",
+    seoDescription:
+      "Check your resume against a job description: see which keywords are missing, whether an applicant tracking system can read the file, and what to fix.",
+    intro:
+      "Compare your resume with a job ad to find the keywords you are missing and the formatting problems that trip up applicant tracking systems. Nothing is uploaded.",
+    howToUse: [
+      "Upload your resume as a PDF, DOCX or TXT file, or paste its text.",
+      "Paste the job description you are applying for.",
+      "Press Check resume.",
+      "Work through the missing keywords and failed checks, update your resume, and check again.",
+    ],
+    howItWorks: [
+      "An applicant tracking system (ATS) converts your resume to plain text so recruiters can filter and search it, often using words from the job ad. This tool starts with the same step: it reads the text out of your PDF or Word file. If little or no text comes out, the file is probably a scan or an image — and a tracking system will not be able to read it either.",
+      "It then picks out the terms that matter in the job description — skills, tools and repeated phrases, ignoring filler words — and looks for each one in your resume, allowing for simple variations such as plurals and verb endings. Terms the ad repeats count for more.",
+      "The format checks look for what commonly breaks parsing or screening: missing contact details, non-standard section headings, two-column PDF layouts that can scramble the reading order, a resume that is very short or very long, missing dates, few measurable results, and characters from icon fonts that cannot be read as text.",
+      "There is no universal ATS score — every system works differently, and many recruiters read resumes themselves. Treat the score as a checklist for tailoring your resume to a role, never as a prediction of whether you will be shortlisted.",
+    ],
+    faq: [
+      {
+        question: "What is a good ATS score?",
+        answer:
+          "No official score exists. Here, a keyword match above about 70% with no failed format checks means your resume clearly reflects the job ad. Never add keywords you cannot back up — a person reads it next.",
+      },
+      {
+        question: "Is PDF or Word better for applicant tracking systems?",
+        answer:
+          "Both work when the file contains real text in a simple, single-column layout. Use the format the application asks for; if it does not say, a text-based PDF keeps your layout intact.",
+      },
+      {
+        question: "Should I copy the job description into my resume?",
+        answer:
+          "No. Use the employer's wording for skills you genuinely have, in the context of what you did with them. Keyword stuffing is easy for recruiters to spot.",
+      },
+      {
+        question: "Is my resume uploaded?",
+        answer: "No. The file is read and checked in your browser, and nothing is sent to a server.",
+      },
+    ],
+  },
+
   "linkedin-formatter": {
     seoTitle: "LinkedIn Post Formatter — Bold, Italic, Line Breaks",
     seoDescription:

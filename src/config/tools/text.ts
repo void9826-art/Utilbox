@@ -1,4 +1,15 @@
-import { ArrowDownUp, CaseUpper, Eraser, FlipHorizontal, Hash, ListMinus, Megaphone, TextQuote } from "lucide-react";
+import {
+  ArrowDownUp,
+  AudioLines,
+  CaseUpper,
+  Eraser,
+  FileSearch,
+  FlipHorizontal,
+  Hash,
+  ListMinus,
+  Megaphone,
+  TextQuote,
+} from "lucide-react";
 
 import type { ToolMeta } from "@/types/tool";
 
@@ -103,6 +114,42 @@ export const textTools: ToolMeta[] = [
     ],
     icon: Megaphone,
     related: ["character-counter", "word-counter", "text-cleaner", "utm-builder"],
+    requiresFile: false,
+    processing: "client",
+    addedOn: "2026-09-10",
+  },
+  {
+    slug: "voice-to-text",
+    name: "Voice to Text Converter",
+    category: "text",
+    description: "Transcribe voice notes and short audio clips with speech recognition that runs in your browser.",
+    keywords: [
+      "voice message to text converter",
+      "voice note to text",
+      "audio to text",
+      "transcribe whatsapp voice message",
+      "speech to text from file",
+    ],
+    icon: AudioLines,
+    related: ["image-to-text", "word-counter", "text-cleaner", "character-counter"],
+    requiresFile: true,
+    processing: "client",
+    addedOn: "2026-09-10",
+  },
+  {
+    slug: "resume-ats-checker",
+    name: "Resume ATS Checker",
+    category: "text",
+    description: "Compare your resume with a job ad for missing keywords and ATS formatting problems.",
+    keywords: [
+      "resume ats checker free",
+      "ats resume scanner",
+      "resume keyword checker",
+      "cv checker",
+      "applicant tracking system test",
+    ],
+    icon: FileSearch,
+    related: ["resume-generator", "word-counter", "pdf-to-text", "linkedin-formatter"],
     requiresFile: false,
     processing: "client",
     addedOn: "2026-09-10",

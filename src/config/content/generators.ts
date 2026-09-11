@@ -1,6 +1,48 @@
 import type { ToolContent } from "@/types/tool";
 
 export const generatorContent: Record<string, ToolContent> = {
+  "qr-code-wifi-vcard": {
+    seoTitle: "Wi-Fi QR Code Generator — Plus vCard, Menu, Event",
+    seoDescription:
+      "Create a Wi-Fi QR code guests scan to join your network, or QR codes for contact cards, restaurant menus and calendar events — with printable cards.",
+    intro:
+      "Make a QR code that connects guests to your Wi-Fi, saves your contact details, opens a menu or adds an event to a calendar — then print it as a ready-made card.",
+    howToUse: [
+      "Choose Wi-Fi, Contact, Menu or Event.",
+      "Fill in the details — for Wi-Fi, the network name, password and security type exactly as your router shows them.",
+      "Adjust the caption, colours and error correction.",
+      "Download the code as PNG or SVG, or print the card — and test it with your phone first.",
+    ],
+    howItWorks: [
+      "Each QR code holds text in a format phones recognise. A Wi-Fi code holds a WIFI: record with the network name, security type and password, which the camera apps on current iPhones and Android phones offer to join. A contact code holds a vCard 3.0 record, a menu code holds a web address, and an event code holds an iCalendar VEVENT with the start and end converted to UTC, so it lands at the right time in any time zone.",
+      "Special characters are escaped the way each format requires — backslashes, semicolons, commas, colons and quotes in Wi-Fi names and passwords, and commas, semicolons and line breaks in contact and event text — so a password such as pa;ss,word still works.",
+      "Scanners need contrast: dark modules on a light background, with a clear margin around the code. The tool warns when the colours are too close or inverted. A higher error-correction level helps a code survive smudges and wear, at the cost of a denser pattern.",
+      "The code is generated in your browser, and your Wi-Fi password and contact details are not sent anywhere. Anyone who scans a printed Wi-Fi code can read the password, though, so only display it where you would share the password itself.",
+    ],
+    faq: [
+      {
+        question: "How do guests connect with a Wi-Fi QR code?",
+        answer:
+          "They open the camera app on an iPhone or Android phone, point it at the code and tap the prompt to join. Current phones need no extra app.",
+      },
+      {
+        question: "Why doesn't my Wi-Fi QR code connect?",
+        answer:
+          "The network name and password must match exactly, including capital letters, and the security type must be right. The WPA setting covers WPA2 and most WPA3 networks; choose No password only for open networks.",
+      },
+      {
+        question: "Does the QR code expire?",
+        answer:
+          "No. The details are stored in the code itself, not on a server, so it works for as long as the information in it is still correct.",
+      },
+      {
+        question: "Can I change a QR code after printing it?",
+        answer:
+          "No — the details are inside the code, so a new Wi-Fi password or menu address needs a new code. For a menu, point the code at a page you control so you can update the page instead of reprinting.",
+      },
+    ],
+  },
+
   "schema-generator": {
     seoTitle: "FAQ Schema Generator — FAQ and Product JSON-LD",
     seoDescription:

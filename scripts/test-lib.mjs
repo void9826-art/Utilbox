@@ -515,3 +515,55 @@ ch("india surcharge marginal relief", near(indiaSurcharge(5010000, "new"), 7000)
 
 console.log(f9 === 0 ? "HOUSEHOLD/TAKE-HOME TESTS OK" : `${f9} FAILURES`);
 if (f9 > 0) process.exitCode = 1;
+
+/* ---- resume checks, QR payloads, time zones (appended) ---- */
+import { analyseResume, extractKeywords, matchKeywords, stem, tokenize } from "../src/lib/ats.ts";
+import { wifiPayload, vcardPayload, eventPayload, menuPayload, formatIcsUtc } from "../src/lib/qr-payloads.ts";
+import { offsetMinutes, zonedTimeToUtc, planDay, localTime } from "../src/lib/timezones.ts";
+let f10 = 0;
+const cq = (n, c, d = "") => { if (!c) { console.log(`FAIL ${n} ${d}`); f10++; } };
+
+cq("tokenize technical terms", JSON.stringify(tokenize("Node.js, C++ and C# with CI/CD.")) === JSON.stringify(["node.js", "c++", "and", "c#", "with", "ci/cd"]), JSON.stringify(tokenize("Node.js, C++ and C# with CI/CD.")));
+cq("stem verb forms", stem("managed") === stem("managing") && stem("technologies") === "technology");
+const jobAd = "We are hiring a Senior Data Analyst. You will build dashboards in Power BI and SQL. Power BI experience required. Strong SQL and Python skills. Present insights to stakeholders.";
+const jobKeywords = extractKeywords(jobAd);
+cq("repeated phrase ranks first", jobKeywords[0].term === "power bi", JSON.stringify(jobKeywords.slice(0, 5)));
+cq("filler words dropped", !jobKeywords.some((keyword) => ["experience", "required", "strong", "skills"].includes(keyword.term)), JSON.stringify(jobKeywords));
+const matched = matchKeywords("Built dashboards with Power BI. Wrote SQL queries.", jobKeywords);
+const found = (term) => matched.find((keyword) => keyword.term === term)?.found;
+cq("keywords matched with plurals", found("power bi") === true && found("sql") === true && found("dashboards") === true && found("python") === false, JSON.stringify(matched));
+const shortReport = analyseResume("Jane Doe\njane@example.com", "SQL Python");
+cq("short resume flagged unreadable", shortReport.checks.find((check) => check.id === "readable").passed === false && shortReport.checks.find((check) => check.id === "email").passed === true);
+const resumeBullets = Array.from({ length: 40 }, (_, i) => `• Led project ${i + 1} and improved delivery time by ${10 + i}% using SQL and Python dashboards`).join("\n");
+const fullResume = `Jane Doe\njane@example.com\n+44 20 7946 0958\nSummary\nData analyst.\nExperience\nAnalyst, Acme 2021 – 2024\n${resumeBullets}\nEducation\nBSc Mathematics 2017 – 2020\nSkills\nSQL, Python, Power BI`;
+const fullReport = analyseResume(fullResume, jobAd, { multiColumn: false });
+cq("complete resume passes format checks", fullReport.checks.every((check) => check.passed), JSON.stringify(fullReport.checks.filter((check) => !check.passed)));
+cq("partial keyword score", fullReport.keywordScore > 0 && fullReport.keywordScore < 100, String(fullReport.keywordScore));
+cq("hyphens are not unreadable characters", analyseResume(`${fullResume}\n${"well-known - dash - ".repeat(200)}`, "").checks.find((check) => check.id === "characters").passed);
+cq("two columns flagged", analyseResume(fullResume, jobAd, { multiColumn: true }).checks.find((check) => check.id === "layout").passed === false);
+
+cq("wifi escaping", wifiPayload({ ssid: "My;Net", password: 'pa:ss,wo"rd\\', security: "WPA", hidden: true }) === 'WIFI:T:WPA;S:My\\;Net;P:pa\\:ss\\,wo\\"rd\\\\;H:true;;', wifiPayload({ ssid: "My;Net", password: 'pa:ss,wo"rd\\', security: "WPA", hidden: true }));
+cq("wifi open network", wifiPayload({ ssid: "Cafe", password: "ignored", security: "nopass", hidden: false }) === "WIFI:T:nopass;S:Cafe;;");
+const emptyCard = { firstName: "", lastName: "", organization: "", title: "", mobile: "", workPhone: "", email: "", website: "", street: "", city: "", region: "", postcode: "", country: "", note: "" };
+const card = vcardPayload({ ...emptyCard, firstName: "Ann", lastName: "Lee", organization: "Acme, Inc", mobile: "+1 555 0100", note: "Line1\nLine2" });
+cq("vcard structure and escaping", card.startsWith("BEGIN:VCARD\r\nVERSION:3.0\r\nN:Lee;Ann;;;\r\nFN:Ann Lee\r\nORG:Acme\\, Inc") && card.includes("NOTE:Line1\\nLine2") && card.endsWith("END:VCARD"), JSON.stringify(card));
+cq("vcard needs a name", vcardPayload(emptyCard) === null);
+const allDay = eventPayload({ title: "Launch; party", location: "", description: "", start: "2026-09-20", end: "2026-09-21", allDay: true });
+cq("all-day event exclusive end", allDay.includes("DTSTART;VALUE=DATE:20260920") && allDay.includes("DTEND;VALUE=DATE:20260922") && allDay.includes("SUMMARY:Launch\\; party"), JSON.stringify(allDay));
+const timed = eventPayload({ title: "Call", location: "", description: "", start: "2026-09-20T18:00", end: "", allDay: false });
+cq("timed event in UTC with default hour", timed.includes(`DTSTART:${formatIcsUtc(new Date("2026-09-20T18:00"))}`) && timed.includes(`DTEND:${formatIcsUtc(new Date(new Date("2026-09-20T18:00").getTime() + 3600000))}`), JSON.stringify(timed));
+cq("event ending before start rejected", eventPayload({ title: "Call", location: "", description: "", start: "2026-09-20T18:00", end: "2026-09-20T17:00", allDay: false }) === null);
+cq("menu url normalised", menuPayload("example.com/menu") === "https://example.com/menu");
+cq("menu rejects scripts", menuPayload("javascript:alert(1)") === null);
+
+cq("india offset", offsetMinutes("Asia/Kolkata", new Date("2026-09-15T12:00:00Z")) === 330);
+cq("nepal offset", offsetMinutes("Asia/Kathmandu", new Date("2026-09-15T12:00:00Z")) === 345);
+cq("new york daylight saving", offsetMinutes("America/New_York", new Date("2026-01-15T12:00:00Z")) === -300 && offsetMinutes("America/New_York", new Date("2026-07-15T12:00:00Z")) === -240);
+cq("london wall clock to utc", zonedTimeToUtc("Europe/London", 2026, 9, 15, 14).toISOString() === "2026-09-15T13:00:00.000Z");
+const londonNewYork = planDay(["Europe/London", "America/New_York"], { year: 2026, month: 9, day: 15 }, 9, 17);
+cq("london new york overlap 14-17", JSON.stringify(londonNewYork.map((hour, index) => (hour.allWork ? index : -1)).filter((index) => index >= 0)) === "[14,15,16]");
+cq("half-hour zone minutes", localTime("Asia/Kolkata", zonedTimeToUtc("Europe/London", 2026, 9, 15, 14)).minute === 30);
+cq("weekend across the date line", planDay(["America/Los_Angeles", "Pacific/Auckland"], { year: 2026, month: 9, day: 18 }, 9, 17)[17].slots[1].status === "weekend");
+
+console.log(f10 === 0 ? "ATS/QR/TIME ZONE TESTS OK" : `${f10} FAILURES`);
+if (f10 > 0) process.exitCode = 1;

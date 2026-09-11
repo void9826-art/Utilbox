@@ -12,7 +12,7 @@ const Loading = () => <ToolSkeleton />;
 
 /**
  * Every tool is a separate lazily-loaded chunk, so visiting one tool page never
- * downloads the code for the other 97.
+ * downloads the code for the other 101.
  */
 const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "merge-pdf": dynamic(() => import("./pdf/merge-pdf"), { loading: Loading }),
@@ -79,6 +79,7 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "data-storage-converter": dynamic(() => import("./converters/data-storage-converter"), { loading: Loading }),
   "shoe-size-converter": dynamic(() => import("./converters/shoe-size-converter"), { loading: Loading }),
   "engine-cc-to-hp": dynamic(() => import("./converters/engine-cc-to-hp"), { loading: Loading }),
+  "timezone-meeting-planner": dynamic(() => import("./converters/timezone-meeting-planner"), { loading: Loading }),
   "qr-code-generator": dynamic(() => import("./generators/qr-code-generator"), { loading: Loading }),
   "barcode-generator": dynamic(() => import("./generators/barcode-generator"), { loading: Loading }),
   "password-generator": dynamic(() => import("./generators/password-generator"), { loading: Loading }),
@@ -90,6 +91,7 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "robots-txt-generator": dynamic(() => import("./generators/robots-txt-generator"), { loading: Loading }),
   "schema-generator": dynamic(() => import("./generators/schema-generator"), { loading: Loading }),
   "utm-builder": dynamic(() => import("./generators/utm-builder"), { loading: Loading }),
+  "qr-code-wifi-vcard": dynamic(() => import("./generators/qr-code-wifi-vcard"), { loading: Loading }),
   "word-counter": dynamic(() => import("./text/word-counter"), { loading: Loading }),
   "character-counter": dynamic(() => import("./text/character-counter"), { loading: Loading }),
   "case-converter": dynamic(() => import("./text/case-converter"), { loading: Loading }),
@@ -98,6 +100,8 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "text-reverser": dynamic(() => import("./text/text-reverser"), { loading: Loading }),
   "text-cleaner": dynamic(() => import("./text/text-cleaner"), { loading: Loading }),
   "linkedin-formatter": dynamic(() => import("./text/linkedin-formatter"), { loading: Loading }),
+  "voice-to-text": dynamic(() => import("./text/voice-to-text"), { loading: Loading }),
+  "resume-ats-checker": dynamic(() => import("./text/resume-ats-checker"), { loading: Loading }),
   "json-formatter": dynamic(() => import("./developer/json-formatter"), { loading: Loading }),
   "json-validator": dynamic(() => import("./developer/json-validator"), { loading: Loading }),
   "json-to-csv": dynamic(() => import("./developer/json-to-csv"), { loading: Loading }),
