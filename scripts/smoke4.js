@@ -114,6 +114,16 @@
 
   // Tool components are lazy chunks; wait for the loading skeleton to go.
   await waitFor(() => !document.querySelector('[aria-label="Loading the tool"]') && document.querySelector("#main .shadow-raised"), 150);
+  // The tool HTML is server-rendered, so it is visible before React hydrates.
+  // Over a slow link that gap is seconds, and clicks in it are lost (a form
+  // even submits natively and navigates away). Wait until React owns a control.
+  await waitFor(
+    () =>
+      [...document.querySelectorAll("#main .shadow-raised input, #main .shadow-raised button, #main .shadow-raised textarea")].some((el) =>
+        Object.keys(el).some((key) => key.startsWith("__reactProps")),
+      ),
+    300,
+  );
   await wait(300);
 
   try {
@@ -270,7 +280,9 @@
       setField(byId("checksum-expected"), "BA7816BF8F01CFEA414140DE5DAE2223B00361A396177A9CB410FF61F20015AD  abc.txt");
       await wait(200);
       button(/Calculate checksums/)?.click();
-      await waitFor(() => /Match —|No match —/.test(frame()), 100);
+      // The first run downloads the hash-wasm chunk, which can take several
+      // seconds over a slow connection.
+      await waitFor(() => /Match —|No match —/.test(frame()), 300);
       check("MD5 of abc", /900150983cd24fb0d6963f7d28e17f72/.test(frame()));
       check("SHA-256 of abc", /ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad/.test(frame()));
       check("a sha256sum line matches", /Match — the SHA-256 checksums are identical/.test(frame()), frame().match(/(No match|Match) — [^.]*/)?.[0]);
@@ -430,10 +442,11 @@
 
     if (path.endsWith("/pdf-resize-page")) {
       await inject(makePdf("BT /F1 24 Tf 72 700 Td (Hello) Tj ET"));
-      await waitFor(() => /Current pages:/.test(frame()), 100);
-      check("an A4 page is detected", /1 × A4 portrait/.test(frame()), frame().match(/Current pages: .{0,30}/)?.[0]);
+      // The first PDF opened on a page downloads pdf-lib, which is slow on a poor link.
+      await waitFor(() => /Current pages:/.test(frame()), 300);
+      check("an A4 page is detected", /1 × A4 portrait/.test(frame()), frame().match(/Current pages: .{0,30}/)?.[0] ?? frame().slice(0, 160));
       button(/^Convert to US Letter$/)?.click();
-      await waitFor(() => /resized PDF is ready/.test(frame()), 100);
+      await waitFor(() => /resized PDF is ready/.test(frame()), 150);
       check("the saved file is US Letter", /Pages in the saved file: 1 × US Letter portrait/.test(frame()));
       check("content scaled to 94.1%", /94\.1%/.test(frame()));
     }
