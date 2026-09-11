@@ -40,6 +40,118 @@ function unitContent(options: {
 }
 
 export const converterContent: Record<string, ToolContent> = {
+  "shoe-size-converter": {
+    seoTitle: "Shoe Size Converter — US, UK, EU and Japan Sizes",
+    seoDescription:
+      "Convert shoe sizes between US men's, US women's, UK, European, Japanese and Mondopoint sizes, or find your size from your foot length in cm or inches.",
+    intro:
+      "Convert a shoe size between the US, UK, European and Japanese systems — or measure your foot and get your size in all of them.",
+    howToUse: [
+      "Choose the sizing system you know, such as US women's.",
+      "Enter your size — or choose Foot length and enter a measurement in centimetres or inches.",
+      "Read your estimated foot length and your size in every other system.",
+      "Compare your foot length with the brand's own chart before buying, because sizes vary between makers.",
+    ],
+    howItWorks: [
+      "Every sizing system is a scale laid over the length of a foot, with a different starting point and step. UK and US sizes go up in steps of a third of an inch, European (Paris point) sizes in steps of two-thirds of a centimetre, and Japanese and Mondopoint sizes simply state the foot length in centimetres or millimetres.",
+      "The converter turns your size into an estimated foot length, then works out the size in each other system from the standard relationships: UK ≈ 3 × foot length in inches − 23, US men's ≈ 3 × foot length − 22, US women's ≈ 3 × foot length − 21, and European ≈ 1.5 × foot length in centimetres + 2. UK, US and European results are rounded to the nearest half size.",
+      "These are the relationships the systems are built on, not any one brand's chart. Manufacturers use their own lasts and allowances, and some brand charts sit a full size away from these figures — which is why the estimated foot length is shown first: it is the most reliable number to compare with a maker's chart.",
+    ],
+    formula: {
+      expression: "UK ≈ 3 × L(in) − 23      US men ≈ 3 × L(in) − 22      US women ≈ 3 × L(in) − 21      EU ≈ 1.5 × L(cm) + 2",
+      where: ["L — foot length, in inches (in) or centimetres (cm)", "1 inch = 2.54 cm"],
+      note: "Results are rounded to the nearest half size. Individual brands can differ from these by up to a full size.",
+    },
+    example: {
+      scenario: "A foot that measures 25 cm",
+      steps: [
+        "Choose Foot length and enter 25 cm.",
+        "25 cm is 9.84 inches.",
+        "UK = 3 × 9.84 − 23 = 6.53, and EU = 1.5 × 25 + 2 = 39.5.",
+      ],
+      result: "UK 6.5, US men's 7.5, US women's 8.5, EU 39.5, Japan 25 cm, Mondopoint 250.",
+    },
+    faq: [
+      {
+        question: "How do I measure my foot length?",
+        answer:
+          "Stand on a sheet of paper with your heel against a wall, mark the tip of your longest toe, and measure from the wall to the mark. Measure both feet in the evening, when feet are largest, and use the longer one.",
+      },
+      {
+        question: "What is the difference between US men's and women's sizes?",
+        answer: "For the same foot, a US women's size is one size larger than the men's size, so a men's 8 is roughly a women's 9.",
+      },
+      {
+        question: "Are UK and European sizes different for men and women?",
+        answer:
+          "No. UK, European, Japanese and Mondopoint sizes use one scale for everyone; only US sizing has separate men's and women's scales.",
+      },
+      {
+        question: "Does it cover children's sizes?",
+        answer: "No. Children's scales start from different points in each country and are not described by these adult formulas.",
+      },
+    ],
+  },
+
+  "engine-cc-to-hp": {
+    seoTitle: "CC to HP Converter — Engine Size to Horsepower",
+    seoDescription:
+      "Convert engine cc to litres and cubic inches exactly, and estimate horsepower from engine size for petrol, turbo and diesel cars and motorcycles.",
+    intro:
+      "Convert engine displacement between cc, litres and cubic inches, and see a realistic horsepower range for an engine of that size and type.",
+    howToUse: [
+      "Enter the engine size in cc, litres or cubic inches.",
+      "Choose the kind of engine, such as a turbocharged petrol car or a sport motorcycle.",
+      "Read the exact size conversions and the estimated power range.",
+      "Or enter a known power figure to convert between horsepower, metric PS and kilowatts.",
+    ],
+    howItWorks: [
+      "Displacement conversions are exact. One litre is 1,000 cubic centimetres and one cubic inch is exactly 16.387064 cc, so a 1,998 cc engine is 2.0 litres or 121.9 cubic inches.",
+      "Horsepower cannot be converted from cc, because displacement is only one ingredient of power. Two engines of the same size can differ several times over depending on turbocharging, how fast they rev and what they are tuned for. What can be done is an estimate from typical specific output — power per litre — for each kind of engine, shown as a low, typical and high figure.",
+      "The specific outputs used are: small scooter and commuter motorcycle engines about 60–95 hp per litre; naturally aspirated petrol car engines 70–110; turbocharged petrol engines 100–160; turbodiesel car engines 55–100; high-revving sport motorcycles 150–220; and large truck diesels 25–40. For a real engine, the manufacturer's rated figure is always the one to use.",
+      "Power units are converted exactly: one mechanical horsepower is 745.7 watts and one metric horsepower (PS, used on many European and Japanese specification sheets) is 735.5 watts, so 100 PS is 98.6 hp or 73.5 kW.",
+    ],
+    formula: {
+      expression: "litres = cc ÷ 1000      cubic inches = cc ÷ 16.387064      estimated hp = litres × specific output",
+      where: [
+        "cc — engine displacement in cubic centimetres",
+        "specific output — typical horsepower per litre for the engine type",
+      ],
+      note: "The displacement conversions are exact; horsepower from displacement is only ever an estimate.",
+    },
+    example: {
+      scenario: "A 1,500 cc turbocharged petrol car engine",
+      steps: [
+        "Enter 1500 cc and choose Petrol car, turbocharged.",
+        "1500 ÷ 1000 = 1.5 litres, and 1500 ÷ 16.387064 = 91.5 cubic inches.",
+        "1.5 litres × 100 to 160 hp per litre, with 120 as the typical figure.",
+      ],
+      result: "1.5 L or 91.5 cu in, with an estimated 150–240 hp and typically around 180 hp.",
+    },
+    faq: [
+      {
+        question: "How much horsepower is 150 cc?",
+        answer:
+          "A 150 cc scooter or commuter motorcycle typically makes about 9–14 hp. A 150 cc racing engine can make considerably more.",
+      },
+      {
+        question: "Is cc the same as horsepower?",
+        answer:
+          "No. cc measures the volume swept by the engine's cylinders; horsepower measures the power it produces. Bigger engines tend to be more powerful, but turbocharging and tuning matter as much as size.",
+      },
+      {
+        question: "What is the difference between hp, bhp and PS?",
+        answer:
+          "hp and bhp both usually mean mechanical horsepower (745.7 W); bhp stresses that it was measured at the crankshaft. PS is metric horsepower (735.5 W), about 1.4% smaller, so the same power is a slightly bigger number in PS.",
+      },
+      {
+        question: "How many cc is a 2.0-litre engine?",
+        answer:
+          "Nominally 2,000 cc, but manufacturers round the figure: most engines sold as 2.0 litres are between about 1,950 and 1,999 cc.",
+      },
+    ],
+  },
+
   "currency-converter": {
     seoTitle: "Currency Converter — Live Exchange Rates",
     seoDescription:

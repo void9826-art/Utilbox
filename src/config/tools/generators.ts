@@ -1,4 +1,16 @@
-import { Barcode, Bot, Dices, Fingerprint, KeyRound, PenLine, QrCode, ReceiptText, UserRound } from "lucide-react";
+import {
+  Barcode,
+  Bot,
+  Dices,
+  FileJson,
+  Fingerprint,
+  KeyRound,
+  Link,
+  PenLine,
+  QrCode,
+  ReceiptText,
+  UserRound,
+} from "lucide-react";
 
 import type { ToolMeta } from "@/types/tool";
 
@@ -116,6 +128,36 @@ export const generatorTools: ToolMeta[] = [
     ],
     icon: Bot,
     related: ["og-preview", "ssl-expiry-checker", "favicon-generator", "url-encoder"],
+    requiresFile: false,
+    processing: "client",
+    addedOn: "2026-09-10",
+  },
+  {
+    slug: "schema-generator",
+    name: "Schema Markup Generator",
+    category: "generators",
+    description: "Create FAQ and Product JSON-LD structured data, checked against Google's rules.",
+    keywords: [
+      "faq schema generator",
+      "product schema generator",
+      "json-ld generator",
+      "structured data generator",
+      "faqpage schema markup",
+    ],
+    icon: FileJson,
+    related: ["og-preview", "robots-txt-generator", "utm-builder", "json-formatter"],
+    requiresFile: false,
+    processing: "client",
+    addedOn: "2026-09-10",
+  },
+  {
+    slug: "utm-builder",
+    name: "UTM Link Builder",
+    category: "generators",
+    description: "Build campaign links with UTM tags, keep a history and download QR codes.",
+    keywords: ["utm link builder", "utm builder", "campaign url builder", "google analytics utm", "utm qr code"],
+    icon: Link,
+    related: ["qr-code-generator", "og-preview", "url-encoder", "schema-generator"],
     requiresFile: false,
     processing: "client",
     addedOn: "2026-09-10",

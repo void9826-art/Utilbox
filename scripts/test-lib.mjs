@@ -396,3 +396,54 @@ ce("host input IDN", parseHostInput("bücher.de").host === "xn--bcher-kva.de");
 
 console.log(f7 === 0 ? "EMAIL/ROBOTS/NETWORK GUARD TESTS OK" : `${f7} FAILURES`);
 if (f7 > 0) process.exitCode = 1;
+
+/* ---- schema markup, unicode styles, shoe and engine sizing (appended) ---- */
+import { faqSchema, productSchema, validateProduct, validateFaq, isValidGtin, toScriptTag } from "../src/lib/schema-markup.ts";
+import { applyStyle, toPlain, bulletLines, protectBlankLines } from "../src/lib/unicode-styles.ts";
+import { footLengthFromSize, sizeFromFootLength, estimateHorsepower, convertPower, CC_PER_CUBIC_INCH } from "../src/lib/sizing.ts";
+let f8 = 0;
+const cs = (n, c, d = "") => { if (!c) { console.log(`FAIL ${n} ${d}`); f8++; } };
+
+cs("gtin EAN-13", isValidGtin("4006381333931"));
+cs("gtin UPC-A", isValidGtin("036000291452"));
+cs("gtin wrong check digit", !isValidGtin("4006381333932"));
+cs("gtin wrong length", !isValidGtin("12345"));
+const faqOut = faqSchema([{ question: "Q1?", answer: "A1" }, { question: "", answer: "orphan" }]);
+cs("faq drops incomplete pairs", faqOut.mainEntity.length === 1 && faqOut.mainEntity[0].acceptedAnswer.text === "A1", JSON.stringify(faqOut));
+cs("faq with nothing is an error", validateFaq([{ question: "", answer: "" }]).some((issue) => issue.level === "error"));
+const mug = { name: "Mug", description: "", images: ["https://example.com/mug.jpg"], brand: "Acme", sku: "M-1", gtin: "", mpn: "", url: "", price: "12.50", currency: "usd", availability: "InStock", condition: "NewCondition", priceValidUntil: "", ratingValue: "", reviewCount: "" };
+const mugSchema = productSchema(mug);
+cs("product offer", mugSchema.offers.price === "12.50" && mugSchema.offers.priceCurrency === "USD" && mugSchema.offers.availability === "https://schema.org/InStock", JSON.stringify(mugSchema));
+cs("product without errors", !validateProduct(mug).some((issue) => issue.level === "error"), JSON.stringify(validateProduct(mug)));
+cs("product needs offer or rating", validateProduct({ ...mug, price: "" }).some((issue) => issue.level === "error"));
+cs("product rejects symbol in price", validateProduct({ ...mug, price: "$12" }).some((issue) => issue.level === "error"));
+cs("product rating out of range", validateProduct({ ...mug, ratingValue: "6", reviewCount: "3" }).some((issue) => issue.level === "error"));
+cs("product bad gtin", validateProduct({ ...mug, gtin: "4006381333932" }).some((issue) => /check digit/.test(issue.message)));
+const scriptTag = toScriptTag(faqSchema([{ question: "</script><b>", answer: "x" }]));
+cs("script tag cannot be closed from data", !scriptTag.includes("</script><b>"), scriptTag);
+cs("script tag body is valid JSON", JSON.parse(scriptTag.replace(/^<script[^>]*>\n/, "").replace(/\n<\/script>$/, "")).mainEntity[0].name === "</script><b>", scriptTag);
+
+cs("bold sans letters and digits", applyStyle("Hi 5", "bold") === "\u{1D5DB}\u{1D5F6} \u{1D7F1}", applyStyle("Hi 5", "bold"));
+cs("plain round trip", toPlain(applyStyle("Hello World 2026", "italic")) === "Hello World 2026");
+cs("restyling replaces", applyStyle(applyStyle("ab", "bold"), "monospace") === applyStyle("ab", "monospace"));
+cs("underline marks", applyStyle("a b", "underline") === "a̲ b̲", JSON.stringify(applyStyle("a b", "underline")));
+cs("strike marks round trip", toPlain(applyStyle("ab", "strike")) === "ab");
+cs("bullets skip blank lines", bulletLines("one\n\ntwo", "•") === "• one\n\n• two");
+cs("numbered replaces bullets", bulletLines("• one\ntwo", "1.") === "1. one\n2. two");
+cs("protect blank lines", protectBlankLines("a\n\nb") === "a\n⠀\nb", JSON.stringify(protectBlankLines("a\n\nb")));
+
+cs("25 cm is UK 6.5", sizeFromFootLength("uk", 25) === 6.5);
+cs("25 cm is EU 39.5", sizeFromFootLength("eu", 25) === 39.5);
+cs("25 cm is US women 8.5", sizeFromFootLength("us-women", 25) === 8.5);
+cs("27 cm matches reference row", sizeFromFootLength("uk", 27) === 9 && sizeFromFootLength("us-men", 27) === 10 && sizeFromFootLength("eu", 27) === 42.5 && sizeFromFootLength("us-women", 27) === 11);
+cs("UK 9 round trip", sizeFromFootLength("uk", footLengthFromSize("uk", 9)) === 9);
+cs("EU 42 round trip", sizeFromFootLength("eu", footLengthFromSize("eu", 42)) === 42);
+cs("mondopoint rounds to 5 mm", sizeFromFootLength("mondopoint", 25.3) === 255);
+const turbo = estimateHorsepower(1500, "turbo-petrol");
+cs("hp estimate", near(turbo.low, 150) && near(turbo.typical, 180) && near(turbo.high, 240), JSON.stringify(turbo));
+const ps100 = convertPower(100, "ps");
+cs("100 PS in hp and kW", Number(ps100.hp.toFixed(1)) === 98.6 && Number(ps100.kw.toFixed(1)) === 73.5, JSON.stringify(ps100));
+cs("1998 cc in cubic inches", Number((1998 / CC_PER_CUBIC_INCH).toFixed(1)) === 121.9);
+
+console.log(f8 === 0 ? "SCHEMA/STYLES/SIZING TESTS OK" : `${f8} FAILURES`);
+if (f8 > 0) process.exitCode = 1;

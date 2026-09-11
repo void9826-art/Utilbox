@@ -1,6 +1,90 @@
 import type { ToolContent } from "@/types/tool";
 
 export const generatorContent: Record<string, ToolContent> = {
+  "schema-generator": {
+    seoTitle: "FAQ Schema Generator — FAQ and Product JSON-LD",
+    seoDescription:
+      "Generate FAQ and Product schema markup as JSON-LD, checked against Google's requirements as you type — including GTIN check digits, prices and ratings.",
+    intro:
+      "Create FAQPage and Product structured data without writing JSON by hand. Fill in the form, fix anything flagged, and paste the script tag into your page.",
+    howToUse: [
+      "Choose FAQ page or Product.",
+      "Fill in the questions and answers, or the product's details, price and rating.",
+      "Fix any errors listed under the form; notes are worth reading too.",
+      "Copy the script tag into your page's HTML, then confirm it with Google's Rich Results Test.",
+    ],
+    howItWorks: [
+      "Structured data is a block of JSON-LD in a page that describes its content in schema.org's vocabulary, so search engines do not have to infer it. An FAQPage lists Question items, each with an accepted Answer; a Product carries its name, images and identifiers, an Offer with price, currency and availability, and optionally an AggregateRating.",
+      "The checks follow Google's documentation. A product needs a name and at least one of an offer, a rating or a review before it can show product details in results. Prices must be plain numbers with a three-letter ISO 4217 currency code, availability and condition use schema.org's values, and a GTIN must have 8, 12, 13 or 14 digits with a correct check digit — the tool calculates it, because a mistyped barcode number is a common error.",
+      "Two rules decide whether markup helps. It must describe what visitors can actually see on the page — the same questions and answers, the same price. And ratings must come from genuine customer reviews shown on the page; marking up ratings you wrote yourself is against Google's guidelines.",
+      "Since August 2023 Google has shown FAQ rich results only for well-known, authoritative government and health websites. On other sites FAQPage markup is still valid and still read, but it will not produce expandable questions in search results. The code is escaped so that text such as </script> inside an answer cannot break your page.",
+    ],
+    faq: [
+      {
+        question: "Where do I put the JSON-LD script?",
+        answer:
+          "Anywhere in the page's HTML — the head or the body; search engines read it either way. If your site builder has a custom code or header scripts setting for the page, paste it there.",
+      },
+      {
+        question: "Will FAQ schema give my site rich results?",
+        answer:
+          "Only if it is a well-known, authoritative government or health website. Google restricted FAQ rich results to those sites in August 2023. The markup remains valid elsewhere, but it will not change how the page appears in results.",
+      },
+      {
+        question: "Can a page have more than one schema block?",
+        answer:
+          "Yes. A page can contain several script tags, for example one for a Product and one for a BreadcrumbList. Describe each thing on the page only once.",
+      },
+      {
+        question: "Why is my price rejected?",
+        answer:
+          "Structured data needs a plain number such as 1299.99. Leave out currency symbols and thousands separators, and put the currency code in its own field.",
+      },
+    ],
+  },
+
+  "utm-builder": {
+    seoTitle: "UTM Link Builder — Campaign URLs with QR Codes",
+    seoDescription:
+      "Build UTM-tagged campaign links for Google Analytics, keep a history of every link you create, export it as CSV, and download a QR code for print.",
+    intro:
+      "Add UTM tags to a link so your analytics shows exactly which email, post or ad sent each visitor — then save it, export your list, or turn it into a QR code.",
+    howToUse: [
+      "Paste the page address you are linking to.",
+      "Fill in source, medium and campaign — pick a suggestion or type your own.",
+      "Copy the tagged link, or save it to your history.",
+      "Download a QR code for printed material, or export your saved links as a CSV file.",
+    ],
+    howItWorks: [
+      "UTM parameters are ordinary query-string values — utm_source, utm_medium and utm_campaign, plus optional utm_id, utm_term and utm_content — that analytics tools such as Google Analytics read when a visitor arrives. They do not change the page; they label the visit, so traffic from a newsletter link is reported separately from the same page shared on LinkedIn.",
+      "Analytics treats the values as case-sensitive text, so “Newsletter”, “newsletter” and “news letter” become three different sources in your reports. The builder lower-cases values and swaps spaces for hyphens by default, and flags anything inconsistent. It keeps the page's existing query parameters and any #section anchor, and places the tags where browsers expect them.",
+      "Saved links are stored in this browser's local storage, not on a server: they stay on this device, and clearing your browser data removes them. Export them as CSV to keep a record or share the list with your team.",
+      "QR codes are generated in your browser from the tagged link with a medium level of error correction, which tolerates small scuffs on print. Give each printed item its own utm_content value, such as poster or flyer, to compare them.",
+    ],
+    faq: [
+      {
+        question: "Which UTM parameters are required?",
+        answer:
+          "None are technically required, but source, medium and campaign are the three campaign reports rely on. Leave one out and those visits show “(not set)” in its place.",
+      },
+      {
+        question: "Should UTM values be lower-case?",
+        answer:
+          "Yes. Analytics tools treat Email and email as different values, which splits your data. Choose lower-case with hyphens or underscores and use it consistently.",
+      },
+      {
+        question: "Can I use UTM tags on links within my own website?",
+        answer:
+          "No. When a visitor clicks a UTM link on your own site, analytics records the internal campaign as the source of the visit, overwriting where the visitor really came from. Use UTM tags only on links that point to your site from elsewhere.",
+      },
+      {
+        question: "Is my link history private?",
+        answer:
+          "It is kept in your browser's local storage on this device and is never sent to a server. It is not synced between devices or browsers.",
+      },
+    ],
+  },
+
   "robots-txt-generator": {
     seoTitle: "Robots.txt Generator and Tester — Free Online",
     seoDescription:

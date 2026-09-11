@@ -1,4 +1,4 @@
-import { ArrowDownUp, CaseUpper, Eraser, FlipHorizontal, Hash, ListMinus, TextQuote } from "lucide-react";
+import { ArrowDownUp, CaseUpper, Eraser, FlipHorizontal, Hash, ListMinus, Megaphone, TextQuote } from "lucide-react";
 
 import type { ToolMeta } from "@/types/tool";
 
@@ -88,5 +88,23 @@ export const textTools: ToolMeta[] = [
     requiresFile: false,
     processing: "client",
     addedOn: "2026-09-05",
+  },
+  {
+    slug: "linkedin-formatter",
+    name: "LinkedIn Post Formatter",
+    category: "text",
+    description: "Add bold, italic, bullets and safe line breaks to a LinkedIn post, then copy it.",
+    keywords: [
+      "linkedin post formatter",
+      "linkedin bold text",
+      "linkedin italic text generator",
+      "format linkedin post",
+      "linkedin line breaks",
+    ],
+    icon: Megaphone,
+    related: ["character-counter", "word-counter", "text-cleaner", "utm-builder"],
+    requiresFile: false,
+    processing: "client",
+    addedOn: "2026-09-10",
   },
 ];

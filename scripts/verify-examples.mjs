@@ -121,5 +121,29 @@ const letterToA4 = fitToPaper({ x: 0, y: 0, ...PAPER_SIZES.letter }, PAPER_SIZES
 check("Letter to A4 scale %", Number((letterToA4.scale * 100).toFixed(1)), 97.3);
 check("Letter to A4 space above and below, mm", Math.round((letterToA4.translateY / 72) * 25.4), 13);
 
+/* shoe-size-converter: a 25 cm foot */
+import { sizeFromFootLength, estimateHorsepower, convertPower, CC_PER_CUBIC_INCH } from "../src/lib/sizing.ts";
+check("25 cm in inches", Number((25 / 2.54).toFixed(2)), 9.84);
+check("25 cm UK before rounding", Number((3 * (25 / 2.54) - 23).toFixed(2)), 6.53);
+check("25 cm UK", sizeFromFootLength("uk", 25), 6.5);
+check("25 cm US men", sizeFromFootLength("us-men", 25), 7.5);
+check("25 cm US women", sizeFromFootLength("us-women", 25), 8.5);
+check("25 cm EU", sizeFromFootLength("eu", 25), 39.5);
+check("25 cm Japan", sizeFromFootLength("jp", 25), 25);
+check("25 cm Mondopoint", sizeFromFootLength("mondopoint", 25), 250);
+
+/* engine-cc-to-hp: 1500 cc turbo petrol, 1998 cc, 100 PS, 150 cc */
+check("1500 cc cubic inches", Number((1500 / CC_PER_CUBIC_INCH).toFixed(1)), 91.5);
+const turboEstimate = estimateHorsepower(1500, "turbo-petrol");
+check("1500 cc turbo low", Math.round(turboEstimate.low), 150);
+check("1500 cc turbo high", Math.round(turboEstimate.high), 240);
+check("1500 cc turbo typical", Math.round(turboEstimate.typical), 180);
+check("1998 cc cubic inches", Number((1998 / CC_PER_CUBIC_INCH).toFixed(1)), 121.9);
+check("100 PS in hp", Number(convertPower(100, "ps").hp.toFixed(1)), 98.6);
+check("100 PS in kW", Number(convertPower(100, "ps").kw.toFixed(1)), 73.5);
+const scooter150 = estimateHorsepower(150, "scooter");
+check("150 cc scooter low", Math.round(scooter150.low), 9);
+check("150 cc scooter high", Math.round(scooter150.high), 14);
+
 console.log(problems === 0 ? "ALL DOCUMENTED EXAMPLES MATCH THE CODE" : `${problems} EXAMPLE(S) DISAGREE WITH THE CODE`);
 if (problems > 0) process.exitCode = 1;

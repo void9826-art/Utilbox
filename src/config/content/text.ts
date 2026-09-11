@@ -4,6 +4,48 @@ const PRIVACY_NOTE =
   "Your text is processed by JavaScript running in this page and is never sent over the network. That matters when you are pasting a draft, a client brief, meeting notes or anything else you would rather not hand to a server.";
 
 export const textContent: Record<string, ToolContent> = {
+  "linkedin-formatter": {
+    seoTitle: "LinkedIn Post Formatter — Bold, Italic, Line Breaks",
+    seoDescription:
+      "Format LinkedIn posts with bold and italic text, bullet points and clean line breaks. Preview where “see more” falls and copy the post — nothing is uploaded.",
+    intro:
+      "Write a LinkedIn post with bold and italic words, bullets and spacing that survives posting, and see roughly where the feed cuts it off with “…see more”.",
+    howToUse: [
+      "Write or paste your post.",
+      "Select a word or phrase and press Bold, Italic or another style.",
+      "Select some lines and press a bullet style to turn them into a list.",
+      "Check the preview and the character count, then press Copy post and paste it into LinkedIn.",
+    ],
+    howItWorks: [
+      "LinkedIn posts are plain text: there is no bold or italic button. What looks like bold in other people's posts is made of different characters — Unicode's mathematical letters include complete bold, italic and monospace alphabets. This tool swaps each letter and digit you select for its styled twin, so the styling travels with the text when you paste it.",
+      "Those characters have costs. Screen readers may spell styled words out letter by letter or skip them, they do not match searches for the ordinary word, and each one is stored as two text units rather than one. Use them for a word or a short phrase, not whole paragraphs. Select styled text and press Plain to turn it back.",
+      "Line breaks are ordinary newlines and paste into LinkedIn unchanged. If runs of empty lines are collapsed after you post, turn on Protect blank lines, which puts an invisible character on each blank line so it is no longer empty.",
+      PRIVACY_NOTE,
+    ],
+    faq: [
+      {
+        question: "How do I make text bold on LinkedIn?",
+        answer:
+          "LinkedIn has no formatting controls, so select the words here, press Bold, and paste the result into your post. The bold is built from special Unicode letters, so it shows up wherever the post is displayed.",
+      },
+      {
+        question: "What is the character limit for a LinkedIn post?",
+        answer:
+          "Posts can be up to 3,000 characters. Styled letters are stored as two text units each, so if a heavily styled post is rejected as too long, trim it until the larger of the two counts shown here is under 3,000.",
+      },
+      {
+        question: "Where does LinkedIn cut a post off with “see more”?",
+        answer:
+          "In the feed a post is shortened after its first few lines — roughly the first 200 characters, and sooner if you use short lines. The exact point differs between the app and the website, so the preview marks an approximate cut. Put your hook in the first two lines.",
+      },
+      {
+        question: "Is styled text bad for accessibility?",
+        answer:
+          "It can be. Screen readers handle mathematical letters inconsistently, and some read each letter separately. Keep styling to a few words and never write a whole post in it.",
+      },
+    ],
+  },
+
   "word-counter": {
     seoTitle: "Word Counter — Live Word and Character Count",
     seoDescription:

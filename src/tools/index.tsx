@@ -12,7 +12,7 @@ const Loading = () => <ToolSkeleton />;
 
 /**
  * Every tool is a separate lazily-loaded chunk, so visiting one tool page never
- * downloads the code for the other 87.
+ * downloads the code for the other 92.
  */
 const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "merge-pdf": dynamic(() => import("./pdf/merge-pdf"), { loading: Loading }),
@@ -72,6 +72,8 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "area-converter": dynamic(() => import("./converters/area-converter"), { loading: Loading }),
   "volume-converter": dynamic(() => import("./converters/volume-converter"), { loading: Loading }),
   "data-storage-converter": dynamic(() => import("./converters/data-storage-converter"), { loading: Loading }),
+  "shoe-size-converter": dynamic(() => import("./converters/shoe-size-converter"), { loading: Loading }),
+  "engine-cc-to-hp": dynamic(() => import("./converters/engine-cc-to-hp"), { loading: Loading }),
   "qr-code-generator": dynamic(() => import("./generators/qr-code-generator"), { loading: Loading }),
   "barcode-generator": dynamic(() => import("./generators/barcode-generator"), { loading: Loading }),
   "password-generator": dynamic(() => import("./generators/password-generator"), { loading: Loading }),
@@ -81,6 +83,8 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "lorem-ipsum-generator": dynamic(() => import("./generators/lorem-ipsum-generator"), { loading: Loading }),
   "uuid-generator": dynamic(() => import("./generators/uuid-generator"), { loading: Loading }),
   "robots-txt-generator": dynamic(() => import("./generators/robots-txt-generator"), { loading: Loading }),
+  "schema-generator": dynamic(() => import("./generators/schema-generator"), { loading: Loading }),
+  "utm-builder": dynamic(() => import("./generators/utm-builder"), { loading: Loading }),
   "word-counter": dynamic(() => import("./text/word-counter"), { loading: Loading }),
   "character-counter": dynamic(() => import("./text/character-counter"), { loading: Loading }),
   "case-converter": dynamic(() => import("./text/case-converter"), { loading: Loading }),
@@ -88,6 +92,7 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "sort-lines": dynamic(() => import("./text/sort-lines"), { loading: Loading }),
   "text-reverser": dynamic(() => import("./text/text-reverser"), { loading: Loading }),
   "text-cleaner": dynamic(() => import("./text/text-cleaner"), { loading: Loading }),
+  "linkedin-formatter": dynamic(() => import("./text/linkedin-formatter"), { loading: Loading }),
   "json-formatter": dynamic(() => import("./developer/json-formatter"), { loading: Loading }),
   "json-validator": dynamic(() => import("./developer/json-validator"), { loading: Loading }),
   "json-to-csv": dynamic(() => import("./developer/json-to-csv"), { loading: Loading }),
