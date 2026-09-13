@@ -176,12 +176,38 @@ export function faqSchema(content: ToolContent): JsonLd {
   };
 }
 
+/** Stable node id so the website and the organisation are one linked graph. */
+const ORGANISATION_ID = `${siteConfig.url}#organization`;
+
+/**
+ * Describes the brand itself, separately from the website.
+ *
+ * Several older tool sites have near-identical names, so a search engine has
+ * little to go on when deciding whether this is a distinct brand or a
+ * misspelling of one of them. A logo, a canonical URL and links to profiles
+ * the brand controls are the evidence it looks for.
+ */
+export function organizationSchema(): JsonLd {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": ORGANISATION_ID,
+    name: siteConfig.name,
+    url: siteConfig.url,
+    logo: absoluteUrl("/logo-mark.png"),
+    image: absoluteUrl("/logo-mark.png"),
+    description: siteConfig.description,
+    ...(siteConfig.socialProfiles.length > 0 ? { sameAs: siteConfig.socialProfiles } : {}),
+  };
+}
+
 export function websiteSchema(): JsonLd {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: siteConfig.name,
     url: siteConfig.url,
+    publisher: { "@id": ORGANISATION_ID },
     description: siteConfig.description,
     inLanguage: "en",
     potentialAction: {

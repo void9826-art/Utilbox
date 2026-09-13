@@ -7,7 +7,7 @@ import { Header } from "@/components/layout/header";
 import { SearchProvider } from "@/components/layout/search-dialog";
 import { themeInitScript } from "@/components/layout/theme";
 import { adsConfig, analyticsConfig, siteConfig } from "@/config/site";
-import { jsonLdScript, websiteSchema } from "@/lib/seo";
+import { jsonLdScript, organizationSchema, websiteSchema } from "@/lib/seo";
 
 import "./globals.css";
 
@@ -52,6 +52,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdScript(websiteSchema()) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(organizationSchema()) }}
         />
       </head>
       <body className="flex min-h-dvh flex-col antialiased">

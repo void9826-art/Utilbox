@@ -45,6 +45,17 @@ export const siteConfig = {
 
   /** Optional social handle used for Twitter/X card metadata. */
   twitterHandle: env("NEXT_PUBLIC_TWITTER_HANDLE", ""),
+
+  /**
+   * Profile pages the brand controls, comma-separated, published as sameAs in
+   * the Organization markup. Several older sites share this name, and the
+   * profiles are what let a search engine tell them apart, so add them here as
+   * they are created.
+   */
+  socialProfiles: env("NEXT_PUBLIC_SOCIAL_PROFILES", "")
+    .split(",")
+    .map((profile) => profile.trim())
+    .filter((profile) => profile.startsWith("https://")),
 } as const;
 
 export const adsConfig = {
