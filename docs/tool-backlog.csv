@@ -13,20 +13,20 @@ Blur Faces in Photo,blur-faces-in-photo,blur faces in photo online,image,pattern
 Change Image DPI,image-dpi-changer,change dpi of image,image,pattern_research,Print submissions demand 300 DPI. Rewrites density fields rather than resampling.,planned
 Grayscale Image Converter,grayscale-image,convert image to black and white,image,pattern_research,"Simple, high volume, and a building block for the print-oriented tools.",planned
 Colour Blindness Simulator,color-blindness-simulator,color blindness simulator,image,pattern_research,"Accessibility niche the aggregators ignore; matrix transforms, fully offline.",planned
-Add Watermark to PDF,pdf-watermark,add watermark to pdf,pdf,pattern_research,The most requested PDF edit we lack; pdf-lib handles it natively.,built
-Rearrange PDF Pages,pdf-reorder-pages,rearrange pdf pages,pdf,pattern_research,"We split, delete and extract but cannot reorder. An obvious hole in the family.",built
-Extract Images from PDF,pdf-extract-images,extract images from pdf,pdf,pattern_research,Pulls embedded image XObjects rather than rendering pages.,built
-PDF Booklet Imposition,pdf-booklet,print pdf as booklet,pdf,pattern_research,"Folded-booklet page ordering. Niche, technical, almost no free competition.",built
-Multiple Pages per Sheet,pdf-n-up,print multiple pdf pages per sheet,pdf,pattern_research,"N-up imposition for handouts; saves paper, searched by teachers.",built
-Crop PDF Margins,pdf-crop-margins,crop pdf margins,pdf,pattern_research,Reclaims scan borders for e-readers; uses the geometry helpers already written.,built
-PDF Header and Footer,pdf-header-footer,add header and footer to pdf,pdf,pattern_research,Extends the page-numbering tool's rotation-aware label placement.,built
-Grayscale PDF Converter,pdf-grayscale,convert pdf to grayscale,pdf,pattern_research,Cuts colour printing costs; renders and re-embeds pages.,built
-Invert PDF Colours,pdf-invert-colors,dark mode pdf,pdf,pattern_research,Night reading. Rare as a free tool and genuinely useful.,built
-Flatten PDF Form,pdf-flatten-form,flatten pdf form,pdf,pattern_research,"Makes filled forms non-editable before sending; one pdf-lib call, widely searched.",built
-Sign PDF,pdf-signature,sign pdf online free,pdf,pattern_research,"Draw or upload a signature and place it. Huge demand, and doing it locally is the honest selling point.",built
-Redact PDF,pdf-redact,redact pdf online,pdf,pattern_research,"Rasterises the selected region so the text is genuinely gone, not merely covered by a black box.",built
-Compare Two PDFs,pdf-compare,compare two pdf files,pdf,pattern_research,"Text-level diff between versions, reusing the existing extraction pipeline.",built
-PDF Bookmarks Editor,pdf-bookmarks,add bookmarks to pdf,pdf,pattern_research,Outline editing for long documents; almost nothing free does this.,built
+Add Watermark to PDF,pdf-watermark,add watermark to pdf,pdf,pattern_research,The most requested PDF edit we lack; pdf-lib handles it natively.,live
+Rearrange PDF Pages,pdf-reorder-pages,rearrange pdf pages,pdf,pattern_research,"We split, delete and extract but cannot reorder. An obvious hole in the family.",live
+Extract Images from PDF,pdf-extract-images,extract images from pdf,pdf,pattern_research,Pulls embedded image XObjects rather than rendering pages.,live
+PDF Booklet Imposition,pdf-booklet,print pdf as booklet,pdf,pattern_research,"Folded-booklet page ordering. Niche, technical, almost no free competition.",live
+Multiple Pages per Sheet,pdf-n-up,print multiple pdf pages per sheet,pdf,pattern_research,"N-up imposition for handouts; saves paper, searched by teachers.",live
+Crop PDF Margins,pdf-crop-margins,crop pdf margins,pdf,pattern_research,Reclaims scan borders for e-readers; uses the geometry helpers already written.,live
+PDF Header and Footer,pdf-header-footer,add header and footer to pdf,pdf,pattern_research,Extends the page-numbering tool's rotation-aware label placement.,live
+Grayscale PDF Converter,pdf-grayscale,convert pdf to grayscale,pdf,pattern_research,Cuts colour printing costs; renders and re-embeds pages.,live
+Invert PDF Colours,pdf-invert-colors,dark mode pdf,pdf,pattern_research,Night reading. Rare as a free tool and genuinely useful.,live
+Flatten PDF Form,pdf-flatten-form,flatten pdf form,pdf,pattern_research,"Makes filled forms non-editable before sending; one pdf-lib call, widely searched.",live
+Sign PDF,pdf-signature,sign pdf online free,pdf,pattern_research,"Draw or upload a signature and place it. Huge demand, and doing it locally is the honest selling point.",live
+Redact PDF,pdf-redact,redact pdf online,pdf,pattern_research,"Rasterises the selected region so the text is genuinely gone, not merely covered by a black box.",live
+Compare Two PDFs,pdf-compare,compare two pdf files,pdf,pattern_research,"Text-level diff between versions, reusing the existing extraction pipeline.",live
+PDF Bookmarks Editor,pdf-bookmarks,add bookmarks to pdf,pdf,pattern_research,Outline editing for long documents; almost nothing free does this.,live
 DNS Lookup,dns-lookup,dns lookup tool,developer,pattern_research,Server route reusing the SSRF guard already written for the SSL checker.,planned
 WHOIS Lookup,whois-lookup,whois lookup domain,developer,pattern_research,"RDAP needs no API key, as proven when I checked your own domain's records.",planned
 HTTP Header Checker,http-header-checker,check http headers,developer,pattern_research,Same guarded fetch path as the Open Graph tool.,planned
