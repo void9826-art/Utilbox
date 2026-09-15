@@ -72,7 +72,17 @@ export const adsConfig = {
 } as const;
 
 export const analyticsConfig = {
-  googleAnalyticsId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "",
+  /**
+   * A measurement ID is a public identifier — it ships in the page source — so
+   * it belongs here rather than only in a dashboard. It applies to the
+   * production deployment alone, which keeps local development and preview
+   * builds out of the reported numbers, and the environment variable still
+   * overrides it anywhere that reports somewhere else.
+   */
+  googleAnalyticsId: env(
+    "NEXT_PUBLIC_GA_MEASUREMENT_ID",
+    process.env.VERCEL_ENV === "production" ? "G-EPJL2GP3L9" : "",
+  ),
   get enabled(): boolean {
     return this.googleAnalyticsId.length > 0;
   },
