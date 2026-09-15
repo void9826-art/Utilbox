@@ -5,6 +5,8 @@ import { ArrowRight, Gauge, Lock, Sparkles } from "lucide-react";
 import { AdSlot } from "@/components/ads/ad-slot";
 import { HeroSearch } from "@/components/home/hero-search";
 import { ToolCard, ToolGrid } from "@/components/tool/tool-card";
+import { GlowFrame } from "@/components/ui/glow-frame";
+import { StatStrip } from "@/components/ui/stat-strip";
 import { CATEGORIES } from "@/config/categories";
 import { siteConfig } from "@/config/site";
 import {
@@ -69,9 +71,9 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-8">
+          <GlowFrame className="mt-8 max-w-3xl">
             <HeroSearch />
-          </div>
+          </GlowFrame>
 
           <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-[0.8125rem] text-fg-muted">
             <span className="inline-flex items-center gap-1.5">
@@ -115,6 +117,29 @@ export default function HomePage() {
           </section>
 
           <AdSlot placement="leaderboard" />
+
+          <section aria-labelledby="at-a-glance-heading">
+            <h2 id="at-a-glance-heading" className="sr-only">
+              The site at a glance
+            </h2>
+            {/* Counted from the registry at build time — these are facts about
+                what exists, not traffic or popularity figures. */}
+            <StatStrip
+              items={[
+                { label: "Tools", value: String(TOOL_COUNT), hint: "Every one free, with no sign-up" },
+                {
+                  label: "Categories",
+                  value: String(CATEGORIES.length),
+                  hint: "PDF, image, text, converters, calculators and more",
+                },
+                {
+                  label: "Files uploaded",
+                  value: "0",
+                  hint: "Almost every tool runs entirely in your browser",
+                },
+              ]}
+            />
+          </section>
 
           <section aria-labelledby="promises-heading">
             <h2 id="promises-heading" className="sr-only">

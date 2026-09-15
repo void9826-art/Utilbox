@@ -54,6 +54,16 @@
 
   --shadow-color: 0 0% 10%;
 
+  /**
+   * The orange from the logo.
+   *
+   * Decorative only — it tints the glow on featured panels and nothing else.
+   * It is deliberately not the accent: orange with white text measures about
+   * 2.9:1, well under the 4.5:1 this site holds itself to, so promoting it to
+   * buttons or links would fail the contrast check in npm run validate.
+   */
+  --brand: #f5821f;
+
   color-scheme: light;
 }
 
@@ -326,9 +336,51 @@
   padding: 0.1em 0.35em;
 }
 
+/**
+ * Pointer-tracked border glow for featured panels.
+ *
+ * The highlight is drawn on a pseudo-element behind the content, so it never
+ * sits over text and never intercepts a click. Without the .glow-frame-live
+ * class — which the component withholds on coarse pointers and when reduced
+ * motion is requested — this is an ordinary static panel.
+ */
+.glow-frame::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+  background: radial-gradient(
+    22rem circle at var(--glow-x, 50%) var(--glow-y, 0%),
+    color-mix(in srgb, var(--brand) 70%, transparent),
+    transparent 60%
+  );
+  /* Mask out the middle so only the border edge lights up. */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.glow-frame-live:hover::before {
+  opacity: 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  /* No pointer-following highlight when movement is unwelcome. */
+  .glow-frame::before {
+    display: none;
   }
 
   *,

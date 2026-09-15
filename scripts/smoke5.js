@@ -55,7 +55,6 @@
     await waitFor(() => state.name && state.blob, tries);
     return state.blob ? new Uint8Array(await state.blob.arrayBuffer()) : null;
   };
-  const asText = (bytes) => (bytes ? new TextDecoder('latin1').decode(bytes) : '');
   const head = (bytes, n = 5) => (bytes ? String.fromCharCode(...bytes.slice(0, n)) : '');
 
   /**

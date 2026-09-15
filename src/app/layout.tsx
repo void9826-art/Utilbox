@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { SearchProvider } from "@/components/layout/search-dialog";
 import { themeInitScript } from "@/components/layout/theme";
+import { ToastProvider } from "@/components/ui/toast";
 import { adsConfig, analyticsConfig, siteConfig } from "@/config/site";
 import { jsonLdScript, organizationSchema, websiteSchema } from "@/lib/seo";
 
@@ -67,11 +68,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
 
         <SearchProvider>
-          <Header />
-          <main id="main" className="flex-1">
-            {children}
-          </main>
-          <Footer />
+          <ToastProvider>
+            <Header />
+            <main id="main" className="flex-1">
+              {children}
+            </main>
+            <Footer />
+          </ToastProvider>
         </SearchProvider>
 
         {adsConfig.enabled ? (

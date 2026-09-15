@@ -12,9 +12,11 @@ import {
   StepList,
   ToolHeader,
 } from "@/components/tool/sections";
+import { ShareRow } from "@/components/tool/share-row";
 import { Alert } from "@/components/ui/surfaces";
 import { getToolContent } from "@/config/content";
 import { isCategoryId } from "@/config/categories";
+import { absoluteUrl, siteConfig } from "@/config/site";
 import { TOOLS, getTool, toolHref } from "@/config/tools";
 import {
   breadcrumbSchema,
@@ -145,6 +147,10 @@ export default async function ToolPage({ params }: { params: Promise<RouteParams
             ) : null}
 
             <FaqSection items={content.faq} />
+
+            <div className="not-prose print-hidden">
+              <ShareRow title={`${tool.name} — ${siteConfig.name}`} url={absoluteUrl(toolHref(tool))} />
+            </div>
 
             <RelatedTools tool={tool} />
 
