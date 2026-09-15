@@ -567,3 +567,34 @@ cq("weekend across the date line", planDay(["America/Los_Angeles", "Pacific/Auck
 
 console.log(f10 === 0 ? "ATS/QR/TIME ZONE TESTS OK" : `${f10} FAILURES`);
 if (f10 > 0) process.exitCode = 1;
+
+/* ---- text diff (PDF comparison) ---- */
+import { splitLines, diffLines, summariseDiff } from "../src/lib/text-diff.ts";
+let f11 = 0;
+const dq = (n, c, d = "") => { if (!c) { console.log(`FAIL ${n} ${d}`); f11++; } };
+
+dq("lines trimmed and blanks dropped", JSON.stringify(splitLines("Alpha\n Beta \n\n\nGamma")) === '["Alpha","Beta","Gamma"]', JSON.stringify(splitLines("Alpha\n Beta \n\n\nGamma")));
+
+const removedLines = diffLines(["a", "b", "c"], ["a", "c"]);
+dq("removed line detected", JSON.stringify(removedLines.map((l) => `${l.type}:${l.text}`)) === '["equal:a","delete:b","equal:c"]', JSON.stringify(removedLines));
+
+const insertedLines = diffLines(["a", "c"], ["a", "b", "c"]);
+dq("inserted line detected", JSON.stringify(insertedLines.map((l) => `${l.type}:${l.text}`)) === '["equal:a","insert:b","equal:c"]', JSON.stringify(insertedLines));
+
+dq("identical text reports no change", summariseDiff(diffLines(["x", "y"], ["x", "y"])).changed === false);
+
+// A paragraph added at the top must not mark everything after it as changed.
+const prefixInsert = summariseDiff(diffLines(["one", "two", "three"], ["new", "one", "two", "three"]));
+dq("prefix insertion keeps the rest equal", prefixInsert.added === 1 && prefixInsert.removed === 0 && prefixInsert.unchanged === 3, JSON.stringify(prefixInsert));
+
+const replacedLine = summariseDiff(diffLines(["keep", "old", "tail"], ["keep", "new", "tail"]));
+dq("replacement counts once each way", replacedLine.added === 1 && replacedLine.removed === 1 && replacedLine.unchanged === 2, JSON.stringify(replacedLine));
+
+// Past the table limit it falls back to a prefix comparison rather than hanging.
+const longBefore = Array.from({ length: 4100 }, (_, i) => `line ${i}`);
+const longAfter = [...longBefore.slice(0, 4000), "changed"];
+const oversized = summariseDiff(diffLines(longBefore, longAfter));
+dq("oversized input still returns a result", oversized.changed && oversized.unchanged === 4000, JSON.stringify(oversized));
+
+console.log(f11 === 0 ? "TEXT DIFF TESTS OK" : `${f11} FAILURES`);
+if (f11 > 0) process.exitCode = 1;

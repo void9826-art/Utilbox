@@ -1,0 +1,101 @@
+tool_name,slug,target_keyword,category,data_source,rationale,status
+PNG to WebP Converter,png-to-webp,png to webp converter,image,pattern_research,"Completes the WebP family: we convert WebP out but never in. Canvas encode, nothing uploaded.",planned
+JPG to WebP Converter,jpg-to-webp,jpg to webp converter,image,pattern_research,Same family gap; the most searched WebP direction.,planned
+JPG to AVIF Converter,jpg-to-avif,jpg to avif converter,image,pattern_research,"We ship AVIF to JPG; the reverse is missing. Encode where the browser supports it, said plainly where it does not.",planned
+SVG to PNG Converter,svg-to-png,svg to png converter,image,pattern_research,"Rasterise at a chosen scale. Aggregators cover it, but demand is steady and we own the converter family.",planned
+TIFF to JPG Converter,tiff-to-jpg,tiff to jpg converter,image,pattern_research,"Scanner and fax output; no mainstream browser decodes TIFF, so a small decoder dependency is needed.",planned
+Circle Crop Image,circle-crop-image,circle crop image online,image,pattern_research,"Profile pictures. Trivial canvas work, high everyday intent.",planned
+Passport Photo Maker,passport-photo-maker,passport photo size online,image,pattern_research,"Country presets (35x45mm, 2x2in) plus a printable sheet. Specific, and privacy matters here.",planned
+Instagram Image Resizer,instagram-image-resizer,instagram image size,image,pattern_research,Platform-specific crops; a recurring creator need.,planned
+YouTube Thumbnail Grabber,youtube-thumbnail-downloader,youtube thumbnail downloader,image,pattern_research,"Thumbnails are public URLs keyed by video id, so no API key and no scraping.",planned
+Add Watermark to Image,image-watermark,add watermark to image,image,pattern_research,Text or logo overlay with opacity and position; pairs with the PDF watermark tool.,planned
+Blur Faces in Photo,blur-faces-in-photo,blur faces in photo online,image,pattern_research,"Manual region blur that never leaves the device, which is the whole point of this query.",planned
+Change Image DPI,image-dpi-changer,change dpi of image,image,pattern_research,Print submissions demand 300 DPI. Rewrites density fields rather than resampling.,planned
+Grayscale Image Converter,grayscale-image,convert image to black and white,image,pattern_research,"Simple, high volume, and a building block for the print-oriented tools.",planned
+Colour Blindness Simulator,color-blindness-simulator,color blindness simulator,image,pattern_research,"Accessibility niche the aggregators ignore; matrix transforms, fully offline.",planned
+Add Watermark to PDF,pdf-watermark,add watermark to pdf,pdf,pattern_research,The most requested PDF edit we lack; pdf-lib handles it natively.,built
+Rearrange PDF Pages,pdf-reorder-pages,rearrange pdf pages,pdf,pattern_research,"We split, delete and extract but cannot reorder. An obvious hole in the family.",built
+Extract Images from PDF,pdf-extract-images,extract images from pdf,pdf,pattern_research,Pulls embedded image XObjects rather than rendering pages.,built
+PDF Booklet Imposition,pdf-booklet,print pdf as booklet,pdf,pattern_research,"Folded-booklet page ordering. Niche, technical, almost no free competition.",built
+Multiple Pages per Sheet,pdf-n-up,print multiple pdf pages per sheet,pdf,pattern_research,"N-up imposition for handouts; saves paper, searched by teachers.",built
+Crop PDF Margins,pdf-crop-margins,crop pdf margins,pdf,pattern_research,Reclaims scan borders for e-readers; uses the geometry helpers already written.,built
+PDF Header and Footer,pdf-header-footer,add header and footer to pdf,pdf,pattern_research,Extends the page-numbering tool's rotation-aware label placement.,built
+Grayscale PDF Converter,pdf-grayscale,convert pdf to grayscale,pdf,pattern_research,Cuts colour printing costs; renders and re-embeds pages.,built
+Invert PDF Colours,pdf-invert-colors,dark mode pdf,pdf,pattern_research,Night reading. Rare as a free tool and genuinely useful.,built
+Flatten PDF Form,pdf-flatten-form,flatten pdf form,pdf,pattern_research,"Makes filled forms non-editable before sending; one pdf-lib call, widely searched.",built
+Sign PDF,pdf-signature,sign pdf online free,pdf,pattern_research,"Draw or upload a signature and place it. Huge demand, and doing it locally is the honest selling point.",built
+Redact PDF,pdf-redact,redact pdf online,pdf,pattern_research,"Rasterises the selected region so the text is genuinely gone, not merely covered by a black box.",built
+Compare Two PDFs,pdf-compare,compare two pdf files,pdf,pattern_research,"Text-level diff between versions, reusing the existing extraction pipeline.",built
+PDF Bookmarks Editor,pdf-bookmarks,add bookmarks to pdf,pdf,pattern_research,Outline editing for long documents; almost nothing free does this.,built
+DNS Lookup,dns-lookup,dns lookup tool,developer,pattern_research,Server route reusing the SSRF guard already written for the SSL checker.,planned
+WHOIS Lookup,whois-lookup,whois lookup domain,developer,pattern_research,"RDAP needs no API key, as proven when I checked your own domain's records.",planned
+HTTP Header Checker,http-header-checker,check http headers,developer,pattern_research,Same guarded fetch path as the Open Graph tool.,planned
+Redirect Chain Checker,redirect-checker,redirect chain checker,developer,pattern_research,Follows and reports each hop; the OG route already validates redirects.,planned
+Security Headers Checker,security-headers-checker,security headers test,developer,pattern_research,"Grades CSP, HSTS and friends; steady SEO and developer demand.",planned
+SPF Record Checker,spf-record-checker,spf record checker,developer,pattern_research,DNS TXT parse with include-depth counting. Deliverability niche.,planned
+DMARC Record Checker,dmarc-record-checker,dmarc record checker,developer,pattern_research,Policy parsing with a plain-English explanation; pairs with SPF.,planned
+Email Header Analyzer,email-header-analyzer,email header analyzer,developer,pattern_research,"Parses Received hops and auth results locally, which matters for headers full of personal data.",planned
+Subnet Calculator,subnet-calculator,subnet calculator,developer,pattern_research,"CIDR maths, offline, evergreen networking demand.",planned
+User Agent Parser,user-agent-parser,user agent parser,developer,pattern_research,"Breaks a UA string into browser, engine, OS and device.",planned
+Colour Contrast Checker,color-contrast-checker,color contrast checker wcag,developer,pattern_research,WCAG ratios. We already ship a contrast engine in the validation scripts.,planned
+Certificate Decoder,certificate-decoder,decode ssl certificate pem,developer,pattern_research,"A pasted PEM decoded locally, complementing the SSL expiry checker.",planned
+Cron Expression Explainer,cron-expression-explainer,cron expression explained,developer,pattern_research,Generators are saturated; plain-English explanation of an existing expression is not.,planned
+MAC Address Vendor Lookup,mac-address-lookup,mac address vendor lookup,developer,pattern_research,"Bundled OUI table, so it answers offline.",planned
+Meta Tag Generator,meta-tag-generator,meta tag generator,generators,pattern_research,Feeds the same SEO audience as the Open Graph tool.,planned
+Hreflang Tag Generator,hreflang-generator,hreflang tag generator,generators,pattern_research,Multi-language sites; fiddly to hand-write and easy to get wrong.,planned
+XML Sitemap Generator,xml-sitemap-generator,xml sitemap generator,generators,pattern_research,"Builds valid XML from a pasted URL list. No crawling, so no abuse surface.",planned
+Article Schema Generator,article-schema-generator,article schema generator,generators,pattern_research,Our schema tool covers FAQ and Product only; each type is its own search.,planned
+Local Business Schema Generator,local-business-schema-generator,local business schema generator,generators,pattern_research,"The highest-intent schema type, used by every local site.",planned
+Recipe Schema Generator,recipe-schema-generator,recipe schema generator,generators,pattern_research,"Food blogs need it for rich results; long, error-prone markup.",planned
+Event Schema Generator,event-schema-generator,event schema markup generator,generators,pattern_research,Date and venue fields are where people slip up.,planned
+HowTo Schema Generator,howto-schema-generator,howto schema generator,generators,pattern_research,"Step-structured markup, reusing the existing validator.",planned
+Breadcrumb Schema Generator,breadcrumb-schema-generator,breadcrumb schema generator,generators,pattern_research,"Short markup, constant demand, trivially validated.",planned
+Video Schema Generator,video-schema-generator,video schema generator,generators,pattern_research,Duration and thumbnail fields trip people up.,planned
+Email Signature Generator,email-signature-generator,email signature generator,generators,pattern_research,Table-based HTML that survives Outlook; copy-ready output.,planned
+CSS Gradient Generator,css-gradient-generator,css gradient generator,generators,pattern_research,Visual editor with live preview and copyable CSS.,planned
+Box Shadow Generator,box-shadow-generator,css box shadow generator,generators,pattern_research,Layered shadows with a live preview.,planned
+HTML Table Generator,html-table-generator,html table generator,generators,pattern_research,"Paste or build a grid, get clean semantic markup.",planned
+Roman Numeral Converter,roman-numeral-converter,roman numeral converter,converters,pattern_research,Homework and tattoo-date demand; both directions.,planned
+Number to Words,number-to-words,number to words converter,converters,pattern_research,"Cheque writing, with locale rules including the Indian lakh and crore system.",planned
+Number Base Converter,number-base-converter,binary to decimal converter,converters,pattern_research,"Binary, octal, decimal and hex in one view with bit-width handling.",planned
+Aspect Ratio Calculator,aspect-ratio-calculator,aspect ratio calculator,converters,pattern_research,Video and design staple; solves for any missing dimension.,planned
+PPI and Screen Size Calculator,ppi-calculator,ppi calculator screen,converters,pattern_research,Pixel density from resolution and diagonal; monitor-buying demand.,planned
+Paper Size Reference,paper-size-converter,a4 size in inches,converters,pattern_research,"Every ISO and US size in mm, inches and pixels at a chosen DPI.",planned
+Tire Size Comparison,tire-size-calculator,tire size comparison calculator,converters,pattern_research,Speedometer error and clearance when changing tyre size. Strong automotive niche.,planned
+Torque Converter,torque-converter,nm to ft lbs converter,converters,pattern_research,Workshop manuals mix units constantly.,planned
+Fuel Economy Converter,fuel-economy-converter,mpg to l per 100km,converters,pattern_research,"US, UK and metric measures differ; pairs with the EV cost tool.",planned
+Ring Size Converter,ring-size-converter,ring size converter chart,converters,pattern_research,"US, UK, EU and Japanese scales plus a measured circumference.",planned
+Bra Size Converter,bra-size-converter,bra size conversion chart,converters,pattern_research,"Region-specific sizing, exactly the narrow variant pattern requested.",planned
+Clothing Size Converter,clothing-size-converter,us to eu clothing size,converters,pattern_research,Cross-border shopping; complements the shoe size converter.,planned
+Wire Gauge Converter,wire-gauge-converter,awg to mm converter,converters,pattern_research,AWG to millimetres with current-capacity notes.,planned
+Coordinates Converter,coordinates-converter,dms to decimal degrees,converters,pattern_research,Degrees-minutes-seconds to decimal for mapping and surveying.,planned
+Download Time Calculator,download-time-calculator,download time calculator,converters,pattern_research,File size and connection speed to transfer time.,planned
+Yarn Weight Converter,yarn-weight-converter,yarn weight conversion chart,converters,pattern_research,Craft niche with real volume and effectively no tooling competition.,planned
+Diff Checker,text-diff,text compare tool,text,pattern_research,Side-by-side comparison; one of the highest-volume text queries we do not serve.,planned
+Readability Checker,readability-checker,readability score checker,text,pattern_research,Flesch-Kincaid and friends for content teams.,planned
+Keyword Density Checker,keyword-density-checker,keyword density checker,text,pattern_research,Classic SEO utility feeding the same audience as our other SEO tools.,planned
+Reading Time Calculator,reading-time-calculator,reading time calculator,text,pattern_research,"Blog metadata; trivial to build, easy to rank for.",planned
+Subtitle Converter,subtitle-converter,srt to vtt converter,text,pattern_research,"SRT, VTT and plain transcript in both directions; pairs with voice to text.",planned
+Markdown Table Generator,markdown-table-generator,markdown table generator,text,pattern_research,Hand-aligning Markdown tables is miserable; paste CSV and get one.,planned
+URL Slug Generator,slug-generator,url slug generator,text,pattern_research,Transliteration and stop-word handling for clean URLs.,planned
+Social Caption Counter,social-caption-counter,instagram caption character limit,text,pattern_research,"Per-platform limits with a live count, unlike our generic character counter.",planned
+GST Calculator,gst-calculator,gst calculator,calculators,pattern_research,"Indian and Australian rate sets, inclusive and exclusive. Very high regional volume.",planned
+VAT Calculator,vat-calculator,vat calculator uk,calculators,pattern_research,"UK and EU rates, adding or removing VAT.",planned
+US Sales Tax Calculator,sales-tax-calculator,sales tax calculator by state,calculators,pattern_research,"State base rates from a dated, visible table so the figures stay honest.",planned
+SIP Calculator,sip-calculator,sip calculator,calculators,pattern_research,Monthly investment growth. Enormous Indian search volume and a fixed formula.,planned
+PPF Calculator,ppf-calculator,ppf calculator,calculators,pattern_research,Public Provident Fund maturity with a user-entered rate.,planned
+FD Calculator,fd-calculator,fd calculator,calculators,pattern_research,Fixed deposit maturity across compounding frequencies.,planned
+RD Calculator,rd-calculator,rd calculator,calculators,pattern_research,Recurring deposit maturity; completes the deposit set.,planned
+EPF Calculator,epf-calculator,epf calculator,calculators,pattern_research,Provident fund projection from salary and contribution rates.,planned
+HRA Exemption Calculator,hra-calculator,hra exemption calculator,calculators,pattern_research,Rent allowance exemption under the three-way statutory test.,planned
+Gratuity Calculator,gratuity-calculator,gratuity calculator,calculators,pattern_research,Statutory formula on tenure and last drawn salary.,planned
+Electricity Bill Calculator,electricity-bill-calculator,electricity bill calculator,calculators,pattern_research,Slab-based billing with an appliance-level breakdown.,planned
+Trip Fuel Cost Calculator,fuel-cost-calculator,trip fuel cost calculator,calculators,pattern_research,"Distance, economy and price; the petrol counterpart to our EV charging tool.",planned
+Dog Food Portion Calculator,dog-food-calculator,how much to feed my dog calculator,calculators,pattern_research,"Weight and activity based, with a vet-consultation note. Breed variants are distinct searches.",planned
+Aquarium Volume Calculator,aquarium-volume-calculator,aquarium volume calculator,calculators,pattern_research,"Tank shapes to litres and gallons, minus substrate displacement.",planned
+Freelance Rate Calculator,freelance-rate-calculator,freelance hourly rate calculator,calculators,pattern_research,"Works backwards from target income, costs and billable hours.",planned
+Profit Margin Calculator,profit-margin-calculator,profit margin calculator,calculators,pattern_research,"Margin, markup and break-even in one place.",planned
+CPM Calculator,cpm-calculator,cpm calculator,calculators,pattern_research,"Ad cost per thousand impressions, solving for any variable.",planned
+Engagement Rate Calculator,engagement-rate-calculator,instagram engagement rate calculator,calculators,pattern_research,Per-platform formulas; creator and marketer demand.,planned
+Dimensional Weight Calculator,dimensional-weight-calculator,dimensional weight calculator,calculators,pattern_research,Carrier divisors decide shipping cost; a real business pain point.,planned
+Sunrise Sunset Calculator,sunrise-sunset-calculator,sunrise sunset time calculator,calculators,pattern_research,"Astronomical formula, no API, and a natural fit for the time-card component in Phase 2.",planned

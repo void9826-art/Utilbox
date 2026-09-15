@@ -12,7 +12,7 @@ const Loading = () => <ToolSkeleton />;
 
 /**
  * Every tool is a separate lazily-loaded chunk, so visiting one tool page never
- * downloads the code for the other 101.
+ * downloads the code for the other 115.
  */
 const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "merge-pdf": dynamic(() => import("./pdf/merge-pdf"), { loading: Loading }),
@@ -32,6 +32,20 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "pdf-table-to-excel": dynamic(() => import("./pdf/pdf-table-to-excel"), { loading: Loading }),
   "pdf-metadata-editor": dynamic(() => import("./pdf/pdf-metadata-editor"), { loading: Loading }),
   "pdf-resize-page": dynamic(() => import("./pdf/pdf-resize-page"), { loading: Loading }),
+  "pdf-watermark": dynamic(() => import("./pdf/pdf-watermark"), { loading: Loading }),
+  "pdf-reorder-pages": dynamic(() => import("./pdf/pdf-reorder-pages"), { loading: Loading }),
+  "pdf-extract-images": dynamic(() => import("./pdf/pdf-extract-images"), { loading: Loading }),
+  "pdf-booklet": dynamic(() => import("./pdf/pdf-booklet"), { loading: Loading }),
+  "pdf-n-up": dynamic(() => import("./pdf/pdf-n-up"), { loading: Loading }),
+  "pdf-crop-margins": dynamic(() => import("./pdf/pdf-crop-margins"), { loading: Loading }),
+  "pdf-header-footer": dynamic(() => import("./pdf/pdf-header-footer"), { loading: Loading }),
+  "pdf-grayscale": dynamic(() => import("./pdf/pdf-grayscale"), { loading: Loading }),
+  "pdf-invert-colors": dynamic(() => import("./pdf/pdf-invert-colors"), { loading: Loading }),
+  "pdf-flatten-form": dynamic(() => import("./pdf/pdf-flatten-form"), { loading: Loading }),
+  "pdf-signature": dynamic(() => import("./pdf/pdf-signature"), { loading: Loading }),
+  "pdf-redact": dynamic(() => import("./pdf/pdf-redact"), { loading: Loading }),
+  "pdf-compare": dynamic(() => import("./pdf/pdf-compare"), { loading: Loading }),
+  "pdf-bookmarks": dynamic(() => import("./pdf/pdf-bookmarks"), { loading: Loading }),
   "percentage-calculator": dynamic(() => import("./calculators/percentage-calculator"), { loading: Loading }),
   "age-calculator": dynamic(() => import("./calculators/age-calculator"), { loading: Loading }),
   "gpa-calculator": dynamic(() => import("./calculators/gpa-calculator"), { loading: Loading }),

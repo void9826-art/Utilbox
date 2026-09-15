@@ -718,4 +718,578 @@ export const pdfContent: Record<string, ToolContent> = {
       },
     ],
   },
+  "pdf-watermark": {
+    seoTitle: "Add Watermark to PDF — Free, Nothing Uploaded",
+    seoDescription:
+      "Add a text watermark to a PDF online for free. Diagonal, tiled, centred or footer placement, with adjustable opacity, colour and page range.",
+    intro:
+      "Stamp DRAFT, CONFIDENTIAL or any other wording across a PDF, without the file ever leaving your computer.",
+    howToUse: [
+      "Add the PDF you want to mark.",
+      "Type the wording, then pick a placement — diagonal reads clearly, tiled is hardest to crop away.",
+      "Set the opacity and size, and limit it to certain pages if you need to.",
+      "Press Add watermark, check the preview of the saved file, and download.",
+    ],
+    howItWorks: [
+      "The wording is drawn into each page as real text in the standard Helvetica Bold font, using a transparency setting rather than a semi-transparent picture. That keeps the file small, keeps the original text underneath selectable, and keeps the mark sharp at any zoom level.",
+      "Diagonal placement measures the angle of the page itself with an arctangent of its height over its width, so the wording runs corner to corner whether the page is portrait, landscape or an unusual size. Tiled placement repeats the wording on a grid at a shallow angle, which is much harder to crop out than a single mark.",
+      "Opacity is a real PDF graphics-state value, so it prints exactly as it looks on screen. A watermark is a visual label, not a security control: anyone with a PDF editor can remove it, so it marks a document as a draft or a copy rather than protecting it.",
+      LOCAL_NOTE,
+    ],
+    faq: [
+      {
+        question: "Does the watermark cover the text underneath?",
+        answer:
+          "Only visually, and only as much as the opacity you choose. The original text is untouched and stays selectable and searchable.",
+      },
+      {
+        question: "Can I watermark only some pages?",
+        answer:
+          "Yes. Leave the page box blank for the whole document, or enter something like 1-3, 7 to mark just those pages.",
+      },
+      {
+        question: "Can someone remove the watermark?",
+        answer:
+          "Yes, with a PDF editor. A watermark labels a document; it is not a security measure and nothing here claims otherwise.",
+      },
+      {
+        question: "Why is my long wording clipped at the edges?",
+        answer:
+          "The text is drawn at the size you set rather than shrunk to fit. Reduce the text size, or use fewer words, and it will sit inside the page.",
+      },
+    ],
+  },
+  "pdf-reorder-pages": {
+    seoTitle: "Rearrange PDF Pages — Reorder Online Free",
+    seoDescription:
+      "Rearrange the pages of a PDF online. Move any page earlier or later, reverse the whole document, and save the new order without uploading.",
+    intro:
+      "Put the pages of a PDF into the order you actually want, with a thumbnail of every page to work from.",
+    howToUse: [
+      "Add the PDF — each page appears as a numbered thumbnail.",
+      "Use the arrows under a page to move it earlier or later.",
+      "Use Reverse order if a scan came out back to front.",
+      "Press Save new order and download the rebuilt file.",
+    ],
+    howItWorks: [
+      "Each tile shows two numbers: the large one is where that page will sit in the new document, and the small one is where it came from. Nothing is written until you save, so pages can be shuffled freely and Reset puts everything back.",
+      "Saving copies each page object into a fresh document in your chosen order rather than rewriting the pages. Copying carries the page size, rotation, annotations and links across untouched, which is why the result looks identical to the original apart from the sequence.",
+      "A scan that came out in reverse is the common case, and Reverse order fixes the whole document in one press instead of dozens of individual moves.",
+      LOCAL_NOTE,
+    ],
+    faq: [
+      {
+        question: "Does reordering lose links or form fields?",
+        answer:
+          "No. Pages are copied whole, so annotations, links and fields travel with the page they belong to.",
+      },
+      {
+        question: "Can I delete a page here as well?",
+        answer:
+          "This tool only changes the order. Use the Delete PDF Pages tool to remove pages, then reorder what is left.",
+      },
+      {
+        question: "Is there a page limit?",
+        answer:
+          "Previews are rendered for the first 200 pages to keep memory reasonable, but the whole document is reordered and saved.",
+      },
+      {
+        question: "Will the file size change?",
+        answer:
+          "Barely. The same page content is written in a different sequence, so any difference comes from how the objects are packed.",
+      },
+    ],
+  },
+  "pdf-extract-images": {
+    seoTitle: "Extract Images From PDF — Every Picture, Free",
+    seoDescription:
+      "Extract images from a PDF online. Pulls out embedded pictures at their stored size, not screenshots of the pages, and saves them as PNG files.",
+    intro:
+      "Pull the actual pictures out of a PDF at the size and quality they were stored, rather than screenshotting the pages.",
+    howToUse: [
+      "Add the PDF — each page is scanned as it loads.",
+      "Look through the pictures that were found, with their pixel size and the pages they appear on.",
+      "Download one picture, or take everything as a ZIP.",
+      "Nothing is uploaded, so scanned contracts and private documents stay on your device.",
+    ],
+    howItWorks: [
+      "A PDF stores pictures as separate objects that pages refer to when they draw. This tool reads the drawing instructions of every page, notes each reference to an image object, and decodes that object directly. The result is the picture as stored — the same pixels the document carries — rather than a re-rendered snapshot of the page.",
+      "Images used on several pages, such as a logo in a header, are stored once and listed once, with all the pages they appear on. Decoding handles full-colour, greyscale and one-bit-per-pixel scans, the last of which is how most black-and-white scanners store a page.",
+      "Some documents draw their pictures inline inside the page instructions instead of as separate objects, and some pages are drawings made of shapes and text rather than pictures at all. In both cases nothing can be pulled out, and the tool says so instead of silently returning nothing — rendering the pages with the PDF to JPG tool is the answer there.",
+      LOCAL_NOTE,
+    ],
+    faq: [
+      {
+        question: "How is this different from PDF to JPG?",
+        answer:
+          "PDF to JPG photographs whole pages. This pulls out the individual pictures that were embedded, at their own resolution and without the surrounding text.",
+      },
+      {
+        question: "Why did it find nothing in my PDF?",
+        answer:
+          "The pages are probably vector drawings or text, or the pictures are stored inline rather than as separate objects. The tool tells you when that is the case.",
+      },
+      {
+        question: "Are the pictures the original quality?",
+        answer:
+          "They are the pixels stored in the file, saved as lossless PNG. If a picture was compressed when the PDF was made, that compression is already baked in.",
+      },
+      {
+        question: "Does it extract pictures from a scanned document?",
+        answer:
+          "Yes. A scanned page is usually one large image per page, and those come out at full scan resolution.",
+      },
+    ],
+  },
+  "pdf-booklet": {
+    seoTitle: "Print PDF as Booklet — Free Imposition Tool",
+    seoDescription:
+      "Turn a PDF into a folded booklet. Pages are reordered two to a sheet for saddle-stitch printing, with blanks added to reach a multiple of four.",
+    intro:
+      "Reorder a PDF so that printing it double-sided, folding the stack and stapling the spine produces a booklet that reads in order.",
+    howToUse: [
+      "Add the PDF you want as a booklet.",
+      "Press Make booklet — the page order is worked out for you.",
+      "Print double-sided, flipping on the short edge.",
+      "Fold the stack in half and staple through the fold.",
+    ],
+    howItWorks: [
+      "A folded booklet does not print in reading order. The outermost sheet carries the last page beside the first, the next sheet carries the second page beside the second-to-last, and so on inwards. This is called saddle-stitch imposition, and getting it wrong by one page ruins the whole stack.",
+      "Each sheet holds four pages: two on the front and two on the back. Because of that the page count must be a multiple of four, so blank pages are added at the end when it is not — one to three of them, exactly where a reader expects blanks.",
+      "The sheet is built at twice the width of the original page, and each page is placed at its original size rather than scaled, so the printed booklet matches the document exactly. Short-edge flipping is what pairs the right back with the right front; long-edge flipping prints the reverse sides upside down.",
+      LOCAL_NOTE,
+    ],
+    faq: [
+      {
+        question: "Why were blank pages added?",
+        answer:
+          "A booklet needs a multiple of four pages, since each folded sheet holds four. The shortfall is added as blanks at the end.",
+      },
+      {
+        question: "Which printer setting do I need?",
+        answer:
+          "Double-sided, flipping on the short edge. Long-edge flipping turns every second side upside down.",
+      },
+      {
+        question: "My pages are different sizes — does that work?",
+        answer:
+          "The sheet is sized from the first page and other pages are fitted inside their half. Mixed sizes still print, but one consistent size gives the tidiest result.",
+      },
+      {
+        question: "Can I make a booklet with more than one section?",
+        answer:
+          "This produces a single section — every sheet folded together and stapled once through the spine, which is how most short booklets are bound.",
+      },
+    ],
+  },
+  "pdf-n-up": {
+    seoTitle: "Multiple PDF Pages Per Sheet — 2, 4 or 9 Up",
+    seoDescription:
+      "Put multiple PDF pages on one sheet. Choose 2, 4, 6, 9 or 16 per sheet with adjustable margins, gaps and cutting outlines, all in your browser.",
+    intro:
+      "Fit several PDF pages onto each sheet of paper — for handouts, proofs, or simply to use a quarter of the paper.",
+    howToUse: [
+      "Add the PDF you want to condense.",
+      "Choose how many pages go on each sheet, and the sheet size.",
+      "Adjust the margin and the gap between pages, and turn the cutting outline on or off.",
+      "Press Combine pages and download the result.",
+    ],
+    howItWorks: [
+      "Each original page is placed onto the new sheet as a scaled copy of itself, not as a picture of itself. The text stays sharp at any zoom and remains selectable and searchable, which is the difference between this and printing a screenshot.",
+      "The grid is worked out from the sheet size, your margin and your gap: the remaining space is divided into equal cells, and each page is scaled by whichever of the width or height ratio is smaller so it fits without being cropped, then centred in its cell. Automatic orientation turns the sheet landscape when the grid is wider than it is tall, which is what a 2-up or 6-up layout wants.",
+      "Reading order runs left to right, then down, matching how the pages are read after cutting. The optional light outline around each cell is a cutting guide and prints faintly enough to trim along.",
+      LOCAL_NOTE,
+    ],
+    faq: [
+      {
+        question: "Will the text still be selectable?",
+        answer:
+          "Yes. Pages are placed as scaled page content, so text stays text — no rasterising and no blur.",
+      },
+      {
+        question: "What happens to an odd number of pages?",
+        answer:
+          "The last sheet is filled as far as the pages go, leaving the remaining cells empty.",
+      },
+      {
+        question: "Why did I get an error about margins?",
+        answer:
+          "The margin and gap together left no room for the cells. Reduce either one and it will fit.",
+      },
+      {
+        question: "Can I print this straight away?",
+        answer:
+          "Yes. The sheets are already the paper size you chose, so print at 100% with no extra scaling.",
+      },
+    ],
+  },
+  "pdf-crop-margins": {
+    seoTitle: "Crop PDF Margins — Trim White Space Free",
+    seoDescription:
+      "Crop the margins of a PDF online. Trim white borders on any side, preview the crop on the first page, and keep the text sharp and selectable.",
+    intro:
+      "Trim the white borders off a PDF so the content fills the page — the usual fix for reading academic papers on a tablet or e-reader.",
+    howToUse: [
+      "Add the PDF — the first page is shown with a dashed outline over it.",
+      "Drag the margin slider, or untick the box to set each side separately.",
+      "Watch the outline: everything inside it is kept.",
+      "Press Crop margins and download the trimmed file.",
+    ],
+    howItWorks: [
+      "Cropping a PDF does not delete anything. Every page carries two rectangles: the media box, which is the paper, and the crop box, which is the part a viewer actually shows. This tool sets the crop box, which is how professional tools crop and how every reader and printer expects a crop to be expressed.",
+      "Because the content is untouched, text stays sharp and selectable, the file size barely changes, and the crop can be undone by anyone who wants the full page back. On an e-reader the effect is dramatic: removing a 20 mm border from an A4 page makes the text roughly a third larger on the same screen.",
+      "Margins are entered in millimetres and converted to PDF points at 72 points per inch. Each page is measured from its own media box, so a document with mixed page sizes crops consistently rather than by a fixed number of pixels.",
+      LOCAL_NOTE,
+    ],
+    faq: [
+      {
+        question: "Is the cropped-off content deleted?",
+        answer:
+          "No. It is hidden by the crop box, not removed. If you need content genuinely gone, use the Redact PDF tool instead.",
+      },
+      {
+        question: "Why does my reader still show the full page?",
+        answer:
+          "A few older viewers ignore the crop box. Most modern readers, browsers and printers honour it.",
+      },
+      {
+        question: "Can I crop only certain pages?",
+        answer:
+          "Yes. Leave the page box blank for every page, or enter a range like 2-10 to crop just those.",
+      },
+      {
+        question: "Does cropping shrink the file?",
+        answer:
+          "Hardly at all, because the content is still there. Use Compress PDF if a smaller file is the goal.",
+      },
+    ],
+  },
+  "pdf-header-footer": {
+    seoTitle: "Add Header and Footer to PDF — Free Online",
+    seoDescription:
+      "Add a header or footer to every page of a PDF. Insert a title, the date or page numbering, choose alignment and size, and skip the cover page.",
+    intro:
+      "Put a title, a date or a page count along the top or bottom of every page, added as real text rather than a picture.",
+    howToUse: [
+      "Add the PDF you want to label.",
+      "Type a header, a footer, or both — use {page}, {total} and {date} where you want those filled in.",
+      "Choose the alignment, the text size and how far from the edge it sits.",
+      "Tick Skip the first page if the document opens with a cover, then save.",
+    ],
+    howItWorks: [
+      "The text is drawn into each page in the standard Helvetica font, so it stays selectable, searchable and sharp however far you zoom in. Nothing is re-rendered, so the rest of the page is exactly what it was.",
+      "Three placeholders are filled in as the pages are written: {page} becomes the current page number, {total} the number of pages, and {date} today's date in your computer's regional format. A footer of Page {page} of {total} is the common case and is filled in for you to start with.",
+      "Alignment is calculated from the actual width of the finished string in the chosen font, so centred text is genuinely centred and right-aligned text sits the same distance from the edge on every page, including pages of different widths.",
+      LOCAL_NOTE,
+    ],
+    faq: [
+      {
+        question: "How is this different from the page numbering tool?",
+        answer:
+          "Page numbers are one line in a fixed set of formats. This lets you write any wording, top and bottom, with the numbering available as a placeholder.",
+      },
+      {
+        question: "Will the header cover existing content?",
+        answer:
+          "It is drawn on top, so it can overlap if the page already has content at the very edge. Increase the distance from the edge if that happens.",
+      },
+      {
+        question: "Can I use a different font?",
+        answer:
+          "The built-in Helvetica is used, which every PDF reader has. That keeps the file small and avoids embedding a font.",
+      },
+      {
+        question: "Does {date} update later?",
+        answer:
+          "No. It is filled in once, when you save, and stays fixed in the file after that.",
+      },
+    ],
+  },
+  "pdf-grayscale": {
+    seoTitle: "Convert PDF to Grayscale — Free, No Upload",
+    seoDescription:
+      "Convert a colour PDF to grayscale online. Every page is re-rendered in black and white at your chosen resolution, ready for cheaper printing.",
+    intro:
+      "Turn a colour PDF black and white, so a print shop charges the mono rate and colour ink is not wasted on a draft.",
+    howToUse: [
+      "Add the colour PDF.",
+      "Choose a resolution — Standard suits most printing, Print is for anything with fine detail.",
+      "Press Convert to grayscale and wait while the pages are processed.",
+      "Download the black-and-white version; the original is untouched.",
+    ],
+    howItWorks: [
+      "Each page is rendered by the same engine a browser uses to display PDFs, then every pixel is converted using the Rec. 709 luminance weighting — about 21% red, 72% green and 7% blue. That weighting matches how the eye judges brightness, so a red heading and a blue heading of similar visual weight end up a similar grey, instead of the muddy result a plain average gives.",
+      "The converted pages are written back at their original size in points, so the paper size, margins and proportions of the document do not change. Only the content within each page becomes a picture.",
+      "That is the trade-off worth knowing: because the page is re-rendered, the text in the result is no longer selectable or searchable. It prints identically, but keep the original if you need to copy text out of it later.",
+      LOCAL_NOTE,
+    ],
+    faq: [
+      {
+        question: "Will the text still be selectable?",
+        answer:
+          "No. Pages are re-rendered as images, so the saved file prints the same but cannot be searched or copied from. The tool says so before you convert.",
+      },
+      {
+        question: "Which resolution should I choose?",
+        answer:
+          "Standard, around 144 DPI, is fine for ordinary documents. Choose Print for small type, fine lines or anything going to a print shop.",
+      },
+      {
+        question: "Will the file get bigger?",
+        answer:
+          "It can, especially for text-only documents, because text is very compact and pictures are not. Higher resolutions make larger files.",
+      },
+      {
+        question: "Can I just print in black and white instead?",
+        answer:
+          "Often yes, and that is simpler. This is for when the file itself must be mono — a print shop that charges by colour page, or a submission that requires it.",
+      },
+    ],
+  },
+  "pdf-invert-colors": {
+    seoTitle: "Invert PDF Colours — Dark Mode for Reading",
+    seoDescription:
+      "Invert the colours of a PDF for night reading. White pages become dark and black text becomes light, at your chosen resolution, in your browser.",
+    intro:
+      "Flip a PDF to light text on a dark page, which is far easier on the eyes when reading in bed or in a dark room.",
+    howToUse: [
+      "Add the PDF you want to read at night.",
+      "Choose a resolution — Standard is fine for reading on screen.",
+      "Press Invert colours and wait while the pages are processed.",
+      "Download the inverted copy and read it in any viewer.",
+    ],
+    howItWorks: [
+      "Every pixel is replaced by its opposite: each of the red, green and blue channels is subtracted from 255. White paper becomes near-black, black text becomes near-white, and the contrast between them is preserved exactly.",
+      "Many readers offer a night mode, but it is a viewing setting the file does not carry with it — send the document to a tablet or an e-reader and you are back to a white page. Inverting the file itself means it looks the same everywhere, which is the point.",
+      "Photographs invert too, and look like film negatives. For a document that is mostly photographs this is the wrong tool; it suits text documents, papers and slide decks with plain backgrounds. As with any re-rendered page, the text in the result is no longer selectable.",
+      LOCAL_NOTE,
+    ],
+    faq: [
+      {
+        question: "Why do the photos look strange?",
+        answer:
+          "Inverting applies to everything on the page, so photographs come out as negatives. It suits text documents rather than image-heavy ones.",
+      },
+      {
+        question: "Does this save battery on my phone?",
+        answer:
+          "On an OLED screen, yes — dark pixels draw less power. On an LCD the backlight is always on, so the benefit is comfort rather than battery.",
+      },
+      {
+        question: "Can I still search the text afterwards?",
+        answer:
+          "No. The pages become images, so searching and copying are lost. Keep the original alongside it.",
+      },
+      {
+        question: "Is the contrast still readable?",
+        answer:
+          "Yes. Inverting preserves the difference between text and background exactly, so anything readable before stays readable.",
+      },
+    ],
+  },
+  "pdf-flatten-form": {
+    seoTitle: "Flatten PDF Form — Lock Filled Fields Free",
+    seoDescription:
+      "Flatten a filled PDF form so the answers become part of the page and can no longer be edited. Lists every field found before you commit.",
+    intro:
+      "Lock the answers in a filled-in PDF form, so what you send is what the other person sees — and cannot change.",
+    howToUse: [
+      "Add the filled-in form.",
+      "Check the list of fields that were found, with the type of each one.",
+      "Press Flatten form.",
+      "Download the locked copy and send that, keeping the editable original for yourself.",
+    ],
+    howItWorks: [
+      "An interactive PDF form keeps its answers in field objects that sit above the page, which is why a reader can still click and retype them. Flattening paints each field's current appearance onto the page itself and then removes the interactive widget, so the words become ordinary page content.",
+      "That matters for anything sent onward. Before flattening, a recipient can change a figure in a form field and forward it; afterwards, editing needs a proper PDF editor and leaves traces that are far easier to spot. It also fixes the common complaint that filled answers look wrong or vanish in some viewers, because there are no longer any fields to render.",
+      "The field list is shown first so you can confirm the right document is loaded — a form with no fields at all is reported plainly rather than producing an identical file with no explanation.",
+      LOCAL_NOTE,
+    ],
+    faq: [
+      {
+        question: "Can flattening be undone?",
+        answer:
+          "No. That is the point of it. Keep the original file if you may need to change the answers later.",
+      },
+      {
+        question: "It says no fields were found — why?",
+        answer:
+          "The document has no interactive fields. It may already be flattened, or the boxes may be printed lines on a scan rather than real fields.",
+      },
+      {
+        question: "Does flattening keep my signature image?",
+        answer:
+          "Yes. Anything drawn in a signature field is painted onto the page along with the other answers.",
+      },
+      {
+        question: "Is a flattened form legally binding?",
+        answer:
+          "Flattening is a technical step, not a legal one. Whether a document is binding depends on the agreement and the law that applies to it.",
+      },
+    ],
+  },
+  "pdf-signature": {
+    seoTitle: "Sign PDF Online Free — Draw Your Signature",
+    seoDescription:
+      "Sign a PDF online for free. Draw your signature with a mouse, finger or stylus, place it anywhere on any page, and download — nothing is uploaded.",
+    intro:
+      "Draw your signature, drop it where it belongs on the page, and download the signed PDF — without uploading a document you would rather keep private.",
+    howToUse: [
+      "Add the PDF you need to sign.",
+      "Draw your signature in the white box with a mouse, a finger or a stylus.",
+      "Choose the page, then click the preview where the signature should sit.",
+      "Adjust the width, press Place signature and download.",
+    ],
+    howItWorks: [
+      "The signature is captured as a transparent PNG, so the page shows through around the strokes instead of a white rectangle sitting over the text. It is placed at a size you set as a percentage of the page width, which keeps it proportionate whatever the paper size.",
+      "Position is stored as a fraction of the page rather than in pixels, so where you click on the preview is where it lands on the full-size page. The click point is measured from the top of the preview while PDF coordinates are measured from the bottom, and that conversion is handled for you.",
+      "Everything happens in your browser: the document is never uploaded, and neither is the signature. That is the difference from most signing sites, which want your file and an account before doing the same job.",
+      "This produces a visible, drawn signature — the electronic equivalent of signing a printout. It is not a cryptographic digital signature backed by a certificate, and nothing here pretends it is.",
+    ],
+    faq: [
+      {
+        question: "Is this a legally valid signature?",
+        answer:
+          "In many places a drawn electronic signature is accepted for ordinary agreements, but it depends on your jurisdiction and the document. Some contexts require a certificate-based digital signature, which this does not provide.",
+      },
+      {
+        question: "Does my signature get stored anywhere?",
+        answer:
+          "No. It exists only in your browser while the page is open and is gone when you close the tab.",
+      },
+      {
+        question: "Can I sign more than one page?",
+        answer:
+          "Place the signature on one page, download, then load the signed file again to add another. Each pass adds one.",
+      },
+      {
+        question: "Can I use a photo of my signature instead?",
+        answer:
+          "This version captures a drawn signature only. Drawing with a finger on a phone or a stylus on a tablet gives the most natural result.",
+      },
+    ],
+  },
+  "pdf-redact": {
+    seoTitle: "Redact PDF Online — Really Remove the Text",
+    seoDescription:
+      "Redact a PDF online. Marked areas are flattened away so the hidden words are removed from the file, not just covered with a black box.",
+    intro:
+      "Black out private details in a PDF so the words are genuinely gone from the file — not hidden under a rectangle that can be deleted.",
+    howToUse: [
+      "Add the PDF containing details you need to remove.",
+      "Pick a page, then drag across anything that must go.",
+      "Repeat on any other pages — the page list shows how many areas each one has.",
+      "Press Apply redactions and download the result.",
+    ],
+    howItWorks: [
+      "The failure everyone has read about is drawing a black rectangle over text in an editor: the rectangle is a separate object sitting above the words, and the words are still in the file, ready to be copied out by anyone who selects the page. Newspapers and law firms have leaked whole documents this way.",
+      "This tool avoids that entirely. Every page you mark is rendered to a picture, the marked areas are painted out on that picture, and the picture replaces the page. The characters underneath are not covered — they are not written into the new file at all, so there is nothing to select, copy or recover.",
+      "Pages you do not mark are copied across untouched and keep their selectable text, so only the pages that need flattening lose it. Marked areas are stored as fractions of the page, so what you draw on the preview maps exactly onto the full-size page.",
+      LOCAL_NOTE,
+    ],
+    faq: [
+      {
+        question: "Can the redacted text be recovered?",
+        answer:
+          "Not from the saved file. The page is rebuilt from a picture with the areas painted out, so the original characters are not present in the output at all.",
+      },
+      {
+        question: "Why does the redacted page stop being searchable?",
+        answer:
+          "Because it is rebuilt as a picture. That is the price of removing the text properly, and only the pages you mark are affected.",
+      },
+      {
+        question: "Does it remove hidden data as well?",
+        answer:
+          "It removes what is on the marked part of the page. For document properties such as author and title, use the PDF Metadata Editor as well.",
+      },
+      {
+        question: "Can I redact several areas on one page?",
+        answer:
+          "Yes, as many as you need, on as many pages as you need. Each area is listed so you can remove one if you misdrag.",
+      },
+    ],
+  },
+  "pdf-compare": {
+    seoTitle: "Compare Two PDF Files — Find Text Changes",
+    seoDescription:
+      "Compare two PDFs and see which lines of text were added or removed. Works page by page in your browser, with a downloadable comparison report.",
+    intro:
+      "See exactly what changed between two versions of a document, line by line, instead of reading both and hoping to spot it.",
+    howToUse: [
+      "Add the original document on the left and the revised copy on the right.",
+      "Press Compare — both files are read page by page.",
+      "Look through the pages that changed; added lines are marked with a plus, removed lines with a minus and a strike-through.",
+      "Download the comparison as a text file if you need to send it on.",
+    ],
+    howItWorks: [
+      "The text of each page is extracted from both documents, then matched with a longest-common-subsequence comparison — the same approach source-control tools use. That finds the smallest set of additions and deletions turning one version into the other, so a paragraph inserted at the top does not make every line after it look changed.",
+      "Pages are compared in order, and pages with no differences are left out of the report so that what remains is only what matters. When the two documents have different page counts that is called out, because everything after an inserted page will legitimately appear changed.",
+      "Only the words are compared. Images, fonts, colours and layout are not, so a document that was reformatted without editing the wording correctly reports no text differences. Additions and removals are marked with symbols and a strike-through as well as a background, so the report is readable without relying on colour.",
+      LOCAL_NOTE,
+    ],
+    faq: [
+      {
+        question: "Does it compare images or layout?",
+        answer:
+          "No — only text. A redesigned document with identical wording reports no differences.",
+      },
+      {
+        question: "Can it compare scanned documents?",
+        answer:
+          "Only if they have a text layer. A pure scan has no text to compare; run it through the Image to Text tool first.",
+      },
+      {
+        question: "Why is a whole page marked as changed?",
+        answer:
+          "Usually because a page was inserted or removed earlier, which shifts everything after it. The page-count warning appears when that is likely.",
+      },
+      {
+        question: "Are my documents uploaded?",
+        answer:
+          "No. Both files are read in your browser, which matters when comparing contract drafts.",
+      },
+    ],
+  },
+  "pdf-bookmarks": {
+    seoTitle: "Add Bookmarks to PDF — Edit the Outline",
+    seoDescription:
+      "Add or edit PDF bookmarks online. Build the outline a reader shows in its sidebar, pointing each entry at any page, without uploading the file.",
+    intro:
+      "Give a long PDF the sidebar outline it should have had, so readers can jump to a chapter instead of scrolling.",
+    howToUse: [
+      "Add the PDF — any existing bookmarks are read and listed.",
+      "Type a title for each entry and choose the page it jumps to.",
+      "Add as many entries as you need, or remove ones you do not want.",
+      "Press Save bookmarks and open the result in any reader to see the sidebar.",
+    ],
+    howItWorks: [
+      "Bookmarks are what a PDF calls an outline: a set of entries in the document catalogue, each with a title and a destination pointing at a page. Readers show them in a sidebar, and they are the main way anyone navigates a long report, thesis or manual.",
+      "Existing bookmarks are read first, including entries that use a named destination rather than a direct page reference, and each is resolved back to its page number so you can see and edit what is already there. Saving writes a fresh outline: the entries are linked to each other in order and attached to the document catalogue, with each destination set to fit the page in the reader's window.",
+      "Only a flat list is produced, not nested sub-entries. For most documents that is what is wanted, and it keeps the result predictable across readers, which vary in how they display deep hierarchies.",
+      LOCAL_NOTE,
+    ],
+    faq: [
+      {
+        question: "Can I make nested bookmarks?",
+        answer:
+          "Not here — the outline produced is a single flat level, which every reader displays consistently.",
+      },
+      {
+        question: "What happens to bookmarks that are already there?",
+        answer:
+          "They are read in and shown in the list. Saving replaces the outline with whatever the list contains, so edit rather than starting over if you want to keep them.",
+      },
+      {
+        question: "Why does my reader not show the sidebar?",
+        answer:
+          "Most readers keep the sidebar closed until you open it. The bookmarks are in the file either way.",
+      },
+      {
+        question: "Do bookmarks survive merging or splitting?",
+        answer:
+          "Not reliably. Add bookmarks as the last step, after the pages are in their final order.",
+      },
+    ],
+  },
 };
