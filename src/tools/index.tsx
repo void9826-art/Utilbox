@@ -12,7 +12,7 @@ const Loading = () => <ToolSkeleton />;
 
 /**
  * Every tool is a separate lazily-loaded chunk, so visiting one tool page never
- * downloads the code for the other 115.
+ * downloads the code for the other 128.
  */
 const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "merge-pdf": dynamic(() => import("./pdf/merge-pdf"), { loading: Loading }),
@@ -82,6 +82,19 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "image-color-palette": dynamic(() => import("./image/image-color-palette"), { loading: Loading }),
   "exif-remover": dynamic(() => import("./image/exif-remover"), { loading: Loading }),
   "favicon-generator": dynamic(() => import("./image/favicon-generator"), { loading: Loading }),
+  "png-to-webp": dynamic(() => import("./image/png-to-webp"), { loading: Loading }),
+  "jpg-to-webp": dynamic(() => import("./image/jpg-to-webp"), { loading: Loading }),
+  "jpg-to-avif": dynamic(() => import("./image/jpg-to-avif"), { loading: Loading }),
+  "svg-to-png": dynamic(() => import("./image/svg-to-png"), { loading: Loading }),
+  "circle-crop-image": dynamic(() => import("./image/circle-crop-image"), { loading: Loading }),
+  "passport-photo-maker": dynamic(() => import("./image/passport-photo-maker"), { loading: Loading }),
+  "instagram-image-resizer": dynamic(() => import("./image/instagram-image-resizer"), { loading: Loading }),
+  "youtube-thumbnail-downloader": dynamic(() => import("./image/youtube-thumbnail-downloader"), { loading: Loading }),
+  "image-watermark": dynamic(() => import("./image/image-watermark"), { loading: Loading }),
+  "blur-faces-in-photo": dynamic(() => import("./image/blur-faces-in-photo"), { loading: Loading }),
+  "image-dpi-changer": dynamic(() => import("./image/image-dpi-changer"), { loading: Loading }),
+  "grayscale-image": dynamic(() => import("./image/grayscale-image"), { loading: Loading }),
+  "color-blindness-simulator": dynamic(() => import("./image/color-blindness-simulator"), { loading: Loading }),
   "currency-converter": dynamic(() => import("./converters/currency-converter"), { loading: Loading }),
   "length-converter": dynamic(() => import("./converters/length-converter"), { loading: Loading }),
   "weight-converter": dynamic(() => import("./converters/weight-converter"), { loading: Loading }),

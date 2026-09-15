@@ -1,18 +1,18 @@
 tool_name,slug,target_keyword,category,data_source,rationale,status
-PNG to WebP Converter,png-to-webp,png to webp converter,image,pattern_research,"Completes the WebP family: we convert WebP out but never in. Canvas encode, nothing uploaded.",planned
-JPG to WebP Converter,jpg-to-webp,jpg to webp converter,image,pattern_research,Same family gap; the most searched WebP direction.,planned
-JPG to AVIF Converter,jpg-to-avif,jpg to avif converter,image,pattern_research,"We ship AVIF to JPG; the reverse is missing. Encode where the browser supports it, said plainly where it does not.",planned
-SVG to PNG Converter,svg-to-png,svg to png converter,image,pattern_research,"Rasterise at a chosen scale. Aggregators cover it, but demand is steady and we own the converter family.",planned
+PNG to WebP Converter,png-to-webp,png to webp converter,image,pattern_research,"Completes the WebP family: we convert WebP out but never in. Canvas encode, nothing uploaded.",live
+JPG to WebP Converter,jpg-to-webp,jpg to webp converter,image,pattern_research,Same family gap; the most searched WebP direction.,live
+JPG to AVIF Converter,jpg-to-avif,jpg to avif converter,image,pattern_research,"We ship AVIF to JPG; the reverse is missing. Encode where the browser supports it, said plainly where it does not.",live
+SVG to PNG Converter,svg-to-png,svg to png converter,image,pattern_research,"Rasterise at a chosen scale. Aggregators cover it, but demand is steady and we own the converter family.",live
 TIFF to JPG Converter,tiff-to-jpg,tiff to jpg converter,image,pattern_research,"Scanner and fax output; no mainstream browser decodes TIFF, so a small decoder dependency is needed.",planned
-Circle Crop Image,circle-crop-image,circle crop image online,image,pattern_research,"Profile pictures. Trivial canvas work, high everyday intent.",planned
-Passport Photo Maker,passport-photo-maker,passport photo size online,image,pattern_research,"Country presets (35x45mm, 2x2in) plus a printable sheet. Specific, and privacy matters here.",planned
-Instagram Image Resizer,instagram-image-resizer,instagram image size,image,pattern_research,Platform-specific crops; a recurring creator need.,planned
-YouTube Thumbnail Grabber,youtube-thumbnail-downloader,youtube thumbnail downloader,image,pattern_research,"Thumbnails are public URLs keyed by video id, so no API key and no scraping.",planned
-Add Watermark to Image,image-watermark,add watermark to image,image,pattern_research,Text or logo overlay with opacity and position; pairs with the PDF watermark tool.,planned
-Blur Faces in Photo,blur-faces-in-photo,blur faces in photo online,image,pattern_research,"Manual region blur that never leaves the device, which is the whole point of this query.",planned
-Change Image DPI,image-dpi-changer,change dpi of image,image,pattern_research,Print submissions demand 300 DPI. Rewrites density fields rather than resampling.,planned
-Grayscale Image Converter,grayscale-image,convert image to black and white,image,pattern_research,"Simple, high volume, and a building block for the print-oriented tools.",planned
-Colour Blindness Simulator,color-blindness-simulator,color blindness simulator,image,pattern_research,"Accessibility niche the aggregators ignore; matrix transforms, fully offline.",planned
+Circle Crop Image,circle-crop-image,circle crop image online,image,pattern_research,"Profile pictures. Trivial canvas work, high everyday intent.",live
+Passport Photo Maker,passport-photo-maker,passport photo size online,image,pattern_research,"Country presets (35x45mm, 2x2in) plus a printable sheet. Specific, and privacy matters here.",live
+Instagram Image Resizer,instagram-image-resizer,instagram image size,image,pattern_research,Platform-specific crops; a recurring creator need.,live
+YouTube Thumbnail Grabber,youtube-thumbnail-downloader,youtube thumbnail downloader,image,pattern_research,"Thumbnails are public URLs keyed by video id, so no API key and no scraping.",live
+Add Watermark to Image,image-watermark,add watermark to image,image,pattern_research,Text or logo overlay with opacity and position; pairs with the PDF watermark tool.,live
+Blur Faces in Photo,blur-faces-in-photo,blur faces in photo online,image,pattern_research,"Manual region blur that never leaves the device, which is the whole point of this query.",live
+Change Image DPI,image-dpi-changer,change dpi of image,image,pattern_research,Print submissions demand 300 DPI. Rewrites density fields rather than resampling.,live
+Grayscale Image Converter,grayscale-image,convert image to black and white,image,pattern_research,"Simple, high volume, and a building block for the print-oriented tools.",live
+Colour Blindness Simulator,color-blindness-simulator,color blindness simulator,image,pattern_research,"Accessibility niche the aggregators ignore; matrix transforms, fully offline.",live
 Add Watermark to PDF,pdf-watermark,add watermark to pdf,pdf,pattern_research,The most requested PDF edit we lack; pdf-lib handles it natively.,live
 Rearrange PDF Pages,pdf-reorder-pages,rearrange pdf pages,pdf,pattern_research,"We split, delete and extract but cannot reorder. An obvious hole in the family.",live
 Extract Images from PDF,pdf-extract-images,extract images from pdf,pdf,pattern_research,Pulls embedded image XObjects rather than rendering pages.,live
