@@ -60,7 +60,13 @@ export default function PdfSignature() {
     const context = padContext();
     if (!context) return;
     drawing.current = true;
-    event.currentTarget.setPointerCapture(event.pointerId);
+    // Capture keeps a stroke going if the pointer leaves the box. Not every
+    // pointer can be captured, and failing to do so must not stop the drawing.
+    try {
+      event.currentTarget.setPointerCapture(event.pointerId);
+    } catch {
+      /* drawing still works without capture */
+    }
     const point = pointAt(event);
     context.beginPath();
     context.moveTo(point.x, point.y);

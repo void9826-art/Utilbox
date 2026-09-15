@@ -72,14 +72,16 @@ export default function PdfWatermark() {
       return;
     }
 
-    const parsed = parsePageRanges(range, info.pageCount);
+    // A blank box means every page. The parser reports blank input as an error,
+    // which is right where a range is required and wrong here, so it is only
+    // consulted when something was actually typed.
+    const everyPage = Array.from({ length: info.pageCount }, (_, index) => index + 1);
+    const parsed = range.trim() ? parsePageRanges(range, info.pageCount) : { pages: everyPage, error: null };
     if (parsed.error) {
       setError(parsed.error);
       return;
     }
-    const targets = new Set(
-      parsed.pages.length > 0 ? parsed.pages : Array.from({ length: info.pageCount }, (_, index) => index + 1),
-    );
+    const targets = new Set(parsed.pages);
 
     setError(null);
     setWorking(true);

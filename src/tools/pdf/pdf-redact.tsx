@@ -41,6 +41,14 @@ export default function PdfRedact() {
 
   const surfaceRef = React.useRef<HTMLDivElement | null>(null);
   const origin = React.useRef<{ x: number; y: number } | null>(null);
+  /**
+   * The rectangle being dragged, kept alongside the state copy.
+   *
+   * A quick drag can deliver its move and up events in a single tick, before
+   * React has re-rendered, so reading the state here would see the previous
+   * value and silently drop the box. The ref is always current.
+   */
+  const latest = React.useRef<{ x: number; y: number; width: number; height: number } | null>(null);
 
   const load = async (files: File[]) => {
     const chosen = files[0];
@@ -72,30 +80,40 @@ export default function PdfRedact() {
   };
 
   const startBox = (event: React.PointerEvent<HTMLDivElement>) => {
-    event.currentTarget.setPointerCapture(event.pointerId);
+    // Capture keeps the drag alive past the edge of the preview. Not every
+    // pointer can be captured, and failing to do so must not block marking.
+    try {
+      event.currentTarget.setPointerCapture(event.pointerId);
+    } catch {
+      /* marking still works without capture */
+    }
     const point = positionOf(event);
     origin.current = point;
-    setDrag({ x: point.x, y: point.y, width: 0, height: 0 });
+    latest.current = { x: point.x, y: point.y, width: 0, height: 0 };
+    setDrag(latest.current);
     setResult(null);
   };
 
   const growBox = (event: React.PointerEvent<HTMLDivElement>) => {
     if (!origin.current) return;
     const point = positionOf(event);
-    setDrag({
+    latest.current = {
       x: Math.min(origin.current.x, point.x),
       y: Math.min(origin.current.y, point.y),
       width: Math.abs(point.x - origin.current.x),
       height: Math.abs(point.y - origin.current.y),
-    });
+    };
+    setDrag(latest.current);
   };
 
   const finishBox = () => {
-    if (drag && drag.width > 0.01 && drag.height > 0.01) {
+    const rectangle = latest.current;
+    if (rectangle && rectangle.width > 0.01 && rectangle.height > 0.01) {
       sequence += 1;
-      setBoxes((previous) => [...previous, { id: `box-${sequence}`, page, ...drag }]);
+      setBoxes((previous) => [...previous, { id: `box-${sequence}`, page, ...rectangle }]);
     }
     origin.current = null;
+    latest.current = null;
     setDrag(null);
   };
 
