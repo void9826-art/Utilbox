@@ -337,6 +337,29 @@
 }
 
 /**
+ * The brand mark in the header and footer.
+ *
+ * Drawn as a mask rather than an <img> so the cube is painted in currentColor
+ * and stays in step with the wordmark beside it. The source art is black,
+ * which would all but disappear against the dark theme; masking means one
+ * file serves both themes and no second asset can drift out of date.
+ *
+ * Guarded by @supports so a browser without mask support shows nothing rather
+ * than a solid filled square.
+ */
+.logo-mark {
+  background-color: transparent;
+}
+
+@supports (mask: url("/logo-mark.png")) or (-webkit-mask: url("/logo-mark.png")) {
+  .logo-mark {
+    background-color: currentColor;
+    -webkit-mask: url("/logo-mark.png") center / contain no-repeat;
+    mask: url("/logo-mark.png") center / contain no-repeat;
+  }
+}
+
+/**
  * Pointer-tracked border glow for featured panels.
  *
  * The highlight is drawn on a pseudo-element behind the content, so it never
