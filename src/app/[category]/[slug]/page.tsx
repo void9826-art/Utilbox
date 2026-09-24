@@ -22,7 +22,6 @@ import {
   breadcrumbSchema,
   buildMetadata,
   faqSchema,
-  howToSchema,
   howToTitle,
   jsonLdScript,
   toolBreadcrumbs,
@@ -63,7 +62,6 @@ export async function generateMetadata({
     title: content.seoTitle,
     description: content.seoDescription,
     path: toolHref(tool),
-    keywords: tool.keywords,
   });
 }
 
@@ -77,7 +75,6 @@ export default async function ToolPage({ params }: { params: Promise<RouteParams
   const schemas = [
     breadcrumbSchema(crumbs),
     toolSchema(tool, content),
-    howToSchema(tool, content),
     faqSchema(content),
   ];
 

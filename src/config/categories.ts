@@ -90,10 +90,10 @@ export const CATEGORIES: Category[] = [
     icon: Braces,
     description: "Format, validate and encode the data you work with.",
     intro:
-      "The utilities you reach for a dozen times a day — a JSON formatter that tells you exactly where the syntax broke, Base64 and URL codecs, and a timestamp converter. Nothing is transmitted, so it is safe to paste production payloads.",
+      "The utilities you reach for a dozen times a day — a JSON formatter that tells you exactly where the syntax broke, Base64 and URL codecs, and a timestamp converter. The formatters, encoders and converters run entirely in the page, so it is safe to paste production payloads into them. The three network checkers — the SSL certificate checker, the email address validator's MX lookup and the Open Graph preview — have to reach another server, and each one says exactly what it sends.",
     seoTitle: "Free Developer Tools — JSON, Base64 & URL Encoder",
     seoDescription:
-      "Format and validate JSON, convert JSON to CSV, encode and decode Base64 and URLs, beautify HTML and CSS, and convert Unix timestamps. All client-side.",
+      "Format and validate JSON, convert JSON to CSV, encode and decode Base64 and URLs, beautify HTML and CSS, and convert Unix timestamps in your browser.",
   },
 ];
 

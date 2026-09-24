@@ -21,18 +21,35 @@ export interface ToolBrowserProps {
   emptyHint?: string;
 }
 
-export function ToolBrowser({
+/**
+ * The browser as it reads the page's ?q= parameter.
+ *
+ * useSearchParams makes a statically prerendered page render nothing inside
+ * the nearest Suspense boundary until the client takes over, so wrap this in
+ * <Suspense fallback={<ToolBrowserPanel … />}>. The fallback is what goes into
+ * the HTML: every tool card as a plain link, which is how crawlers reach the
+ * tools from a category page, and the same layout the client then swaps in.
+ */
+export function ToolBrowser(props: ToolBrowserProps) {
+  const searchParams = useSearchParams();
+  return <ToolBrowserPanel {...props} urlQuery={searchParams.get("q") ?? ""} />;
+}
+
+export function ToolBrowserPanel({
   scope,
   showCategoryFilter = false,
   showCategoryLabels = false,
   emptyHint = "Try a broader word such as “pdf”, “image”, “loan” or “json”.",
-}: ToolBrowserProps) {
+  urlQuery = "",
+}: ToolBrowserProps & {
+  /** A query from the address bar, shown until the visitor types their own. */
+  urlQuery?: string;
+}) {
   // The registry is read here rather than passed in: each tool carries an icon
   // component, and React components cannot be serialised across the boundary
   // from a Server Component to a Client one.
   const tools = React.useMemo(() => (scope ? getToolsByCategory(scope) : TOOLS), [scope]);
 
-  const searchParams = useSearchParams();
   const [typedQuery, setTypedQuery] = React.useState<string | null>(null);
   const [category, setCategory] = React.useState<CategoryId | "all">("all");
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -44,7 +61,7 @@ export function ToolBrowser({
    * effect would leave the field briefly empty after hydration. Once the
    * visitor types, their input takes over.
    */
-  const query = typedQuery ?? searchParams.get("q") ?? "";
+  const query = typedQuery ?? urlQuery;
   const setQuery = setTypedQuery;
 
   const visible = React.useMemo(() => {

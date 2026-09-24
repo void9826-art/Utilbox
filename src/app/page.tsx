@@ -12,24 +12,20 @@ import { siteConfig } from "@/config/site";
 import {
   POPULAR_TOOLS,
   RECENTLY_ADDED_TOOLS,
+  TOOLS,
   TOOLS_BY_CATEGORY,
   TOOL_COUNT,
 } from "@/config/tools";
 import { buildMetadata } from "@/lib/seo";
 
+/** Every tool that makes a network request, derived so the homepage copy cannot drift from the registry. */
+const NETWORK_TOOLS = TOOLS.filter((tool) => tool.processing !== "client");
+
 export const metadata: Metadata = buildMetadata({
-  title: `${siteConfig.name} — ${siteConfig.tagline}`,
-  description: siteConfig.description,
+  // The root page sits outside the layout's title template, so the brand is written in here.
+  title: `${siteConfig.name} — Free Online PDF, Image, Text & Calculator Tools`,
+  description: `${TOOL_COUNT} free online tools to merge and compress PDFs, resize images, calculate EMI and GPA, convert units and format JSON. No sign-up; files stay on your device.`,
   path: "/",
-  keywords: [
-    "free online tools",
-    "pdf tools",
-    "online calculator",
-    "image compressor",
-    "unit converter",
-    "json formatter",
-    "word counter",
-  ],
 });
 
 const PROMISES = [
@@ -63,7 +59,7 @@ export default function HomePage() {
         <div className="container-page py-14 sm:py-20">
           <div className="max-w-3xl">
             <h1 className="text-4xl font-semibold tracking-tight text-balance text-fg sm:text-5xl">
-              Free tools for work, school and everyday life
+              Free online tools for PDFs, images, calculations and more
             </h1>
             <p className="mt-4 max-w-2xl text-lg leading-relaxed text-fg-muted">
               Convert files, calculate anything, and tidy up text — right in your browser. Fast,
@@ -227,7 +223,9 @@ export default function HomePage() {
                 Nearly all of them run entirely inside your browser. That is not a marketing line — it is
                 a design decision with real consequences: your files are never uploaded, so there is no
                 queue to wait in, no size limit imposed by a server, and nothing left behind when you
-                close the tab. The two exceptions are stated plainly on the tools themselves.
+                close the tab. The {NETWORK_TOOLS.length} tools that do need the network, such as the
+                currency converter and the SSL certificate checker, say so on the tool itself, and the{" "}
+                <Link href="/privacy">privacy policy</Link> lists exactly what each one sends.
               </p>
               <p>
                 Each tool also explains what it did. Calculators show their formula and working;

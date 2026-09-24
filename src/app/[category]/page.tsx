@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 import { AdSlot } from "@/components/ads/ad-slot";
 import { Breadcrumbs, CategoryLinks } from "@/components/tool/sections";
-import { ToolBrowser } from "@/components/tool/tool-browser";
+import { ToolBrowser, ToolBrowserPanel } from "@/components/tool/tool-browser";
 import { ToolGrid } from "@/components/tool/tool-card";
 import { CATEGORIES, CATEGORY_BY_ID, isCategoryId } from "@/config/categories";
 import { getToolsByCategory } from "@/config/tools";
@@ -30,13 +30,11 @@ export async function generateMetadata({
   if (!isCategoryId(category)) return {};
 
   const config = CATEGORY_BY_ID[category];
-  const tools = getToolsByCategory(category);
 
   return buildMetadata({
     title: config.seoTitle,
     description: config.seoDescription,
     path: `/${category}`,
-    keywords: tools.flatMap((tool) => tool.keywords).slice(0, 25),
   });
 }
 
@@ -100,12 +98,14 @@ export default async function CategoryPage({ params }: { params: Promise<RoutePa
         ) : null}
 
         <section className="mt-10" aria-labelledby="category-all">
+          {/* Lower-casing the name gave "All pdf tools"; the name is a label, so it keeps its case. */}
           <h2 id="category-all" className="text-lg font-semibold tracking-tight text-fg">
-            All {config.name.toLowerCase()}
+            All {tools.length} {config.name}
           </h2>
           <div className="mt-4">
-            {/* useSearchParams needs a Suspense boundary during prerendering. */}
-            <Suspense fallback={null}>
+            {/* The fallback is the prerendered HTML: every tool in the category
+                as a crawlable link, in the layout the client then takes over. */}
+            <Suspense fallback={<ToolBrowserPanel scope={category as CategoryId} />}>
               <ToolBrowser scope={category as CategoryId} />
             </Suspense>
           </div>

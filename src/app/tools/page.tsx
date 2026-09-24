@@ -4,19 +4,18 @@ import type { Metadata } from "next";
 
 import { AdSlot } from "@/components/ads/ad-slot";
 import { Breadcrumbs } from "@/components/tool/sections";
-import { ToolBrowser } from "@/components/tool/tool-browser";
+import { ToolBrowser, ToolBrowserPanel } from "@/components/tool/tool-browser";
 import { CATEGORIES } from "@/config/categories";
 import { siteConfig } from "@/config/site";
 import { TOOLS, TOOLS_BY_CATEGORY, TOOL_COUNT, toolHref } from "@/config/tools";
 import { breadcrumbSchema, buildMetadata, collectionSchema, jsonLdScript } from "@/lib/seo";
 
-const DESCRIPTION = `Browse all ${TOOL_COUNT} free tools: PDF utilities, calculators, image tools, unit converters, generators, text and developer tools. No sign-up, and no uploads.`;
+const DESCRIPTION = `Browse all ${TOOL_COUNT} free tools: PDF utilities, calculators, image tools, unit converters, generators, text and developer tools. No sign-up, and no file uploads.`;
 
 export const metadata: Metadata = buildMetadata({
   title: `All ${TOOL_COUNT} Free Online Tools`,
   description: DESCRIPTION,
   path: "/tools",
-  keywords: ["free online tools", "web tools", "browser tools", "utilities", "no sign up tools"],
 });
 
 const CRUMBS = [
@@ -55,8 +54,9 @@ export default function ToolsPage() {
         </header>
 
         <div className="mt-8">
-          {/* useSearchParams needs a Suspense boundary during prerendering. */}
-          <Suspense fallback={null}>
+          {/* The fallback is the prerendered HTML. An empty one left a blank
+              gap that filled in after hydration and pushed the index down. */}
+          <Suspense fallback={<ToolBrowserPanel showCategoryFilter showCategoryLabels />}>
             <ToolBrowser showCategoryFilter showCategoryLabels />
           </Suspense>
         </div>

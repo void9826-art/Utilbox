@@ -12,7 +12,31 @@ export const metadata: Metadata = buildMetadata({
   path: "/privacy",
 });
 
-const UPDATED = "2026-09-10";
+const UPDATED = "2026-09-25";
+
+/**
+ * What each lookup tool actually requests. A single sentence used to cover
+ * them all and described every one of them as fetching exchange rates, which
+ * was false for the YouTube thumbnail tool. Each entry is checked against the
+ * tool's own fetch calls.
+ */
+const LOOKUP_DETAILS: Record<string, React.ReactNode> = {
+  "currency-converter": (
+    <>
+      fetches published reference exchange rates. The request contains only a three-letter currency
+      code such as <code>USD</code>. The amount you type is converted in your browser and is never
+      sent.
+    </>
+  ),
+  "youtube-thumbnail-downloader": (
+    <>
+      loads the thumbnail images straight from YouTube&apos;s image server,{" "}
+      <code>i.ytimg.com</code>. The request contains only the video ID taken from the link you paste;
+      it does not pass through this site. YouTube sees your IP address, as it would for any
+      YouTube image you view.
+    </>
+  ),
+};
 
 export default function PrivacyPage() {
   const localTools = TOOLS.filter((tool) => tool.processing === "client").length;
@@ -61,9 +85,9 @@ export default function PrivacyPage() {
         <ul>
           {lookupTools.map((tool) => (
             <li key={tool.slug}>
-              <Link href={`/${tool.category}/${tool.slug}`}>{tool.name}</Link> — fetches published
-              reference exchange rates. The request contains only a three-letter currency code such as{" "}
-              <code>USD</code>. The amount you type is converted in your browser and is never sent.
+              <Link href={`/${tool.category}/${tool.slug}`}>{tool.name}</Link> —{" "}
+              {LOOKUP_DETAILS[tool.slug] ??
+                "fetches public reference data from another service. The tool page says exactly what the request contains."}
             </li>
           ))}
           {serverTools.map((tool) => (

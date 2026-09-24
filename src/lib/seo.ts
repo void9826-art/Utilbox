@@ -9,25 +9,22 @@ interface PageMetaOptions {
   title: string;
   description: string;
   path: string;
-  keywords?: string[];
   /** Set for pages that should stay out of the index (e.g. search results). */
   noindex?: boolean;
 }
 
-export function buildMetadata({
-  title,
-  description,
-  path,
-  keywords,
-  noindex,
-}: PageMetaOptions): Metadata {
+/**
+ * There is deliberately no keywords option: Google has ignored the keywords
+ * meta tag for over a decade, and publishing it only hands the target terms to
+ * competitors. The registry's keywords still drive the on-site search.
+ */
+export function buildMetadata({ title, description, path, noindex }: PageMetaOptions): Metadata {
   const url = absoluteUrl(path);
   const ogImage = absoluteUrl(`/opengraph-image`);
 
   return {
     title,
     description,
-    keywords,
     alternates: { canonical: url },
     robots: noindex
       ? { index: false, follow: true }
@@ -141,28 +138,12 @@ export function howToTitle(name: string): string {
   return INSTRUMENT_NOUNS.has(lastWord) ? `How to use the ${name}` : `How to use ${name}`;
 }
 
-/**
- * HowTo is only emitted for tools whose instructions are genuinely a sequence
- * of physical steps a person performs — which is every file/entry tool here.
+/*
+ * No HowTo markup. Google stopped showing HowTo rich results in 2023, and the
+ * markup that was here claimed a one-minute totalTime for every tool — a figure
+ * nobody measured, and plainly wrong for OCR or speech transcription. The steps
+ * are still on the page as an ordered list, which is what a reader needs.
  */
-export function howToSchema(tool: ToolMeta, content: ToolContent): JsonLd {
-  return {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: howToTitle(tool.name),
-    description: content.intro,
-    totalTime: "PT1M",
-    supply: [],
-    tool: [{ "@type": "HowToTool", name: "A web browser" }],
-    step: content.howToUse.map((step, index) => ({
-      "@type": "HowToStep",
-      position: index + 1,
-      name: `Step ${index + 1}`,
-      text: step,
-      url: `${absoluteUrl(toolHref(tool))}#how-to-use`,
-    })),
-  };
-}
 
 export function faqSchema(content: ToolContent): JsonLd {
   return {
