@@ -97,6 +97,7 @@ function pathsChangedSince(from) {
   const files = git("diff", "--name-only", from, "HEAD").split("\n").filter(Boolean);
   const paths = new Set();
   let everything = false;
+  let guides = false;
 
   for (const file of files) {
     const content = file.match(/^src\/config\/content\/([a-z]+)\.ts$/);
@@ -112,6 +113,9 @@ function pathsChangedSince(from) {
     } else if (file === "src/config/categories.ts" || file === "src/app/[category]/page.tsx") {
       for (const category of CATEGORIES) paths.add(`/${category}`);
       paths.add("/tools").add("/");
+    } else if (file.startsWith("src/guides/") || file.startsWith("src/app/guides/")) {
+      // Guide files are not named after their slugs, and there are few of them.
+      guides = true;
     } else if (file === "src/app/page.tsx") {
       paths.add("/");
     } else if (staticPage && [...STATIC_PAGES, "tools"].includes(staticPage[1])) {
@@ -130,7 +134,7 @@ function pathsChangedSince(from) {
     // not the text a crawler reads, so they are not worth a re-crawl.
   }
 
-  return { everything, paths: [...paths] };
+  return { everything, guides, paths: [...paths] };
 }
 
 /* --- build the list -------------------------------------------------------- */
@@ -143,8 +147,9 @@ const sinceIndex = args.indexOf("--changed-since");
 if (sinceIndex !== -1) {
   const from = args[sinceIndex + 1];
   if (!from || from.startsWith("--")) fail("--changed-since needs a commit.");
-  const { everything, paths } = pathsChangedSince(from);
+  const { everything, guides, paths } = pathsChangedSince(from);
   urls = everything ? [...live] : paths.map((path) => (path === "/" ? `${SITE}/` : `${SITE}${path}`));
+  if (guides) urls.push(...[...live].filter((url) => url === `${SITE}/guides` || url.startsWith(`${SITE}/guides/`)));
 } else if (args.includes("--all")) {
   urls = [...live];
 } else {

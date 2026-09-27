@@ -161,6 +161,33 @@ export function faqSchema(content: ToolContent): JsonLd {
 const ORGANISATION_ID = `${siteConfig.url}#organization`;
 
 /**
+ * A guide article. The author is the organisation, because that is who wrote
+ * it — there is no named person to credit, and inventing one would be false.
+ */
+export function articleSchema(article: {
+  headline: string;
+  description: string;
+  path: string;
+  published: string;
+  updated: string;
+}): JsonLd {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.headline,
+    description: article.description,
+    url: absoluteUrl(article.path),
+    mainEntityOfPage: absoluteUrl(article.path),
+    datePublished: article.published,
+    dateModified: article.updated,
+    image: absoluteUrl("/opengraph-image"),
+    inLanguage: "en",
+    author: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
+    publisher: { "@id": ORGANISATION_ID },
+  };
+}
+
+/**
  * Describes the brand itself, separately from the website.
  *
  * Several older tool sites have near-identical names, so a search engine has

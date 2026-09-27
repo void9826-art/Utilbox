@@ -3,6 +3,7 @@ import type { MetadataRoute } from "next";
 import { CATEGORIES } from "@/config/categories";
 import { absoluteUrl } from "@/config/site";
 import { TOOLS, toolHref } from "@/config/tools";
+import { GUIDES, guideHref } from "@/guides";
 
 /**
  * Generated from the registry, so a new tool appears here automatically —
@@ -40,5 +41,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: tool.popular ? 0.8 : 0.7,
   }));
 
-  return [...staticPages, ...categoryPages, ...toolPages];
+  // Dated by when each guide's text last changed, not by the deploy.
+  const newestGuide = GUIDES.reduce((latest, guide) => (guide.updated > latest ? guide.updated : latest), "");
+  const guidePages: MetadataRoute.Sitemap = [
+    ...(newestGuide
+      ? [{ url: absoluteUrl("/guides"), lastModified: new Date(`${newestGuide}T00:00:00Z`), changeFrequency: "monthly" as const, priority: 0.6 }]
+      : []),
+    ...GUIDES.map((guide) => ({
+      url: absoluteUrl(guideHref(guide)),
+      lastModified: new Date(`${guide.updated}T00:00:00Z`),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
+  ];
+
+  return [...staticPages, ...categoryPages, ...toolPages, ...guidePages];
 }

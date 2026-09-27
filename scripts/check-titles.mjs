@@ -35,9 +35,9 @@ const shortName = (() => {
 const suffix = ` | ${shortName}`;
 const titles = [];
 
-for (const dir of ["src/config", "src/config/tools", "src/config/content"]) {
+for (const dir of ["src/config", "src/config/tools", "src/config/content", "src/guides"]) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (!entry.isFile() || !entry.name.endsWith(".ts")) continue;
+    if (!entry.isFile() || !/\.tsx?$/.test(entry.name)) continue;
     const file = path.join(dir, entry.name);
     const source = fs.readFileSync(file, "utf8");
     for (const match of source.matchAll(/seoTitle:\s*"((?:[^"\\]|\\.)*)"/g)) {

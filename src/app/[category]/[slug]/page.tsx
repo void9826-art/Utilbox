@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
@@ -18,6 +19,7 @@ import { getToolContent } from "@/config/content";
 import { isCategoryId } from "@/config/categories";
 import { absoluteUrl, siteConfig } from "@/config/site";
 import { TOOLS, getTool, toolHref } from "@/config/tools";
+import { guideHref, guidesForTool } from "@/guides";
 import {
   breadcrumbSchema,
   buildMetadata,
@@ -71,6 +73,7 @@ export default async function ToolPage({ params }: { params: Promise<RouteParams
 
   const { tool, content } = resolved;
   const crumbs = toolBreadcrumbs(tool);
+  const guides = guidesForTool(tool.slug);
 
   const schemas = [
     breadcrumbSchema(crumbs),
@@ -148,6 +151,18 @@ export default async function ToolPage({ params }: { params: Promise<RouteParams
             <div className="not-prose print-hidden">
               <ShareRow title={`${tool.name} — ${siteConfig.name}`} url={absoluteUrl(toolHref(tool))} />
             </div>
+
+            {guides.length > 0 ? (
+              <InfoSection id="guides" title={guides.length === 1 ? "Guide" : "Guides"}>
+                <ul>
+                  {guides.map((guide) => (
+                    <li key={guide.slug}>
+                      <Link href={guideHref(guide)}>{guide.title}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </InfoSection>
+            ) : null}
 
             <RelatedTools tool={tool} />
 

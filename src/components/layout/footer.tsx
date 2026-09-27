@@ -8,6 +8,7 @@ import { POPULAR_TOOLS, TOOL_COUNT, toolHref } from "@/config/tools";
 
 const RESOURCE_LINKS = [
   { href: "/tools", label: "All tools" },
+  { href: "/guides", label: "Guides" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
