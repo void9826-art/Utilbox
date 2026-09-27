@@ -152,6 +152,7 @@ function Body() {
 
 export const redactPdfProperly: Guide = {
   slug: "how-to-redact-a-pdf",
+  topic: "PDF",
   title: "How to redact a PDF properly — and why black boxes don’t work",
   seoTitle: "How to Redact a PDF Properly (Black Boxes Fail)",
   description:

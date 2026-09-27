@@ -1,6 +1,13 @@
 import type { ComponentType } from "react";
 
+import { codesAndTextGuides } from "./codes-and-text";
+import { imageGuides } from "./images";
+import { numberGuides } from "./numbers";
+import { pdfGuides } from "./pdf";
 import { redactPdfProperly } from "./redact-pdf-properly";
+
+/** Headings on the guides index, in display order. */
+export const GUIDE_TOPICS = ["PDF", "Images", "Calculations", "Codes, passwords & text"] as const;
 
 /**
  * Long-form guides. Each one explains a real task and links to the tools that
@@ -8,6 +15,7 @@ import { redactPdfProperly } from "./redact-pdf-properly";
  */
 export interface Guide {
   slug: string;
+  topic: (typeof GUIDE_TOPICS)[number];
   /** The H1 on the page. */
   title: string;
   /** Page title before the layout's brand suffix; scripts/check-titles.mjs checks the length. */
@@ -21,7 +29,13 @@ export interface Guide {
   Body: ComponentType;
 }
 
-export const GUIDES: Guide[] = [redactPdfProperly];
+export const GUIDES: Guide[] = [
+  redactPdfProperly,
+  ...pdfGuides,
+  ...imageGuides,
+  ...numberGuides,
+  ...codesAndTextGuides,
+];
 
 const bySlug = new Map(GUIDES.map((guide) => [guide.slug, guide]));
 
