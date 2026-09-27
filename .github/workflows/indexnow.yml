@@ -1,0 +1,66 @@
+# Tells IndexNow search engines (Bing, Yandex and others) which pages changed,
+# once a production deployment is live.
+#
+# It runs on Vercel's "deployment succeeded" signal rather than during the
+# build: pinging before the new version is served would get the old one
+# crawled. Being a separate workflow after the fact, it cannot delay or fail a
+# deploy — the worst case is a skipped ping.
+name: IndexNow
+
+on:
+  deployment_status:
+
+permissions:
+  contents: read
+  deployments: read
+
+jobs:
+  submit:
+    if: >-
+      github.event.deployment_status.state == 'success' &&
+      startsWith(github.event.deployment.environment, 'Production')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.deployment.sha }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # The previous successful production deployment is the baseline, so a
+      # push of several commits submits everything they changed together.
+      - name: Find the previous production deployment
+        id: previous
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ENVIRONMENT: ${{ github.event.deployment.environment }}
+          CURRENT_ID: ${{ github.event.deployment.id }}
+        run: |
+          previous=""
+          environment=$(jq -rn --arg value "$ENVIRONMENT" '$value | @uri')
+          for entry in $(gh api "repos/$GITHUB_REPOSITORY/deployments?environment=$environment&per_page=30" --jq '.[] | "\(.id):\(.sha)"'); do
+            id="${entry%%:*}"
+            sha="${entry#*:}"
+            [ "$id" -ge "$CURRENT_ID" ] && continue
+            succeeded=$(gh api "repos/$GITHUB_REPOSITORY/deployments/$id/statuses" --jq '[.[].state] | index("success")')
+            if [ "$succeeded" != "null" ] && git cat-file -e "$sha^{commit}" 2>/dev/null; then
+              previous="$sha"
+              break
+            fi
+          done
+          echo "sha=$previous" >> "$GITHUB_OUTPUT"
+          echo "Previous production commit: ${previous:-none}"
+
+      - name: Submit changed pages
+        env:
+          PREVIOUS: ${{ steps.previous.outputs.sha }}
+        run: |
+          if [ -n "$PREVIOUS" ]; then
+            node scripts/indexnow.mjs --changed-since "$PREVIOUS"
+          else
+            echo "No earlier production deployment found; nothing to compare against, so nothing is submitted."
+          fi
