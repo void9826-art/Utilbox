@@ -22,14 +22,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      # v5 of both actions runs on Node 24; v4 targets Node 20, which GitHub
+      # has deprecated and warns about on every run.
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.event.deployment.sha }}
           fetch-depth: 0
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 24
 
       # The previous successful production deployment is the baseline, so a
       # push of several commits submits everything they changed together.
