@@ -205,9 +205,9 @@ export const textContent: Record<string, ToolContent> = {
           "Most platforms count UTF-16 code units, and emoji outside the basic range take two. Composite emoji like family groupings take many more. The grapheme count shows what a reader actually sees.",
       },
       {
-        question: "How many characters fit in an SMS?",
+        question: "How many characters are in a text message (SMS)?",
         answer:
-          "160 if every character is in the GSM 7-bit alphabet. One character outside it drops the limit to 70 for the whole message.",
+          "160 if every character is in the GSM 7-bit alphabet. One character outside it — an emoji or a curly quote — drops the limit to 70 for the whole message. Longer texts are split into parts of 153 characters (or 67), because each part spends a few characters on joining information.",
       },
       {
         question: "What is the ideal meta description length?",

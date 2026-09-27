@@ -490,9 +490,9 @@ export const calculatorContent: Record<string, ToolContent> = {
   },
 
   "grade-calculator": {
-    seoTitle: "Grade Calculator — Marks to Percentage and Grade",
+    seoTitle: "Grade Calculator — Test Score to Percentage & Grade",
     seoDescription:
-      "Turn marks into a percentage and a letter grade, combine weighted assessments, and find out what you need on the final exam.",
+      "Turn a test score like 61/80 into a percentage and a letter grade, combine weighted assessments, and find out what you need on the final exam.",
     intro:
       "Turn marks into a percentage and a letter grade. Combine weighted assessments, or work out what the final exam needs to be.",
     howToUse: [
@@ -525,6 +525,11 @@ export const calculatorContent: Record<string, ToolContent> = {
       result: "16.8 + 22.9 + 35.0 = 74.7% overall, which is a C on a standard scale.",
     },
     faq: [
+      {
+        question: "How do I turn a score like 61/80 into a percentage?",
+        answer:
+          "Divide the marks you scored by the marks available and multiply by 100. 61 ÷ 80 = 0.7625, so 61/80 is 76.25% — a C on both the standard 90/80/70/60 scale and the plus/minus scale. Enter any score as a single assessment and the tool does the same for you.",
+      },
       {
         question: "What do I need on the final to pass?",
         answer:

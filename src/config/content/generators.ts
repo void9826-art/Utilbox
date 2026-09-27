@@ -170,7 +170,7 @@ export const generatorContent: Record<string, ToolContent> = {
   },
 
   "qr-code-generator": {
-    seoTitle: "QR Code Generator — Free, No Watermark, No Expiry",
+    seoTitle: "QR Code Generator — Free, No Expiration, No Watermark",
     seoDescription:
       "Create QR codes for links, text, email, phone, SMS and Wi-Fi. Download as PNG or SVG, with no watermark, no account and no expiry.",
     intro:
@@ -226,9 +226,9 @@ export const generatorContent: Record<string, ToolContent> = {
   },
 
   "barcode-generator": {
-    seoTitle: "Barcode Generator — CODE128, EAN-13, UPC-A Free",
+    seoTitle: "Barcode Generator — UPC-A, EAN-13, Code 128 Free",
     seoDescription:
-      "Generate retail and logistics barcodes including CODE128, EAN-13, UPC-A, CODE39 and ITF-14. Download as PNG or SVG.",
+      "Make 12-digit UPC-A, 13-digit EAN-13 (JAN), EAN-8, Code 128, Code 39, ITF-14 and Codabar barcodes. Check digit added for you; PNG or SVG.",
     intro:
       "Generate standard retail and logistics barcodes. Check digits are calculated for you, and you can download PNG or SVG.",
     howToUse: [
@@ -262,6 +262,21 @@ export const generatorContent: Record<string, ToolContent> = {
         question: "Why is my value rejected?",
         answer:
           "Each format has strict rules — EAN-13 needs exactly 12 or 13 digits, UPC-A needs 11 or 12, and CODE39 accepts only a limited character set. The message under the field explains what is expected.",
+      },
+      {
+        question: "Which barcode has 12 digits, and which has 13?",
+        answer:
+          "A 12-digit retail barcode is UPC-A, also called UCC-12. A 13-digit one is EAN-13, which Japan calls JAN. EAN-8 is the 8-digit version for small packs. In each case you can type the digits without the last one and the check digit is added for you.",
+      },
+      {
+        question: "How do I turn a UPC into an EAN?",
+        answer:
+          "Put a 0 in front of it. A 12-digit UPC-A with a leading zero is a valid 13-digit EAN-13, and the check digit stays the same, because the extra zero adds nothing to the weighted sum.",
+      },
+      {
+        question: "Is Code 128 the same as EAN-128 or GS1-128?",
+        answer:
+          "Not quite. GS1-128, formerly called EAN-128 or UCC-128, is Code 128 with a special FNC1 start character and GS1 application identifiers for things like batch numbers and expiry dates. This tool makes standard Code 128, which suits internal and shipping labels, but it does not add FNC1, so it cannot produce certified GS1-128 labels.",
       },
     ],
   },

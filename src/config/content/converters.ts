@@ -381,7 +381,7 @@ export const converterContent: Record<string, ToolContent> = {
     name: "Time",
     seoTitle: "Time Converter — Seconds, Minutes, Hours, Days, Years",
     seoDescription:
-      "Convert time between nanoseconds and years. Instant conversion across twelve units with clear notes on how months and years are defined.",
+      "Convert seconds to minutes, hours, days, weeks, months and years instantly. Type in any box and all twelve units update, from nanoseconds to years.",
     intro:
       "Convert durations between nanoseconds and years, with every unit visible at once.",
     units:
@@ -402,6 +402,11 @@ export const converterContent: Record<string, ToolContent> = {
       {
         question: "How many seconds are in a day?",
         answer: "86,400 — that is 24 hours × 60 minutes × 60 seconds.",
+      },
+      {
+        question: "How many minutes are in a day, and hours in a year?",
+        answer:
+          "A day has 1,440 minutes. A 365-day year has 8,760 hours; a leap year has 8,784. Averaged over the Gregorian calendar a year is 8,765.82 hours, or 31,556,952 seconds, which is the figure this converter uses.",
       },
       {
         question: "Why is a month 30.44 days here?",
@@ -541,9 +546,9 @@ export const converterContent: Record<string, ToolContent> = {
 
   "data-storage-converter": unitContent({
     name: "Data",
-    seoTitle: "Data Storage Converter — Bytes, MB, GB, GiB, TB",
+    seoTitle: "Data Storage Converter — Bytes to MB, GB, TB & PB",
     seoDescription:
-      "Convert data storage between bytes, kilobytes, megabytes, gigabytes and terabytes, with decimal and binary units kept clearly apart.",
+      "Convert bytes to MB, GB, TB and PB, and back. Decimal units (1,000) and the binary units your computer reports (1,024) are kept clearly apart.",
     intro:
       "Convert between bytes and terabytes, with the decimal units drive makers use and the binary units your computer reports shown separately.",
     units:
@@ -584,6 +589,16 @@ export const converterContent: Record<string, ToolContent> = {
         question: "How many megabytes are in a gigabyte?",
         answer:
           "1,000 in decimal terms, or 1,024 mebibytes in a gibibyte. Which one is meant depends on who is doing the counting.",
+      },
+      {
+        question: "What is the order from MB to GB to TB to PB?",
+        answer:
+          "Each step is 1,000 times the one before: 1 GB = 1,000 MB, 1 TB = 1,000 GB, 1 PB = 1,000 TB. In binary units each step is 1,024 instead: 1 GiB = 1,024 MiB, 1 TiB = 1,024 GiB.",
+      },
+      {
+        question: "How do I convert bytes to MB?",
+        answer:
+          "Divide by 1,000,000 for megabytes (MB), or by 1,048,576 for mebibytes (MiB). 5,000,000 bytes is 5 MB, or about 4.77 MiB.",
       },
     ],
   }),
