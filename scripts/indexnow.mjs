@@ -110,7 +110,11 @@ function pathsChangedSince(from) {
       // Names and descriptions also appear on cards: the category, the index and the homepage.
       for (const slug of slugsTouched(from, file, /^ {4}slug: "([a-z0-9-]+)",/)) paths.add(`/${registry[1]}/${slug}`);
       paths.add(`/${registry[1]}`).add("/tools").add("/");
-    } else if (file === "src/config/categories.ts" || file === "src/app/[category]/page.tsx") {
+    } else if (
+      file === "src/config/categories.ts" ||
+      file === "src/config/category-guides.tsx" ||
+      file === "src/app/[category]/page.tsx"
+    ) {
       for (const category of CATEGORIES) paths.add(`/${category}`);
       paths.add("/tools").add("/");
     } else if (file.startsWith("src/guides/") || file.startsWith("src/app/guides/")) {

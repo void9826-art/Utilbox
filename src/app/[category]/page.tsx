@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
@@ -7,7 +8,9 @@ import { Breadcrumbs, CategoryLinks } from "@/components/tool/sections";
 import { ToolBrowser, ToolBrowserPanel } from "@/components/tool/tool-browser";
 import { ToolGrid } from "@/components/tool/tool-card";
 import { CATEGORIES, CATEGORY_BY_ID, isCategoryId } from "@/config/categories";
+import { CATEGORY_GUIDES } from "@/config/category-guides";
 import { getToolsByCategory } from "@/config/tools";
+import { GUIDES, guideHref } from "@/guides";
 import { breadcrumbSchema, buildMetadata, collectionSchema, jsonLdScript } from "@/lib/seo";
 import type { CategoryId } from "@/types/tool";
 
@@ -45,6 +48,9 @@ export default async function CategoryPage({ params }: { params: Promise<RoutePa
   const config = CATEGORY_BY_ID[category as CategoryId];
   const tools = getToolsByCategory(category as CategoryId);
   const popular = tools.filter((tool) => tool.popular);
+  const { title: guideTitle, Body: GuideBody } = CATEGORY_GUIDES[category as CategoryId];
+  const slugs = new Set(tools.map((tool) => tool.slug));
+  const guides = GUIDES.filter((guide) => guide.tools.some((slug) => slugs.has(slug)));
 
   const crumbs = [
     { name: "Home", href: "/" },
@@ -110,6 +116,38 @@ export default async function CategoryPage({ params }: { params: Promise<RoutePa
             </Suspense>
           </div>
         </section>
+
+        <section className="mt-12 max-w-3xl" aria-labelledby="category-guide">
+          <h2 id="category-guide" className="text-lg font-semibold tracking-tight text-fg">
+            {guideTitle}
+          </h2>
+          <div className="prose-content mt-3">
+            <GuideBody />
+          </div>
+        </section>
+
+        {guides.length > 0 ? (
+          <section className="mt-10 max-w-3xl" aria-labelledby="category-guides">
+            <h2 id="category-guides" className="text-lg font-semibold tracking-tight text-fg">
+              Guides
+            </h2>
+            <ul className="mt-4 grid gap-3">
+              {guides.map((guide) => (
+                <li key={guide.slug}>
+                  <Link
+                    href={guideHref(guide)}
+                    className="block rounded-[var(--radius-card)] border border-border bg-surface p-4 transition-colors hover:border-border-strong"
+                  >
+                    <span className="block text-[0.9375rem] font-semibold text-fg">{guide.title}</span>
+                    <span className="mt-1 block text-sm leading-relaxed text-fg-muted">
+                      {guide.description}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
 
         <div className="mt-10">
           <AdSlot placement="footer" />
