@@ -100,7 +100,7 @@ function pathsChangedSince(from) {
   let guides = false;
 
   for (const file of files) {
-    const content = file.match(/^src\/config\/content\/([a-z]+)\.ts$/);
+    const content = file.match(/^src\/config\/content\/(?:extra\/)?([a-z]+)\.ts$/);
     const registry = file.match(/^src\/config\/tools\/([a-z]+)\.ts$/);
     const staticPage = file.match(/^src\/app\/([a-z]+)\/page\.tsx$/);
 

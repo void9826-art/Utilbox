@@ -21,6 +21,15 @@ for (const c of cats) {
   for (const key of k) if (!s.includes(key)) problems.push(`ORPHAN CONTENT: ${c}/${key}`);
 }
 
+// every tool has tips and extra FAQs in content/extra, and nothing extra is orphaned
+for (const c of cats) {
+  const s = slugsFrom(`src/config/tools/${c}.ts`);
+  const src = fs.readFileSync(`src/config/content/extra/${c}.ts`, 'utf8');
+  const k = [...src.matchAll(/^\s{2}"([a-z0-9-]+)": \{$/gm)].map(m => m[1]);
+  for (const slug of s) if (!k.includes(slug)) problems.push(`MISSING EXTRA CONTENT: ${c}/${slug}`);
+  for (const key of k) if (!s.includes(key)) problems.push(`ORPHAN EXTRA CONTENT: ${c}/${key}`);
+}
+
 const slugSet = new Set(allSlugs.map(([, s]) => s));
 if (slugSet.size !== allSlugs.length) problems.push('DUPLICATE SLUGS present');
 

@@ -75,8 +75,19 @@ export interface ToolContent {
   formula?: ToolFormula;
   example?: ToolExample;
   faq: FaqItem[];
+  /** Practical advice and common mistakes, listed after the worked example. */
+  tips?: string[];
   /** Shown in a muted note under the tool. Used by financial/health tools. */
   disclaimer?: string;
+}
+
+/**
+ * Further copy for a tool page, kept in src/config/content/extra so the
+ * original entries stay as they are: tips, and FAQs added after the originals.
+ */
+export interface ToolContentExtra {
+  tips: string[];
+  faq: FaqItem[];
 }
 
 export interface Category {

@@ -146,6 +146,16 @@ export default async function ToolPage({ params }: { params: Promise<RouteParams
               </InfoSection>
             ) : null}
 
+            {content.tips && content.tips.length > 0 ? (
+              <InfoSection id="tips" title="Tips and common mistakes">
+                <ul>
+                  {content.tips.map((tip) => (
+                    <li key={tip.slice(0, 48)}>{tip}</li>
+                  ))}
+                </ul>
+              </InfoSection>
+            ) : null}
+
             <FaqSection items={content.faq} />
 
             <div className="not-prose print-hidden">
@@ -180,6 +190,7 @@ export default async function ToolPage({ params }: { params: Promise<RouteParams
                   <TocLink href="#how-it-works">How it works</TocLink>
                   {content.formula ? <TocLink href="#formula">The formula</TocLink> : null}
                   {content.example ? <TocLink href="#example">Worked example</TocLink> : null}
+                  {content.tips && content.tips.length > 0 ? <TocLink href="#tips">Tips</TocLink> : null}
                   <TocLink href="#faq">FAQ</TocLink>
                   <TocLink href="#related-heading">Related tools</TocLink>
                 </ul>
