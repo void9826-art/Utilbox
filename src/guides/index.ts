@@ -2,12 +2,22 @@ import type { ComponentType } from "react";
 
 import { codesAndTextGuides } from "./codes-and-text";
 import { imageGuides } from "./images";
+import { imagesWebAndPrintGuides } from "./images-web-and-print";
+import { moneyAndEverydayGuides } from "./money-and-everyday-sums";
 import { numberGuides } from "./numbers";
 import { pdfGuides } from "./pdf";
+import { pdfFormsAndPrintingGuides } from "./pdf-forms-and-printing";
 import { redactPdfProperly } from "./redact-pdf-properly";
+import { webAndTextGuides } from "./web-and-text";
 
 /** Headings on the guides index, in display order. */
-export const GUIDE_TOPICS = ["PDF", "Images", "Calculations", "Codes, passwords & text"] as const;
+export const GUIDE_TOPICS = [
+  "PDF",
+  "Images",
+  "Calculations",
+  "Codes, passwords & text",
+  "Web & developer",
+] as const;
 
 /**
  * Long-form guides. Each one explains a real task and links to the tools that
@@ -35,6 +45,10 @@ export const GUIDES: Guide[] = [
   ...imageGuides,
   ...numberGuides,
   ...codesAndTextGuides,
+  ...pdfFormsAndPrintingGuides,
+  ...imagesWebAndPrintGuides,
+  ...moneyAndEverydayGuides,
+  ...webAndTextGuides,
 ];
 
 const bySlug = new Map(GUIDES.map((guide) => [guide.slug, guide]));
