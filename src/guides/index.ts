@@ -2,12 +2,16 @@ import type { ComponentType } from "react";
 
 import { codesAndTextGuides } from "./codes-and-text";
 import { imageGuides } from "./images";
+import { imagesEverydayGuides } from "./images-everyday";
 import { imagesWebAndPrintGuides } from "./images-web-and-print";
 import { moneyAndEverydayGuides } from "./money-and-everyday-sums";
+import { moneyHealthHomeGuides } from "./money-health-home";
 import { numberGuides } from "./numbers";
 import { pdfGuides } from "./pdf";
 import { pdfFormsAndPrintingGuides } from "./pdf-forms-and-printing";
+import { pdfPrivacyAndReadingGuides } from "./pdf-privacy-and-reading";
 import { redactPdfProperly } from "./redact-pdf-properly";
+import { textAndDeveloperGuides } from "./text-and-developer";
 import { webAndTextGuides } from "./web-and-text";
 
 /** Headings on the guides index, in display order. */
@@ -49,6 +53,10 @@ export const GUIDES: Guide[] = [
   ...imagesWebAndPrintGuides,
   ...moneyAndEverydayGuides,
   ...webAndTextGuides,
+  ...pdfPrivacyAndReadingGuides,
+  ...imagesEverydayGuides,
+  ...moneyHealthHomeGuides,
+  ...textAndDeveloperGuides,
 ];
 
 const bySlug = new Map(GUIDES.map((guide) => [guide.slug, guide]));
