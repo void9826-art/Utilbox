@@ -1,18 +1,24 @@
 import type { ComponentType } from "react";
 
 import { codesAndTextGuides } from "./codes-and-text";
+import { conversionsAndMoneyGuides } from "./conversions-and-money";
 import { imageGuides } from "./images";
 import { imagesEverydayGuides } from "./images-everyday";
+import { imagesQuickFixesGuides } from "./images-quick-fixes";
 import { imagesWebAndPrintGuides } from "./images-web-and-print";
 import { moneyAndEverydayGuides } from "./money-and-everyday-sums";
 import { moneyHealthHomeGuides } from "./money-health-home";
 import { numberGuides } from "./numbers";
 import { pdfGuides } from "./pdf";
 import { pdfFormsAndPrintingGuides } from "./pdf-forms-and-printing";
+import { pdfPagesAndPrintingGuides } from "./pdf-pages-and-printing";
 import { pdfPrivacyAndReadingGuides } from "./pdf-privacy-and-reading";
 import { redactPdfProperly } from "./redact-pdf-properly";
 import { textAndDeveloperGuides } from "./text-and-developer";
+import { textTidyingGuides } from "./text-tidying";
 import { webAndTextGuides } from "./web-and-text";
+import { webBasicsGuides } from "./web-basics";
+import { workAndDocumentsGuides } from "./work-and-documents";
 
 /** Headings on the guides index, in display order. */
 export const GUIDE_TOPICS = [
@@ -20,6 +26,7 @@ export const GUIDE_TOPICS = [
   "Images",
   "Calculations",
   "Codes, passwords & text",
+  "Work & documents",
   "Web & developer",
 ] as const;
 
@@ -57,6 +64,12 @@ export const GUIDES: Guide[] = [
   ...imagesEverydayGuides,
   ...moneyHealthHomeGuides,
   ...textAndDeveloperGuides,
+  ...pdfPagesAndPrintingGuides,
+  ...imagesQuickFixesGuides,
+  ...conversionsAndMoneyGuides,
+  ...textTidyingGuides,
+  ...workAndDocumentsGuides,
+  ...webBasicsGuides,
 ];
 
 const bySlug = new Map(GUIDES.map((guide) => [guide.slug, guide]));
