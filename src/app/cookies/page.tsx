@@ -7,7 +7,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Cookie Policy",
-  description: `What ${siteConfig.name} stores in your browser, and why. No tracking cookies are set.`,
+  description: `What ${siteConfig.name} stores in your browser, and why. Analytics cookies are set only if you accept them.`,
   path: "/cookies",
 });
 
@@ -16,7 +16,7 @@ export default function CookiesPage() {
     <StaticPage
       title="Cookie Policy"
       intro="What this site stores in your browser, and what it is for."
-      updated="2026-09-05"
+      updated="2026-10-07"
       breadcrumb={{ name: "Cookie Policy", href: "/cookies" }}
     >
       <h2>Cookies we set</h2>
@@ -27,7 +27,8 @@ export default function CookiesPage() {
 
       <h2>What we do store</h2>
       <p>
-        One item, in your browser&apos;s local storage rather than a cookie:
+        {analyticsConfig.enabled ? "Two small items" : "One item"}, in your browser&apos;s local storage
+        rather than a cookie:
       </p>
       <table>
         <thead>
@@ -45,6 +46,15 @@ export default function CookiesPage() {
             <td>Remembers whether you chose light, dark or system appearance.</td>
             <td>Your device only. It is never sent in a request.</td>
           </tr>
+          {analyticsConfig.enabled ? (
+            <tr>
+              <td>
+                <code>utilbox-consent</code>
+              </td>
+              <td>Remembers whether you accepted or rejected analytics cookies.</td>
+              <td>Your device only. It is never sent in a request.</td>
+            </tr>
+          ) : null}
         </tbody>
       </table>
       <p>
@@ -60,7 +70,7 @@ export default function CookiesPage() {
       <h2>Third-party cookies</h2>
       <p>
         {analyticsConfig.enabled
-          ? "Google Analytics is enabled and sets its own cookies to measure page views. IP anonymisation is switched on. It never receives file names, file contents or anything you type into a tool."
+          ? "Google Analytics measures page views, but only if you choose Accept on the cookie banner. Until then it is not loaded at all, so it sets no cookies and receives nothing. If you accept, it sets its own _ga cookies, with IP anonymisation switched on. It never receives file names, file contents or anything you type into a tool. Your choice is remembered in local storage under utilbox-consent, and you can change it at any time from “Cookie settings” in the footer."
           : "Analytics is not currently enabled, so no analytics cookies are set."}
       </p>
       <p>

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 
+import { CookieConsent } from "@/components/layout/cookie-consent";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { SearchProvider } from "@/components/layout/search-dialog";
@@ -88,16 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         ) : null}
 
         {analyticsConfig.enabled ? (
-          <>
-            <Script
-              id="ga-src"
-              strategy="afterInteractive"
-              src={`https://www.googletagmanager.com/gtag/js?id=${analyticsConfig.googleAnalyticsId}`}
-            />
-            <Script id="ga-init" strategy="afterInteractive">
-              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${analyticsConfig.googleAnalyticsId}',{anonymize_ip:true});`}
-            </Script>
-          </>
+          <CookieConsent measurementId={analyticsConfig.googleAnalyticsId} />
         ) : null}
       </body>
     </html>

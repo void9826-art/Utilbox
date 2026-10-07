@@ -111,7 +111,7 @@ export default function PrivacyPage() {
       </p>
       <p>
         {analyticsConfig.enabled
-          ? "We also use Google Analytics to understand which tools are used, with IP anonymisation enabled. It records page views and coarse events such as “a tool was run” or “a download happened”. It never receives your file names, file contents, extracted text, or anything you typed into a tool."
+          ? "If you accept analytics cookies on the cookie banner, we also use Google Analytics to understand which tools are used, with IP anonymisation enabled. If you reject them, or have not chosen yet, it is not loaded at all. It records page views and coarse events such as “a tool was run” or “a download happened”. It never receives your file names, file contents, extracted text, or anything you typed into a tool."
           : "Analytics is not currently enabled on this site. If that changes, this policy will be updated first, and any analytics will record only page views and coarse events — never your file names, file contents, or anything you typed into a tool."}
       </p>
 

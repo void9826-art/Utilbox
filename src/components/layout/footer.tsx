@@ -1,10 +1,14 @@
 import Link from "next/link";
 import { Lock } from "lucide-react";
 
+import { CookieSettingsButton } from "@/components/layout/cookie-consent";
 import { Logo } from "@/components/layout/logo";
 import { CATEGORIES } from "@/config/categories";
-import { siteConfig } from "@/config/site";
+import { analyticsConfig, siteConfig } from "@/config/site";
 import { POPULAR_TOOLS, TOOL_COUNT, toolHref } from "@/config/tools";
+
+const FOOTER_LINK_CLASS =
+  "inline-flex min-h-6 items-center text-[0.8125rem] text-fg-muted transition-colors hover:text-fg hover:underline underline-offset-2";
 
 const RESOURCE_LINKS = [
   { href: "/tools", label: "All tools" },
@@ -67,6 +71,11 @@ export function Footer() {
                   {link.label}
                 </FooterLink>
               ))}
+              {analyticsConfig.enabled ? (
+                <li>
+                  <CookieSettingsButton className={`${FOOTER_LINK_CLASS} cursor-pointer`} />
+                </li>
+              ) : null}
             </FooterColumn>
           </div>
         </div>
@@ -96,10 +105,7 @@ function FooterColumn({ title, children }: { title: string; children: React.Reac
 function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <li>
-      <Link
-        href={href}
-        className="inline-flex min-h-6 items-center text-[0.8125rem] text-fg-muted transition-colors hover:text-fg hover:underline underline-offset-2"
-      >
+      <Link href={href} className={FOOTER_LINK_CLASS}>
         {children}
       </Link>
     </li>
