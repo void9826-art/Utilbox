@@ -168,6 +168,12 @@ export interface ProcessOptions {
   sourceRect?: { x: number; y: number; width: number; height: number };
   /** Permits enlarging past the source dimensions. */
   allowUpscale?: boolean;
+  /**
+   * Largest acceptable output, in bytes. JPEG and WebP only: quality is
+   * searched first, then the dimensions are reduced if quality alone cannot
+   * get there. Ignored for PNG and for rotated or flipped output.
+   */
+  targetBytes?: number;
 }
 
 export interface ProcessResult {
@@ -176,6 +182,85 @@ export interface ProcessResult {
   height: number;
   originalWidth: number;
   originalHeight: number;
+  /** Set only when a targetBytes was requested: whether the output fits it. */
+  metTarget?: boolean;
+}
+
+/** Below this, JPEG and WebP visibly fall apart; shrinking the image is kinder. */
+const TARGET_MIN_QUALITY = 0.4;
+const TARGET_MAX_QUALITY = 0.92;
+
+/**
+ * Encodes the image at the highest quality whose file fits within
+ * `targetBytes`, shrinking the dimensions when even the lowest acceptable
+ * quality is too large. Returns the smallest attempt, flagged, when the
+ * target cannot be reached at all.
+ */
+async function encodeWithinBytes(
+  decoded: DecodedImage,
+  sourceRect: { x: number; y: number; width: number; height: number },
+  start: { width: number; height: number },
+  background: string | undefined,
+  format: Exclude<OutputFormat, "image/png">,
+  targetBytes: number,
+): Promise<ProcessResult> {
+  let { width, height } = start;
+  let smallest: { blob: Blob; width: number; height: number } | null = null;
+
+  for (let attempt = 0; attempt < 8; attempt += 1) {
+    const canvas = renderToCanvas(decoded, { width, height, background, sourceRect });
+    try {
+      const atFloor = await canvasToBlob(canvas, format, TARGET_MIN_QUALITY);
+
+      if (atFloor.size <= targetBytes) {
+        // Binary search for the highest quality that still fits.
+        let low = TARGET_MIN_QUALITY;
+        let high = TARGET_MAX_QUALITY;
+        let best = atFloor;
+        for (let step = 0; step < 7; step += 1) {
+          const middle = (low + high) / 2;
+          const candidate = await canvasToBlob(canvas, format, middle);
+          if (candidate.size <= targetBytes) {
+            best = candidate;
+            low = middle;
+          } else {
+            high = middle;
+          }
+        }
+        return {
+          blob: best,
+          width,
+          height,
+          originalWidth: decoded.width,
+          originalHeight: decoded.height,
+          metTarget: true,
+        };
+      }
+
+      if (!smallest || atFloor.size < smallest.blob.size) smallest = { blob: atFloor, width, height };
+
+      // File size scales roughly with pixel count, so shrink both sides by the
+      // square root of the overshoot — bounded so one step never halves twice.
+      const scale = Math.min(0.9, Math.max(0.5, Math.sqrt(targetBytes / atFloor.size) * 0.95));
+      width = Math.max(1, Math.round(width * scale));
+      height = Math.max(1, Math.round(height * scale));
+      if (width < 16 || height < 16) break;
+    } finally {
+      // Release the backing store now rather than waiting for collection.
+      canvas.width = 0;
+      canvas.height = 0;
+    }
+  }
+
+  const fallback = smallest!;
+  return {
+    blob: fallback.blob,
+    width: fallback.width,
+    height: fallback.height,
+    originalWidth: decoded.width,
+    originalHeight: decoded.height,
+    metTarget: false,
+  };
 }
 
 /**
@@ -245,6 +330,16 @@ export async function processImage(blob: Blob, options: ProcessOptions): Promise
     // renders as black rather than as the expected white.
     const background =
       options.background ?? (options.format === "image/jpeg" ? "#ffffff" : undefined);
+
+    if (
+      options.targetBytes &&
+      options.format !== "image/png" &&
+      rotation === 0 &&
+      !options.flipHorizontal &&
+      !options.flipVertical
+    ) {
+      return await encodeWithinBytes(decoded, rect, fitted, background, options.format, options.targetBytes);
+    }
 
     const canvas =
       rotation !== 0 || options.flipHorizontal || options.flipVertical

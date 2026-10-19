@@ -17,13 +17,26 @@ const QUALITY_NOTES: Array<{ max: number; note: string }> = [
   { max: 100, note: "Almost lossless, and barely smaller than the original." },
 ];
 
+type Mode = "quality" | "target";
+
+/** The limits application forms, portals and email most often ask for. */
+const TARGET_PRESETS_KB = [20, 50, 100, 200, 500, 1024];
+
+const presetLabel = (kb: number) => (kb >= 1024 ? `${kb / 1024} MB` : `${kb} KB`);
+
 export default function CompressImage() {
   const [format, setFormat] = React.useState<OutputFormat>("image/jpeg");
+  const [mode, setMode] = React.useState<Mode>("quality");
   const [quality, setQuality] = React.useState(80);
+  const [targetKb, setTargetKb] = React.useState("100");
   const [limitSize, setLimitSize] = React.useState(false);
   const [maxWidth, setMaxWidth] = React.useState("1920");
 
   const note = QUALITY_NOTES.find((entry) => quality <= entry.max)?.note ?? "";
+  // PNG has no quality setting, so a byte target cannot be searched for.
+  const targeting = mode === "target" && format !== "image/png";
+  const target = parseNumber(targetKb);
+  const targetInvalid = targeting && (target === null || target < 5);
 
   const buildOptions = React.useCallback(
     (): ProcessOptions => ({
@@ -31,8 +44,10 @@ export default function CompressImage() {
       quality: quality / 100,
       maxWidth: limitSize ? (parseNumber(maxWidth) ?? undefined) : undefined,
       background: format === "image/jpeg" ? "#ffffff" : undefined,
+      // 1 KB is 1,024 bytes here, which is how upload forms measure their limits.
+      targetBytes: targeting && target ? Math.floor(target * 1024) : undefined,
     }),
-    [format, limitSize, maxWidth, quality],
+    [format, limitSize, maxWidth, quality, target, targeting],
   );
 
   return (
@@ -41,6 +56,7 @@ export default function CompressImage() {
       buildOptions={buildOptions}
       actionLabel="Compress images"
       zipName="compressed-images.zip"
+      validate={() => (targetInvalid ? "Enter a target size of at least 5 KB." : null)}
       settings={
         <div className="space-y-4">
           <div className="space-y-1.5">
@@ -67,6 +83,23 @@ export default function CompressImage() {
           </div>
 
           {format !== "image/png" ? (
+            <div className="space-y-1.5">
+              <span className="block text-[0.8125rem] font-medium text-fg">Compress by</span>
+              <Segmented
+                name="compress-mode"
+                ariaLabel="Compress by"
+                value={mode}
+                onChange={setMode}
+                options={[
+                  { value: "quality", label: "Quality" },
+                  { value: "target", label: "Target file size" },
+                ]}
+                className="sm:max-w-sm"
+              />
+            </div>
+          ) : null}
+
+          {format !== "image/png" && mode === "quality" ? (
             <div className="space-y-1">
               <Slider
                 label="Quality"
@@ -79,6 +112,37 @@ export default function CompressImage() {
               <p className="text-xs text-fg-subtle" aria-live="polite">
                 {note}
               </p>
+            </div>
+          ) : null}
+
+          {targeting ? (
+            <div className="space-y-2">
+              <NumberField
+                id="compress-target"
+                label="Maximum file size"
+                value={targetKb}
+                onChange={setTargetKb}
+                suffix="KB"
+                min={5}
+                max={51200}
+                step={1}
+                className="sm:max-w-48"
+                error={targetInvalid ? "Enter at least 5 KB." : undefined}
+                hint="Each image gets the highest quality that fits. If quality alone is not enough, it is scaled down too."
+              />
+              <div className="flex flex-wrap gap-2" role="group" aria-label="Common size limits">
+                {TARGET_PRESETS_KB.map((kb) => (
+                  <button
+                    key={kb}
+                    type="button"
+                    onClick={() => setTargetKb(String(kb))}
+                    aria-pressed={targetKb === String(kb)}
+                    className="rounded-full border border-border px-3 py-1 text-xs font-medium text-fg-muted transition-colors hover:border-accent-soft-border hover:text-fg aria-pressed:border-accent-soft-border aria-pressed:bg-accent-soft aria-pressed:text-accent-text"
+                  >
+                    {presetLabel(kb)}
+                  </button>
+                ))}
+              </div>
             </div>
           ) : null}
 
@@ -111,7 +175,7 @@ export default function CompressImage() {
           <Alert tone="info" title="PNG cannot be compressed by quality">
             PNG stores every pixel exactly, so there is no quality to trade away. To make a PNG smaller,
             either limit its width above or convert it to WebP, which is lossless too but far more
-            efficient.
+            efficient. Choose JPG or WebP to compress to a target file size.
           </Alert>
         ) : null
       }

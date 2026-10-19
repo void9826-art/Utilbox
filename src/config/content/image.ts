@@ -214,12 +214,12 @@ export const imageContent: Record<string, ToolContent> = {
   "compress-image": {
     seoTitle: "Compress Image Online — Reduce Photo Size Free",
     seoDescription:
-      "Shrink JPG, PNG and WebP images with a quality slider and a live before-and-after preview. Free, unlimited, and processed in your browser.",
+      "Shrink JPG, PNG and WebP images by quality or to a target size such as 100 KB, with a before-and-after preview. Free, unlimited, and done in your browser.",
     intro:
-      "To shrink a JPG, PNG or WebP image, drag the quality slider and watch the estimated file size update before you download. At quality 80, photos typically lose 50–80% of their size with no visible change, and resizing at the same time saves far more. Images are processed in your browser and never uploaded.",
+      "To shrink a JPG, PNG or WebP image, drag the quality slider or set a target file size such as 100 KB, then check the result before you download. At quality 80, photos typically lose 50–80% of their size with no visible change, and resizing saves far more. Images are processed in your browser and never uploaded.",
     howToUse: [
       "Add one or more images.",
-      "Drag the quality slider — the estimated output size updates as you move it.",
+      "Drag the quality slider, or choose Target file size and enter a limit such as 100 KB.",
       "Compare the original and compressed previews side by side.",
       "Download the images individually, or all of them as a ZIP.",
     ],
@@ -227,9 +227,15 @@ export const imageContent: Record<string, ToolContent> = {
       "Each image is decoded, drawn onto a canvas, and re-encoded at the quality you choose. Lossy encoders such as JPEG and WebP discard the detail human vision is least sensitive to — mostly fine colour variation — which is why an image can lose 70% of its file size while looking essentially unchanged.",
       "Quality between 75 and 85 is the practical sweet spot for photographs. Below about 60, JPEG artefacts start appearing around hard edges and in flat areas of colour. Screenshots and graphics with sharp lines behave differently: they compress badly as JPEG and are better left as PNG or converted to WebP.",
       "Optionally the image can be resized at the same time, which usually saves far more than quality alone. A 4000-pixel photo displayed at 1200 pixels wide is carrying more than ten times the data it needs.",
+      "In target-size mode the tool searches for the highest quality, between 40% and 92%, that keeps each file under your limit, re-encoding several times to find it. If even 40% is too large, the image is scaled down in steps — file size falls roughly with pixel count — and searched again, so a 100 KB limit is met with a sharp, smaller picture rather than a blocky full-size one.",
       LOCAL_NOTE,
     ],
     faq: [
+      {
+        question: "How do I compress an image to 100 KB?",
+        answer:
+          "Choose JPG or WebP, switch Compress by to Target file size and enter 100, or tap the 100 KB preset. Each image gets the highest quality that fits; if even 40% quality is too large it is scaled down until it fits, and you are told if a limit cannot be reached.",
+      },
       {
         question: "How much smaller will my image get?",
         answer:

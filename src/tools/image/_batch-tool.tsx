@@ -112,11 +112,13 @@ export function BatchImageTool({
 
     clearResults();
     setProgress({ done: 0, total: entries.length });
+    const missedTarget: string[] = [];
 
     for (const [index, entry] of entries.entries()) {
       try {
         const result = await processImage(entry.file, buildOptions(entry));
         setResult(entry.id, { blob: result.blob, width: result.width, height: result.height });
+        if (result.metTarget === false) missedTarget.push(entry.file.name);
       } catch (caught) {
         setError(
           caught instanceof Error && caught.message
@@ -131,6 +133,13 @@ export function BatchImageTool({
     }
 
     setProgress(null);
+    if (missedTarget.length > 0) {
+      // Said plainly rather than handing back a file that silently misses the limit.
+      setError(
+        `${missedTarget.join(", ")} could not be brought under the target size, even scaled down. ` +
+          "The smallest version reached is shown; try a larger target.",
+      );
+    }
   };
 
   const finished = entries.filter((entry) => entry.result);

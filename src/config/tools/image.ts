@@ -32,7 +32,7 @@ export const imageTools: ToolMeta[] = [
     name: "Compress Image",
     category: "image",
     description: "Cut image file size with a live before-and-after preview.",
-    keywords: ["compress image", "reduce image size", "image compressor", "optimise photo", "shrink jpg"],
+    keywords: ["compress image", "reduce image size", "image compressor", "compress image to 100kb", "compress image to target size", "optimise photo", "shrink jpg"],
     icon: Shrink,
     related: ["resize-image", "image-converter", "png-to-jpg", "compress-pdf"],
     requiresFile: true,
