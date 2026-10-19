@@ -6,6 +6,7 @@ import { CookieConsent } from "@/components/layout/cookie-consent";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { SearchProvider } from "@/components/layout/search-dialog";
+import { ServiceWorkerRegistration } from "@/components/layout/service-worker";
 import { themeInitScript } from "@/components/layout/theme";
 import { ToastProvider } from "@/components/ui/toast";
 import { adsConfig, analyticsConfig, siteConfig } from "@/config/site";
@@ -91,6 +92,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {analyticsConfig.enabled ? (
           <CookieConsent measurementId={analyticsConfig.googleAnalyticsId} />
         ) : null}
+
+        <ServiceWorkerRegistration />
       </body>
     </html>
   );

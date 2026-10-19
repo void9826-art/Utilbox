@@ -13,6 +13,7 @@ import {
   StepList,
   ToolHeader,
 } from "@/components/tool/sections";
+import { OfflineWarmup } from "@/components/tool/offline-warmup";
 import { ShareRow } from "@/components/tool/share-row";
 import { Alert } from "@/components/ui/surfaces";
 import { getToolContent } from "@/config/content";
@@ -99,6 +100,7 @@ export default async function ToolPage({ params }: { params: Promise<RouteParams
 
           {/* The tool sits above the fold — no reading required before use. */}
           <ToolMount slug={tool.slug} />
+          <OfflineWarmup category={tool.category} slug={tool.slug} />
 
           {content.disclaimer ? (
             <Alert tone="warning" title="Please note">
