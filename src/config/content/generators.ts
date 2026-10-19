@@ -132,7 +132,7 @@ export const generatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Create a robots.txt file with presets for blocking AI crawlers, then test which URLs Googlebot, Bingbot or any bot may crawl, with the deciding rule explained.",
     intro:
-      "Build a robots.txt file from simple settings, or paste an existing one and test exactly which URLs each crawler may fetch — and which rule decides it.",
+      "Start from a preset such as Allow everything or Block AI training crawlers, add the paths each crawler should avoid and your sitemap, then upload the file to your site's root as /robots.txt. The tester shows whether Googlebot, Bingbot or any bot may fetch a URL, and which rule decides. Blocking crawling does not stop indexing.",
     howToUse: [
       "Start from a preset, such as Allow everything or Block AI training crawlers.",
       "Add the paths each crawler should stay out of, and your sitemap address.",

@@ -50,7 +50,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert AVIF images to JPG or PNG so older apps, email clients and editors can open them. Batch conversion that runs in your browser — nothing is uploaded.",
     intro:
-      "Convert AVIF images to JPG or PNG for apps that cannot open AVIF yet. Add a batch and download them all together.",
+      "To convert AVIF to JPG or PNG, add one or more .avif files, choose JPG for photos or PNG for transparency, and download them individually or as a ZIP. Your browser's own decoder does the work, so it needs current Chrome, Edge or Firefox, or Safari 16 or later. An animated AVIF keeps only its first frame. Nothing is uploaded.",
     howToUse: [
       "Add one or more .avif files.",
       "Choose JPG for photos or PNG for images with transparency.",
@@ -91,7 +91,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Extract the dominant colors from any image online. Get HEX, RGB and HSL codes, each color's share of the picture, and CSS or JSON to copy — no upload.",
     intro:
-      "Upload a photo, logo or screenshot and get its main colours as HEX, RGB and HSL codes. Click anywhere on the image to sample a single point.",
+      "Add a photo, logo or screenshot and choose how many colours you want to get its main colours as HEX, RGB and HSL codes, with each colour's share of the image and a text contrast check. Copy the palette as CSS variables, a Tailwind theme or JSON, or click the image to sample one point. Nothing is uploaded.",
     howToUse: [
       "Add an image.",
       "Choose how many colours you want in the palette.",
@@ -604,7 +604,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert between JPG, PNG and WebP in one batch, with quality control and optional resizing. Free and entirely browser-based.",
     intro:
-      "Convert a batch of images between JPG, PNG and WebP, optionally resizing and compressing them at the same time.",
+      "To convert images between JPG, PNG and WebP, add a batch — formats can be mixed — choose the output format and quality, optionally cap the width or height, and download individually or as a ZIP. Use WebP for the web, JPG for photos that must open anywhere and PNG for transparency. Nothing is uploaded.",
     howToUse: [
       "Add your images — formats can be mixed.",
       "Choose the output format and quality.",
@@ -716,7 +716,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert JPG to AVIF in your browser. AVIF beats JPG and WebP at the same visual quality; the tool checks your browser can encode it before starting.",
     intro:
-      "Encode a photograph as AVIF, the most efficient image format browsers widely support — often half the size of the same JPG.",
+      "To convert JPG to AVIF, add a photo, start at quality 50 to 60 and compare the saving before you download; AVIF is often half the size of the same JPG. Encoding needs Chrome or Edge on a desktop — Firefox and Safari can show AVIF but not create it — and the tool checks first. Nothing is uploaded.",
     howToUse: [
       "Add a JPG.",
       "Pick a quality; AVIF holds up well far lower than JPG does, so 50 to 60 is a sensible start.",
@@ -1033,7 +1033,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Change an image to 300 DPI or any density online. Keep the pixels as they are, or resample so the picture prints at an exact width.",
     intro:
-      "Set the print density of a picture, or resize it so that it measures exactly what a printer asked for.",
+      "To change an image's DPI, add it, choose Keep pixels to change only the print density or Resize pixels to print at an exact width, and set the density — print shops usually ask for 300. DPI alone does not improve quality: a 6 × 4 inch print at 300 DPI needs 1800 × 1200 pixels. Nothing is uploaded.",
     howToUse: [
       "Add the picture.",
       "Choose Keep pixels to leave the image alone, or Resize pixels to hit a physical width.",
@@ -1073,7 +1073,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert a picture to grayscale online with three methods: natural luminance, a flat average, or high contrast for scanned documents.",
     intro:
-      "Turn a colour picture black and white, with a choice of how the colours are weighed on the way.",
+      "To make a picture black and white, add it and choose Natural for photographs, Flat for a plain channel average, or High contrast for scanned text, then download the PNG. Natural weights red, green and blue the way the eye does, so colours of similar brightness stay distinct. Keep the original, because colour cannot be restored.",
     howToUse: [
       "Add the picture.",
       "Pick a conversion — Natural suits photographs, High contrast suits scanned text.",
@@ -1112,7 +1112,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "See how an image looks to people with protanopia, deuteranopia, tritanopia or no colour vision. Runs in your browser, nothing uploaded.",
     intro:
-      "See a design, chart or screenshot the way people with each main type of colour vision deficiency see it — and find out whether it still makes sense.",
+      "Add a screenshot of a design, chart or interface and switch between protanopia, deuteranopia, tritanopia and no colour vision to see what each viewer sees. If two lines or badges become indistinguishable, add a label, shape or pattern rather than only changing the palette. Download a simulation for a report. Nothing is uploaded.",
     howToUse: [
       "Add a screenshot of the design, chart or interface.",
       "Switch between the four types.",

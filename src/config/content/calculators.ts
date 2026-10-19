@@ -9,7 +9,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "How much paint do I need? Work out litres or gallons for a room from its size, doors, windows and coats, get the tins to buy, and count wallpaper rolls too.",
     intro:
-      "Enter a room's size to see how much paint to buy — including the best mix of tins — or how many rolls of wallpaper you need.",
+      "Enter a room's length, width and wall height, plus doors, windows, coats and the coverage on the tin, to see how much paint to buy and the best mix of tins — or switch to wallpaper for the number of rolls. A 4 × 3 m room with 2.5 m walls and two coats needs about 5.8 litres.",
     howToUse: [
       "Choose Paint or Wallpaper, and metric or US units.",
       "Enter the room's length, width and wall height.",
@@ -68,7 +68,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert a dog's age to human years using its size or breed, compare it with the 2020 DNA-based formula, and work out a cat's age in human years too.",
     intro:
-      "Find out how old your dog or cat is in human years. Dogs are adjusted for size, because large breeds age faster than small ones.",
+      "Choose dog or cat and enter your pet's age to see it in human years. Dogs are adjusted for size, because large breeds age faster: a 6-year-old Labrador is about 45 by the size chart, or about 60 by a 2020 DNA-based formula. The old rule that one dog year equals seven human years is wrong.",
     howToUse: [
       "Choose Dog or Cat.",
       "Enter your pet's age in years and months.",
@@ -124,7 +124,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Work out take-home pay after tax for the 2026/27 UK tax year, including National Insurance, pension and student loans — plus Canada, Australia and India.",
     intro:
-      "See what you actually take home from a salary after income tax, National Insurance, pension and student loans — with versions for Canada, Australia and India.",
+      "Choose the UK, Canada, Australia or India, enter your gross salary and the details that apply — pension, student loan, province or tax regime — to see take-home pay per year, month and week with every deduction itemised. A £40,000 salary in England in 2026/27, with no pension or student loan, takes home £32,319.60. It is an estimate.",
     howToUse: [
       "Choose the country.",
       "Enter your gross salary, per year or per month.",
@@ -177,7 +177,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Work out what it costs to charge an electric car at home or in public — per charge, per mile or kilometre, and per month — and compare it with petrol.",
     intro:
-      "See what charging an electric car really costs: for a single charge, per mile or kilometre, and per month, compared with running a petrol car.",
+      "Enter your battery size, start and end charge and electricity price to see what one charge costs, or your car's consumption and distance for the cost per mile or kilometre and per month, compared with petrol. Charging a 60 kWh battery from 20% to 80% at $0.15 per kWh costs about $6, allowing for charging losses.",
     howToUse: [
       "Choose One charge or Cost per distance.",
       "For one charge, enter the battery size, the start and end charge levels and your electricity price.",
@@ -235,7 +235,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Add up every subscription to see what they really cost per month and per year, spot what to cancel, see upcoming renewals, and print or export the list.",
     intro:
-      "List your subscriptions — streaming, software, gym, cloud storage — and see the true monthly and yearly total, the renewals coming up, and what cancelling would save.",
+      "List each subscription with its price and billing cycle to see the true monthly and yearly total, upcoming renewals and what cancelling would save; a $6.99 weekly plan really costs $30.29 a month. The list is kept only in this browser's local storage, never on a server, so export a CSV or print it to keep a copy.",
     howToUse: [
       "Add each subscription with its price and how often it bills.",
       "Optionally add the next renewal date and a category.",
@@ -553,7 +553,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Work out your attendance percentage, how many classes you can still miss, and how many you must attend in a row to reach the required minimum.",
     intro:
-      "See where your attendance stands, how many more classes you must attend to reach the requirement, and how many you can safely miss.",
+      "Your attendance is classes attended ÷ classes held. Enter both and the minimum you need to see how many classes you can still miss, or how many you must attend in a row to reach it: at 38 of 52 with a 75% requirement, attend the next 4. It also warns when the target can no longer be reached.",
     howToUse: [
       "Enter the total number of classes held so far and how many you attended.",
       "Set the minimum attendance your institution requires.",

@@ -50,7 +50,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Extract tables from a PDF to Excel or CSV. A table spread over many pages is joined into one sheet, repeated headers are removed and figures become numbers.",
     intro:
-      "Pull a table out of a PDF into a spreadsheet. A table that runs across many pages comes out as one continuous sheet, with the repeated headers removed.",
+      "To pull a table out of a PDF, add it, enter the pages the table is on, check the preview and download an Excel workbook or CSV. A table spanning many pages becomes one sheet with repeated headers removed, and figures such as 1,234.50 or (45.00) become real numbers. Scanned tables cannot be read. Nothing is uploaded.",
     howToUse: [
       "Add a PDF that contains a table.",
       "Enter the pages the table is on, such as 3-7, or leave it blank to scan every page.",
@@ -133,7 +133,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert PDF pages from A4 to US Letter, or Letter to A4, online. Content is scaled to fit and centred, text stays sharp, and nothing is uploaded.",
     intro:
-      "Change the paper size of a PDF — A4 to Letter, Letter to A4, or to Legal, A3 or A5 — so it prints without cropped edges or lopsided margins.",
+      "To change a PDF's paper size, add it, choose A4, US Letter, Legal, A3 or A5, and pick Scale to fit or Keep content size. Scale to fit shrinks and centres the content without cropping — 94.1% from A4 to Letter — and text stays sharp and selectable. Pages already that size are left alone. Nothing is uploaded.",
     howToUse: [
       "Add a PDF — its current page sizes are listed.",
       "Choose the paper size you need.",
@@ -846,7 +846,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Turn a PDF into a folded booklet. Pages are reordered two to a sheet for saddle-stitch printing, with blanks added to reach a multiple of four.",
     intro:
-      "Reorder a PDF so that printing it double-sided, folding the stack and stapling the spine produces a booklet that reads in order.",
+      "To make a booklet, add the PDF and press Make booklet: pages are reordered two to a sheet for saddle-stitch printing, with blank pages added to reach a multiple of four. Print double-sided, flipping on the short edge, then fold the stack and staple the spine. Pages keep their original size. Nothing is uploaded.",
     howToUse: [
       "Add the PDF you want as a booklet.",
       "Press Make booklet — the page order is worked out for you.",
@@ -887,7 +887,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Put multiple PDF pages on one sheet. Choose 2, 4, 6, 9 or 16 per sheet with adjustable margins, gaps and cutting outlines, all in your browser.",
     intro:
-      "Fit several PDF pages onto each sheet of paper — for handouts, proofs, or simply to use a quarter of the paper.",
+      "To put several PDF pages on one sheet, choose 2, 4, 6, 9 or 16 per sheet, the sheet size, the margin and gap, and whether to draw cutting outlines. Pages are placed as scaled copies, not pictures, so text stays sharp and selectable, reading left to right, then down. Print at 100%. Nothing is uploaded.",
     howToUse: [
       "Add the PDF you want to condense.",
       "Choose how many pages go on each sheet, and the sheet size.",
@@ -1010,7 +1010,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert a colour PDF to grayscale online. Every page is re-rendered in black and white at your chosen resolution, ready for cheaper printing.",
     intro:
-      "Turn a colour PDF black and white, so a print shop charges the mono rate and colour ink is not wasted on a draft.",
+      "To convert a PDF to grayscale, add it, choose Standard or Print resolution and convert. Every page is re-rendered in black and white using luminance weighting, so colours of similar brightness stay distinct, and the paper size is unchanged. Text in the result is no longer selectable, so keep the original. Nothing is uploaded.",
     howToUse: [
       "Add the colour PDF.",
       "Choose a resolution — Standard suits most printing, Print is for anything with fine detail.",
@@ -1051,7 +1051,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Invert the colours of a PDF for night reading. White pages become dark and black text becomes light, at your chosen resolution, in your browser.",
     intro:
-      "Flip a PDF to light text on a dark page, which is far easier on the eyes when reading in bed or in a dark room.",
+      "To invert a PDF for night reading, add it, choose a resolution and press Invert colours: white pages turn dark and black text turns light, with the contrast preserved exactly. Unlike a reader's night mode, it looks the same on any device. Photos come out as negatives and text is no longer selectable. Nothing is uploaded.",
     howToUse: [
       "Add the PDF you want to read at night.",
       "Choose a resolution — Standard is fine for reading on screen.",
@@ -1256,7 +1256,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Add or edit PDF bookmarks online. Build the outline a reader shows in its sidebar, pointing each entry at any page, without uploading the file.",
     intro:
-      "Give a long PDF the sidebar outline it should have had, so readers can jump to a chapter instead of scrolling.",
+      "To add bookmarks to a PDF, add it — any existing bookmarks are listed — then type a title for each entry, choose the page it jumps to, and save. Readers show the entries in their sidebar outline. The result is a single flat list, not nested entries, and saving replaces the old outline. Nothing is uploaded.",
     howToUse: [
       "Add the PDF — any existing bookmarks are read and listed.",
       "Type a title for each entry and choose the page it jumps to.",
