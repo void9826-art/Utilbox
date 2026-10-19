@@ -270,7 +270,7 @@ export const developerContent: Record<string, ToolContent> = {
     seoDescription:
       "Validate JSON and get a plain-English explanation of what is wrong and where, plus statistics about the document's structure.",
     intro:
-      "Check whether JSON is valid and get a clear explanation of any error, with the exact position and a likely cause.",
+      "Paste JSON to check it as you type. If it is invalid, you get a plain-English explanation of the likely cause — a trailing comma, single quotes, an unquoted key or a comment — with the exact position. Valid documents get a structure summary that flags duplicate keys. It checks syntax, not a schema, and runs in your browser.",
     howToUse: [
       "Paste the JSON you want to check.",
       "Validation runs as you type.",

@@ -380,7 +380,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert a Word .docx document into a clean PDF. Free, no sign-up, and the file is converted in your browser rather than uploaded.",
     intro:
-      "Turn a Word document into a PDF that looks the same on every device. Headings, lists and basic formatting are carried across.",
+      "To convert Word to PDF, add a .docx file, choose the page size and margins, check the preview and download. Headings, paragraphs, bold and italic text and lists come across as real, searchable text in a standard font; images, tables and custom fonts do not. Resave older .doc files as .docx first. Nothing is uploaded.",
     howToUse: [
       "Add a .docx file. (The older .doc format is not supported — resave it as .docx first.)",
       "Choose a page size and margin width.",
@@ -502,7 +502,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Export PDF pages as lossless PNG images with optional transparency. Choose the resolution and download pages individually or as a ZIP.",
     intro:
-      "Export PDF pages as PNG images. Lossless, sharp at any resolution, and able to keep a transparent background.",
+      "To turn PDF pages into PNG images, add the PDF, choose a resolution and a white or transparent background, then download pages one at a time or as a ZIP. PNG is lossless, so text, diagrams and line art stay crisp, though the files are larger than JPGs. Pages are rendered in your browser and never uploaded.",
     howToUse: [
       "Add your PDF.",
       "Choose a resolution and decide whether you want a white or transparent background.",
@@ -538,7 +538,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Recover tabular data from a PDF into an .xlsx spreadsheet. Column positions are detected automatically and you can preview the grid before downloading.",
     intro:
-      "Recover tables from a PDF into a spreadsheet. Columns are detected from the layout of the page, and you can check the grid before downloading.",
+      "To get tables out of a PDF, add it, choose the pages and check the detected grid, then download an .xlsx workbook with one sheet per page or copy the data as CSV. Columns are worked out from how the text lines up, which suits bank statements and exported reports. Scanned PDFs and formulas cannot be recovered.",
     howToUse: [
       "Add a PDF that contains tabular data.",
       "Choose which pages to read, or leave it on all pages.",
@@ -688,7 +688,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Pull selected pages out of a PDF into a new document. Choose pages visually or by range, and keep everything on your device.",
     intro:
-      "Pull the pages you need into a brand new PDF. Choose them from thumbnails or by typing a range.",
+      "To extract pages from a PDF, click their thumbnails or type a range such as 1, 4-6, choose one combined file or separate files, and download. Pages arrive in the order you list them, so 5, 1, 3 also reorders them. Nothing is re-rendered, so quality matches the original, and the file never leaves your browser.",
     howToUse: [
       "Add your PDF.",
       "Select the pages you want to keep, by clicking thumbnails or typing a range such as 1, 4-6.",
@@ -723,7 +723,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Add a text watermark to a PDF online for free. Diagonal, tiled, centred or footer placement, with adjustable opacity, colour and page range.",
     intro:
-      "Stamp DRAFT, CONFIDENTIAL or any other wording across a PDF, without the file ever leaving your computer.",
+      "To watermark a PDF, type the wording — DRAFT, CONFIDENTIAL or anything else — choose diagonal, tiled, centred or footer placement, set the opacity and size, and download. The mark is real text, so the file stays small and the text underneath stays selectable. A watermark labels a document; it does not secure it. Nothing is uploaded.",
     howToUse: [
       "Add the PDF you want to mark.",
       "Type the wording, then pick a placement — diagonal reads clearly, tiled is hardest to crop away.",
@@ -764,7 +764,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Rearrange the pages of a PDF online. Move any page earlier or later, reverse the whole document, and save the new order without uploading.",
     intro:
-      "Put the pages of a PDF into the order you actually want, with a thumbnail of every page to work from.",
+      "To rearrange a PDF's pages, use the arrows under each thumbnail to move pages earlier or later, or press Reverse order for a scan that came out back to front, then save. Pages are copied whole, so links, annotations and form fields travel with them and quality is unchanged. Nothing is uploaded.",
     howToUse: [
       "Add the PDF — each page appears as a numbered thumbnail.",
       "Use the arrows under a page to move it earlier or later.",

@@ -230,7 +230,7 @@ export const generatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Make 12-digit UPC-A, 13-digit EAN-13 (JAN), EAN-8, Code 128, Code 39, ITF-14 and Codabar barcodes. Check digit added for you; PNG or SVG.",
     intro:
-      "Generate standard retail and logistics barcodes. Check digits are calculated for you, and you can download PNG or SVG.",
+      "Choose a format — UPC-A, EAN-13, EAN-8, Code 128, Code 39, ITF-14 or Codabar — type the value and download a PNG or SVG. Check digits are calculated or verified for you. Use Code 128 for internal and shipping labels; barcodes for retail shelves need a number allocated to you by GS1.",
     howToUse: [
       "Pick the barcode format you need.",
       "Type the value — the tool tells you immediately if it is not valid for that format.",
@@ -419,7 +419,7 @@ export const generatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Build a clean, ATS-friendly one-page resume and download it as a real PDF. No sign-up, no watermark, and nothing is uploaded.",
     intro:
-      "Fill in your details and get a clean, single-column CV as a PDF that applicant tracking systems can actually read.",
+      "Fill in your contact details, summary, experience, education and skills, reorder or remove sections, and download a clean single-column resume as a real PDF. The plain layout and selectable text are what applicant tracking systems read reliably. There is no sign-up and no watermark, and your details stay in your browser.",
     howToUse: [
       "Enter your contact details and a short professional summary.",
       "Add your work experience, education and skills.",

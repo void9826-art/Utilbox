@@ -450,7 +450,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Combine semester GPAs into a cumulative CGPA, weighted by the credits in each term. Includes a CGPA to percentage estimate.",
     intro:
-      "Combine each semester's GPA and credit load into one cumulative figure, and see what it converts to as a percentage.",
+      "Your CGPA is the credit-weighted average of your semester GPAs: CGPA = Σ (semester GPA × credits) ÷ Σ credits. Add each semester's GPA and credits to see your cumulative figure, an approximate percentage (CGPA × 9.5; check your institution's table) and the GPA your next semester needs to reach a target.",
     howToUse: [
       "Add a row for each semester you have completed.",
       "Enter that semester's GPA and the number of credits it carried.",
@@ -667,7 +667,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Calculate loan repayments for any amount, rate and term. Compare monthly, fortnightly and weekly schedules and see the full amortisation table.",
     intro:
-      "Work out repayments on any loan, compare payment frequencies, and see the full breakdown of interest against principal.",
+      "To calculate loan repayments, enter the amount, annual interest rate and term, and choose monthly, fortnightly or weekly payments. You get the payment, the total interest and a full amortisation table. Paying more often reduces total interest, because the balance falls sooner. Fees such as arrangement or early-repayment charges are not included.",
     howToUse: [
       "Enter the amount you want to borrow, the annual interest rate and the term.",
       "Choose how often you will make payments.",
@@ -713,7 +713,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Calculate a monthly mortgage payment including principal, interest, property tax, insurance and HOA fees, with a full amortisation schedule.",
     intro:
-      "Work out the full monthly cost of a home loan — not just principal and interest, but property tax, insurance and any association fees.",
+      "Your monthly mortgage cost is principal and interest plus property tax, insurance and any association fee, often called PITI. Enter the price, deposit, rate and term, then add tax and insurance to see the full payment. A 350,000 home with 20% down at 6.5% over 30 years is about 1,770 a month before tax and insurance.",
     howToUse: [
       "Enter the home price and your deposit, either as an amount or a percentage.",
       "Set the interest rate and the loan term.",
@@ -892,7 +892,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Work out a sale price, how much you saved, stacked discounts, and reverse-engineer the original price from a discounted one.",
     intro:
-      "Find the sale price and what you saved, stack multiple discounts, or work backwards from a sale price to the original.",
+      "Enter a price and the percentage off to see what you pay and what you save. Stacked discounts multiply rather than add: 20% off then 10% off is a 28% saving, not 30%. Reverse mode finds the original price, so 45 after 25% off was 60. Add a tax rate to see the price at the till.",
     howToUse: [
       "Choose a mode: a single discount, several stacked discounts, or working backwards from a sale price.",
       "Enter the price and the percentage off.",

@@ -240,7 +240,7 @@ export const converterContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert length and distance between metric and imperial units — millimetres to inches, metres to feet, kilometres to miles and more.",
     intro:
-      "Convert length and distance across fifteen units. Type in one box and every other updates instantly.",
+      "Convert length and distance across fifteen units, from millimetres and inches to kilometres, miles and nautical miles; type in one box and every other updates. One inch is exactly 2.54 cm by definition, so 5 ft 11 in is precisely 1.8034 metres. A nautical mile is 1,852 metres and a land mile 1,609.344.",
     units:
       "Every factor is defined against the metre, using the exact internationally agreed values — the inch is exactly 25.4 mm by definition, not an approximation.",
     basis:

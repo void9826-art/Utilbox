@@ -185,7 +185,7 @@ export const textContent: Record<string, ToolContent> = {
     seoDescription:
       "Count characters with and without spaces, and check your text against Twitter, SMS, meta description and other common limits.",
     intro:
-      "Count characters with and without spaces, and see at a glance whether your text fits common platform limits.",
+      "Paste your text to count characters with and without spaces, plus bytes, and see whether it fits limits such as SMS, Twitter and meta descriptions. Emoji can count as several characters, so a grapheme count shows what a reader actually sees. One emoji or curly quote drops an SMS limit from 160 to 70. Nothing is uploaded.",
     howToUse: [
       "Paste or type your text.",
       "Read the counts — with spaces, without spaces, and bytes.",

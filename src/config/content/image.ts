@@ -299,7 +299,8 @@ export const imageContent: Record<string, ToolContent> = {
     seoTitle: "JPG to PNG Converter — Free Online, No Upload",
     seoDescription:
       "Convert JPG and JPEG images to lossless PNG format in your browser. Batch conversion, no watermark, no sign-up.",
-    intro: "Convert JPG photos to PNG — a lossless format that survives repeated editing without degrading.",
+    intro:
+      "To convert JPG to PNG, add one or more photos, convert them and download them individually or as a ZIP. PNG is lossless, so it survives repeated editing without further damage, but it cannot restore detail the JPG already lost and is often three to five times larger. There is no transparency to carry over. Nothing is uploaded.",
     howToUse: [
       "Add one or more JPG files.",
       "Press Convert.",
@@ -496,7 +497,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Turn JPG, PNG and WebP images into a single PDF document with control over page size, orientation and margins.",
     intro:
-      "Combine any mix of images into one PDF. Set the page size, reorder the pages, and download.",
+      "To turn images into one PDF, add JPG, PNG, WebP, GIF or BMP files in any mix, put them in order and choose the page size, orientation and margins. Each image gets its own page, scaled to fit without distortion, and JPEGs are embedded without re-compression. The PDF is built in your browser and nothing is uploaded.",
     howToUse: [
       "Add your images in any supported format.",
       "Reorder them with the arrows.",
@@ -530,7 +531,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Crop photos by dragging a selection or snapping to a preset aspect ratio, with exact pixel controls. Free and processed in your browser.",
     intro:
-      "Crop an image by dragging a selection box, or snap to a preset ratio for a profile picture, post or banner.",
+      "To crop an image, drag a selection on the preview and adjust the handles, pick a preset ratio such as 1:1 for a profile picture or 16:9 for a banner, or type exact pixel sizes. The crop is cut from the full-resolution original, and the pixels you keep are unchanged. Nothing is uploaded.",
     howToUse: [
       "Add an image.",
       "Drag on the preview to set the crop area, then drag the handles to fine-tune it.",
@@ -567,7 +568,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Rotate images in 90-degree steps or by any angle, and flip them horizontally or vertically. Free and processed in your browser.",
     intro:
-      "Rotate an image in 90° steps or by a free angle, and flip it horizontally or vertically.",
+      "To rotate an image, use the buttons for quarter turns or the slider for any angle, flip it horizontally or vertically if needed, and download. Quarter turns and flips are exact, with no quality loss. Free angles need resampling, soften slightly and enlarge the canvas, filling the corners with a colour you choose. Nothing is uploaded.",
     howToUse: [
       "Add an image.",
       "Use the rotate buttons for quarter turns, or drag the angle slider for anything in between.",
@@ -913,7 +914,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Download the thumbnail of any YouTube video in every size it was stored at. Paste a link, a Shorts URL or the video id — no account needed.",
     intro:
-      "Grab the thumbnail image of any YouTube video, at the largest size that video actually has.",
+      "To download a YouTube thumbnail, paste a video link, a youtu.be or Shorts URL, or the 11-character video id, then pick a size from 1280 × 720 down to 320 × 180. Only the sizes that exist for that video are shown. The images load straight from YouTube's public files, with no account or API key.",
     howToUse: [
       "Paste a YouTube link, a youtu.be short link, a Shorts URL, or the 11-character video id.",
       "The sizes that exist for that video appear as previews.",
