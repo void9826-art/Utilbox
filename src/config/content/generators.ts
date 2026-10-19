@@ -334,7 +334,7 @@ export const generatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Generate random numbers in any range, with or without duplicates. Uses cryptographic randomness, with optional sorting and instant copying.",
     intro:
-      "Generate random whole numbers in any range — one at a time, or a whole set with duplicates ruled out.",
+      "Set the lowest and highest numbers, choose how many you want and turn off duplicates if each must be unique, as in a lottery draw, then copy the results. Numbers come from your browser's cryptographic random generator, with rejection sampling so every value is equally likely. Both endpoints can be drawn.",
     howToUse: [
       "Set the lowest and highest numbers in your range.",
       "Choose how many numbers you want.",
@@ -496,7 +496,7 @@ export const generatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Generate cryptographically random version 4 UUIDs and time-ordered version 7 UUIDs. Bulk output, multiple formats, copy or download.",
     intro:
-      "Generate valid UUIDs — random version 4, or time-ordered version 7 for database keys. Produce one or thousands.",
+      "Choose random version 4 UUIDs, or time-ordered version 7 for database keys, set how many — up to ten thousand — and pick a format, then copy or download them. Version 7 sorts by creation time and keeps indexes compact; version 4 suits public tokens. Both validate against RFC 9562.",
     howToUse: [
       "Choose the UUID version you need.",
       "Set how many to generate.",

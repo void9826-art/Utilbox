@@ -92,7 +92,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Edit or remove PDF metadata online: title, author, subject, keywords, creator, producer, dates and language. The document stays in your browser.",
     intro:
-      "View and change the properties stored inside a PDF — title, author, keywords, dates and more — or clear them before you share the file.",
+      "To edit PDF properties, add the file, change the title, author, subject, keywords or dates, or press Clear all to empty them, then save. Removing the XMP metadata stream stops old values showing in some viewers. Pages, fonts and images are untouched, and the saved values are read back so you can check them. Nothing is uploaded.",
     howToUse: [
       "Add a PDF — its current properties are filled in.",
       "Edit any field, or press Clear all to empty them.",
@@ -805,7 +805,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Extract images from a PDF online. Pulls out embedded pictures at their stored size, not screenshots of the pages, and saves them as PNG files.",
     intro:
-      "Pull the actual pictures out of a PDF at the size and quality they were stored, rather than screenshotting the pages.",
+      "To extract images from a PDF, add it and every embedded picture is listed with its pixel size and the pages it appears on; download one or all as a ZIP. You get the pixels stored in the file, saved as lossless PNG, not screenshots of pages. Scanned pages come out at full resolution. Nothing is uploaded.",
     howToUse: [
       "Add the PDF — each page is scanned as it loads.",
       "Look through the pictures that were found, with their pixel size and the pages they appear on.",
@@ -928,7 +928,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Crop the margins of a PDF online. Trim white borders on any side, preview the crop on the first page, and keep the text sharp and selectable.",
     intro:
-      "Trim the white borders off a PDF so the content fills the page — the usual fix for reading academic papers on a tablet or e-reader.",
+      "To crop PDF margins, add the file, drag the margin slider or set each side separately, check the dashed outline on the first page and download. The tool sets the crop box, so nothing is deleted, text stays sharp and the crop can be undone. Trimming a 20 mm border makes A4 text about a third larger on an e-reader.",
     howToUse: [
       "Add the PDF — the first page is shown with a dashed outline over it.",
       "Drag the margin slider, or untick the box to set each side separately.",
@@ -969,7 +969,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Add a header or footer to every page of a PDF. Insert a title, the date or page numbering, choose alignment and size, and skip the cover page.",
     intro:
-      "Put a title, a date or a page count along the top or bottom of every page, added as real text rather than a picture.",
+      "To add a header or footer to a PDF, type the wording and use {page}, {total} and {date} where you want them filled in, such as Page {page} of {total}. Choose the alignment, size and distance from the edge, and skip the cover page if needed. The text is real and selectable. Nothing is uploaded.",
     howToUse: [
       "Add the PDF you want to label.",
       "Type a header, a footer, or both — use {page}, {total} and {date} where you want those filled in.",
@@ -1215,7 +1215,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Compare two PDFs and see which lines of text were added or removed. Works page by page in your browser, with a downloadable comparison report.",
     intro:
-      "See exactly what changed between two versions of a document, line by line, instead of reading both and hoping to spot it.",
+      "To compare two PDFs, add the original and the revised copy, press Compare and review each changed page: added lines are marked with a plus, removed lines with a minus and a strike-through. Only the wording is compared, not images or layout, and unchanged pages are left out. Both files stay in your browser.",
     howToUse: [
       "Add the original document on the left and the revised copy on the right.",
       "Press Compare — both files are read page by page.",

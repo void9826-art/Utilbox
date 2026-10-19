@@ -93,7 +93,7 @@ export const developerContent: Record<string, ToolContent> = {
     seoDescription:
       "Test how strong a password really is. See the estimated time to crack it, the patterns that weaken it and how to fix them — checked in your browser, never sent.",
     intro:
-      "Type a password to see how quickly it could be guessed and exactly what makes it weak. The check runs on your device; the password is never sent anywhere.",
+      "Type a password to see its strength score from 0 to 4, the estimated time to crack it and the patterns that weaken it, such as dictionary words, dates and keyboard runs. It uses the zxcvbn estimator in your browser, and the password is never sent anywhere — so it is not checked against breach lists.",
     howToUse: [
       "Type or paste a password into the box.",
       "Read the strength score and the estimated time to crack it.",

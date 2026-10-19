@@ -45,7 +45,7 @@ export const converterContent: Record<string, ToolContent> = {
     seoDescription:
       "Plan meetings across time zones. Compare cities side by side in an hour-by-hour grid, see where working hours overlap, and copy the times for your invite.",
     intro:
-      "Add the cities your team works in to see their hours side by side, find the hours when everyone is at work, and copy a meeting time for all of them.",
+      "Add the cities your team works in to see their local times side by side, hour by hour. Hours marked ✓ fall within working hours everywhere; select one to copy the time in every city for your invite. Daylight saving and offsets such as India's UTC+5:30 are handled for the date you choose.",
     howToUse: [
       "Add each city or time zone — the first one is the reference.",
       "Choose the meeting date and the working hours to aim for.",

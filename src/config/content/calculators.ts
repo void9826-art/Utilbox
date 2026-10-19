@@ -494,7 +494,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Turn a test score like 61/80 into a percentage and a letter grade, combine weighted assessments, and find out what you need on the final exam.",
     intro:
-      "Turn marks into a percentage and a letter grade. Combine weighted assessments, or work out what the final exam needs to be.",
+      "To turn a score into a percentage, divide the marks by the marks available: 61/80 is 76.25%. Add each assessment with its weight to get an overall percentage and letter grade, and use the final exam planner to see the score you need for a target. Weights do not have to add up to 100.",
     howToUse: [
       "Add each assessment with the marks you scored, the marks available, and its weight in the course.",
       "The overall percentage and letter grade update as you type.",
@@ -941,7 +941,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Add tax to a net price or extract the tax from a gross price. Works for VAT, GST, sales tax and any percentage rate.",
     intro:
-      "Add tax to a price, or work out how much tax is already inside a total. Works for VAT, GST and sales tax at any rate.",
+      "To add tax, multiply the net amount by 1 plus the rate; to remove it, divide the gross by 1 plus the rate — so 240 including 20% VAT is 200 net plus 40 tax, not 240 minus 48. Enter an amount and a rate to get the net, tax and gross figures for VAT, GST or sales tax.",
     howToUse: [
       "Choose whether you are adding tax to a net amount or removing it from a gross amount.",
       "Enter the amount and the tax rate.",
@@ -993,7 +993,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert pay between hourly, daily, weekly, fortnightly, monthly and annual figures, allowing for your working hours and holiday.",
     intro:
-      "Convert pay between hourly, daily, weekly, monthly and annual figures, based on the hours you actually work.",
+      "Enter a pay figure and its period, plus your weekly hours and working days, to see the hourly, daily, weekly, monthly and annual equivalents at once. A month is the annual figure ÷ 12, not weekly pay × 4, which understates it by about 8%. All figures are gross, before tax and deductions.",
     howToUse: [
       "Enter a pay figure and say which period it covers.",
       "Set your usual hours per week and working days per week.",

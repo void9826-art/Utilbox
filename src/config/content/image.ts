@@ -9,7 +9,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert WebP images to PNG with transparency preserved, or to JPG for smaller files. Batch conversion in your browser, with no upload and no watermark.",
     intro:
-      "Turn WebP images into PNG files that keep their transparency, or into JPGs for the smallest size. Convert a whole batch at once.",
+      "To convert WebP to PNG, add one or more files, choose PNG to keep transparency or JPG for smaller photos, then download them individually or as a ZIP. PNG keeps every decoded pixel, including transparent backgrounds, but is often several times larger. An animated WebP keeps only its first frame. Files up to 50 MB each; nothing is uploaded.",
     howToUse: [
       "Add one or more WebP images.",
       "Choose PNG to keep transparency, or JPG for smaller photo files.",
@@ -174,7 +174,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Free favicon generator: create favicon.ico, PNG icons, an Apple touch icon, Android icons and a web manifest from an image or a letter, right in your browser.",
     intro:
-      "Create every favicon file a website needs from one image, or from a letter or emoji, and download them as a ready-to-use ZIP with the HTML to paste in.",
+      "Upload a square logo, or type a letter or emoji, adjust the shape and padding, and download a ZIP with favicon.ico (16, 32 and 48 px), PNG icons, a 180-pixel Apple touch icon, 192 and 512-pixel Android icons and a web manifest, plus the HTML to paste into the head of your pages.",
     howToUse: [
       "Upload a square logo or icon, or switch to Letter or emoji and type one or two characters.",
       "Adjust the shape, padding and background until the small previews read clearly.",
@@ -639,7 +639,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert PNG images to WebP online for free. Transparency is preserved, files usually shrink by half or more, and nothing is uploaded.",
     intro:
-      "Turn PNGs into WebP files that keep their transparency but weigh a fraction as much — the usual first step in making a page load faster.",
+      "To convert PNG to WebP, add one file or a batch, set the quality — around 90 for logos and screenshots, 75 to 85 for photos — and compare the before and after sizes. WebP keeps transparency, and files usually shrink by half or more. Every current browser displays WebP. Nothing is uploaded.",
     howToUse: [
       "Add one PNG or a whole batch.",
       "Set the quality; 80 to 90 is right for most pictures.",
@@ -677,7 +677,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert JPG photos to WebP online for free. Typically 25-35% smaller at the same visual quality, converted in your browser with nothing uploaded.",
     intro:
-      "Re-encode photographs as WebP, which reaches the same visual quality as JPG in noticeably fewer bytes.",
+      "To convert JPG to WebP, add one photo or a batch, choose a quality — 80 suits most photographs — and check the saving reported for each file. WebP is typically 25–35% smaller at the same visual quality. Camera metadata such as location is not carried across. Keep the original JPG as your master. Nothing is uploaded.",
     howToUse: [
       "Add one JPG or a batch of them.",
       "Choose a quality — 80 suits most photographs.",
@@ -756,7 +756,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert SVG to PNG online at any resolution. The vector is drawn at the size you ask for, so the result is sharp rather than scaled up.",
     intro:
-      "Turn a vector drawing into a PNG at whatever pixel size you need, for places that will not accept an SVG.",
+      "To convert SVG to PNG, add the file, set the output width — the height follows the drawing's proportions — choose a transparent or white background, and download. The vector is drawn at exactly that size, so it stays sharp; about twice the display size suits high-density screens. External fonts and images in the SVG are not loaded.",
     howToUse: [
       "Add the SVG file.",
       "Set the output width — the height follows the drawing's proportions.",
@@ -953,7 +953,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Add a text watermark to a photo online. Corner, centred or tiled, with adjustable size, colour and opacity, applied in your browser.",
     intro:
-      "Stamp your name or a copyright line across a picture before you post it, without handing the original to a website first.",
+      "To watermark a photo, add it, type your name, site address or copyright line, choose a corner, centred or tiled position and set the size and opacity. The text is drawn into a new copy with a soft shadow so it stays readable; your original is untouched and never uploaded. A tiled mark is the hardest to remove.",
     howToUse: [
       "Add the picture.",
       "Type the wording — a name, a site address or a copyright line.",
@@ -992,7 +992,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Blur faces, number plates or anything private in a photo online. The blur is applied to the picture itself, and nothing is uploaded.",
     intro:
-      "Blur out faces, number plates or a name badge before sharing a photo — on your own device, which is rather the point.",
+      "To blur faces in a photo, drag a box over each face, number plate or name badge, adjust the strength until nothing is recognisable, and apply. The marked pixels are replaced, not covered, so the detail cannot be recovered from the saved picture. You mark the areas yourself, so nothing is analysed or uploaded.",
     howToUse: [
       "Add the photo.",
       "Drag a box across each face or detail that must be hidden.",

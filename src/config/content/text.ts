@@ -368,7 +368,7 @@ export const textContent: Record<string, ToolContent> = {
     seoDescription:
       "Clean up messy text: collapse spaces, fix line breaks, straighten smart quotes, strip invisible characters and remove HTML tags.",
     intro:
-      "Tidy up text pasted from a PDF, an email or a web page — extra spaces, broken line breaks, smart quotes and invisible characters.",
+      "Paste text from a PDF, email or web page and switch on the fixes you need: collapse extra spaces, join broken PDF line breaks while keeping real paragraphs, straighten smart quotes, strip invisible characters or remove HTML tags. The preview updates as you toggle each one. Your text is never uploaded.",
     howToUse: [
       "Paste your messy text.",
       "Switch on the fixes you need; each one is independent.",
