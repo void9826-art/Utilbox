@@ -390,7 +390,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Calculate a weighted GPA from your courses and credit hours. Supports 4.0, 4.3 and 5.0 scales, letter grades or direct grade points.",
     intro:
-      "Add your courses with their credits and grades to get a credit-weighted grade point average. Works with 4.0, 4.3 and 5.0 scales.",
+      "Your GPA is a credit-weighted average: GPA = Σ (grade points × credits) ÷ Σ credits. Choose a 4.0, 4.3 or 5.0 scale, add each course with its credits and grade, and the GPA updates as you go. Mark pass/fail courses as excluded and they are left out of both totals.",
     howToUse: [
       "Choose the grading scale your institution uses.",
       "Add a row for each course with its credit hours and the grade you received.",
@@ -772,7 +772,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Project savings growth with compound interest and optional regular deposits. Choose any compounding frequency and see a year-by-year breakdown.",
     intro:
-      "See how savings grow over time with compound interest, including the effect of paying in regularly.",
+      "Compound interest means interest earns interest. Enter a starting balance, annual rate, time and compounding frequency, plus any regular deposits, to see the final balance and a year-by-year table. For example, 5,000 at 7% for 10 years compounded monthly, plus 200 a month, grows to about 44,665. It is a projection, not a forecast.",
     howToUse: [
       "Enter your starting balance, the annual interest rate and how long you are investing for.",
       "Choose how often interest is compounded.",

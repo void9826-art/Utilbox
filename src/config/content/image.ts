@@ -132,7 +132,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "See and remove EXIF data from photos online — GPS location, camera details and dates. Works on JPG, PNG and WebP without re-compressing, and nothing is uploaded.",
     intro:
-      "See what a photo reveals about where and how it was taken, then remove that metadata before you share it. The image itself is not re-compressed.",
+      "To remove EXIF data, add JPG, PNG or WebP photos, review what each one reveals — GPS location, device and dates are flagged first — and press Remove metadata. Only the metadata blocks are cut out, so the image is not re-compressed. The colour profile and JPG rotation are kept by default. Nothing is uploaded.",
     howToUse: [
       "Add one or more JPG, PNG or WebP photos.",
       "Review the metadata found in each photo — location, device details and dates are flagged at the top.",
@@ -371,7 +371,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert WebP images to JPG so any application can open them. Free, batch-capable, and processed entirely in your browser.",
     intro:
-      "Convert WebP images to JPG so older software and printers can open them. Works on both lossy and lossless WebP.",
+      "To convert WebP to JPG, add your files, set the JPEG quality and the background colour for transparent areas, then convert and download. JPG opens in older software and print services that reject WebP. Expect the JPG to be 25–35% larger, and an animated WebP keeps only its first frame. Nothing is uploaded.",
     howToUse: [
       "Add your WebP files.",
       "Set the JPEG quality and the background colour for transparent areas.",
@@ -794,7 +794,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Crop any photo into a circle online, with a transparent background and an optional white ring. Nothing is uploaded.",
     intro:
-      "Cut a picture into a circle for a profile photo or an avatar, with the corners left properly transparent.",
+      "To crop a picture into a circle, add it, zoom until the subject fills the frame, add a white ring if it will sit on a dark background, and download. The result is always a PNG, because only PNG keeps the corners transparent; a JPG would show the circle as a square. Nothing is uploaded.",
     howToUse: [
       "Add the photo.",
       "Zoom in if the subject needs to fill more of the frame.",
@@ -834,7 +834,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Size a portrait to passport dimensions online: 35x45mm for the UK and EU, 2x2 inches for the US and India, plus China and Australia, at 300 DPI.",
     intro:
-      "Crop a portrait to the exact dimensions an application asks for, at print quality, without uploading a photograph of your face to anyone.",
+      "To make a passport photo, add a portrait against a plain background, choose the country or size — such as 35 × 45 mm for the UK and EU or 2 × 2 inches for the US — and position the head. The JPG is rendered at 300 DPI for printing. Your photo is cropped in your browser, never uploaded.",
     howToUse: [
       "Add a portrait taken against a plain background.",
       "Choose the country or size you need.",
@@ -874,7 +874,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Resize pictures to Instagram sizes: square, portrait, landscape and Story or Reel. Fill and crop, or fit and pad with a colour you choose.",
     intro:
-      "Prepare a picture at exactly the size Instagram stores, so the app has no reason to re-compress or crop it for you.",
+      "To resize a picture for Instagram, choose square, portrait (1080 × 1350), landscape, or Story and Reel (1080 × 1920), then fill and crop, or fit and pad so nothing is cut off. Uploading the exact size stops Instagram re-compressing your image and softening text. The picture is resized in your browser.",
     howToUse: [
       "Add the picture.",
       "Choose the format — square, portrait, landscape, or Story and Reel.",

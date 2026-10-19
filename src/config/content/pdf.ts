@@ -9,7 +9,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Add page numbers to a PDF online for free. Choose the position, format and first number, skip the cover page or number a range — all in your browser.",
     intro:
-      "Number the pages of a PDF in seconds. Choose where the numbers go and how they read, then download the numbered copy.",
+      "To number a PDF's pages, add it, choose the position and a format such as “Page 1 of 10”, set the first number and optionally skip the cover page, then download. Numbers are real text, placed the right way up even on rotated or scanned pages, and nothing else in the document changes.",
     howToUse: [
       "Add a PDF.",
       "Choose the position and a format such as “Page 1 of 10”.",
@@ -580,7 +580,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Copy all the text out of a PDF as plain text, page by page. Free, instant, and processed in your browser with no upload.",
     intro:
-      "Extract everything a PDF says as plain text. Copy it, or download it as a .txt file.",
+      "To get the text out of a PDF, add it, choose whether to keep page markers and the original line breaks, then copy the text or download a .txt file. Joining lines gives flowing paragraphs that paste cleanly elsewhere. A scanned PDF has no text layer, so use the OCR tool instead. Nothing is uploaded.",
     howToUse: [
       "Add your PDF.",
       "Wait a moment while each page is read.",
@@ -616,7 +616,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Rotate PDF pages 90, 180 or 270 degrees and save the change permanently. Rotate every page or just the ones that need it.",
     intro:
-      "Turn sideways or upside-down pages the right way up, and save the change permanently rather than just for one viewing.",
+      "To rotate a PDF, turn every page at once or click individual thumbnails, check the previews and save. The rotation is written into the file, so it stays fixed when you email or print it — unlike rotating the view in a reader. Only a rotation flag changes, so quality is untouched. Nothing is uploaded.",
     howToUse: [
       "Add the PDF you want to fix.",
       "Rotate every page at once, or click individual thumbnails to rotate just those.",
@@ -652,7 +652,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Remove unwanted pages from a PDF and download the rest. Select pages visually or by range, entirely in your browser.",
     intro:
-      "Remove the pages you do not want and keep everything else. Select them from thumbnails or type a range.",
+      "To delete pages from a PDF, click the pages to remove or type a range such as 2, 5-7, check how many will remain and download the trimmed copy. The pages you keep are copied unchanged, and your original file is never modified. At least one page must stay. Everything happens in your browser.",
     howToUse: [
       "Add your PDF.",
       "Click the pages you want to remove, or type a range such as 2, 5-7.",
@@ -1092,7 +1092,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Flatten a filled PDF form so the answers become part of the page and can no longer be edited. Lists every field found before you commit.",
     intro:
-      "Lock the answers in a filled-in PDF form, so what you send is what the other person sees — and cannot change.",
+      "To flatten a filled PDF form, add it, check the list of fields found and press Flatten form. Each answer is painted onto the page and the editable field removed, so recipients can no longer change it and answers look the same in every viewer. It cannot be undone, so keep your editable original.",
     howToUse: [
       "Add the filled-in form.",
       "Check the list of fields that were found, with the type of each one.",
@@ -1133,7 +1133,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Sign a PDF online for free. Draw your signature with a mouse, finger or stylus, place it anywhere on any page, and download — nothing is uploaded.",
     intro:
-      "Draw your signature, drop it where it belongs on the page, and download the signed PDF — without uploading a document you would rather keep private.",
+      "To sign a PDF, draw your signature with a mouse, finger or stylus, click where it should sit on the page, set its width and download. The document and your signature stay in your browser and are never uploaded. This is a visible drawn signature, not a certificate-based digital signature.",
     howToUse: [
       "Add the PDF you need to sign.",
       "Draw your signature in the white box with a mouse, a finger or a stylus.",
@@ -1174,7 +1174,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Redact a PDF online. Marked areas are flattened away so the hidden words are removed from the file, not just covered with a black box.",
     intro:
-      "Black out private details in a PDF so the words are genuinely gone from the file — not hidden under a rectangle that can be deleted.",
+      "To redact a PDF, add it, drag across anything that must go on each page and press Apply redactions. Marked pages are rebuilt from a picture with those areas painted out, so the hidden words are not in the file at all — unlike a black box drawn on top. Unmarked pages keep their selectable text.",
     howToUse: [
       "Add the PDF containing details you need to remove.",
       "Pick a page, then drag across anything that must go.",

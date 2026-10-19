@@ -6,7 +6,7 @@ export const generatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Create a Wi-Fi QR code guests scan to join your network, or QR codes for contact cards, restaurant menus and calendar events — with printable cards.",
     intro:
-      "Make a QR code that connects guests to your Wi-Fi, saves your contact details, opens a menu or adds an event to a calendar — then print it as a ready-made card.",
+      "Choose Wi-Fi, Contact, Menu or Event, fill in the details and download the QR code as PNG or SVG, or print a ready-made card. Guests scan a Wi-Fi code with their phone camera to join without typing the password. The details are encoded in the code itself, so it never expires, and nothing is sent anywhere.",
     howToUse: [
       "Choose Wi-Fi, Contact, Menu or Event.",
       "Fill in the details — for Wi-Fi, the network name, password and security type exactly as your router shows them.",
@@ -90,7 +90,7 @@ export const generatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Build UTM-tagged campaign links for Google Analytics, keep a history of every link you create, export it as CSV, and download a QR code for print.",
     intro:
-      "Add UTM tags to a link so your analytics shows exactly which email, post or ad sent each visitor — then save it, export your list, or turn it into a QR code.",
+      "Paste the page address, fill in source, medium and campaign, and copy the UTM-tagged link, so your analytics shows which email, post or ad sent each visitor. Values are lower-cased with hyphens by default to keep reports clean. Save links to a history in this browser, export them as CSV, or download a QR code.",
     howToUse: [
       "Paste the page address you are linking to.",
       "Fill in source, medium and campaign — pick a suggestion or type your own.",
@@ -460,7 +460,7 @@ export const generatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Generate lorem ipsum placeholder text by paragraph, sentence, word or list item. Choose classic Latin or plain English filler.",
     intro:
-      "Generate placeholder text for a design mockup — by paragraph, sentence, word or list item.",
+      "Choose paragraphs, sentences, words or list items, set how many, and pick classic Latin or plain English filler, then copy or download the text. Lorem ipsum is a scrambled passage from Cicero written in 45 BC; it is meaningless on purpose, so reviewers judge layout and typography rather than the words.",
     howToUse: [
       "Choose what to generate: paragraphs, sentences, words or list items.",
       "Set how many you want.",

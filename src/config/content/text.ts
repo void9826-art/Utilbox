@@ -259,7 +259,7 @@ export const textContent: Record<string, ToolContent> = {
     seoDescription:
       "Strip repeated lines from a list, with options for case sensitivity, whitespace trimming and keeping only the duplicates instead.",
     intro:
-      "Remove repeated lines from a list and see exactly how many were taken out.",
+      "Paste a list with one item per line to remove repeated lines and see how many were taken out. The first occurrence of each line stays in place, so the order is kept. Choose whether case and trailing spaces matter, or invert it to list only the duplicates. Large lists stay fast, and nothing is uploaded.",
     howToUse: [
       "Paste your list, one item per line.",
       "Decide whether case and surrounding whitespace should matter.",

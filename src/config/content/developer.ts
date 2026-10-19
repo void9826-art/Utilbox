@@ -9,7 +9,7 @@ export const developerContent: Record<string, ToolContent> = {
     seoDescription:
       "Check an SSL certificate's expiry date for any domain, plus whether its chain is trusted, the name matches, and which TLS version the server uses.",
     intro:
-      "Enter a domain to see exactly when its SSL certificate expires, who issued it, and whether browsers and apps will trust it.",
+      "Enter a domain to see when its SSL certificate expires, who issued it, whether the name matches and whether the chain is trusted. The check runs on this site's server, because browsers cannot read certificate details, and nothing is stored. Renew with at least two weeks to spare; under 30 days left often means auto-renewal has failed.",
     howToUse: [
       "Type the domain, such as example.com, or paste a full address.",
       "Leave the port at 443 for a website, or choose the port of a mail or other TLS service.",
@@ -135,7 +135,7 @@ export const developerContent: Record<string, ToolContent> = {
     seoDescription:
       "Preview how a link appears on Facebook, LinkedIn, X and chat apps. Check a page's Open Graph and Twitter tags for problems, or write new tags and copy them.",
     intro:
-      "See how a page will look when its link is shared, and find out why a preview is missing its image or showing the wrong title. Or write the tags from scratch.",
+      "Enter a page address to preview how its link looks on Facebook, LinkedIn, X and chat apps, with a list of problems such as a missing og:image or one smaller than 1200 × 630. The page is fetched by this site's server, because browsers cannot read other sites. Or switch to Write tags to create them.",
     howToUse: [
       "Enter a page address and press Preview — or switch to Write tags to create them.",
       "Read the list of problems, such as a missing og:image or an image that is too small.",
