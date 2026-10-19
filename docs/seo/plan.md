@@ -7,6 +7,7 @@ Written 2026-10-19. Phases 1–7 of the master prompt. Data files sit next to th
 | `keywords.csv` | 564 keywords: the head term plus up to 4 real long-tails for each of the 129 tools. Each has its intent, an AI-filter verdict, whether the page already mentions the modifier, and where the keyword came from. |
 | `prompts.csv` | 60 conversational prompts mapped to target pages. 10 have a logged baseline; 6 point at tools that don't exist yet (`GAP:`). |
 | `outreach-tracker.csv` | 12-week off-site plan. Every target is one the AI answers actually cited. |
+| `listing-kit.md` | Ready-to-paste text for AlternativeTo, SaaSHub, Product Hunt, dev.to and forum answers, with the exact privacy wording. |
 
 **Data limits, stated once.** No search-volume data was available (the Ahrefs connector isn't authorised and there's no Keyword Planner access). The keywords come from Google and Bing autocomplete, which proves people type them but gives no volumes. Competitor visibility comes from a web search engine that isn't Google, so it's a rough signal, not real rankings. The AI baseline was run on one engine (Claude web search). ChatGPT, Gemini and Perplexity still need to be checked by hand (see Measurement).
 
@@ -53,7 +54,7 @@ Written 2026-10-19. Phases 1–7 of the master prompt. Data files sit next to th
   - *invoice generator without login*
   - *qr code generator without subscription / no expiration*
   - *json formatter offline*
-- **Fix:** where the tool genuinely does it, work the phrase into a FAQ answer or the intro. **Don't add "offline" anywhere until a service worker ships.**
+- **Fix:** where the tool genuinely does it, work the phrase into a FAQ answer or the intro. **Offline support shipped 2026-10-19,** so "works offline" may be claimed for tools that pass the test — not for OCR, Voice to Text or the live lookups.
 - **Caution:** autocomplete still returns some noise (e.g. "image to text art"). Skim each row before acting on it.
 
 ## Competitor gap: top 25 keywords
@@ -89,7 +90,7 @@ Engine: Claude web search, 2026-10-19. The results include spam pages, so read t
   - **HowTo schema:** Google stopped showing HowTo rich results in 2023.
   - **H1 rewrites:** titles already carry the benefit, and a bare tool-name H1 matches what people search for.
 - **Open:**
-  - **Service worker for offline use (P1).** Ship it before any copy says "offline".
+  - ✅ **Service worker shipped 2026-10-19.** Verified with the server shut down: Merge PDF still merged two files, visited pages reloaded, and unvisited pages showed a clear offline message.
   - **Bing indexing:** you're checking Bing Webmaster Tools.
 
 ## Phase 4: tool-page template (done)
@@ -121,17 +122,17 @@ Also on the template list:
 
 | Item | Why | Effort |
 |---|---|---|
-| Target file size in Compress Image ("to 100 KB / 1 MB") | Dedicated pages win this query; form uploads need it | M |
-| Offline support (service worker) | Lets the privacy claim pass the test AI answers tell users to run | M |
+| Target file size in Compress Image ("to 100 KB / 1 MB") | Dedicated pages win this query; form uploads need it | ✅ Live (a 4.3 MB photo came out at 98.6 KB for a 100 KB target) |
+| Offline support (service worker) | Lets the privacy claim pass the test AI answers tell users to run | ✅ Live |
 | Unlock PDF (remove a password you know) | Prompt 6; no tool exists | M |
-| GST/VAT calculator | Prompt 33 | S |
-| Tip / bill-split calculator | Prompt 34 | S |
-| Text diff (compare two texts) | Prompt 52; `src/lib/text-diff.ts` already exists | S |
+| GST/VAT calculator | Prompt 33 | Already existed as the Tax Calculator; prompt mapping fixed |
+| Tip / bill-split calculator | Prompt 34 | ✅ Live: /calculators/tip-calculator |
+| Text diff (compare two texts) | Prompt 52; `src/lib/text-diff.ts` already exists | ✅ Live: /text/text-compare |
 | Cooking converter (cups to grams) | Prompt 42; needs a sourced density table | M |
 
 **Hub pages.** The 200 guides already cover HEIC formats, PDFs under 1 MB, the EMI formula, merging without uploading and redaction. Only these *new types* are proposed. **Each needs your OK before publishing**, and any claim about a competitor must be checked on the day and dated.
 
-1. How to check that an online tool really doesn't upload your files (network tab + offline test)
+1. ✅ How to check that an online tool really doesn't upload your files (network tab + offline test) — live at /guides/check-a-tool-does-not-upload-files
 2. Free alternatives to TinyWow, with what each one uploads (verified table, dated)
 3. Free alternatives to Smallpdf and iLovePDF for everyday PDF jobs
 4. PDF tools that work without an account: what you can and can't do for free
@@ -151,7 +152,7 @@ Also on the template list:
 
 - **Name:** Utilboxes
 - **One-liner:** Free online tools that run in your browser: PDF, image, text, calculators and converters. No sign-up, no limits.
-- **Longer:** 129 free tools for PDFs, images, calculations, unit conversion, text and developer data. 124 run entirely in your browser; 2 fetch public reference data (exchange rates, YouTube thumbnails); 3 send only a domain or URL to the site's own server for a network check. Nothing is stored.
+- **Longer:** 131 free tools for PDFs, images, calculations, unit conversion, text and developer data. 126 run entirely in your browser; 2 fetch public reference data (exchange rates, YouTube thumbnails); 3 send only a domain or URL to the site's own server for a network check. Nothing is stored.
 - **URL:** https://www.utilboxes.xyz
 - **Logo:** `public/logo-mark.png`
 
@@ -202,7 +203,7 @@ Also on the template list:
 - You: Bing Webmaster Tools + Search Console noindex check
 - You: GA4 AI channel
 - ✅ Answer-first intros on all 129 tool pages (live)
-- Build target-size compression and offline support (service worker)
+- ✅ Target-size compression and offline support (live)
 - You: AlternativeTo, SaaSHub; prepare the Product Hunt launch
 
 ### 60 days
@@ -227,9 +228,9 @@ Also on the template list:
 | llms.txt + dates + guide links | S | Low–medium | ✅ Live |
 | Answer-first intros (129 pages) | M | Medium (AEO) | ✅ Live |
 | Content-gap modifiers in FAQs | M | Medium | Not started |
-| Target-size image compression | M | High for a high-demand long-tail | Not started |
-| Offline support (service worker) | M | High for GEO trust | Not started |
-| New tools (unlock, GST, tip, diff, cooking) | M | Medium | Not started |
+| Target-size image compression | M | High for a high-demand long-tail | ✅ Live |
+| Offline support (service worker) | M | High for GEO trust | ✅ Live |
+| New tools (unlock, GST, tip, diff, cooking) | M | Medium | Tip and Text Compare live; GST already covered; Unlock PDF and cooking converter not started |
 | Product Hunt + AlternativeTo + SaaSHub | M | **High**: the sources AI cites | You |
 | dev.to / Indie Hackers articles | M | Medium–high | You (I can draft) |
 | Hub pages (10) | L | Medium | Needs your OK |

@@ -1089,4 +1089,58 @@ export const calculatorContent: Record<string, ToolContent> = {
       },
     ],
   },
+
+  "tip-calculator": {
+    seoTitle: "Tip Calculator — Split the Bill Between Friends",
+    seoDescription:
+      "Work out the tip and split the bill between any number of people, with each share rounded up if you like. Shows the working. Free and private.",
+    intro:
+      "Enter the bill, the tip percentage and the number of people to see the tip, the total and what each person pays. Tap a preset such as 15% or 20%, or round each share up to a whole amount for cash. A 15% tip on an 80.00 bill is 12.00, so four people pay 23.00 each.",
+    howToUse: [
+      "Enter the bill amount.",
+      "Pick a tip percentage, or type your own.",
+      "Enter how many people are sharing.",
+      "Tick Round each share up for cash, then read what each person pays.",
+    ],
+    howItWorks: [
+      "The tip is the bill multiplied by the tip percentage, and the total is the bill plus the tip. Dividing the total by the number of people gives each share. Amounts are rounded to the cent, and when the total does not divide evenly the working says who pays the odd cent.",
+      "Rounding each share up to a whole amount is handy for cash. The tool shows how much extra that collects, so the group can leave it as additional tip or let one person pay less.",
+      "Customs differ on whether to tip on the total or on the price before tax. The tip is worked out on whatever amount you enter, so enter the figure you want to tip on.",
+    ],
+    formula: {
+      expression: "tip = bill × rate      total = bill + tip      each = total ÷ people",
+      where: [
+        "bill — the amount you are tipping on",
+        "rate — the tip percentage as a decimal, e.g. 0.15 for 15%",
+        "people — how many are sharing the bill",
+      ],
+    },
+    example: {
+      scenario: "An 80.00 bill, a 15% tip, shared by four people",
+      steps: ["Tip = 80.00 × 0.15 = 12.00", "Total = 80.00 + 12.00 = 92.00", "Each = 92.00 ÷ 4 = 23.00"],
+      result: "23.00 each, of which 3.00 is tip.",
+    },
+    faq: [
+      {
+        question: "How much should I tip?",
+        answer:
+          "It depends on where you are. In the United States 15–20% is usual at table-service restaurants, while in many other countries service is included or a small round-up is enough. Follow the local custom.",
+      },
+      {
+        question: "Should the tip be on the total or before tax?",
+        answer:
+          "Both are common. Tipping on the amount before tax is slightly cheaper; enter whichever figure you want to tip on.",
+      },
+      {
+        question: "What happens when the bill does not split evenly?",
+        answer:
+          "Each share is rounded to the cent and the working shows the odd cent, so you know one person pays a cent more or less. Rounding up to whole amounts avoids it.",
+      },
+      {
+        question: "Can I split the bill unevenly?",
+        answer:
+          "Not here; every share is equal. For different amounts, add up each person's items first and apply the tip percentage to each.",
+      },
+    ],
+  },
 };

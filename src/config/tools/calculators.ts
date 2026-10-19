@@ -19,6 +19,7 @@ import {
   Tag,
   Trophy,
   Wallet,
+  HandCoins,
 } from "lucide-react";
 
 import type { ToolMeta } from "@/types/tool";
@@ -314,5 +315,17 @@ export const calculatorTools: ToolMeta[] = [
     requiresFile: false,
     processing: "client",
     addedOn: "2026-09-10",
+  },
+  {
+    slug: "tip-calculator",
+    name: "Tip Calculator",
+    category: "calculators",
+    description: "Work out the tip and split the bill between any number of people.",
+    keywords: ["tip calculator", "split the bill", "bill splitter", "how much to tip", "tip per person"],
+    icon: HandCoins,
+    related: ["percentage-calculator", "discount-calculator", "tax-calculator", "currency-converter"],
+    requiresFile: false,
+    processing: "client",
+    addedOn: "2026-10-19",
   },
 ];

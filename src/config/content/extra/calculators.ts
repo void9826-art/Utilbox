@@ -510,4 +510,18 @@ export const calculatorExtra: Record<string, ToolContentExtra> = {
       },
     ],
   },
+
+  "tip-calculator": {
+    tips: [
+      "Check whether a service charge is already on the bill before adding a tip.",
+      "Rounding shares up is easiest with cash; the overage can simply join the tip.",
+      "Large groups are sometimes charged an automatic gratuity, so look for it on the receipt.",
+    ],
+    faq: [
+      {
+        question: "Is my bill saved anywhere?",
+        answer: "No. Everything is calculated in your browser, and nothing is stored or sent.",
+      },
+    ],
+  },
 };

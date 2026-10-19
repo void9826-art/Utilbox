@@ -248,4 +248,19 @@ export const textExtra: Record<string, ToolContentExtra> = {
       },
     ],
   },
+
+  "text-compare": {
+    tips: [
+      "Put the older version on the left so that additions read as additions.",
+      "Compare clean copies of each draft rather than a tracked-changes copy, which carries deletion marks of its own.",
+      "Paste the copied report into an email or a ticket: added lines start with + and removed lines with -.",
+    ],
+    faq: [
+      {
+        question: "How long can the texts be?",
+        answer:
+          "Several thousand lines compare comfortably. Above 4,000 lines on either side the tool switches to a faster, coarser comparison from the first line that differs.",
+      },
+    ],
+  },
 };

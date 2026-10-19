@@ -404,4 +404,45 @@ export const textContent: Record<string, ToolContent> = {
       },
     ],
   },
+
+  "text-compare": {
+    seoTitle: "Text Compare — Find Differences Between Two Texts",
+    seoDescription:
+      "Compare two versions of a text and see exactly which lines were added or removed. Ignore spacing or capitals if you like. Free, and nothing is uploaded.",
+    intro:
+      "Paste the original and the changed version to see exactly which lines were added or removed, marked with a plus or a minus. You can ignore spacing and blank lines, or capital letters, and copy the differences as a report. The comparison runs in your browser, so your text is never uploaded.",
+    howToUse: [
+      "Paste the earlier version into Original text.",
+      "Paste the newer version into Changed text.",
+      "Choose whether spacing and capital letters should count as differences.",
+      "Read the added and removed lines, or copy the report.",
+    ],
+    howItWorks: [
+      "The two texts are split into lines and lined up with a longest-common-subsequence comparison — the method version-control tools use. It finds the smallest set of additions and removals that turns one version into the other, so a paragraph inserted near the top does not make every later line look changed.",
+      "Ignoring spacing trims each line and drops blank lines before comparing, which stops a re-indented copy from looking entirely different. Ignoring capitals compares lower-cased copies while still showing the original wording.",
+      "The comparison is by line. A line with one edited word appears as one line removed and one line added, which keeps a long report easy to scan. Texts of more than 4,000 lines are compared more coarsely, from the point where they start to differ, so the page stays responsive.",
+      PRIVACY_NOTE,
+    ],
+    faq: [
+      {
+        question: "Does it show which words changed inside a line?",
+        answer:
+          "No. It compares whole lines, so a line with an edited word shows as the old line removed and the new line added, next to each other in the list.",
+      },
+      {
+        question: "Can I compare Word documents or PDFs?",
+        answer:
+          "Paste their text here. For two PDF files, Compare Two PDFs reads each page and compares the text for you.",
+      },
+      {
+        question: "Why does everything look changed?",
+        answer:
+          "Usually because the lines were re-wrapped or re-indented. Keep the spacing option switched on; if the line breaks themselves moved, the texts genuinely differ line by line.",
+      },
+      {
+        question: "Is my text uploaded?",
+        answer: "No. Both texts stay in your browser tab and the comparison runs there.",
+      },
+    ],
+  },
 };

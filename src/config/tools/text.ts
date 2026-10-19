@@ -9,6 +9,7 @@ import {
   ListMinus,
   Megaphone,
   TextQuote,
+  FileDiff,
 } from "lucide-react";
 
 import type { ToolMeta } from "@/types/tool";
@@ -153,5 +154,17 @@ export const textTools: ToolMeta[] = [
     requiresFile: false,
     processing: "client",
     addedOn: "2026-09-10",
+  },
+  {
+    slug: "text-compare",
+    name: "Text Compare",
+    category: "text",
+    description: "See which lines were added or removed between two versions of a text.",
+    keywords: ["compare text", "text diff", "compare two texts", "find differences between two texts", "diff checker"],
+    icon: FileDiff,
+    related: ["pdf-compare", "remove-duplicate-lines", "sort-lines", "text-cleaner"],
+    requiresFile: false,
+    processing: "client",
+    addedOn: "2026-10-19",
   },
 ];

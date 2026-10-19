@@ -12,7 +12,7 @@ const Loading = () => <ToolSkeleton />;
 
 /**
  * Every tool is a separate lazily-loaded chunk, so visiting one tool page never
- * downloads the code for the other 128.
+ * downloads the code for the other 130.
  */
 const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "merge-pdf": dynamic(() => import("./pdf/merge-pdf"), { loading: Loading }),
@@ -66,6 +66,7 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "take-home-pay-calculator": dynamic(() => import("./calculators/take-home-pay-calculator"), { loading: Loading }),
   "ev-charging-cost-calculator": dynamic(() => import("./calculators/ev-charging-cost-calculator"), { loading: Loading }),
   "subscription-cost-tracker": dynamic(() => import("./calculators/subscription-cost-tracker"), { loading: Loading }),
+  "tip-calculator": dynamic(() => import("./calculators/tip-calculator"), { loading: Loading }),
   "compress-image": dynamic(() => import("./image/compress-image"), { loading: Loading }),
   "resize-image": dynamic(() => import("./image/resize-image"), { loading: Loading }),
   "jpg-to-png": dynamic(() => import("./image/jpg-to-png"), { loading: Loading }),
@@ -129,6 +130,7 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "linkedin-formatter": dynamic(() => import("./text/linkedin-formatter"), { loading: Loading }),
   "voice-to-text": dynamic(() => import("./text/voice-to-text"), { loading: Loading }),
   "resume-ats-checker": dynamic(() => import("./text/resume-ats-checker"), { loading: Loading }),
+  "text-compare": dynamic(() => import("./text/text-compare"), { loading: Loading }),
   "json-formatter": dynamic(() => import("./developer/json-formatter"), { loading: Loading }),
   "json-validator": dynamic(() => import("./developer/json-validator"), { loading: Loading }),
   "json-to-csv": dynamic(() => import("./developer/json-to-csv"), { loading: Loading }),

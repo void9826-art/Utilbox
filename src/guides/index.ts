@@ -19,6 +19,7 @@ import { pdfLongTailGuides } from "./pdf-long-tail";
 import { pdfPagesAndPrintingGuides } from "./pdf-pages-and-printing";
 import { pdfPrivacyAndReadingGuides } from "./pdf-privacy-and-reading";
 import { percentagesAndLoansGuides } from "./percentages-and-loans";
+import { checkToolUploads } from "./check-tool-uploads";
 import { redactPdfProperly } from "./redact-pdf-properly";
 import { savingsPaySchoolGuides } from "./savings-pay-school";
 import { textAndDeveloperGuides } from "./text-and-developer";
@@ -92,6 +93,7 @@ export const GUIDES: Guide[] = [
   ...workLongTailGuides,
   ...webDataAndTimeGuides,
   ...webSitesAndSecurityGuides,
+  checkToolUploads,
 ];
 
 const bySlug = new Map(GUIDES.map((guide) => [guide.slug, guide]));
