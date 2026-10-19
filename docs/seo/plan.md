@@ -16,7 +16,7 @@ Written 2026-10-19. Phases 1–7 of the master prompt. Data files sit next to th
 
 | Phase | Status |
 |---|---|
-| 1 Audit | Done. On-site SEO is strong (schema, server-rendered text, LCP 1.8 s). The blocker is that **Bing has zero pages indexed**. |
+| 1 Audit | Done. On-site SEO is strong (schema, server-rendered text, LCP 1.8 s). Correction (2026-10-19): Bing Webmaster Tools shows the sitemap processed (344 URLs) and the homepage **indexed**. An earlier `site:` search wrongly suggested zero pages. The gap is ranking and visibility, not indexing. |
 | 2 Keywords and prompts | Done (`keywords.csv`, `prompts.csv`). |
 | 3 Technical | Done and live (commit 552fa76): llms.txt, real "Updated" dates, sitemap lastmod, dateModified, guide-to-tool links. The rest already existed. |
 | 4 Tool-page template | **Done 2026-10-19.** All 129 tool pages open with a 48–60-word answer-first intro built only from claims each page already makes. Shipped in six batches, each verified live. |
@@ -186,7 +186,7 @@ Also on the template list:
 
 | KPI | Baseline 2026-10-19 | 90-day target (direction, not a promise) |
 |---|---|---|
-| Bing indexed pages | 0 | Most of the 344 sitemap URLs |
+| Bing indexed pages | homepage confirmed; check Site Explorer for the total | Most of the 344 sitemap URLs |
 | Google indexed pages | check GSC | ≥ 330 |
 | AI prompts mentioning Utilboxes | 0 / 10 logged | ≥ 5 / 60 |
 | P1 keywords in Google top 10 | check GSC | rising month on month |
@@ -221,7 +221,7 @@ Also on the template list:
 
 | Task | Effort | Expected impact | Status |
 |---|---|---|---|
-| Fix Bing indexing (BWT) | S | **High**: gates ChatGPT search visibility | You, in progress |
+| Bing: confirm index coverage, request re-crawl of updated pages | S | Medium | You, in progress (homepage indexed) |
 | GSC noindex re-check | S | Medium | You |
 | llms.txt + dates + guide links | S | Low–medium | ✅ Live |
 | Answer-first intros (129 pages) | M | Medium (AEO) | ✅ Live |
