@@ -1,0 +1,565 @@
+priority,tool,category,type,keyword,intent,ai_filter,page_mentions_modifier,evidence_source,url
+P1,Age Calculator,calculators,head,age calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/age-calculator
+P1,Age Calculator,calculators,long-tail,age calculator by date of birth,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/age-calculator
+P1,Age Calculator,calculators,long-tail,age calculator based on date of birth,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,partly,google autocomplete,https://www.utilboxes.xyz/calculators/age-calculator
+P1,Age Calculator,calculators,long-tail,age calculator based on birthday,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,partly,google autocomplete,https://www.utilboxes.xyz/calculators/age-calculator
+P1,Age Calculator,calculators,long-tail,age calculator online,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/age-calculator
+P1,Base64 Encoder,developer,head,base64 encoder,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/developer/base64-encoder
+P1,Base64 Encoder,developer,long-tail,base64 encoder offline,action,Needs a tool (high click value),no,google (modifier probe),https://www.utilboxes.xyz/developer/base64-encoder
+P1,Base64 Encoder,developer,long-tail,base64 encoder decoder,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/base64-encoder
+P1,Base64 Encoder,developer,long-tail,base64 encoder online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/base64-encoder
+P1,Base64 Encoder,developer,long-tail,base64 encoder image,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/base64-encoder
+P1,BMI Calculator,calculators,head,bmi calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/bmi-calculator
+P1,BMI Calculator,calculators,long-tail,bmi calculator offline,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google (modifier probe),https://www.utilboxes.xyz/calculators/bmi-calculator
+P1,BMI Calculator,calculators,long-tail,bmi calculator women,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/bmi-calculator
+P1,BMI Calculator,calculators,long-tail,bmi calculator men,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/bmi-calculator
+P1,BMI Calculator,calculators,long-tail,bmi calculator kids,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/bmi-calculator
+P1,Case Converter,text,head,case converter,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/text/case-converter
+P1,Case Converter,text,long-tail,case converter no ads,action,Needs a tool (high click value),yes,google (modifier probe),https://www.utilboxes.xyz/text/case-converter
+P1,Case Converter,text,long-tail,case converter tool,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/case-converter
+P1,Case Converter,text,long-tail,case converter online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/case-converter
+P1,Case Converter,text,long-tail,case converter text,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/case-converter
+P1,Compress Image,image,head,compress image,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/compress-image
+P1,Compress Image,image,long-tail,compress image without losing quality,action,Needs a tool (high click value),partly,google (modifier probe),https://www.utilboxes.xyz/image/compress-image
+P1,Compress Image,image,long-tail,compress image size,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/compress-image
+P1,Compress Image,image,long-tail,compress image free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/compress-image
+P1,Compress Image,image,long-tail,compress image file,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/compress-image
+P1,Compress PDF,pdf,head,compress pdf,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/compress-pdf
+P1,Compress PDF,pdf,long-tail,compress pdf without losing quality,action,Needs a tool (high click value),partly,google (modifier probe),https://www.utilboxes.xyz/pdf/compress-pdf
+P1,Compress PDF,pdf,long-tail,compress pdf free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/compress-pdf
+P1,Compress PDF,pdf,long-tail,compress pdf file,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/compress-pdf
+P1,Compress PDF,pdf,long-tail,compress pdf file size,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/compress-pdf
+P1,Currency Converter,converters,head,currency converter,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/converters/currency-converter
+P1,Currency Converter,converters,long-tail,currency converter calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/currency-converter
+P1,Currency Converter,converters,long-tail,currency converter euro to usd,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,partly,google autocomplete,https://www.utilboxes.xyz/converters/currency-converter
+P1,Currency Converter,converters,long-tail,currency converter to usd,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google (modifier probe),https://www.utilboxes.xyz/converters/currency-converter
+P1,Currency Converter,converters,long-tail,currency converter gbp to usd,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/converters/currency-converter
+P1,EMI Calculator,calculators,head,emi calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/emi-calculator
+P1,EMI Calculator,calculators,long-tail,emi calculator without limit,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google (modifier probe),https://www.utilboxes.xyz/calculators/emi-calculator
+P1,EMI Calculator,calculators,long-tail,emi calculator offline,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google (modifier probe),https://www.utilboxes.xyz/calculators/emi-calculator
+P1,EMI Calculator,calculators,long-tail,emi calculator home loan,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/emi-calculator
+P1,EMI Calculator,calculators,long-tail,emi calculator car,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/emi-calculator
+P1,HEIC to JPG,image,head,heic to jpg converter online,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/heic-to-jpg
+P1,HEIC to JPG,image,long-tail,heic to jpg converter online without losing quality,action,Needs a tool (high click value),partly,google (modifier probe),https://www.utilboxes.xyz/image/heic-to-jpg
+P1,HEIC to JPG,image,long-tail,heic to jpg converter online free unlimited,action,Needs a tool (high click value),no,google (modifier probe),https://www.utilboxes.xyz/image/heic-to-jpg
+P1,HEIC to JPG,image,long-tail,heic to jpg converter online free,action,Needs a tool (high click value),yes,google (modifier probe),https://www.utilboxes.xyz/image/heic-to-jpg
+P1,HEIC to JPG,image,long-tail,heic to jpg converter online free multiple,action,Needs a tool (high click value),no,google (modifier probe),https://www.utilboxes.xyz/image/heic-to-jpg
+P1,Image to Text (OCR),image,head,image to text,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/image-to-text
+P1,Image to Text (OCR),image,long-tail,image to text without login,action,Needs a tool (high click value),no,google (modifier probe),https://www.utilboxes.xyz/image/image-to-text
+P1,Image to Text (OCR),image,long-tail,image to text without limit,action,Needs a tool (high click value),no,google (modifier probe),https://www.utilboxes.xyz/image/image-to-text
+P1,Image to Text (OCR),image,long-tail,image to text converter,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/image-to-text
+P1,Image to Text (OCR),image,long-tail,image to text art,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/image-to-text
+P1,Invoice Generator,generators,head,invoice generator,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/generators/invoice-generator
+P1,Invoice Generator,generators,long-tail,invoice generator without login,action,Needs a tool (high click value),no,google (modifier probe),https://www.utilboxes.xyz/generators/invoice-generator
+P1,Invoice Generator,generators,long-tail,invoice generator without sign up,action,Needs a tool (high click value),yes,google (modifier probe),https://www.utilboxes.xyz/generators/invoice-generator
+P1,Invoice Generator,generators,long-tail,invoice generator free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/invoice-generator
+P1,Invoice Generator,generators,long-tail,invoice generator by invoiced,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/generators/invoice-generator
+P1,JPG to PDF,pdf,head,jpg to pdf,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/jpg-to-pdf
+P1,JPG to PDF,pdf,long-tail,jpg to pdf without losing quality,action,Needs a tool (high click value),partly,google (modifier probe),https://www.utilboxes.xyz/pdf/jpg-to-pdf
+P1,JPG to PDF,pdf,long-tail,jpg to pdf without compression,action,Needs a tool (high click value),no,google (modifier probe),https://www.utilboxes.xyz/pdf/jpg-to-pdf
+P1,JPG to PDF,pdf,long-tail,jpg to pdf converter free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/jpg-to-pdf
+P1,JPG to PDF,pdf,long-tail,jpg to pdf free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/jpg-to-pdf
+P1,JSON Formatter,developer,head,json formatter,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/developer/json-formatter
+P1,JSON Formatter,developer,long-tail,json formatter offline,action,Needs a tool (high click value),no,google (modifier probe),https://www.utilboxes.xyz/developer/json-formatter
+P1,JSON Formatter,developer,long-tail,json formatter online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/json-formatter
+P1,JSON Formatter,developer,long-tail,json formatter and validator,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/json-formatter
+P1,JSON Formatter,developer,long-tail,json formatter notepad++,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/developer/json-formatter
+P1,Merge PDF,pdf,head,merge pdf,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/merge-pdf
+P1,Merge PDF,pdf,long-tail,merge pdf without losing quality,action,Needs a tool (high click value),partly,google (modifier probe),https://www.utilboxes.xyz/pdf/merge-pdf
+P1,Merge PDF,pdf,long-tail,merge pdf without uploading online,action,Needs a tool (high click value),yes,google (modifier probe),https://www.utilboxes.xyz/pdf/merge-pdf
+P1,Merge PDF,pdf,long-tail,merge pdf free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/merge-pdf
+P1,Merge PDF,pdf,long-tail,merge pdf files,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/merge-pdf
+P1,Password Generator,generators,head,password generator,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/generators/password-generator
+P1,Password Generator,generators,long-tail,password generator offline,action,Needs a tool (high click value),no,google (modifier probe),https://www.utilboxes.xyz/generators/password-generator
+P1,Password Generator,generators,long-tail,password generator 12 characters,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/password-generator
+P1,Password Generator,generators,long-tail,password generator 15 characters,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/generators/password-generator
+P1,Password Generator,generators,long-tail,password generator free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/password-generator
+P1,PDF to JPG,pdf,head,pdf to jpg,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-to-jpg
+P1,PDF to JPG,pdf,long-tail,pdf to jpg without losing quality,action,Needs a tool (high click value),no,google (modifier probe),https://www.utilboxes.xyz/pdf/pdf-to-jpg
+P1,PDF to JPG,pdf,long-tail,pdf to jpg without compression,action,Needs a tool (high click value),no,google (modifier probe),https://www.utilboxes.xyz/pdf/pdf-to-jpg
+P1,PDF to JPG,pdf,long-tail,pdf to jpg converter free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-to-jpg
+P1,PDF to JPG,pdf,long-tail,pdf to jpg free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-to-jpg
+P1,PDF to Word,pdf,head,pdf to word,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-to-word
+P1,PDF to Word,pdf,long-tail,pdf to word without losing formatting,action,Needs a tool (high click value),no,google (modifier probe),https://www.utilboxes.xyz/pdf/pdf-to-word
+P1,PDF to Word,pdf,long-tail,pdf to word converter,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-to-word
+P1,PDF to Word,pdf,long-tail,pdf to word free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-to-word
+P1,PDF to Word,pdf,long-tail,pdf to word doc,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-to-word
+P1,Percentage Calculator,calculators,head,percentage calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/percentage-calculator
+P1,Percentage Calculator,calculators,long-tail,percentage calculator no ads,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google (modifier probe),https://www.utilboxes.xyz/calculators/percentage-calculator
+P1,Percentage Calculator,calculators,long-tail,percentage calculator increase,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/percentage-calculator
+P1,Percentage Calculator,calculators,long-tail,percentage calculator money,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/percentage-calculator
+P1,Percentage Calculator,calculators,long-tail,percentage calculator difference,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/percentage-calculator
+P1,PNG to JPG,image,head,png to jpg,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/png-to-jpg
+P1,PNG to JPG,image,long-tail,png to jpg without losing quality,action,Needs a tool (high click value),partly,google (modifier probe),https://www.utilboxes.xyz/image/png-to-jpg
+P1,PNG to JPG,image,long-tail,png to jpg without compression,action,Needs a tool (high click value),no,google (modifier probe),https://www.utilboxes.xyz/image/png-to-jpg
+P1,PNG to JPG,image,long-tail,png to jpg converter,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/png-to-jpg
+P1,PNG to JPG,image,long-tail,png to jpg free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/png-to-jpg
+P1,QR Code Generator,generators,head,qr code generator,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/generators/qr-code-generator
+P1,QR Code Generator,generators,long-tail,qr code generator without sign up,action,Needs a tool (high click value),yes,google (modifier probe),https://www.utilboxes.xyz/generators/qr-code-generator
+P1,QR Code Generator,generators,long-tail,qr code generator without subscription,action,Needs a tool (high click value),no,google (modifier probe),https://www.utilboxes.xyz/generators/qr-code-generator
+P1,QR Code Generator,generators,long-tail,qr code generator free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/qr-code-generator
+P1,QR Code Generator,generators,long-tail,qr code generator free no expiration,action,Needs a tool (high click value),no,google (modifier probe),https://www.utilboxes.xyz/generators/qr-code-generator
+P1,Resize Image,image,head,resize image,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/resize-image
+P1,Resize Image,image,long-tail,resize image without losing quality,action,Needs a tool (high click value),yes,google (modifier probe),https://www.utilboxes.xyz/image/resize-image
+P1,Resize Image,image,long-tail,resize image without losing quality photoshop,action,Needs a tool (high click value),partly,google (modifier probe),https://www.utilboxes.xyz/image/resize-image
+P1,Resize Image,image,long-tail,resize image online,action,Needs a tool (high click value),yes,google (modifier probe),https://www.utilboxes.xyz/image/resize-image
+P1,Resize Image,image,long-tail,resize image for instagram without cropping,action,Needs a tool (high click value),partly,google (modifier probe),https://www.utilboxes.xyz/image/resize-image
+P1,Scientific Calculator,calculators,head,scientific calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/scientific-calculator
+P1,Scientific Calculator,calculators,long-tail,scientific calculator online,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/scientific-calculator
+P1,Scientific Calculator,calculators,long-tail,scientific calculator ti-30xs,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/scientific-calculator
+P1,Scientific Calculator,calculators,long-tail,scientific calculator ti 84,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,partly,bing autocomplete,https://www.utilboxes.xyz/calculators/scientific-calculator
+P1,Scientific Calculator,calculators,long-tail,scientific calculator with fraction,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,bing autocomplete,https://www.utilboxes.xyz/calculators/scientific-calculator
+P1,Split PDF,pdf,head,split pdf,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/split-pdf
+P1,Split PDF,pdf,long-tail,split pdf without losing quality,action,Needs a tool (high click value),partly,google (modifier probe),https://www.utilboxes.xyz/pdf/split-pdf
+P1,Split PDF,pdf,long-tail,split pdf without limit,action,Needs a tool (high click value),yes,google (modifier probe),https://www.utilboxes.xyz/pdf/split-pdf
+P1,Split PDF,pdf,long-tail,split pdf online free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/split-pdf
+P1,Split PDF,pdf,long-tail,split pdf pages,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/split-pdf
+P1,Temperature Converter,converters,head,temperature converter,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/converters/temperature-converter
+P1,Temperature Converter,converters,long-tail,temperature converter celsius to fahrenheit,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/temperature-converter
+P1,Temperature Converter,converters,long-tail,temperature converter f to c,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/temperature-converter
+P1,Temperature Converter,converters,long-tail,temperature converter calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/temperature-converter
+P1,Temperature Converter,converters,long-tail,temperature converter to fahrenheit,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google (modifier probe),https://www.utilboxes.xyz/converters/temperature-converter
+P1,Timestamp Converter,developer,head,timestamp converter,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/developer/timestamp-converter
+P1,Timestamp Converter,developer,long-tail,timestamp converter - sesh.fyi,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/developer/timestamp-converter
+P1,Timestamp Converter,developer,long-tail,timestamp converter online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/timestamp-converter
+P1,Timestamp Converter,developer,long-tail,timestamp converter epoch,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/timestamp-converter
+P1,Timestamp Converter,developer,long-tail,timestamp converter utc,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/timestamp-converter
+P1,Weight Converter,converters,head,weight converter,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/converters/weight-converter
+P1,Weight Converter,converters,long-tail,weight converter lbs to kg,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/weight-converter
+P1,Weight Converter,converters,long-tail,weight converter kg to pounds,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/weight-converter
+P1,Weight Converter,converters,long-tail,weight converter calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/weight-converter
+P1,Weight Converter,converters,long-tail,weight converter kg to cm,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,partly,google autocomplete,https://www.utilboxes.xyz/converters/weight-converter
+P1,Word Counter,text,head,word counter,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/text/word-counter
+P1,Word Counter,text,long-tail,word counter offline,action,Needs a tool (high click value),no,google (modifier probe),https://www.utilboxes.xyz/text/word-counter
+P1,Word Counter,text,long-tail,word counter free,action,Needs a tool (high click value),yes,google (modifier probe),https://www.utilboxes.xyz/text/word-counter
+P1,Word Counter,text,long-tail,word counter tool,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/word-counter
+P1,Word Counter,text,long-tail,word counter pdf,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/word-counter
+P2,Add Header and Footer to PDF,pdf,head,add header and footer to pdf,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-header-footer
+P2,Add Header and Footer to PDF,pdf,long-tail,add header and footer to pdf online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-header-footer
+P2,Add Page Numbers to PDF,pdf,head,add page numbers to pdf online,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-add-page-numbers
+P2,Add Page Numbers to PDF,pdf,long-tail,add page numbers to pdf online free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-add-page-numbers
+P2,Add Watermark to Image,image,head,add watermark to image,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/image-watermark
+P2,Add Watermark to Image,image,long-tail,add watermark to image free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/image-watermark
+P2,Add Watermark to Image,image,long-tail,add watermark to image in powerpoint,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/image-watermark
+P2,Add Watermark to Image,image,long-tail,add watermark to image in word,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/image-watermark
+P2,Add Watermark to Image,image,long-tail,add watermark to image bulk,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/image-watermark
+P2,Add Watermark to PDF,pdf,head,add watermark to pdf,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-watermark
+P2,Add Watermark to PDF,pdf,long-tail,add watermark to pdf free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-watermark
+P2,Add Watermark to PDF,pdf,long-tail,add watermark to pdf bluebeam,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-watermark
+P2,Add Watermark to PDF,pdf,long-tail,add watermark to pdf in preview,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-watermark
+P2,Add Watermark to PDF,pdf,long-tail,add watermark to pdf file,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-watermark
+P2,Area Converter,converters,head,area converter,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/converters/area-converter
+P2,Area Converter,converters,long-tail,area converter calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/area-converter
+P2,Area Converter,converters,long-tail,area converter meter to feet,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,partly,google autocomplete,https://www.utilboxes.xyz/converters/area-converter
+P2,Area Converter,converters,long-tail,area converter square feet to cent,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,partly,google autocomplete,https://www.utilboxes.xyz/converters/area-converter
+P2,Area Converter,converters,long-tail,area converter online,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/area-converter
+P2,Attendance Calculator,calculators,head,attendance calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/attendance-calculator
+P2,Attendance Calculator,calculators,long-tail,attendance calculator school,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/attendance-calculator
+P2,Attendance Calculator,calculators,long-tail,attendance calculator 75,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/attendance-calculator
+P2,Attendance Calculator,calculators,long-tail,attendance calculator srm,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/attendance-calculator
+P2,Attendance Calculator,calculators,long-tail,attendance calculator college,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/attendance-calculator
+P2,AVIF to JPG,image,head,avif to jpg,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/avif-to-jpg
+P2,AVIF to JPG,image,long-tail,avif to jpg converter,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/avif-to-jpg
+P2,AVIF to JPG,image,long-tail,avif to jpg free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/avif-to-jpg
+P2,AVIF to JPG,image,long-tail,avif to jpg bulk,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/avif-to-jpg
+P2,AVIF to JPG,image,long-tail,avif to jpg file,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/avif-to-jpg
+P2,Barcode Generator,generators,head,barcode generator,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/generators/barcode-generator
+P2,Barcode Generator,generators,long-tail,barcode generator free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/barcode-generator
+P2,Barcode Generator,generators,long-tail,barcode generator 128,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/barcode-generator
+P2,Barcode Generator,generators,long-tail,barcode generator ai,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/barcode-generator
+P2,Barcode Generator,generators,long-tail,barcode generator target,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/generators/barcode-generator
+P2,Base64 Decoder,developer,head,base64 decoder,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/developer/base64-decoder
+P2,Base64 Decoder,developer,long-tail,base64 decoder online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/base64-decoder
+P2,Base64 Decoder,developer,long-tail,base64 decoder image,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/base64-decoder
+P2,Base64 Decoder,developer,long-tail,base64 decoder tool,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/base64-decoder
+P2,Base64 Decoder,developer,long-tail,base64 decoder and encoder,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/base64-decoder
+P2,Black and White Image Converter,image,head,convert image to black and white,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/grayscale-image
+P2,Black and White Image Converter,image,long-tail,convert image to black and white no grey,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/grayscale-image
+P2,Black and White Image Converter,image,long-tail,convert image to black and white photoshop not grayscale,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/image/grayscale-image
+P2,Black and White Image Converter,image,long-tail,convert image to black and white photoshop,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/grayscale-image
+P2,Black and White Image Converter,image,long-tail,convert image to black and white in paint,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/grayscale-image
+P2,Blur Faces in a Photo,image,head,blur faces in photo online,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/blur-faces-in-photo
+P2,Blur Faces in a Photo,image,long-tail,blur faces in photo online free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/blur-faces-in-photo
+P2,CGPA Calculator,calculators,head,cgpa calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/cgpa-calculator
+P2,CGPA Calculator,calculators,long-tail,cgpa calculator to percentage,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/cgpa-calculator
+P2,CGPA Calculator,calculators,long-tail,cgpa calculator from gpa,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,partly,google autocomplete,https://www.utilboxes.xyz/calculators/cgpa-calculator
+P2,CGPA Calculator,calculators,long-tail,cgpa calculator utm,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/cgpa-calculator
+P2,CGPA Calculator,calculators,long-tail,cgpa calculator vtu,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/cgpa-calculator
+P2,Change Image DPI,image,head,change dpi of image,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/image-dpi-changer
+P2,Change Image DPI,image,long-tail,change dpi of image in photoshop,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/image-dpi-changer
+P2,Change Image DPI,image,long-tail,change dpi of image free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/image-dpi-changer
+P2,Change Image DPI,image,long-tail,change dpi of image without changing size,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/image/image-dpi-changer
+P2,Change Image DPI,image,long-tail,change dpi of image in paint,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/image-dpi-changer
+P2,Character Counter,text,head,character counter,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/text/character-counter
+P2,Character Counter,text,long-tail,character counter tool,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/character-counter
+P2,Character Counter,text,long-tail,character counter - wordcounter.net,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/text/character-counter
+P2,Character Counter,text,long-tail,character counter with spaces,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/character-counter
+P2,Character Counter,text,long-tail,character counter online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/character-counter
+P2,Circle Crop Image,image,head,circle crop image online,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/circle-crop-image
+P2,Circle Crop Image,image,long-tail,circle crop image online free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/circle-crop-image
+P2,Circle Crop Image,image,long-tail,circle crop image online png,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/circle-crop-image
+P2,Circle Crop Image,image,long-tail,circle crop image online free pdf,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/circle-crop-image
+P2,Color Palette Extractor,image,head,extract colors from image online,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/image-color-palette
+P2,Colour Blindness Simulator,image,head,color blindness simulator,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/color-blindness-simulator
+P2,Colour Blindness Simulator,image,long-tail,color blindness simulator online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/color-blindness-simulator
+P2,Colour Blindness Simulator,image,long-tail,color blindness simulator upload image,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/color-blindness-simulator
+P2,Colour Blindness Simulator,image,long-tail,color blindness simulator for images,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/color-blindness-simulator
+P2,Colour Blindness Simulator,image,long-tail,color blindness simulator hex code,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/color-blindness-simulator
+P2,Compare Two PDFs,pdf,head,compare two pdf files,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-compare
+P2,Compare Two PDFs,pdf,long-tail,compare two pdf files for differences,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-compare
+P2,Compare Two PDFs,pdf,long-tail,compare two pdf files online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-compare
+P2,Compare Two PDFs,pdf,long-tail,compare two pdf files and highlight differences,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-compare
+P2,Compare Two PDFs,pdf,long-tail,compare two pdf files using ai,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-compare
+P2,Compound Interest Calculator,calculators,head,compound interest calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/compound-interest-calculator
+P2,Compound Interest Calculator,calculators,long-tail,compound interest calculator investor.gov,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/compound-interest-calculator
+P2,Compound Interest Calculator,calculators,long-tail,compound interest calculator monthly,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/compound-interest-calculator
+P2,Compound Interest Calculator,calculators,long-tail,compound interest calculator with withdrawals,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/compound-interest-calculator
+P2,Compound Interest Calculator,calculators,long-tail,compound interest calculator sbi,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/compound-interest-calculator
+P2,Convert PDF to Grayscale,pdf,head,convert pdf to grayscale,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-grayscale
+P2,Convert PDF to Grayscale,pdf,long-tail,convert pdf to grayscale free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-grayscale
+P2,Convert PDF to Grayscale,pdf,long-tail,convert pdf to grayscale pdf,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-grayscale
+P2,Convert PDF to Grayscale,pdf,long-tail,convert pdf to grayscale 300 dpi,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-grayscale
+P2,Convert PDF to Grayscale,pdf,long-tail,convert pdf to grayscale and compress,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-grayscale
+P2,Crop Image,image,head,crop image,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/crop-image
+P2,Crop Image,image,long-tail,crop image online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/crop-image
+P2,Crop Image,image,long-tail,crop image photoshop,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/crop-image
+P2,Crop Image,image,long-tail,crop image into circle,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/image/crop-image
+P2,Crop Image,image,long-tail,crop image in illustrator,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/crop-image
+P2,Crop PDF Margins,pdf,head,crop pdf margins,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-crop-margins
+P2,Crop PDF Margins,pdf,long-tail,crop pdf margins online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-crop-margins
+P2,CSS Formatter,developer,head,css formatter,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/developer/css-formatter
+P2,CSS Formatter,developer,long-tail,css formatter online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/css-formatter
+P2,CSS Formatter,developer,long-tail,css formatter vscode,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/developer/css-formatter
+P2,CSS Formatter,developer,long-tail,css formatter notepad ++,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/developer/css-formatter
+P2,CSS Formatter,developer,long-tail,css formatter one line,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/developer/css-formatter
+P2,Data Storage Converter,converters,head,data storage converter,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/converters/data-storage-converter
+P2,Data Storage Converter,converters,long-tail,data storage converter calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/data-storage-converter
+P2,Delete PDF Pages,pdf,head,delete pdf pages,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/delete-pdf-pages
+P2,Delete PDF Pages,pdf,long-tail,delete pdf pages free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/delete-pdf-pages
+P2,Delete PDF Pages,pdf,long-tail,delete pdf pages in preview,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/pdf/delete-pdf-pages
+P2,Delete PDF Pages,pdf,long-tail,delete pdf pages sejda,action,Needs a tool (high click value),no,bing autocomplete,https://www.utilboxes.xyz/pdf/delete-pdf-pages
+P2,Delete PDF Pages,pdf,long-tail,delete pdf pages pdf 24,action,Needs a tool (high click value),partly,bing autocomplete,https://www.utilboxes.xyz/pdf/delete-pdf-pages
+P2,Discount Calculator,calculators,head,discount calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/discount-calculator
+P2,Discount Calculator,calculators,long-tail,discount calculator with tax,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/discount-calculator
+P2,Discount Calculator,calculators,long-tail,discount calculator online,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/discount-calculator
+P2,Discount Calculator,calculators,long-tail,discount calculator in rands,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/discount-calculator
+P2,Discount Calculator,calculators,long-tail,discount calculator nz,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/discount-calculator
+P2,Email Address Validator,developer,head,check if email address is valid format,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/developer/email-syntax-checker
+P2,Engine CC to HP Converter,converters,head,cc to hp converter,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/converters/engine-cc-to-hp
+P2,Engine CC to HP Converter,converters,long-tail,cc to hp converter motorcycle,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/engine-cc-to-hp
+P2,EV Charging Cost Calculator,calculators,head,ev charging cost calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/ev-charging-cost-calculator
+P2,EV Charging Cost Calculator,calculators,long-tail,ev charging cost calculator ireland,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/ev-charging-cost-calculator
+P2,EV Charging Cost Calculator,calculators,long-tail,ev charging cost calculator australia,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/ev-charging-cost-calculator
+P2,EV Charging Cost Calculator,calculators,long-tail,ev charging cost calculator canada,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/ev-charging-cost-calculator
+P2,EV Charging Cost Calculator,calculators,long-tail,ev charging cost calculator ontario,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/ev-charging-cost-calculator
+P2,EXIF Viewer and Remover,image,head,remove exif data from photo online,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/exif-remover
+P2,Extract Images From PDF,pdf,head,extract images from pdf,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-extract-images
+P2,Extract Images From PDF,pdf,long-tail,extract images from pdf online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-extract-images
+P2,Extract Images From PDF,pdf,long-tail,extract images from pdf without losing quality,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-extract-images
+P2,Extract Images From PDF,pdf,long-tail,extract images from pdf high quality,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-extract-images
+P2,Extract Images From PDF,pdf,long-tail,extract images from pdf file,action,Needs a tool (high click value),yes,bing autocomplete,https://www.utilboxes.xyz/pdf/pdf-extract-images
+P2,Extract PDF Pages,pdf,head,extract pdf pages,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/extract-pdf-pages
+P2,Extract PDF Pages,pdf,long-tail,extract pdf pages free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/extract-pdf-pages
+P2,Extract PDF Pages,pdf,long-tail,extract pdf pages as images,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/extract-pdf-pages
+P2,Extract PDF Pages,pdf,long-tail,extract pdf pages in preview,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/pdf/extract-pdf-pages
+P2,Extract PDF Pages,pdf,long-tail,extract pdf pages into separate files,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/extract-pdf-pages
+P2,Favicon Generator,image,head,favicon generator,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/favicon-generator
+P2,Favicon Generator,image,long-tail,favicon generator free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/favicon-generator
+P2,Favicon Generator,image,long-tail,favicon generator from png,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/favicon-generator
+P2,Favicon Generator,image,long-tail,favicon generator from image,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/favicon-generator
+P2,Favicon Generator,image,long-tail,favicon generator from svg,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/favicon-generator
+P2,File Checksum Verifier,developer,head,verify file checksum online,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/developer/checksum-verifier
+P2,Flatten PDF Form,pdf,head,flatten pdf form,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-flatten-form
+P2,Flatten PDF Form,pdf,long-tail,flatten pdf form fields,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-flatten-form
+P2,Flatten PDF Form,pdf,long-tail,flatten pdf form online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-flatten-form
+P2,GPA Calculator,calculators,head,gpa calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/gpa-calculator
+P2,GPA Calculator,calculators,long-tail,gpa calculator college,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/gpa-calculator
+P2,GPA Calculator,calculators,long-tail,gpa calculator high school,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/gpa-calculator
+P2,GPA Calculator,calculators,long-tail,gpa calculator with current gpa,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,partly,google autocomplete,https://www.utilboxes.xyz/calculators/gpa-calculator
+P2,GPA Calculator,calculators,long-tail,gpa calculator from percentage,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/gpa-calculator
+P2,Grade Calculator,calculators,head,grade calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/grade-calculator
+P2,Grade Calculator,calculators,long-tail,grade calculator college,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/grade-calculator
+P2,Grade Calculator,calculators,long-tail,grade calculator points,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/grade-calculator
+P2,Grade Calculator,calculators,long-tail,grade calculator with weights,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/grade-calculator
+P2,Grade Calculator,calculators,long-tail,grade calculator percentage,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/grade-calculator
+P2,HTML Formatter,developer,head,html formatter,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/developer/html-formatter
+P2,HTML Formatter,developer,long-tail,html formatter online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/html-formatter
+P2,HTML Formatter,developer,long-tail,html formatter vscode,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/developer/html-formatter
+P2,HTML Formatter,developer,long-tail,html formatter w3schools,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/developer/html-formatter
+P2,HTML Formatter,developer,long-tail,html formatter notepad++,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/developer/html-formatter
+P2,Image Converter,image,head,image converter,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/image-converter
+P2,Image Converter,image,long-tail,image converter to jpg,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/image-converter
+P2,Image Converter,image,long-tail,image converter to png,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/image-converter
+P2,Image Converter,image,long-tail,image converter size,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/image-converter
+P2,Image Converter,image,long-tail,image converter to pdf,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/image-converter
+P2,Image to PDF,image,head,image to pdf,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/image-to-pdf
+P2,Image to PDF,image,long-tail,image to pdf converter,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/image-to-pdf
+P2,Image to PDF,image,long-tail,image to pdf free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/image-to-pdf
+P2,Image to PDF,image,long-tail,image to pdf combiner,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/image-to-pdf
+P2,Image to PDF,image,long-tail,image to pdf maker,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/image-to-pdf
+P2,Instagram Image Resizer,image,head,instagram image size,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/instagram-image-resizer
+P2,Instagram Image Resizer,image,long-tail,instagram image size 2026,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/instagram-image-resizer
+P2,Instagram Image Resizer,image,long-tail,instagram image size limit,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/instagram-image-resizer
+P2,Instagram Image Resizer,image,long-tail,instagram image size ratio,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/instagram-image-resizer
+P2,Instagram Image Resizer,image,long-tail,instagram image size dimensions,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/instagram-image-resizer
+P2,Invert PDF Colours,pdf,head,dark mode pdf,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-invert-colors
+P2,Invert PDF Colours,pdf,long-tail,dark mode pdf reader,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-invert-colors
+P2,Invert PDF Colours,pdf,long-tail,dark mode pdf converter,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-invert-colors
+P2,Invert PDF Colours,pdf,long-tail,dark mode pdf firefox,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-invert-colors
+P2,Invert PDF Colours,pdf,long-tail,dark mode pdf reader firefox,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-invert-colors
+P2,JPG to AVIF Converter,image,head,jpg to avif converter,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/jpg-to-avif
+P2,JPG to AVIF Converter,image,long-tail,jpg to avif converter free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/jpg-to-avif
+P2,JPG to PNG,image,head,jpg to png,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/jpg-to-png
+P2,JPG to PNG,image,long-tail,jpg to png converter,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/jpg-to-png
+P2,JPG to PNG,image,long-tail,jpg to png transparent,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/jpg-to-png
+P2,JPG to PNG,image,long-tail,jpg to png transparent background,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/jpg-to-png
+P2,JPG to PNG,image,long-tail,jpg to png free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/jpg-to-png
+P2,JPG to WebP Converter,image,head,jpg to webp converter,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/jpg-to-webp
+P2,JPG to WebP Converter,image,long-tail,jpg to webp converter free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/jpg-to-webp
+P2,JPG to WebP Converter,image,long-tail,jpg to webp converter bulk,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/jpg-to-webp
+P2,JPG to WebP Converter,image,long-tail,jpg to webp converter and compressor,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/jpg-to-webp
+P2,JPG to WebP Converter,image,long-tail,jpg to webp converter without losing quality,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/image/jpg-to-webp
+P2,JSON to CSV,developer,head,json to csv,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/developer/json-to-csv
+P2,JSON to CSV,developer,long-tail,json to csv converter,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/json-to-csv
+P2,JSON to CSV,developer,long-tail,json to csv online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/json-to-csv
+P2,JSON to CSV,developer,long-tail,json to csv file,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/json-to-csv
+P2,JSON to CSV,developer,long-tail,json to csv powershell,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/developer/json-to-csv
+P2,JSON Validator,developer,head,json validator,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/developer/json-validator
+P2,JSON Validator,developer,long-tail,json validator online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/json-validator
+P2,JSON Validator,developer,long-tail,json validator tool,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/json-validator
+P2,JSON Validator,developer,long-tail,json validator formatter,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/json-validator
+P2,JSON Validator,developer,long-tail,json validator dayz,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/developer/json-validator
+P2,Length Converter,converters,head,length converter,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/converters/length-converter
+P2,Length Converter,converters,long-tail,length converter to meters,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/converters/length-converter
+P2,Length Converter,converters,long-tail,length converter calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/length-converter
+P2,Length Converter,converters,long-tail,length converter inches to cm,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/length-converter
+P2,Length Converter,converters,long-tail,length converter to feet,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/length-converter
+P2,LinkedIn Post Formatter,text,head,linkedin post formatter,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/text/linkedin-formatter
+P2,LinkedIn Post Formatter,text,long-tail,linkedin post formatter free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/linkedin-formatter
+P2,LinkedIn Post Formatter,text,long-tail,linkedin post formatter ai,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/linkedin-formatter
+P2,LinkedIn Post Formatter,text,long-tail,linkedin post formatter tool,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/linkedin-formatter
+P2,LinkedIn Post Formatter,text,long-tail,linkedin post formatter bullet points,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/linkedin-formatter
+P2,Loan Calculator,calculators,head,loan calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/loan-calculator
+P2,Loan Calculator,calculators,long-tail,loan calculator car,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/loan-calculator
+P2,Loan Calculator,calculators,long-tail,loan calculator personal,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/loan-calculator
+P2,Loan Calculator,calculators,long-tail,loan calculator auto,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/loan-calculator
+P2,Loan Calculator,calculators,long-tail,loan calculator home,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/loan-calculator
+P2,Lorem Ipsum Generator,generators,head,lorem ipsum generator,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/generators/lorem-ipsum-generator
+P2,Lorem Ipsum Generator,generators,long-tail,lorem ipsum generator characters,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/lorem-ipsum-generator
+P2,Lorem Ipsum Generator,generators,long-tail,lorem ipsum generator by character count,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/lorem-ipsum-generator
+P2,Lorem Ipsum Generator,generators,long-tail,lorem ipsum generator funny,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/generators/lorem-ipsum-generator
+P2,Lorem Ipsum Generator,generators,long-tail,lorem ipsum generator word,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/lorem-ipsum-generator
+P2,Mortgage Calculator,calculators,head,mortgage calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/mortgage-calculator
+P2,Mortgage Calculator,calculators,long-tail,mortgage calculator with extra payments,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/mortgage-calculator
+P2,Mortgage Calculator,calculators,long-tail,mortgage calculator florida,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/mortgage-calculator
+P2,Mortgage Calculator,calculators,long-tail,mortgage calculator texas,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/mortgage-calculator
+P2,Mortgage Calculator,calculators,long-tail,mortgage calculator free,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/mortgage-calculator
+P2,Multiple PDF Pages Per Sheet,pdf,head,print multiple pdf pages per sheet,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-n-up
+P2,Open Graph Preview,developer,head,open graph preview tool,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/developer/og-preview
+P2,Paint and Wallpaper Calculator,calculators,head,how much paint do i need calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/paint-coverage-calculator
+P2,Paint and Wallpaper Calculator,calculators,long-tail,how much paint do i need calculator home depot,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,partly,google autocomplete,https://www.utilboxes.xyz/calculators/paint-coverage-calculator
+P2,Paint and Wallpaper Calculator,calculators,long-tail,how much paint do i need calculator square feet,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/paint-coverage-calculator
+P2,Paint and Wallpaper Calculator,calculators,long-tail,how much paint do i need calculator sq ft,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,bing autocomplete,https://www.utilboxes.xyz/calculators/paint-coverage-calculator
+P2,Paint and Wallpaper Calculator,calculators,long-tail,how much paint do i need calculator exterior,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,bing autocomplete,https://www.utilboxes.xyz/calculators/paint-coverage-calculator
+P2,Passport Photo Maker,image,head,passport photo size online,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/passport-photo-maker
+P2,Passport Photo Maker,image,long-tail,passport photo size online free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/passport-photo-maker
+P2,Passport Photo Maker,image,long-tail,passport photo size online resizer,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/passport-photo-maker
+P2,Passport Photo Maker,image,long-tail,passport photo size online editor,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/passport-photo-maker
+P2,Passport Photo Maker,image,long-tail,passport photo size online print,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/passport-photo-maker
+P2,Password Strength Checker,developer,head,password strength checker,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/developer/password-strength-checker
+P2,Password Strength Checker,developer,long-tail,password strength checker project in cyber security,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/developer/password-strength-checker
+P2,Password Strength Checker,developer,long-tail,password strength checker online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/password-strength-checker
+P2,Password Strength Checker,developer,long-tail,password strength checker and breach alert project,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/developer/password-strength-checker
+P2,Password Strength Checker,developer,long-tail,password strength checker project report pdf,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/developer/password-strength-checker
+P2,PDF Booklet Maker,pdf,head,print pdf as booklet,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-booklet
+P2,PDF Booklet Maker,pdf,long-tail,print pdf as booklet online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-booklet
+P2,PDF Booklet Maker,pdf,long-tail,print pdf as booklet microsoft edge,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-booklet
+P2,PDF Booklet Maker,pdf,long-tail,print pdf as booklet with 4 pages,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-booklet
+P2,PDF Booklet Maker,pdf,long-tail,print pdf as booklet on hp officejet pro 8100,action,Needs a tool (high click value),partly,bing autocomplete,https://www.utilboxes.xyz/pdf/pdf-booklet
+P2,PDF Bookmarks Editor,pdf,head,add bookmarks to pdf,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-bookmarks
+P2,PDF Bookmarks Editor,pdf,long-tail,add bookmarks to pdf free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-bookmarks
+P2,PDF Bookmarks Editor,pdf,long-tail,add bookmarks to pdf in bluebeam,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-bookmarks
+P2,PDF Bookmarks Editor,pdf,long-tail,add bookmarks to pdf edge,action,Needs a tool (high click value),no,bing autocomplete,https://www.utilboxes.xyz/pdf/pdf-bookmarks
+P2,PDF Bookmarks Editor,pdf,long-tail,add bookmarks to pdf automatically,action,Needs a tool (high click value),no,bing autocomplete,https://www.utilboxes.xyz/pdf/pdf-bookmarks
+P2,PDF Metadata Editor,pdf,head,edit pdf metadata online,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-metadata-editor
+P2,PDF Metadata Editor,pdf,long-tail,edit pdf metadata online free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-metadata-editor
+P2,PDF Metadata Editor,pdf,long-tail,edit pdf metadata online sejda,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-metadata-editor
+P2,PDF Page Size Converter,pdf,head,convert pdf a4 to letter,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-resize-page
+P2,PDF Page Size Converter,pdf,long-tail,convert pdf a4 to letter size,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-resize-page
+P2,PDF to Excel,pdf,head,pdf to excel,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-to-excel
+P2,PDF to PNG,pdf,head,pdf to png,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-to-png
+P2,PDF to PNG,pdf,long-tail,pdf to png converter,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-to-png
+P2,PDF to PNG,pdf,long-tail,pdf to png high quality,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-to-png
+P2,PDF to PNG,pdf,long-tail,pdf to png transparent background,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-to-png
+P2,PDF to PNG,pdf,long-tail,pdf to png free,action,Needs a tool (high click value),yes,bing autocomplete,https://www.utilboxes.xyz/pdf/pdf-to-png
+P2,PDF to Text,pdf,head,pdf to text,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-to-text
+P2,PDF to Text,pdf,long-tail,pdf to text converter,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-to-text
+P2,PDF to Text,pdf,long-tail,pdf to text file,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-to-text
+P2,PDF to Text,pdf,long-tail,pdf to text free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-to-text
+P2,PDF to Text,pdf,long-tail,pdf to text to speech,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-to-text
+P2,Pet Age Calculator,calculators,head,dog age in human years calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/pet-age-calculator
+P2,Pet Age Calculator,calculators,long-tail,dog age in human years calculator by breed,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/pet-age-calculator
+P2,Pet Age Calculator,calculators,long-tail,dog age in human years calculator australia,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/pet-age-calculator
+P2,PNG to WebP Converter,image,head,png to webp converter,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/png-to-webp
+P2,PNG to WebP Converter,image,long-tail,png to webp converter free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/png-to-webp
+P2,PNG to WebP Converter,image,long-tail,png to webp converter free unlimited,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/png-to-webp
+P2,PNG to WebP Converter,image,long-tail,png to webp converter bulk,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/png-to-webp
+P2,PNG to WebP Converter,image,long-tail,png to webp converter and compressor,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/png-to-webp
+P2,Random Number Generator,generators,head,random number generator,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/generators/random-number-generator
+P2,Random Number Generator,generators,long-tail,random number generator 1-100,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/generators/random-number-generator
+P2,Random Number Generator,generators,long-tail,random number generator 1-10,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/generators/random-number-generator
+P2,Random Number Generator,generators,long-tail,random number generator wheel,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/generators/random-number-generator
+P2,Random Number Generator,generators,long-tail,random number generator 1-3,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/generators/random-number-generator
+P2,Rearrange PDF Pages,pdf,head,rearrange pdf pages,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-reorder-pages
+P2,Rearrange PDF Pages,pdf,long-tail,rearrange pdf pages free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-reorder-pages
+P2,Rearrange PDF Pages,pdf,long-tail,rearrange pdf pages by page number,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-reorder-pages
+P2,Rearrange PDF Pages,pdf,long-tail,rearrange pdf pages sejda,action,Needs a tool (high click value),no,bing autocomplete,https://www.utilboxes.xyz/pdf/pdf-reorder-pages
+P2,Rearrange PDF Pages,pdf,long-tail,rearrange pdf pages pdf chef,action,Needs a tool (high click value),partly,bing autocomplete,https://www.utilboxes.xyz/pdf/pdf-reorder-pages
+P2,Redact PDF,pdf,head,redact pdf online,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-redact
+P2,Redact PDF,pdf,long-tail,redact pdf online free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-redact
+P2,Redact PDF,pdf,long-tail,redact pdf online free no sign up,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-redact
+P2,Redact PDF,pdf,long-tail,redact pdf online remove sensitive information permanently,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-redact
+P2,Redact PDF,pdf,long-tail,redact pdf online sejda,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-redact
+P2,Remove Duplicate Lines,text,head,remove duplicate lines,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/text/remove-duplicate-lines
+P2,Remove Duplicate Lines,text,long-tail,remove duplicate lines in notepad++,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/text/remove-duplicate-lines
+P2,Remove Duplicate Lines,text,long-tail,remove duplicate lines online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/remove-duplicate-lines
+P2,Remove Duplicate Lines,text,long-tail,remove duplicate lines autocad,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/text/remove-duplicate-lines
+P2,Remove Duplicate Lines,text,long-tail,remove duplicate lines bash,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/text/remove-duplicate-lines
+P2,Resume ATS Checker,text,head,resume ats checker free,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/text/resume-ats-checker
+P2,Resume ATS Checker,text,long-tail,resume ats checker free online,action,Needs a tool (high click value),yes,bing autocomplete,https://www.utilboxes.xyz/text/resume-ats-checker
+P2,Resume ATS Checker,text,long-tail,resume ats checker free tool,action,Needs a tool (high click value),yes,bing autocomplete,https://www.utilboxes.xyz/text/resume-ats-checker
+P2,Resume ATS Checker,text,long-tail,resume ats checker free tips,action,Needs a tool (high click value),yes,bing autocomplete,https://www.utilboxes.xyz/text/resume-ats-checker
+P2,Resume ATS Checker,text,long-tail,resume ats checker free trial,action,Needs a tool (high click value),no,bing autocomplete,https://www.utilboxes.xyz/text/resume-ats-checker
+P2,Resume Generator,generators,head,resume generator,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/generators/resume-generator
+P2,Resume Generator,generators,long-tail,resume generator free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/resume-generator
+P2,Resume Generator,generators,long-tail,resume generator ai,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/resume-generator
+P2,Resume Generator,generators,long-tail,resume generator from linkedin,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/generators/resume-generator
+P2,Resume Generator,generators,long-tail,resume generator template,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/resume-generator
+P2,Robots.txt Generator and Tester,generators,head,robots.txt generator,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/generators/robots-txt-generator
+P2,Robots.txt Generator and Tester,generators,long-tail,robots.txt generator for blogger,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/generators/robots-txt-generator
+P2,Robots.txt Generator and Tester,generators,long-tail,robots.txt generator free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/robots-txt-generator
+P2,Robots.txt Generator and Tester,generators,long-tail,robots.txt generator tool,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/robots-txt-generator
+P2,Robots.txt Generator and Tester,generators,long-tail,robots.txt generator for wordpress,action,Needs a tool (high click value),no,bing autocomplete,https://www.utilboxes.xyz/generators/robots-txt-generator
+P2,Rotate Image,image,head,rotate image,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/rotate-image
+P2,Rotate Image,image,long-tail,rotate image online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/rotate-image
+P2,Rotate Image,image,long-tail,rotate image in photoshop,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/rotate-image
+P2,Rotate Image,image,long-tail,rotate image leetcode,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/rotate-image
+P2,Rotate Image,image,long-tail,rotate image in gimp,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/rotate-image
+P2,Rotate PDF,pdf,head,rotate pdf,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/rotate-pdf
+P2,Rotate PDF,pdf,long-tail,rotate pdf free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/rotate-pdf
+P2,Rotate PDF,pdf,long-tail,rotate pdf pages,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/rotate-pdf
+P2,Rotate PDF,pdf,long-tail,rotate pdf firefox,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/pdf/rotate-pdf
+P2,Rotate PDF,pdf,long-tail,rotate pdf and save it that way,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/rotate-pdf
+P2,Salary Calculator,calculators,head,salary calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/salary-calculator
+P2,Salary Calculator,calculators,long-tail,salary calculator texas,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/salary-calculator
+P2,Salary Calculator,calculators,long-tail,salary calculator california,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/salary-calculator
+P2,Salary Calculator,calculators,long-tail,salary calculator florida,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/salary-calculator
+P2,Salary Calculator,calculators,long-tail,salary calculator nyc,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/salary-calculator
+P2,Schema Markup Generator,generators,head,faq schema generator,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/generators/schema-generator
+P2,Schema Markup Generator,generators,long-tail,faq schema generator tool,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/schema-generator
+P2,Shoe Size Converter,converters,head,shoe size converter,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/converters/shoe-size-converter
+P2,Shoe Size Converter,converters,long-tail,shoe size converter us to eu,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/shoe-size-converter
+P2,Shoe Size Converter,converters,long-tail,shoe size converter men to women,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/shoe-size-converter
+P2,Shoe Size Converter,converters,long-tail,shoe size converter women,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/shoe-size-converter
+P2,Shoe Size Converter,converters,long-tail,shoe size converter brands,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/shoe-size-converter
+P2,Sign PDF,pdf,head,sign pdf online free,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-signature
+P2,Sign PDF,pdf,long-tail,sign pdf online free no sign up,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-signature
+P2,Sign PDF,pdf,long-tail,sign pdf online free no account,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-signature
+P2,Sign PDF,pdf,long-tail,sign pdf online free sejda,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-signature
+P2,Sign PDF,pdf,long-tail,sign pdf online free no registration,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/pdf/pdf-signature
+P2,Sort Lines,text,head,sort lines,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/text/sort-lines
+P2,Sort Lines,text,long-tail,sort lines alphabetically,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/sort-lines
+P2,Sort Lines,text,long-tail,sort lines by length,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/sort-lines
+P2,Sort Lines,text,long-tail,sort lines in notepad++,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/text/sort-lines
+P2,Sort Lines,text,long-tail,sort lines online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/sort-lines
+P2,Speed Converter,converters,head,speed converter,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/converters/speed-converter
+P2,Speed Converter,converters,long-tail,speed converter km to mph,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/speed-converter
+P2,Speed Converter,converters,long-tail,speed converter calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/speed-converter
+P2,Speed Converter,converters,long-tail,speed converter mp3,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/converters/speed-converter
+P2,Speed Converter,converters,long-tail,speed converter miles to km,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/speed-converter
+P2,SSL Certificate Checker,developer,head,check ssl certificate expiry date,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/developer/ssl-expiry-checker
+P2,Subscription Cost Tracker,calculators,head,subscription cost calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/subscription-cost-tracker
+P2,SVG to PNG Converter,image,head,svg to png converter,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/svg-to-png
+P2,SVG to PNG Converter,image,long-tail,svg to png converter free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/svg-to-png
+P2,SVG to PNG Converter,image,long-tail,svg to png converter high quality,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/image/svg-to-png
+P2,SVG to PNG Converter,image,long-tail,svg to png converter transparent background,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/svg-to-png
+P2,SVG to PNG Converter,image,long-tail,svg to png converter with size,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/svg-to-png
+P2,Take-Home Pay Calculator,calculators,head,uk take home pay calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/take-home-pay-calculator
+P2,Tax Calculator,calculators,head,tax calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/calculators/tax-calculator
+P2,Tax Calculator,calculators,long-tail,tax calculator 2026,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/tax-calculator
+P2,Tax Calculator,calculators,long-tail,tax calculator california,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/tax-calculator
+P2,Tax Calculator,calculators,long-tail,tax calculator paycheck,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/calculators/tax-calculator
+P2,Tax Calculator,calculators,long-tail,tax calculator sales,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/calculators/tax-calculator
+P2,Text Cleaner,text,head,text cleaner,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/text/text-cleaner
+P2,Text Cleaner,text,long-tail,text cleaner ai,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/text-cleaner
+P2,Text Cleaner,text,long-tail,text cleaner online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/text-cleaner
+P2,Text Cleaner,text,long-tail,text cleaner tool,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/text-cleaner
+P2,Text Cleaner,text,long-tail,text cleaner from image,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/text-cleaner
+P2,Text Reverser,text,head,text reverser,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/text/text-reverser
+P2,Text Reverser,text,long-tail,text reverser generator,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/text-reverser
+P2,Text Reverser,text,long-tail,text reverser translator,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/text/text-reverser
+P2,Text Reverser,text,long-tail,text reverser lingojam,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/text/text-reverser
+P2,Text Reverser,text,long-tail,text reverser font,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/text/text-reverser
+P2,Time Converter,converters,head,time converter,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/converters/time-converter
+P2,Time Converter,converters,long-tail,time converter calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/time-converter
+P2,Time Converter,converters,long-tail,time converter swimming,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/converters/time-converter
+P2,Time Converter,converters,long-tail,time converter calculator hours,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/time-converter
+P2,Time Converter,converters,long-tail,time converter time zones,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/time-converter
+P2,Time Zone Meeting Planner,converters,head,time zone meeting planner,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/converters/timezone-meeting-planner
+P2,Time Zone Meeting Planner,converters,long-tail,time zone meeting planner converter,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/timezone-meeting-planner
+P2,Time Zone Meeting Planner,converters,long-tail,time zone meeting planner online,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/timezone-meeting-planner
+P2,URL Decoder,developer,head,url decoder,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/developer/url-decoder
+P2,URL Decoder,developer,long-tail,url decoder online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/url-decoder
+P2,URL Decoder,developer,long-tail,url decoder tool,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/url-decoder
+P2,URL Decoder,developer,long-tail,url decoder encoder,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/url-decoder
+P2,URL Decoder,developer,long-tail,url decoder proofpoint,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/developer/url-decoder
+P2,URL Encoder,developer,head,url encoder,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/developer/url-encoder
+P2,URL Encoder,developer,long-tail,url encoder decoder,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/url-encoder
+P2,URL Encoder,developer,long-tail,url encoder online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/url-encoder
+P2,URL Encoder,developer,long-tail,url encoder for svg,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/developer/url-encoder
+P2,URL Encoder,developer,long-tail,url encoder for,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/developer/url-encoder
+P2,UTM Link Builder,generators,head,utm link builder,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/generators/utm-builder
+P2,UTM Link Builder,generators,long-tail,utm link builder free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/utm-builder
+P2,UTM Link Builder,generators,long-tail,utm link builder spreadsheet,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/generators/utm-builder
+P2,UTM Link Builder,generators,long-tail,utm link builder spreadsheet.xlsx,action,Needs a tool (high click value),no,bing autocomplete,https://www.utilboxes.xyz/generators/utm-builder
+P2,UUID Generator,generators,head,uuid generator,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/generators/uuid-generator
+P2,UUID Generator,generators,long-tail,uuid generator v4,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/uuid-generator
+P2,UUID Generator,generators,long-tail,uuid generator minecraft bedrock,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/generators/uuid-generator
+P2,UUID Generator,generators,long-tail,uuid generator online,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/uuid-generator
+P2,UUID Generator,generators,long-tail,uuid generator v7,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/uuid-generator
+P2,Voice to Text Converter,text,head,voice message to text converter,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/text/voice-to-text
+P2,Voice to Text Converter,text,long-tail,voice message to text converter online free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/voice-to-text
+P2,Voice to Text Converter,text,long-tail,voice message to text converter whatsapp,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/text/voice-to-text
+P2,Voice to Text Converter,text,long-tail,voice message to text converter for pc,action,Needs a tool (high click value),no,bing autocomplete,https://www.utilboxes.xyz/text/voice-to-text
+P2,Voice to Text Converter,text,long-tail,voice message to text converter for whatsapp,action,Needs a tool (high click value),yes,bing autocomplete,https://www.utilboxes.xyz/text/voice-to-text
+P2,Volume Converter,converters,head,volume converter,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,registry,https://www.utilboxes.xyz/converters/volume-converter
+P2,Volume Converter,converters,long-tail,volume converter calculator,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,yes,google autocomplete,https://www.utilboxes.xyz/converters/volume-converter
+P2,Volume Converter,converters,long-tail,volume converter mp3,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/converters/volume-converter
+P2,Volume Converter,converters,long-tail,volume converter mm3 to m3,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/converters/volume-converter
+P2,Volume Converter,converters,long-tail,volume converter to liters,action,Mixed: AI can do one-off sums; repeat or detailed use needs the tool,no,google autocomplete,https://www.utilboxes.xyz/converters/volume-converter
+P2,WebP to JPG,image,head,webp to jpg,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/webp-to-jpg
+P2,WebP to JPG,image,long-tail,webp to jpg converter,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/webp-to-jpg
+P2,WebP to JPG,image,long-tail,webp to jpg free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/webp-to-jpg
+P2,WebP to JPG,image,long-tail,webp to jpg bulk,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/webp-to-jpg
+P2,WebP to JPG,image,long-tail,webp to jpg tool,action,Needs a tool (high click value),yes,bing autocomplete,https://www.utilboxes.xyz/image/webp-to-jpg
+P2,WebP to PNG,image,head,webp to png converter,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/webp-to-png
+P2,WebP to PNG,image,long-tail,webp to png converter free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/webp-to-png
+P2,WebP to PNG,image,long-tail,webp to png converter batch,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/webp-to-png
+P2,WebP to PNG,image,long-tail,webp to png converter bulk,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/webp-to-png
+P2,WebP to PNG,image,long-tail,webp to png converter unlimited,action,Needs a tool (high click value),no,bing autocomplete,https://www.utilboxes.xyz/image/webp-to-png
+P2,Wi-Fi and vCard QR Code Generator,generators,head,wifi qr code generator,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/generators/qr-code-wifi-vcard
+P2,Wi-Fi and vCard QR Code Generator,generators,long-tail,wifi qr code generator with logo,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/generators/qr-code-wifi-vcard
+P2,Wi-Fi and vCard QR Code Generator,generators,long-tail,wifi qr code generator free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/generators/qr-code-wifi-vcard
+P2,Wi-Fi and vCard QR Code Generator,generators,long-tail,wifi qr code generator free no sign up,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/generators/qr-code-wifi-vcard
+P2,Wi-Fi and vCard QR Code Generator,generators,long-tail,wifi qr code generator 3d print,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/generators/qr-code-wifi-vcard
+P2,Word to PDF,pdf,head,word to pdf,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/pdf/word-to-pdf
+P2,Word to PDF,pdf,long-tail,word to pdf converter,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/word-to-pdf
+P2,Word to PDF,pdf,long-tail,word to pdf free,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/pdf/word-to-pdf
+P2,Word to PDF,pdf,long-tail,word to pdf converter online - 100 free,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/pdf/word-to-pdf
+P2,Word to PDF,pdf,long-tail,word to pdf file,action,Needs a tool (high click value),yes,bing autocomplete,https://www.utilboxes.xyz/pdf/word-to-pdf
+P2,YouTube Thumbnail Grabber,image,head,youtube thumbnail downloader,action,Needs a tool (high click value),yes,registry,https://www.utilboxes.xyz/image/youtube-thumbnail-downloader
+P2,YouTube Thumbnail Grabber,image,long-tail,youtube thumbnail downloader psd,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/youtube-thumbnail-downloader
+P2,YouTube Thumbnail Grabber,image,long-tail,youtube thumbnail downloader all image,action,Needs a tool (high click value),yes,google autocomplete,https://www.utilboxes.xyz/image/youtube-thumbnail-downloader
+P2,YouTube Thumbnail Grabber,image,long-tail,youtube thumbnail downloader livestream,action,Needs a tool (high click value),no,google autocomplete,https://www.utilboxes.xyz/image/youtube-thumbnail-downloader
+P2,YouTube Thumbnail Grabber,image,long-tail,youtube thumbnail downloader comment picker,action,Needs a tool (high click value),partly,google autocomplete,https://www.utilboxes.xyz/image/youtube-thumbnail-downloader
+P3 (guide),PDF Table Extractor,pdf,head,extract table from pdf to excel,informational,AI answers it (low click value),yes,registry,https://www.utilboxes.xyz/pdf/pdf-table-to-excel
