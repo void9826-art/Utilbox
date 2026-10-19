@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { CATEGORIES } from "@/config/categories";
 import { absoluteUrl } from "@/config/site";
-import { TOOLS, toolHref } from "@/config/tools";
+import { TOOLS, getToolsByCategory, newestUpdate, toolHref, toolUpdated } from "@/config/tools";
 import { GUIDES, guideHref } from "@/guides";
 
 /**
@@ -15,10 +15,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     TOOLS[0]?.addedOn ?? "2026-09-05",
   );
   const lastModified = new Date(`${newestTool}T00:00:00Z`);
+  const day = (date: string) => new Date(`${date}T00:00:00Z`);
+  const toolsChanged = day(newestUpdate(TOOLS));
 
   const staticPages: MetadataRoute.Sitemap = [
-    { url: absoluteUrl("/"), lastModified, changeFrequency: "weekly", priority: 1 },
-    { url: absoluteUrl("/tools"), lastModified, changeFrequency: "weekly", priority: 0.9 },
+    { url: absoluteUrl("/"), lastModified: toolsChanged, changeFrequency: "weekly", priority: 1 },
+    { url: absoluteUrl("/tools"), lastModified: toolsChanged, changeFrequency: "weekly", priority: 0.9 },
     { url: absoluteUrl("/about"), lastModified, changeFrequency: "yearly", priority: 0.4 },
     { url: absoluteUrl("/contact"), lastModified, changeFrequency: "yearly", priority: 0.3 },
     { url: absoluteUrl("/privacy"), lastModified, changeFrequency: "yearly", priority: 0.3 },
@@ -28,14 +30,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const categoryPages: MetadataRoute.Sitemap = CATEGORIES.map((category) => ({
     url: absoluteUrl(`/${category.id}`),
-    lastModified,
+    lastModified: day(newestUpdate(getToolsByCategory(category.id))),
     changeFrequency: "weekly",
     priority: 0.8,
   }));
 
   const toolPages: MetadataRoute.Sitemap = TOOLS.map((tool) => ({
     url: absoluteUrl(toolHref(tool)),
-    lastModified: new Date(`${tool.addedOn}T00:00:00Z`),
+    // When the page last changed, not when the tool first shipped.
+    lastModified: day(toolUpdated(tool)),
     changeFrequency: "monthly",
     // Popular tools are the ones worth crawling first.
     priority: tool.popular ? 0.8 : 0.7,

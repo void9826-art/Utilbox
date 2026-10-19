@@ -16,6 +16,16 @@ export function cn(...values: ClassValue[]): string {
   return out.join(" ");
 }
 
+/** "1 October 2026" from a YYYY-MM-DD date, the same on every server timezone. */
+export function formatLongDate(date: string): string {
+  return new Date(`${date}T00:00:00Z`).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
+
 export function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max);
 }

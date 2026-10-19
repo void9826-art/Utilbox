@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/surfaces";
 import { CATEGORIES, CATEGORY_BY_ID } from "@/config/categories";
 import { getRelatedTools } from "@/config/tools";
 import type { Crumb } from "@/lib/seo";
-import { cn } from "@/lib/utils";
+import { cn, formatLongDate } from "@/lib/utils";
 import type { ToolFormula, ToolMeta } from "@/types/tool";
 
 /* -------------------------------------------------------------------------- */
@@ -81,9 +81,12 @@ export function PrivacyBadge({ tool }: { tool: ToolMeta }) {
 export function ToolHeader({
   tool,
   intro,
+  updated,
 }: {
   tool: ToolMeta;
   intro: string;
+  /** YYYY-MM-DD the page last changed; see toolUpdated(). */
+  updated: string;
 }) {
   const Icon = tool.icon;
 
@@ -100,8 +103,20 @@ export function ToolHeader({
           <p className="mt-1.5 max-w-2xl text-[0.9375rem] leading-relaxed text-fg-muted">{intro}</p>
         </div>
       </div>
-      <PrivacyBadge tool={tool} />
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+        <PrivacyBadge tool={tool} />
+        <UpdatedDate date={updated} />
+      </div>
     </header>
+  );
+}
+
+/** The visible "Updated" line, matching the one under a guide's title. */
+export function UpdatedDate({ date, label = "Updated" }: { date: string; label?: string }) {
+  return (
+    <p className="text-xs text-fg-subtle">
+      {label} <time dateTime={date}>{formatLongDate(date)}</time>
+    </p>
   );
 }
 

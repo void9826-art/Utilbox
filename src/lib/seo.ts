@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { CATEGORY_BY_ID } from "@/config/categories";
 import { absoluteUrl, siteConfig } from "@/config/site";
-import { toolHref } from "@/config/tools";
+import { toolHref, toolUpdated } from "@/config/tools";
 import type { ToolContent, ToolMeta } from "@/types/tool";
 
 interface PageMetaOptions {
@@ -97,6 +97,8 @@ export function toolSchema(tool: ToolMeta, content: ToolContent): JsonLd {
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     isAccessibleForFree: true,
     inLanguage: "en",
+    datePublished: tool.addedOn,
+    dateModified: toolUpdated(tool),
     publisher: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
   };
 }

@@ -4,12 +4,12 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
 import { AdSlot } from "@/components/ads/ad-slot";
-import { Breadcrumbs, CategoryLinks } from "@/components/tool/sections";
+import { Breadcrumbs, CategoryLinks, UpdatedDate } from "@/components/tool/sections";
 import { ToolBrowser, ToolBrowserPanel } from "@/components/tool/tool-browser";
 import { ToolGrid } from "@/components/tool/tool-card";
 import { CATEGORIES, CATEGORY_BY_ID, isCategoryId } from "@/config/categories";
 import { CATEGORY_GUIDES } from "@/config/category-guides";
-import { getToolsByCategory } from "@/config/tools";
+import { getToolsByCategory, newestUpdate } from "@/config/tools";
 import { GUIDES, guideHref } from "@/guides";
 import { breadcrumbSchema, buildMetadata, collectionSchema, jsonLdScript } from "@/lib/seo";
 import type { CategoryId } from "@/types/tool";
@@ -87,6 +87,11 @@ export default async function CategoryPage({ params }: { params: Promise<RoutePa
             <p className="mt-1.5 max-w-2xl text-[0.9375rem] leading-relaxed text-fg-muted">
               {config.description}
             </p>
+            {/* The hub's own copy rarely changes; what changes is the tools, so
+                the line says exactly that rather than claiming the page did. */}
+            <div className="mt-3">
+              <UpdatedDate label="Tools last updated" date={newestUpdate(tools)} />
+            </div>
           </div>
         </header>
 

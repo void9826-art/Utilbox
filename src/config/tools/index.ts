@@ -1,6 +1,8 @@
 import { CATEGORIES } from "@/config/categories";
 import type { CategoryId, ToolMeta } from "@/types/tool";
 
+import TOOL_DATES from "../tool-dates.json";
+
 import { calculatorTools } from "./calculators";
 import { converterTools } from "./converters";
 import { developerTools } from "./developer";
@@ -45,6 +47,23 @@ export function getRelatedTools(tool: ToolMeta, limit = 4): ToolMeta[] {
   const fillers = getToolsByCategory(tool.category).filter((candidate) => !seen.has(candidate.slug));
 
   return [...explicit, ...fillers].slice(0, limit);
+}
+
+/**
+ * The date a tool's page last really changed, from src/config/tool-dates.json
+ * (written by scripts/stamp-tool-dates.mjs from git history). Falls back to
+ * the ship date for a tool that has not been stamped yet.
+ */
+export function toolUpdated(tool: Pick<ToolMeta, "slug" | "addedOn">): string {
+  return (TOOL_DATES as Record<string, string>)[tool.slug] ?? tool.addedOn;
+}
+
+/** Newest {@link toolUpdated} across a set of tools, for hub pages. */
+export function newestUpdate(tools: ToolMeta[]): string {
+  return tools.reduce((latest, tool) => {
+    const date = toolUpdated(tool);
+    return date > latest ? date : latest;
+  }, "");
 }
 
 export function toolHref(tool: Pick<ToolMeta, "category" | "slug">): string {

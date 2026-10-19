@@ -18,7 +18,7 @@ import { Alert } from "@/components/ui/surfaces";
 import { getToolContent } from "@/config/content";
 import { isCategoryId } from "@/config/categories";
 import { absoluteUrl, siteConfig } from "@/config/site";
-import { TOOLS, getTool, toolHref } from "@/config/tools";
+import { TOOLS, getTool, toolHref, toolUpdated } from "@/config/tools";
 import { guideHref, guidesForTool } from "@/guides";
 import {
   breadcrumbSchema,
@@ -95,7 +95,7 @@ export default async function ToolPage({ params }: { params: Promise<RouteParams
         <Breadcrumbs crumbs={crumbs} />
 
         <div className="mt-5 space-y-6">
-          <ToolHeader tool={tool} intro={content.intro} />
+          <ToolHeader tool={tool} intro={content.intro} updated={toolUpdated(tool)} />
 
           {/* The tool sits above the fold — no reading required before use. */}
           <ToolMount slug={tool.slug} />

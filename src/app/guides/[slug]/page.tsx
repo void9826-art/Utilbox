@@ -4,9 +4,10 @@ import type { Metadata } from "next";
 
 import { Breadcrumbs } from "@/components/tool/sections";
 import { ToolGrid } from "@/components/tool/tool-card";
-import { getTool } from "@/config/tools";
+import { getRelatedTools, getTool, toolHref } from "@/config/tools";
 import { GUIDES, getGuide, guideHref } from "@/guides";
 import { articleSchema, breadcrumbSchema, buildMetadata, jsonLdScript } from "@/lib/seo";
+import { formatLongDate } from "@/lib/utils";
 import type { ToolMeta } from "@/types/tool";
 
 interface RouteParams {
@@ -39,12 +40,25 @@ export async function generateMetadata({ params }: { params: Promise<RouteParams
   };
 }
 
-function formatDate(date: string): string {
-  return new Date(`${date}T00:00:00`).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+/**
+ * One row of tools a reader is likely to need next: the hand-picked "related"
+ * tools of the ones the guide uses, taken in turn so each guide tool
+ * contributes, without repeating anything already shown above.
+ */
+function followOnTools(tools: ToolMeta[], limit = 3): ToolMeta[] {
+  const seen = new Set(tools.map((tool) => tool.slug));
+  const queues = tools.map((tool) => getRelatedTools(tool, 6));
+  const picked: ToolMeta[] = [];
+  for (let round = 0; picked.length < limit && queues.some((queue) => round < queue.length); round += 1) {
+    for (const queue of queues) {
+      const candidate = queue[round];
+      if (picked.length < limit && candidate && !seen.has(candidate.slug)) {
+        seen.add(candidate.slug);
+        picked.push(candidate);
+      }
+    }
+  }
+  return picked;
 }
 
 export default async function GuidePage({ params }: { params: Promise<RouteParams> }) {
@@ -57,6 +71,7 @@ export default async function GuidePage({ params }: { params: Promise<RouteParam
     { name: guide.title, href: guideHref(guide) },
   ];
   const tools = guide.tools.map(getTool).filter((tool): tool is ToolMeta => Boolean(tool));
+  const nextTools = followOnTools(tools);
   const { Body } = guide;
 
   const schemas = [
@@ -91,8 +106,26 @@ export default async function GuidePage({ params }: { params: Promise<RouteParam
             <p className="mt-2 text-[0.9375rem] leading-relaxed text-fg-muted">{guide.description}</p>
             <p className="mt-3 text-xs text-fg-subtle">
               {guide.updated === guide.published ? "Published " : "Updated "}
-              <time dateTime={guide.updated}>{formatDate(guide.updated)}</time>
+              <time dateTime={guide.updated}>{formatLongDate(guide.updated)}</time>
             </p>
+            {/* The tools are what most readers came for, so they are one click
+                away before the article starts, not only in the cards at the end. */}
+            {tools.length > 0 ? (
+              <p className="mt-4 text-sm text-fg-muted">
+                {tools.length === 1 ? "Tool for this job: " : "Tools for this job: "}
+                {tools.map((tool, index) => (
+                  <span key={tool.slug}>
+                    {index > 0 ? " · " : null}
+                    <Link
+                      href={toolHref(tool)}
+                      className="font-medium text-accent-text hover:underline underline-offset-2"
+                    >
+                      {tool.name}
+                    </Link>
+                  </span>
+                ))}
+              </p>
+            ) : null}
           </header>
 
           <div className="prose-content container-prose mt-8">
@@ -106,6 +139,15 @@ export default async function GuidePage({ params }: { params: Promise<RouteParam
               Tools used in this guide
             </h2>
             <ToolGrid tools={tools} showCategory className="mt-4" />
+          </section>
+        ) : null}
+
+        {nextTools.length > 0 ? (
+          <section className="mt-10" aria-labelledby="guide-more-tools-heading">
+            <h2 id="guide-more-tools-heading" className="text-lg font-semibold tracking-tight text-fg">
+              More tools for this job
+            </h2>
+            <ToolGrid tools={nextTools} showCategory className="mt-4" />
           </section>
         ) : null}
 
