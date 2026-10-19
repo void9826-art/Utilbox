@@ -174,7 +174,7 @@ export const generatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Create QR codes for links, text, email, phone, SMS and Wi-Fi. Download as PNG or SVG, with no watermark, no account and no expiry.",
     intro:
-      "Create a QR code for a link, message, contact detail or Wi-Fi network. Download it as a PNG or a scalable SVG.",
+      "Choose what the QR code should hold — a link, text, email, phone number, SMS or Wi-Fi login — fill in the fields and download it as a PNG or a scalable SVG. The content is encoded in the pattern itself, so the code never expires and does not depend on this site. No watermark, no account.",
     howToUse: [
       "Choose what the code should contain — a URL, plain text, an email, a phone number, an SMS or Wi-Fi details.",
       "Fill in the fields; the code redraws as you type.",
@@ -286,7 +286,7 @@ export const generatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Generate strong random passwords and passphrases using your browser's cryptographic random number generator. Nothing is transmitted or stored.",
     intro:
-      "Generate strong random passwords or memorable passphrases. Everything is produced on your device using cryptographic randomness.",
+      "Set a length and the character types, or switch to a word-based passphrase, then copy the result. Passwords come from your browser's cryptographic random number generator and are never sent or stored. Aim for at least 16 characters: a 16-character password from the full character set has about 105 bits of entropy, far beyond brute force.",
     howToUse: [
       "Choose between a random password and a word-based passphrase.",
       "Set the length and which character types to include.",
@@ -374,7 +374,7 @@ export const generatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Build a professional invoice with line items, tax and discounts, then download it as a real PDF. No account, no watermark, no upload.",
     intro:
-      "Build a professional invoice with line items, tax and totals, then download it as a proper PDF with selectable text.",
+      "Fill in your details, your client's and a line for each item, set the tax rate, discount and currency, and download the invoice as a real PDF with selectable text. Totals recalculate as you type. There is no account, no watermark and no invoice limit, and client details never leave your browser — so keep the PDF.",
     howToUse: [
       "Fill in your details and your client's details.",
       "Add a line for each item with its quantity and unit price.",

@@ -134,7 +134,7 @@ export const textContent: Record<string, ToolContent> = {
     seoDescription:
       "Count words, characters, sentences and paragraphs as you type, with reading time and keyword density. Nothing is uploaded.",
     intro:
-      "Count words, characters, sentences and paragraphs as you type, with reading time and the most frequent words.",
+      "Paste or type your text to count words, characters, sentences and paragraphs as you go, with reading time at 238 words per minute and the words you use most. Set a target word count and a progress bar tracks it. Counts match Microsoft Word for ordinary prose, and your text is never uploaded.",
     howToUse: [
       "Type or paste your text into the box.",
       "The counts update on every keystroke.",
@@ -222,7 +222,7 @@ export const textContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert text between uppercase, lowercase, title case, sentence case, camelCase, PascalCase, snake_case and kebab-case instantly.",
     intro:
-      "Convert text between twelve letter cases — from plain uppercase to camelCase and kebab-case for code.",
+      "Paste your text and click a case to convert it: uppercase, lowercase, title case, sentence case, or code styles such as camelCase, PascalCase, snake_case and kebab-case. Title case leaves minor words like 'and' and 'of' lowercase, as publishers do. Your original is kept, so you can try each case in turn. Nothing is uploaded.",
     howToUse: [
       "Paste your text.",
       "Click the case you want; the result appears immediately.",

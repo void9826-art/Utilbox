@@ -31,19 +31,26 @@ const today = new Date().toISOString().slice(0, 10);
 // tree, and as the POSIX basic regex git log -L expects, where "{" is literal
 // and "?" is not an operator. Slugs are [a-z0-9-], so they need no escaping.
 
-/** Content files key entries by slug, quoted or not; each entry closes with "  },". */
-const contentStart = (slug) => ({ js: `^  "?${slug}"?: \\{`, git: `^  "*${slug}"*: {` });
+/**
+ * Content files key entries by slug, quoted or not. Most are object literals
+ * closing with "  },"; unit converters are built by a helper, `unitContent({`,
+ * and close with "  }),".
+ */
+const contentStart = (slug) => ({
+  js: `^  "?${slug}"?: (unitContent\\()?\\{`,
+  git: `^  "*${slug}"*: [a-zA-Z(]*{`,
+});
 /** Registry entries start at "    slug:" and close with "  },". */
 const registryStart = (slug) => ({ js: `^    slug: "${slug}",`, git: `^    slug: "${slug}",` });
 
 const git = async (...args) => (await run("git", args, { maxBuffer: 1 << 24 })).stdout;
 
-/** The block from the start pattern to the next line that is exactly "  },". */
+/** The block from the start pattern to the next line that is exactly "  }," or "  }),". */
 function block(text, start) {
   const lines = text.split("\n");
   const from = lines.findIndex((line) => new RegExp(start).test(line));
   if (from === -1) return null;
-  const to = lines.findIndex((line, index) => index > from && line === "  },");
+  const to = lines.findIndex((line, index) => index > from && (line === "  }," || line === "  }),"));
   return lines.slice(from, to === -1 ? undefined : to + 1).join("\n");
 }
 
@@ -62,7 +69,7 @@ async function entryDate(file, start) {
   if (now === null) return null;
   const then = block((await headText(file))?.replace(/\r\n/g, "\n") ?? "", start.js);
   if (then !== now) return today;
-  const log = await git("log", "-L", `/${start.git}/,/^  },/:${file}`, "--format=%cs", "-s");
+  const log = await git("log", "-L", `/${start.git}/,/^  }[)]*,/:${file}`, "--format=%cs", "-s");
   return log.split("\n").find(Boolean) ?? today;
 }
 

@@ -282,7 +282,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Work out what percent of a number, what percentage one number is of another, and percentage increases or decreases. Every answer shows the formula used.",
     intro:
-      "Four percentage questions in one place: what is X% of Y, X is what percent of Y, percentage change, and adding or removing a percentage.",
+      "Pick one of four questions — what is X% of Y, X is what percent of Y, the percentage change between two numbers, or adding and removing a percentage — and type your numbers. The answer updates as you type and shows the working. For example, 15% of 240 is 0.15 × 240 = 36.",
     howToUse: [
       "Pick the type of question you want to answer using the tabs.",
       "Type your numbers — the result updates as you type.",
@@ -342,7 +342,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Find an exact age in years, months and days from any date of birth, plus total days lived and a countdown to the next birthday.",
     intro:
-      "Work out an exact age in years, months and days — plus total weeks and days lived, and how long until the next birthday.",
+      "Enter a date of birth to get an exact age in years, months and days, plus total weeks and days lived and a countdown to the next birthday. Change the second date to find an age on any past or future date. Month lengths and leap years are handled using the real calendar, not an average.",
     howToUse: [
       "Enter the date of birth.",
       'Leave the second date as today, or set it to work out an age on a particular date.',
@@ -607,7 +607,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Calculate your equated monthly instalment, total interest and full repayment schedule for any loan amount, rate and tenure.",
     intro:
-      "Work out the equated monthly instalment on a loan, the total interest you will pay, and see every payment in the schedule.",
+      "Your EMI is the fixed monthly payment that repays a loan with interest: EMI = P × r × (1 + r)ⁿ ÷ ((1 + r)ⁿ − 1), where r is the monthly rate and n the number of months. Enter the amount, annual rate and tenure to see the instalment, the total interest and every payment in the schedule.",
     howToUse: [
       "Enter the loan amount, the annual interest rate and the tenure.",
       "Switch the tenure between months and years if that is easier.",
@@ -837,7 +837,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Calculate body mass index in metric or imperial units, see which WHO category it falls in, and find the healthy weight range for your height.",
     intro:
-      "Calculate body mass index from your height and weight, and see the healthy weight range for someone of your height.",
+      "BMI is your weight in kilograms divided by your height in metres squared. Enter your height and weight in metric or imperial units to see your BMI, its WHO category — 18.5 to 24.9 is the healthy range for adults — and the healthy weight range for your height. It is a screening measure, not a diagnosis.",
     howToUse: [
       "Choose metric or imperial units.",
       "Enter your height and weight.",
@@ -1045,7 +1045,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     seoDescription:
       "A full scientific calculator with trigonometry, logarithms, powers, roots, constants and memory. Type expressions directly and see your history.",
     intro:
-      "A full scientific calculator. Type an expression or use the keypad — trigonometry, logarithms, powers, roots, factorials and memory are all supported.",
+      "Type an expression such as 2 * (3 + 4)^2, or use the keypad, and press Enter. The calculator handles trigonometry in degrees or radians, logarithms, powers, roots, factorials, π and e, and memory, with correct operator precedence. Every result goes into a history you can click to reuse, and errors are explained precisely.",
     howToUse: [
       "Type an expression such as 2 * (3 + 4)^2 and press Enter, or use the keypad.",
       "Switch between degrees and radians for trigonometric functions.",

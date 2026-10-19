@@ -216,7 +216,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Shrink JPG, PNG and WebP images with a quality slider and a live before-and-after preview. Free, unlimited, and processed in your browser.",
     intro:
-      "Make images smaller without a visible drop in quality. Drag the quality slider and watch the file size change before you download.",
+      "To shrink a JPG, PNG or WebP image, drag the quality slider and watch the estimated file size update before you download. At quality 80, photos typically lose 50–80% of their size with no visible change, and resizing at the same time saves far more. Images are processed in your browser and never uploaded.",
     howToUse: [
       "Add one or more images.",
       "Drag the quality slider — the estimated output size updates as you move it.",
@@ -258,7 +258,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Resize images by pixel dimensions or percentage with the aspect ratio locked. Includes presets for common social and web sizes.",
     intro:
-      "Change an image's dimensions by pixels or percentage. The aspect ratio stays locked unless you unlock it, so nothing gets stretched.",
+      "To resize an image, add it, then type a new width or height in pixels or drag the percentage slider. The aspect ratio stays locked by default, so nothing is stretched. Shrinking keeps photos smooth; enlarging beyond about 150% starts to look soft, and the tool warns you when you do. The image is resized in your browser.",
     howToUse: [
       "Add an image — its current dimensions appear immediately.",
       "Type a new width or height, or drag the percentage slider.",
@@ -335,7 +335,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert PNG images to JPG, choosing a background colour to replace transparency and a quality level. Runs entirely in your browser.",
     intro:
-      "Convert PNG images to JPG for smaller files. Pick the background colour that replaces any transparency.",
+      "To convert PNG to JPG, add one or more images, choose the background colour that replaces transparent areas (white is usual) and set the quality. Photos typically come out 70–85% smaller. For screenshots, logos and flat graphics the saving is smaller and edges blur, so keeping PNG is often better. Nothing is uploaded.",
     howToUse: [
       "Add one or more PNG images.",
       "Choose the background colour used where the PNG is transparent — white is the usual choice.",
@@ -407,7 +407,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Free HEIC to JPG converter online. Convert iPhone photos in batches with no limit on how many files you add — it runs in your browser, so nothing is uploaded.",
     intro:
-      "Convert iPhone HEIC photos to JPG online. Add as many photos as you like, convert them in one batch, and download them together as a ZIP.",
+      "To convert iPhone HEIC photos to JPG, add as many as you like, choose the quality and download them together as a ZIP. Windows cannot open HEIC without a paid codec, and JPG opens everywhere. Conversion happens in your browser, so your photos are never uploaded, and there is no limit on how many you convert.",
     howToUse: [
       "Add your .heic or .heif files — several at once is fine.",
       "Choose the output quality.",
@@ -449,7 +449,7 @@ export const imageContent: Record<string, ToolContent> = {
     seoDescription:
       "Read the words out of a screenshot, photo or scan with real OCR running in your browser. Supports multiple languages and copies straight to your clipboard.",
     intro:
-      "Read the text out of a screenshot, photo or scanned page using real optical character recognition — running on your own device.",
+      "To copy text out of an image, add a screenshot, photo or scan, choose its language and press Extract text, then copy or download the result. Recognition uses the Tesseract OCR engine inside your browser, so the image is never uploaded. Clear printed text is usually over 95% accurate; handwriting and angled photos are much less reliable.",
     howToUse: [
       "Add an image containing text.",
       "Choose the language of the text, which improves accuracy considerably.",

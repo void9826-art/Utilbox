@@ -68,7 +68,11 @@ export interface ToolExample {
 export interface ToolContent {
   seoTitle: string;
   seoDescription: string;
-  /** Rendered directly under the H1 heading, above the tool. Keep it short. */
+  /**
+   * Rendered directly under the H1 heading, above the tool. An answer-first
+   * paragraph of 40–60 words that makes sense on its own: what to do, the key
+   * fact or limit, and how the file is handled. Only claims the page supports.
+   */
   intro: string;
   howToUse: string[];
   howItWorks: string[];

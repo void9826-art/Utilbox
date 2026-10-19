@@ -192,7 +192,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Combine multiple PDFs into a single document in the order you choose. Free, unlimited, and processed entirely in your browser so files never leave your device.",
     intro:
-      "Combine several PDFs into one document. Reorder them before you merge, and download the result in a couple of seconds.",
+      "To merge PDFs, add the files, drag them into the order you want and press Merge — the combined PDF downloads straight away. Pages are copied as they are, so text stays selectable and images are not re-compressed. Everything runs in your browser, with no upload, no sign-up and no fixed limit on the number of files.",
     howToUse: [
       "Drop your PDF files onto the upload area, or click it to browse your device.",
       "Drag the arrows beside each file to put them in the order you want them merged.",
@@ -247,7 +247,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Split a PDF into separate documents by page range, or turn every page into its own file. Free, no watermark, and processed in your browser.",
     intro:
-      "Break one PDF into several. Split at fixed intervals, cut out specific page ranges, or save every page as its own file.",
+      "To split a PDF, add it and choose a mode: page ranges you type (such as 1-3, 5, 8-12), every N pages, or one file per page. A summary shows exactly which pages go into each file before you split. Pages are copied rather than re-rendered, so quality is unchanged, and the file never leaves your browser.",
     howToUse: [
       "Add the PDF you want to split.",
       "Choose a mode: split into ranges you type, split every N pages, or one file per page.",
@@ -297,7 +297,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Make a PDF smaller by re-encoding the images inside it. Choose a quality level, see the size saving before you download, and keep your file on your device.",
     intro:
-      "Reduce the size of a PDF by re-encoding the images it contains. Pick a quality level and see the saving before you commit.",
+      "To make a PDF smaller, add it, choose a level from Light to Strong, check the size saving, then download. Each page is re-rendered and its images re-encoded, which often shrinks scans and image-heavy files by 60–90%. Text in the result is no longer selectable, so use it for scans rather than text documents.",
     howToUse: [
       "Add the PDF you want to shrink.",
       "Choose a compression level — Light keeps the most detail, Strong makes the smallest file.",
@@ -339,7 +339,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Extract the text from a PDF into an editable Word (.docx) document. Free, no email required, and the conversion runs entirely in your browser.",
     intro:
-      "Pull the text out of a PDF and download it as an editable Word document you can open in Word, Google Docs or LibreOffice.",
+      "To convert a PDF to Word, add the file, check the extracted text in the preview and download an editable .docx that opens in Word, Google Docs or LibreOffice. You get the text in reading order with page breaks; columns, tables and exact fonts are not rebuilt. Scanned PDFs need OCR instead. No sign-up, no upload.",
     howToUse: [
       "Add the PDF you want to convert.",
       "Wait while each page is read — a progress bar shows how far along it is.",
@@ -420,7 +420,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Turn every page of a PDF into a JPG image. Choose the resolution, preview the pages, and download them individually or as a ZIP.",
     intro:
-      "Render each page of a PDF as a JPG image. Useful for slide decks, social posts, or anywhere a picture is easier to share than a document.",
+      "To turn PDF pages into JPG images, add the PDF, pick a resolution — Screen, Print (about 150 DPI on A4) or High (about 220 DPI) — and convert. Each page becomes its own JPG, which you can download one at a time or all together as a ZIP. Pages are rendered in your browser and never uploaded.",
     howToUse: [
       "Add your PDF.",
       "Pick a resolution — higher looks better but produces bigger files.",
@@ -461,7 +461,7 @@ export const pdfContent: Record<string, ToolContent> = {
     seoDescription:
       "Turn photos into a single PDF, one image per page. Set page size, orientation and margins, reorder pages, and keep everything on your device.",
     intro:
-      "Turn a set of photos into one PDF, one image per page. Reorder them, choose a page size, and download.",
+      "To combine photos into one PDF, add your JPG or PNG images, put them in order and choose the page size, orientation and margins. Each image gets its own page, scaled to fit without stretching or cropping, and JPEGs are embedded without re-compression, so quality is unchanged. The PDF is built in your browser; nothing is uploaded.",
     howToUse: [
       "Add your JPG or PNG images — you can select several at once.",
       "Reorder them with the arrows until the sequence is right.",

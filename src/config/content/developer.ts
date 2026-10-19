@@ -219,7 +219,7 @@ export const developerContent: Record<string, ToolContent> = {
     seoDescription:
       "Format, minify and validate JSON with syntax highlighting and precise error positions. Runs entirely in your browser — nothing is uploaded.",
     intro:
-      "Pretty-print JSON with proper indentation, or minify it for production. Syntax errors are reported with the exact line and column.",
+      "Paste JSON or drop in a .json file, then press Format to indent it or Minify to strip whitespace. Invalid JSON is reported with the exact line and column and a caret under the problem — usually a trailing comma, single quotes or a comment. Parsing is strict (RFC 8259) and runs in your browser, so real data stays private.",
     howToUse: [
       "Paste your JSON, or drop in a .json file.",
       "Press Format to indent it, or Minify to strip whitespace.",
@@ -350,7 +350,7 @@ export const developerContent: Record<string, ToolContent> = {
     seoDescription:
       "Encode text or files to Base64, with URL-safe output and data URI generation. Handles Unicode correctly and runs entirely in your browser.",
     intro:
-      "Encode text or a file to Base64. Supports URL-safe output and can produce a complete data URI.",
+      "Paste text or drop in a file to encode it as Base64, in standard or URL-safe form, or as a complete data URI with the right MIME type. Unicode such as 'café' encodes correctly via UTF-8, and the output is about 33% larger than the input. Base64 is an encoding, not encryption. Nothing is uploaded.",
     howToUse: [
       "Paste text, or drop in a file.",
       "Choose standard or URL-safe encoding.",
@@ -580,7 +580,7 @@ export const developerContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert Unix timestamps to readable dates in UTC and your local timezone, and convert dates back to epoch seconds or milliseconds.",
     intro:
-      "Convert a Unix timestamp into a readable date in UTC and your local timezone — or go the other way.",
+      "Paste a Unix timestamp to see the date in UTC, in your local time zone and in ISO 8601 form; ten digits are read as seconds and thirteen as milliseconds. Unix time counts seconds since 1 January 1970 UTC. The reverse panel turns a date back into a timestamp, and a live clock shows the current epoch time.",
     howToUse: [
       "Paste a timestamp in seconds or milliseconds; the unit is detected automatically.",
       "Read the date in UTC, in your local timezone, and in ISO 8601 form.",

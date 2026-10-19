@@ -195,7 +195,7 @@ export const converterContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert between major world currencies using daily European Central Bank reference rates. Free, no account, and rates are clearly dated.",
     intro:
-      "Convert between major currencies using daily reference rates. The rate's date is always shown, so you know how fresh the figure is.",
+      "Pick two currencies and type an amount to convert it at the day's European Central Bank reference rate, with the publication date shown under the result. These are mid-market rates: banks and card providers usually add 0.5–4% plus fees. Your amount stays in your browser; only the currency codes are used to look up the rate.",
     howToUse: [
       "Pick the currency you are converting from and the one you are converting to.",
       "Type an amount — the conversion updates immediately.",
@@ -285,7 +285,7 @@ export const converterContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert weight and mass between kilograms, grams, pounds, ounces, stones and tonnes. Instant, accurate conversions in your browser.",
     intro:
-      "Convert weight between metric and imperial units, including stones for body weight and both kinds of ton.",
+      "Convert weight between kilograms, grams, pounds, ounces, stones and tonnes, with US and UK tons listed separately because they differ. One pound is exactly 0.45359237 kg, so a kilogram is about 2.20462 pounds. For stones, multiply by 14 and add the pounds: 11 stone 4 pounds is about 71.67 kg.",
     units:
       "Factors are defined against the kilogram; the pound is exactly 0.45359237 kg by international agreement.",
     basis:
@@ -328,7 +328,7 @@ export const converterContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert temperature between Celsius, Fahrenheit, Kelvin and Rankine. See all four scales at once, with the formulas explained.",
     intro:
-      "Convert between Celsius, Fahrenheit, Kelvin and Rankine. All four scales update together as you type.",
+      "Type a temperature into any box and Celsius, Fahrenheit, Kelvin and Rankine all update together. To convert by hand, °F = °C × 9/5 + 32 and °C = (°F − 32) × 5/9 — so 180 °C is 356 °F. Values below absolute zero, −273.15 °C, are flagged rather than converted.",
     howToUse: [
       "Type a temperature into any of the four boxes.",
       "The other three update immediately.",
