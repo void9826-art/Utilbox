@@ -51,7 +51,7 @@ export const developerContent: Record<string, ToolContent> = {
     seoDescription:
       "Check if an email address is in a valid format, with a plain-English reason when it isn't, typo suggestions like gmial.com, and optional MX record lookups.",
     intro:
-      "Paste one address or a whole list to check each is correctly formatted. Anything wrong is explained, likely typos are corrected, and domains can be checked for mail servers.",
+      "Paste one email address per line to check each one's format, with any problem explained in plain English and likely typos such as gmial.com corrected. The format check runs in your browser; the optional mail-server check sends only the domain names to this site's server for a DNS lookup. No check can prove a mailbox exists.",
     howToUse: [
       "Paste one email address per line.",
       "Read the verdict next to each address — problems are explained in plain English.",
@@ -177,7 +177,7 @@ export const developerContent: Record<string, ToolContent> = {
     seoDescription:
       "Verify a file checksum online. Calculate MD5, SHA-1, SHA-256 and SHA-512 and compare with the published value — any file size, never uploaded.",
     intro:
-      "Check that a download is exactly what its publisher released. Add the file, paste the published checksum, and get a clear match or mismatch.",
+      "Add the file you downloaded, paste the publisher's checksum and press Calculate checksums for a clear match or mismatch. MD5, SHA-1, SHA-256 and SHA-512 are computed in one pass at any file size, and the file is never uploaded. Rely on SHA-256: MD5 and SHA-1 catch accidental corruption, not deliberate tampering.",
     howToUse: [
       "Add the file you downloaded.",
       "Paste the checksum from the download page — the algorithm is detected from its length.",
@@ -307,7 +307,7 @@ export const developerContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert JSON arrays and objects into CSV, flattening nested structures into dotted column names. Configurable delimiter and quoting.",
     intro:
-      "Turn a JSON array into a CSV you can open in a spreadsheet. Nested objects are flattened into dotted column names.",
+      "Paste a JSON array of objects, choose the delimiter and how arrays are handled, check the preview and download the CSV. Every record is scanned for columns, so missing fields become empty cells, and nested objects become dotted columns such as user.name. Values that look like spreadsheet formulas are kept literal. Nothing is uploaded.",
     howToUse: [
       "Paste a JSON array of objects, or an object containing one.",
       "Choose the delimiter and how nested values should be handled.",
@@ -393,7 +393,7 @@ export const developerContent: Record<string, ToolContent> = {
     seoDescription:
       "Decode Base64 back to readable text or download it as a file. Detects the content type automatically and handles URL-safe input.",
     intro:
-      "Decode Base64 back to text, or recover the original file. URL-safe input and data URIs are handled automatically.",
+      "Paste a Base64 string or a data URI to decode it instantly. Readable text is shown directly; binary data such as a PNG, JPEG, PDF or ZIP is identified from its file signature so you can download it with the right name. URL-safe input, line breaks and missing padding are fixed automatically. Nothing is uploaded.",
     howToUse: [
       "Paste the Base64 string, or a complete data URI.",
       "The decoded text appears immediately.",
@@ -430,7 +430,7 @@ export const developerContent: Record<string, ToolContent> = {
     seoDescription:
       "Percent-encode a full URL or a single query parameter. Explains the difference between encodeURI and encodeURIComponent.",
     intro:
-      "Percent-encode text for use in a URL. Choose whether you are encoding a whole URL or a single parameter value.",
+      "Paste a URL or a value and choose the mode: full URL keeps structural characters such as / ? and & intact, while component mode escapes them for use inside a query parameter. Non-ASCII characters become UTF-8 escapes, so é is %C3%A9, and a space is %20, which is always safe. Nothing is uploaded.",
     howToUse: [
       "Paste the URL or the value you want to encode.",
       "Choose the mode: full URL, or a single component.",
@@ -468,7 +468,7 @@ export const developerContent: Record<string, ToolContent> = {
     seoDescription:
       "Decode percent-encoded URLs and break a query string into a readable table of parameters. Handles double-encoding.",
     intro:
-      "Decode a percent-encoded URL back to readable text, and break its query string into a table of parameters.",
+      "Paste a percent-encoded URL or string to decode it to readable text, with %C3%A9 shown as é. A URL is also split into its scheme, host, path and a table of query parameters. If you still see % signs, it was encoded twice; repeat decoding unwraps every layer and reports how many. Nothing is uploaded.",
     howToUse: [
       "Paste the encoded URL or string.",
       "The decoded version appears immediately.",
@@ -505,7 +505,7 @@ export const developerContent: Record<string, ToolContent> = {
     seoDescription:
       "Indent messy HTML into a readable structure, or minify it for production. Preserves the content of pre, script and style blocks.",
     intro:
-      "Indent tangled HTML into a readable structure, or strip it down for production.",
+      "Paste HTML and press Format to indent it by nesting depth, or Minify to strip whitespace and comments for production. The contents of pre, textarea, script and style blocks are left exactly as they were, so the page renders the same. The markup is only handled as text, so pasted scripts cannot run. Nothing is uploaded.",
     howToUse: [
       "Paste your HTML.",
       "Press Format to indent it, or Minify to compress it.",
@@ -543,7 +543,7 @@ export const developerContent: Record<string, ToolContent> = {
     seoDescription:
       "Format CSS with consistent indentation, or minify it for production. Handles nested rules, media queries and preserves comments.",
     intro:
-      "Format CSS with consistent indentation and spacing, or minify it for production.",
+      "Paste a stylesheet and press Format for consistent indentation, or Minify to remove comments and whitespace, usually saving 20–35% before gzip. Nested rules, media queries, keyframes and native CSS nesting indent correctly, and strings and url() values are never misread. Values and rules are not rewritten. Nothing is uploaded.",
     howToUse: [
       "Paste your stylesheet.",
       "Press Format to expand it, or Minify to compress it.",

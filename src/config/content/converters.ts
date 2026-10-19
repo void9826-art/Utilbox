@@ -83,7 +83,7 @@ export const converterContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert shoe sizes between US men's, US women's, UK, European, Japanese and Mondopoint sizes, or find your size from your foot length in cm or inches.",
     intro:
-      "Convert a shoe size between the US, UK, European and Japanese systems — or measure your foot and get your size in all of them.",
+      "Enter your size in the system you know — US men's, US women's, UK, European or Japanese — or your foot length in centimetres or inches, to see your size in every other system. A 25 cm foot is about UK 6.5, US men's 7.5, US women's 8.5 and EU 39.5. Brands can differ by a full size.",
     howToUse: [
       "Choose the sizing system you know, such as US women's.",
       "Enter your size — or choose Foot length and enter a measurement in centimetres or inches.",
@@ -136,7 +136,7 @@ export const converterContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert engine cc to litres and cubic inches exactly, and estimate horsepower from engine size for petrol, turbo and diesel cars and motorcycles.",
     intro:
-      "Convert engine displacement between cc, litres and cubic inches, and see a realistic horsepower range for an engine of that size and type.",
+      "Enter an engine size in cc, litres or cubic inches for exact conversions — 1,500 cc is 1.5 litres or 91.5 cubic inches — and choose the engine type for an estimated horsepower range. Horsepower cannot be calculated from cc alone, so treat it as an estimate. Power converts exactly between hp, PS and kW.",
     howToUse: [
       "Enter the engine size in cc, litres or cubic inches.",
       "Choose the kind of engine, such as a turbocharged petrol car or a sport motorcycle.",
@@ -383,7 +383,7 @@ export const converterContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert seconds to minutes, hours, days, weeks, months and years instantly. Type in any box and all twelve units update, from nanoseconds to years.",
     intro:
-      "Convert durations between nanoseconds and years, with every unit visible at once.",
+      "Type a duration in any box to see it in every unit from nanoseconds to years at once. Up to a week the conversions are exact: a day is 86,400 seconds. Months and years are averages — a year is 365.2425 days and a month 30.44 — so for the time between two real dates, use the age calculator.",
     units:
       "Sub-day units are exact. Months and years are averages, since calendar months vary in length.",
     basis:
@@ -427,7 +427,7 @@ export const converterContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert speed between kilometres per hour, miles per hour, metres per second, knots, feet per second and Mach.",
     intro:
-      "Convert speed across the units used for driving, running, sailing and flying — including knots and Mach.",
+      "Type a speed in any box to convert between km/h, mph, metres per second, knots, feet per second and Mach. Conversions between mph, km/h and knots are exact, and 100 km/h is about 62 mph. Mach uses the sea-level speed of sound, 340.29 m/s at 15 °C, so the real figure varies with altitude.",
     units:
       "Factors derive from the exact length definitions, so mph and km/h conversions are precise.",
     basis:
@@ -467,7 +467,7 @@ export const converterContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert area between square metres, square feet, acres, hectares, square miles and more. Useful for property, land and flooring.",
     intro:
-      "Convert area between metric and imperial units, including the acre and hectare used for land.",
+      "Type an area in any box to convert between square metres, square feet, acres, hectares, square miles and more. Factors come from the exact length definitions: a square foot is 0.09290304 m², a hectare is 10,000 m² and an acre is 43,560 square feet, about 4,047 m². There are about 2.471 acres in a hectare.",
     units:
       "Factors are squared from the exact length definitions, so an acre is exactly 4046.8564224 m².",
     basis:
@@ -510,7 +510,7 @@ export const converterContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert volume between litres, millilitres, US and imperial gallons, cups, pints and spoons. US and imperial units are kept separate.",
     intro:
-      "Convert volume for cooking, fuel and containers. US and imperial units are listed separately, because they are not the same.",
+      "Type a volume in any box to convert between litres, millilitres, US and imperial gallons, cups, pints and spoons. US and imperial units are listed separately because they differ: a US gallon is 3.785 litres and an imperial gallon 4.546, about 20% larger. A US cup is about 237 ml.",
     units:
       "Factors are defined against the litre; US and imperial units are listed as distinct entries.",
     basis:
@@ -550,7 +550,7 @@ export const converterContent: Record<string, ToolContent> = {
     seoDescription:
       "Convert bytes to MB, GB, TB and PB, and back. Decimal units (1,000) and the binary units your computer reports (1,024) are kept clearly apart.",
     intro:
-      "Convert between bytes and terabytes, with the decimal units drive makers use and the binary units your computer reports shown separately.",
+      "Type a size in any box to convert between bytes, kB, MB, GB, TB and PB, and the binary KiB, MiB, GiB and TiB your computer reports. Decimal units step by 1,000 and binary units by 1,024, which is why a 1 TB drive shows as about 931 GB in Windows: the same capacity in a different unit.",
     units:
       "Decimal units use powers of 1,000 and binary units powers of 1,024, exactly as the standards define them.",
     basis:

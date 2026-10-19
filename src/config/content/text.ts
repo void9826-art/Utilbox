@@ -9,7 +9,7 @@ export const textContent: Record<string, ToolContent> = {
     seoDescription:
       "Turn voice messages and short audio clips into text with Whisper speech recognition that runs in your browser. Works with voice notes, MP3, M4A and WAV.",
     intro:
-      "Transcribe a voice note or a short recording into text. The speech recognition model runs on your device, so the audio is never uploaded.",
+      "Add a voice note or recording — MP3, M4A, WAV, OGG or WebM — choose the language or leave it on automatic, and press Transcribe. Whisper speech recognition runs on your device: only the model downloads, about 40 or 80 MB once, and the audio is never uploaded. Clips can be up to 10 minutes long.",
     howToUse: [
       "Add an audio file — a WhatsApp or Telegram voice note, a phone recording, or an MP3, M4A, WAV, OGG or WebM clip.",
       "Choose the language, or leave it on automatic, and pick the faster or more accurate model.",
@@ -51,7 +51,7 @@ export const textContent: Record<string, ToolContent> = {
     seoDescription:
       "Check your resume against a job description: see which keywords are missing, whether an applicant tracking system can read the file, and what to fix.",
     intro:
-      "Compare your resume with a job ad to find the keywords you are missing and the formatting problems that trip up applicant tracking systems. Nothing is uploaded.",
+      "Upload your resume as a PDF, DOCX or TXT file, or paste its text, add the job description and press Check resume. You see which keywords from the ad are missing and which formatting problems — two columns, missing dates, icon fonts — trip up applicant tracking systems. Treat the score as a checklist. Nothing is uploaded.",
     howToUse: [
       "Upload your resume as a PDF, DOCX or TXT file, or paste its text.",
       "Paste the job description you are applying for.",
@@ -92,7 +92,7 @@ export const textContent: Record<string, ToolContent> = {
     seoDescription:
       "Format LinkedIn posts with bold and italic text, bullet points and clean line breaks. Preview where “see more” falls and copy the post — nothing is uploaded.",
     intro:
-      "Write a LinkedIn post with bold and italic words, bullets and spacing that survives posting, and see roughly where the feed cuts it off with “…see more”.",
+      "Write or paste your post, select words and press Bold or Italic, turn lines into bullets, and copy the result into LinkedIn, which has no formatting buttons. Styling uses Unicode letters, so keep it to a few words, because screen readers can struggle with them. The preview marks roughly where “…see more” cuts in. Nothing is uploaded.",
     howToUse: [
       "Write or paste your post.",
       "Select a word or phrase and press Bold, Italic or another style.",
@@ -295,7 +295,7 @@ export const textContent: Record<string, ToolContent> = {
     seoDescription:
       "Sort lines alphabetically, numerically, by length or randomly, with natural sorting that puts item2 before item10.",
     intro:
-      "Sort lines alphabetically, numerically, by length, or shuffle them at random.",
+      "Paste your lines and sort them alphabetically, numerically, by length or at random, in either direction. Natural sorting puts item2 before item10, and accented letters sort where the language expects. Random order uses a cryptographic Fisher-Yates shuffle, so every order is equally likely. Your text is never uploaded.",
     howToUse: [
       "Paste your lines.",
       "Choose a sort method and direction.",
@@ -332,7 +332,7 @@ export const textContent: Record<string, ToolContent> = {
     seoDescription:
       "Reverse text by character, word or line. Handles emoji and accented characters correctly by reversing graphemes, not code units.",
     intro:
-      "Reverse text at three levels — the characters, the word order, or the order of the lines.",
+      "Paste text and choose what to reverse: the characters, the word order or the order of the lines. Characters are reversed as whole graphemes, so emoji, flags and accented letters survive intact rather than breaking apart. Running the output through the same mode again returns the original exactly. Your text is never uploaded.",
     howToUse: [
       "Paste your text.",
       "Choose what to reverse: characters, words, or lines.",

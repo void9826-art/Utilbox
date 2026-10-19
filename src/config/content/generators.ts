@@ -48,7 +48,7 @@ export const generatorContent: Record<string, ToolContent> = {
     seoDescription:
       "Generate FAQ and Product schema markup as JSON-LD, checked against Google's requirements as you type — including GTIN check digits, prices and ratings.",
     intro:
-      "Create FAQPage and Product structured data without writing JSON by hand. Fill in the form, fix anything flagged, and paste the script tag into your page.",
+      "Choose FAQ page or Product, fill in the questions and answers or the product's price, identifiers and rating, and fix anything flagged against Google's requirements. Then copy the JSON-LD script tag into your page and confirm it with the Rich Results Test. Since August 2023, FAQ rich results appear only for government and health sites.",
     howToUse: [
       "Choose FAQ page or Product.",
       "Fill in the questions and answers, or the product's details, price and rating.",
