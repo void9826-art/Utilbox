@@ -16,7 +16,7 @@ Written 2026-10-19. Phases 1–7 of the master prompt. Data files sit next to th
 
 | Phase | Status |
 |---|---|
-| 1 Audit | Done. On-site SEO is strong (schema, server-rendered text, LCP 1.8 s). Correction (2026-10-19): Bing Webmaster Tools shows the sitemap processed (344 URLs) and the homepage **indexed**. An earlier `site:` search wrongly suggested zero pages. The gap is ranking and visibility, not indexing. |
+| 1 Audit | Done. On-site SEO is strong (schema, server-rendered text, LCP 1.8 s). Bing (Webmaster Tools, 2026-10-19): the sitemap is processed (344 URLs), but Site Explorer shows only **14 indexed and 62 excluded**, with 0 errors, 111 impressions over 6 months and 1 backlink. Low index coverage and almost no backlinks are the gaps. |
 | 2 Keywords and prompts | Done (`keywords.csv`, `prompts.csv`). |
 | 3 Technical | Done and live (commit 552fa76): llms.txt, real "Updated" dates, sitemap lastmod, dateModified, guide-to-tool links. The rest already existed. |
 | 4 Tool-page template | **Done 2026-10-19.** All 129 tool pages open with a 48–60-word answer-first intro built only from claims each page already makes. Shipped in six batches, each verified live. |
@@ -186,7 +186,8 @@ Also on the template list:
 
 | KPI | Baseline 2026-10-19 | 90-day target (direction, not a promise) |
 |---|---|---|
-| Bing indexed pages | homepage confirmed; check Site Explorer for the total | Most of the 344 sitemap URLs |
+| Bing indexed pages | 14 indexed, 62 excluded (Site Explorer) | Most of the 344 sitemap URLs |
+| Bing impressions (6 months) / backlinks | 111 / 1 | rising |
 | Google indexed pages | check GSC | ≥ 330 |
 | AI prompts mentioning Utilboxes | 0 / 10 logged | ≥ 5 / 60 |
 | P1 keywords in Google top 10 | check GSC | rising month on month |
@@ -221,7 +222,7 @@ Also on the template list:
 
 | Task | Effort | Expected impact | Status |
 |---|---|---|---|
-| Bing: confirm index coverage, request re-crawl of updated pages | S | Medium | You, in progress (homepage indexed) |
+| Bing: find why 62 pages are excluded; submit top tool URLs | S | **High**: only 14 of 344 indexed | You, in progress |
 | GSC noindex re-check | S | Medium | You |
 | llms.txt + dates + guide links | S | Low–medium | ✅ Live |
 | Answer-first intros (129 pages) | M | Medium (AEO) | ✅ Live |
