@@ -152,7 +152,7 @@ Also on the template list:
 
 - **Name:** Utilboxes
 - **One-liner:** Free online tools that run in your browser: PDF, image, text, calculators and converters. No sign-up, no limits.
-- **Longer:** 131 free tools for PDFs, images, calculations, unit conversion, text and developer data. 126 run entirely in your browser; 2 fetch public reference data (exchange rates, YouTube thumbnails); 3 send only a domain or URL to the site's own server for a network check. Nothing is stored.
+- **Longer:** 154 free tools for PDFs, images, calculations, unit conversion, text and developer data. 149 run entirely in your browser; 2 fetch public reference data (exchange rates, YouTube thumbnails); 3 send only a domain or URL to the site's own server for a network check. Nothing is stored.
 - **URL:** https://www.utilboxes.xyz
 - **Logo:** `public/logo-mark.png`
 

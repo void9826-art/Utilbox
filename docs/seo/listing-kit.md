@@ -18,7 +18,7 @@ Every claim below is true as of 2026-10-19. If a number changes (tool count, for
 | Founded | 2026 |
 
 **Short description (about 50 words)**
-> Utilboxes is a set of 154 free online tools for PDFs, images, calculations, unit conversion, text and developer data. There is no sign-up, no usage limit and no watermark. 126 of the tools run entirely in your browser, so your files are never uploaded, and most keep working offline once a page has loaded.
+> Utilboxes is a set of 154 free online tools for PDFs, images, calculations, unit conversion, text and developer data. There is no sign-up, no usage limit and no watermark. 149 of the tools run entirely in your browser, so your files are never uploaded, and most keep working offline once a page has loaded.
 
 **Long description (about 120 words)**
 > Utilboxes collects the small digital jobs that come up every day: merging and compressing PDFs, converting iPhone HEIC photos, compressing an image to a size limit such as 100 KB, removing EXIF location data, working out an EMI, a GPA or a percentage, formatting JSON, and more — 154 tools in all.
