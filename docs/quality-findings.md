@@ -100,3 +100,16 @@ Already fine: skip link, the `Field` label/error wiring, segmented controls (rea
 ### Left as is
 
 - **Markdown to HTML:** task-list checkboxes have no label (axe "label", critical). They are disabled `<input type="checkbox">` elements in the HTML the tool generates, which is the same markup GitHub produces. Adding labels would change what users copy out, so this needs a product decision.
+
+## Part 4: mobile at 320px
+
+Method: all 410 pages in the sitemap loaded at 320 × 700, flagging any page whose document is wider than the viewport. For each one, the cause was narrowed down by hiding elements one at a time. Before: 7 pages overflowed by 1 to 42 px. After: 0 of 410.
+
+| Cause | Pages | Fix |
+| --- | --- | --- |
+| Long URLs in prose (e.g. `https%3A%2F%2Fexample.com…`) couldn't break | URL encoder how-it-works, SSL name-mismatch guide, and any future text with long tokens | Shared CSS: `overflow-wrap: break-word` on `body` (wraps only words that would otherwise overflow) |
+| Segmented control options couldn't shrink below their label width | Lorem ipsum, UUID and text reverser, and every tool that uses `Segmented` | Shared component: the options wrap to a second row when they don't fit |
+| 13-digit values in the "every unit" table | Time converter and every other unit converter | Result cells may break inside long numbers |
+| Fixed 176 px + 96 px columns around the limit bars | Character counter | Narrower columns below the `sm` breakpoint |
+
+Not covered: pages in states that need input (results tables, long file names) were checked only for the tools exercised in Parts 2 and 3.

@@ -99,7 +99,7 @@ export default function CharacterCounter() {
               const over = stats.characters > entry.limit;
               return (
                 <li key={entry.label} className="flex items-center gap-3">
-                  <span className="w-44 shrink-0 text-[0.8125rem] text-fg">
+                  <span className="w-28 shrink-0 text-[0.8125rem] text-fg sm:w-44">
                     {entry.label}
                     <span className="block text-[0.6875rem] text-fg-subtle">{entry.note}</span>
                   </span>
@@ -114,7 +114,7 @@ export default function CharacterCounter() {
                   </span>
                   <span
                     className={cn(
-                      "tabular w-24 shrink-0 text-right text-xs",
+                      "tabular w-20 shrink-0 text-right text-xs sm:w-24",
                       over ? "font-semibold text-fg" : "text-fg-muted",
                     )}
                   >

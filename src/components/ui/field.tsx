@@ -127,7 +127,8 @@ export function Segmented<T extends string>({
       role="radiogroup"
       aria-label={ariaLabel}
       className={cn(
-        "inline-flex w-full items-stretch gap-1 rounded-lg border border-border bg-surface-sunken p-1",
+        // Wraps rather than overflowing when long option labels meet a 320px screen.
+        "inline-flex w-full flex-wrap items-stretch gap-1 rounded-lg border border-border bg-surface-sunken p-1",
         className,
       )}
     >

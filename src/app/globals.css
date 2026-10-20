@@ -168,6 +168,8 @@
     font-variant-ligatures: contextual;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    /* Long URLs and file names in prose otherwise push 320px screens sideways. */
+    overflow-wrap: break-word;
   }
 
   /* A single, consistent focus treatment across the whole product. */

@@ -224,7 +224,7 @@ export function UnitConverter({ set, presets, footnote }: UnitConverterProps) {
                       {unit.name}
                       <span className="ml-1.5 text-xs text-fg-subtle">{unit.symbol}</span>
                     </th>
-                    <td className="tabular px-3 py-1.5 text-right text-fg-muted">
+                    <td className="tabular px-3 py-1.5 text-right break-all text-fg-muted">
                       {formatWithPrecision(result, decimals)}
                     </td>
                     <td className="w-10 px-1 py-1">
