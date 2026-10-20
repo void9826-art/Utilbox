@@ -372,4 +372,88 @@ export const developerExtra: Record<string, ToolContentExtra> = {
       },
     ],
   },
+
+  "csv-to-json": {
+    tips: [
+      "Export from spreadsheets as “CSV UTF-8” so accented characters survive.",
+      "If every record lands in one field, the delimiter is wrong — pick it manually.",
+      "Use dotted headers such as address.city with nesting on to build nested JSON from a flat sheet.",
+      "Check the record count against the row count in your spreadsheet before using the output.",
+    ],
+    faq: [
+      {
+        question: "Is my data uploaded?",
+        answer:
+          "No. The file is read and converted in your browser, so customer lists and exports stay on your device.",
+      },
+      {
+        question: "What does the warning about an unclosed quote mean?",
+        answer:
+          "A value starts with a double quote that never ends, so the rest of the file was read as one value. Look for a stray quote mark in the CSV, or a quote inside a value that was not doubled.",
+      },
+    ],
+  },
+
+  "jwt-decoder": {
+    tips: [
+      "Check exp and iat first when debugging a 401 error — an expired token is the most common cause.",
+      "Compare aud and iss with what your API expects; a token for another audience will be rejected even if it is valid.",
+      "Times in JWTs are seconds since 1970, not milliseconds.",
+      "Treat any token you paste as a secret and let it expire or revoke it if it may have been exposed.",
+    ],
+    faq: [
+      {
+        question: "What does “Bearer” mean?",
+        answer:
+          "It is the authorisation scheme in the HTTP header: Authorization: Bearer <token>. The tool strips the word so you can paste the header value as it is.",
+      },
+      {
+        question: "What is the difference between HS256 and RS256?",
+        answer:
+          "HS256 signs with a shared secret, so the same secret signs and verifies. RS256 signs with a private key and verifies with the matching public key, so verifiers never hold the signing secret.",
+      },
+    ],
+  },
+
+  "hash-generator": {
+    tips: [
+      "Copy text without a trailing line break when you need to match a hash made elsewhere.",
+      "For webhook signatures, hash the raw request body exactly as received, before any JSON reformatting.",
+      "Compare hashes as lower-case hex unless the other system insists on upper case.",
+      "Do not use a fast hash such as SHA-256 alone to store passwords.",
+    ],
+    faq: [
+      {
+        question: "Is the text I hash sent anywhere?",
+        answer:
+          "No. Hashes are calculated in your browser, so you can hash API keys or test data without them leaving your device.",
+      },
+      {
+        question: "Why is HMAC not offered for MD5?",
+        answer:
+          "Browsers' Web Crypto API supports HMAC only with the SHA family, and modern APIs use HMAC-SHA256 or stronger. HMAC-MD5 is obsolete.",
+      },
+    ],
+  },
+
+  "cron-expression-explainer": {
+    tips: [
+      "Write minute first: 30 2 * * * is 02:30, not 30 past 2 in the afternoon.",
+      "Spread heavy jobs away from minute 0, when many other schedules fire.",
+      "Use explicit times for daily jobs so daylight-saving changes do not surprise you; 02:30 does not exist on some change days.",
+      "Comment each crontab line with its plain-English meaning.",
+    ],
+    faq: [
+      {
+        question: "Does it support seconds?",
+        answer:
+          "No. Standard cron's smallest unit is a minute. Six- or seven-field expressions belong to Quartz, Spring or similar schedulers, and are flagged so you can remove the extra fields.",
+      },
+      {
+        question: "Is 0 or 7 Sunday?",
+        answer:
+          "Both. Standard cron accepts 0 and 7 for Sunday, and names such as SUN, MON and FRI.",
+      },
+    ],
+  },
 };

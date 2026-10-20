@@ -598,3 +598,82 @@ dq("oversized input still returns a result", oversized.changed && oversized.unch
 
 console.log(f11 === 0 ? "TEXT DIFF TESTS OK" : `${f11} FAILURES`);
 if (f11 > 0) process.exitCode = 1;
+
+/* ---- CSV parsing, JWT, hashes, cron ---- */
+import { parseCsv, detectDelimiter, csvRowsToJson, inferValue, uniqueHeaders, DEFAULT_CSV_TO_JSON } from "../src/lib/csv-parse.ts";
+import { decodeJwt, relativeTime } from "../src/lib/jwt.ts";
+import { hashText, hmacText } from "../src/lib/hash.ts";
+import { parseCron, describeCron, nextRuns, dayMatches } from "../src/lib/cron.ts";
+
+let f12 = 0;
+const eq = (name, cond, detail = "") => { if (!cond) { console.log(`FAIL ${name} ${detail}`); f12++; } };
+
+const quoted = parseCsv('a,b\r\n"x, y","say ""hi""\nthere"\r\n', ",");
+eq("csv quoted delimiter", quoted.rows[1][0] === "x, y", JSON.stringify(quoted.rows));
+eq("csv doubled quote and newline", quoted.rows[1][1] === 'say "hi"\nthere', JSON.stringify(quoted.rows));
+eq("csv row count with CRLF", quoted.rows.length === 2, String(quoted.rows.length));
+eq("csv no final newline", parseCsv("a,b\n1,2", ",").rows.length === 2);
+eq("csv BOM stripped", parseCsv("﻿id,x\n1,2", ",").rows[0][0] === "id");
+eq("csv unterminated quote flagged", parseCsv('a,"b\n1,2', ",").unterminatedQuote);
+eq("detect semicolon", detectDelimiter("a;b;c\n1;2,5;3\n") === ";");
+eq("detect tab", detectDelimiter("a\tb\n1\t2\n") === "\t");
+eq("detect comma ignores quoted semicolons", detectDelimiter('a,b\n"x;y;z",2\n') === ",");
+eq("infer keeps leading zeros", inferValue("00042") === "00042");
+eq("infer number", inferValue("3.5") === 3.5 && inferValue("-12") === -12);
+eq("infer long id stays text", inferValue("1234567890123456789") === "1234567890123456789");
+eq("infer booleans and null", inferValue("true") === true && inferValue("FALSE") === false && inferValue("") === null);
+eq("unique headers", JSON.stringify(uniqueHeaders(["a", "a", ""])) === '["a","a_2","column3"]');
+const nested = csvRowsToJson([["id", "user.name"], ["1", "Ada"]], { ...DEFAULT_CSV_TO_JSON, nest: true });
+eq("csv nest dotted", JSON.stringify(nested.records) === '[{"id":1,"user":{"name":"Ada"}}]', JSON.stringify(nested.records));
+const ragged = csvRowsToJson([["a", "b"], ["1"], ["1", "2", "3"]], { ...DEFAULT_CSV_TO_JSON, inferTypes: false });
+eq("csv ragged rows counted", ragged.raggedRows === 2 && ragged.headers.length === 3, JSON.stringify(ragged));
+eq("csv no header gives arrays", JSON.stringify(csvRowsToJson([["1", "x"]], { ...DEFAULT_CSV_TO_JSON, header: false }).records) === '[[1,"x"]]');
+
+const sample = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+const jwt = decodeJwt(`Bearer ${sample}`);
+eq("jwt decodes with Bearer prefix", jwt.ok && jwt.token.payload.name === "John Doe" && jwt.token.algorithm === "HS256", JSON.stringify(jwt));
+eq("jwt iat read", jwt.ok && jwt.token.times[0].claim === "iat" && jwt.token.times[0].date.toISOString() === "2018-01-18T01:30:22.000Z");
+eq("jwt no exp means expired null", jwt.ok && jwt.token.expired === null);
+const expPayload = btoa(JSON.stringify({ exp: 1000 })).replace(/=+$/, "");
+const expired = decodeJwt(`${sample.split(".")[0]}.${expPayload}.sig`, new Date(2000 * 1000));
+eq("jwt expired", expired.ok && expired.token.expired === true, JSON.stringify(expired));
+eq("jwt wrong parts", !decodeJwt("abc.def").ok);
+eq("jwt JWE explained", !decodeJwt("a.b.c.d.e").ok && /encrypted/.test(decodeJwt("a.b.c.d.e").message));
+eq("jwt damaged payload", !decodeJwt(`${sample.split(".")[0]}.@@@.x`).ok);
+eq("relative time future", relativeTime(new Date(7200 * 1000), new Date(0)) === "in 2 hours");
+eq("relative time past", relativeTime(new Date(0), new Date(3 * 86400 * 1000)) === "3 days ago");
+
+eq("sha256 abc", (await hashText("abc", "SHA-256")) === "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
+eq("md5 abc", (await hashText("abc", "MD5")) === "900150983cd24fb0d6963f7d28e17f72");
+eq("sha1 empty", (await hashText("", "SHA-1")) === "da39a3ee5e6b4b0d3255bfef95601890afd80709");
+eq("sha256 base64", (await hashText("abc", "SHA-256", "base64")) === "ungWv48Bz+pBQUDeXa4iI7ADYaOWF3qctBD/YfIAFa0=");
+eq("sha256 utf8", (await hashText("café", "SHA-256")) === "850f7dc43910ff890f8879c0ed26fe697c93a067ad93a7d50f466a7028a9bf4e");
+eq("hmac sha256 known vector", (await hmacText("The quick brown fox jumps over the lazy dog", "key", "SHA-256")) === "f7bc83f430538424b13298e6aa6fb143ef4d59a14946175997479dbc2d1a3cd8");
+eq("hmac empty key", (await hmacText("", "", "SHA-256")) === "b613679a0814d9ec772f95d778c35fc5ff1697c493715653c6c712144292c5ad");
+
+const weekdays = parseCron("0 9 * * 1-5");
+eq("cron parses", weekdays.ok);
+eq("cron weekday description", weekdays.ok && describeCron(weekdays.cron) === "At 09:00, on weekdays (Monday to Friday).", weekdays.ok ? describeCron(weekdays.cron) : "");
+const fromFri = new Date(2026, 9, 23, 10, 0); // Friday 23 October 2026, 10:00 local
+const runs = weekdays.ok ? nextRuns(weekdays.cron, fromFri, 2) : [];
+eq("cron next skips weekend", runs.length === 2 && runs[0].getDay() === 1 && runs[0].getHours() === 9 && runs[1].getDay() === 2, runs.map(String).join(" | "));
+const every15 = parseCron("*/15 * * * *");
+eq("cron step values", every15.ok && every15.cron.minute.values.join(",") === "0,15,30,45");
+eq("cron step description", every15.ok && describeCron(every15.cron).startsWith("Every 15 minutes"));
+const both = parseCron("0 0 13 * 5");
+eq("cron day OR rule", both.ok && dayMatches(both.cron, new Date(2026, 9, 23)) && dayMatches(both.cron, new Date(2026, 10, 13)) && !dayMatches(both.cron, new Date(2026, 9, 21)));
+const starStep = parseCron("0 0 */2 * 1");
+eq("cron star-step day uses AND", starStep.ok && !dayMatches(starStep.cron, new Date(2026, 9, 3)) && dayMatches(starStep.cron, new Date(2026, 9, 5)));
+eq("cron sunday as 7", (() => { const r = parseCron("0 0 * * 7"); return r.ok && r.cron.dayOfWeek.values.join() === "0"; })());
+eq("cron names", (() => { const r = parseCron("0 0 * jan,jul mon-wed"); return r.ok && r.cron.month.values.join() === "1,7" && r.cron.dayOfWeek.values.join() === "1,2,3"; })());
+eq("cron macro", (() => { const r = parseCron("@daily"); return r.ok && r.cron.minute.values.join() === "0" && r.cron.hour.values.join() === "0"; })());
+eq("cron out of range", !parseCron("60 * * * *").ok);
+eq("cron six fields explained", !parseCron("0 0 * * * *").ok && /seconds/.test(parseCron("0 0 * * * *").message));
+eq("cron quartz symbols", !parseCron("0 0 ? * MON").ok);
+eq("cron backwards range", !parseCron("0 0 * * 5-1").ok);
+const leap = parseCron("0 0 29 2 *");
+const leapRuns = leap.ok ? nextRuns(leap.cron, new Date(2026, 0, 1), 1) : [];
+eq("cron leap day found", leapRuns.length === 1 && leapRuns[0].getFullYear() === 2028, leapRuns.map(String).join());
+
+console.log(f12 === 0 ? "CSV, JWT, HASH AND CRON TESTS OK" : `${f12} FAILURES`);
+if (f12 > 0) process.exitCode = 1;

@@ -625,4 +625,205 @@ export const developerContent: Record<string, ToolContent> = {
       },
     ],
   },
+
+  "csv-to-json": {
+    seoTitle: "CSV to JSON Converter — Free, Private, No Upload",
+    seoDescription:
+      "Convert CSV, TSV or a spreadsheet export to a JSON array of objects. Detects the delimiter, keeps leading zeros and nests dotted headers. Runs in your browser.",
+    intro:
+      "To convert CSV to JSON, paste the data or load a file, check the detected delimiter and download the JSON. The first row becomes the keys of each object, numbers and true/false become real values, and codes with leading zeros such as 00042 stay as text. Quoted commas and line breaks are handled. Nothing is uploaded.",
+    howToUse: [
+      "Paste CSV, or load a .csv or .tsv file.",
+      "Check the delimiter — it is detected automatically — and whether the first row is a header.",
+      "Choose whether to detect numbers and whether to nest dotted headers such as address.city.",
+      "Copy the JSON or download it as a .json file.",
+    ],
+    howItWorks: [
+      "The parser follows RFC 4180, the closest thing CSV has to a standard. A value wrapped in double quotes may contain the delimiter, a line break or a doubled quote (\"\") that stands for one quote mark. A byte-order mark at the start, CRLF or LF line endings and a missing final line break are all accepted.",
+      "The delimiter is detected by parsing the first lines with a comma, semicolon, tab and pipe, and choosing the one that gives the most columns consistently. Separators inside quoted values are ignored, so an address with a comma does not fool it.",
+      "With type detection on, a cell becomes a number only when nothing can be lost: 3.5 and -12 become numbers, but 00042 keeps its leading zero and a 19-digit ID stays text because JavaScript numbers hold only about 15 significant digits exactly. TRUE and false become booleans, and empty cells become null.",
+      "Duplicate or blank header names are made unique (name, name_2, column3), so no column silently overwrites another. Rows with fewer cells get null for the missing values, and extra cells get their own column.",
+      PRIVACY_NOTE,
+    ],
+    example: {
+      scenario: "Two rows with a header, one value containing a comma",
+      steps: [
+        "id,name,postcode",
+        "1,\"Hopper, Grace\",01234",
+        "→ [{ \"id\": 1, \"name\": \"Hopper, Grace\", \"postcode\": \"01234\" }]",
+      ],
+      result: "The quoted comma stays inside the name, and the postcode keeps its leading zero as text.",
+    },
+    faq: [
+      {
+        question: "How do I convert an Excel file to JSON?",
+        answer:
+          "Save or export the sheet as CSV from Excel (File → Save As → CSV UTF-8), then load that file here. Each row becomes an object keyed by the header row.",
+      },
+      {
+        question: "Why are some numbers kept in quotes?",
+        answer:
+          "Values with a leading zero, such as postcodes and account codes, and numbers longer than 15 digits stay as text so they are not changed. Turn off type detection to keep every value as text.",
+      },
+      {
+        question: "Can it handle semicolon or tab-separated files?",
+        answer:
+          "Yes. The delimiter is detected automatically, and you can choose comma, semicolon, tab or pipe yourself if the guess is wrong.",
+      },
+      {
+        question: "What if my CSV has no header row?",
+        answer:
+          "Untick “First row is a header” and each row becomes an array of values instead of an object.",
+      },
+    ],
+  },
+
+  "jwt-decoder": {
+    seoTitle: "JWT Decoder — Read Token Claims and Expiry",
+    seoDescription:
+      "Decode a JSON Web Token to read its header, payload and claims, and see when it expires in your time zone. Decoded in your browser; nothing is sent.",
+    intro:
+      "Paste a JSON Web Token to read its header and payload as formatted JSON, with the exp, iat and nbf times shown as real dates and a clear expired or valid label. A “Bearer” prefix is stripped. Decoding is not verification: it cannot prove who issued the token. The token never leaves your browser.",
+    howToUse: [
+      "Paste the token, with or without the “Bearer ” prefix.",
+      "Read the header and payload, shown as formatted JSON.",
+      "Check the claims table for issue and expiry times in your time zone.",
+      "Copy the parts you need, then verify the token on your server.",
+    ],
+    howItWorks: [
+      "A JWT is three Base64URL-encoded parts joined by dots: a header, a payload and a signature. The header and payload are JSON, so decoding them is just reversing the Base64URL encoding — no key is needed, which is why anyone holding a token can read it.",
+      "The registered claims from RFC 7519 are explained: iss (issuer), sub (subject), aud (audience), jti (token ID), and the three times — iat (issued at), nbf (not before) and exp (expiry). Times are Unix timestamps in seconds and are converted to dates in your time zone, with how long ago or how soon they are.",
+      "Expiry is judged against this device's clock. A wrong clock, or a server that allows a minute or two of leeway, can change the answer at the boundary.",
+      "The signature is shown but not checked. Verifying it needs the issuer's secret (for HS256) or public key (for RS256 and ES256), and should happen on your server with a maintained JWT library. A token with alg set to none has no signature and should always be rejected.",
+      "A token with five parts is an encrypted JWE rather than a signed JWT; its contents can only be read with the recipient's private key, so it is reported rather than decoded.",
+      PRIVACY_NOTE,
+    ],
+    faq: [
+      {
+        question: "Is it safe to paste a real token here?",
+        answer:
+          "The token is decoded in your browser and not sent anywhere. Even so, a live token is a credential: anyone who has it can use it until it expires, so avoid pasting production tokens into tools you have not checked.",
+      },
+      {
+        question: "Does decoding verify the signature?",
+        answer:
+          "No. Decoding only reads the header and payload. Checking the signature needs the issuer's secret or public key, and should be done by your server.",
+      },
+      {
+        question: "Why does my token show as expired?",
+        answer:
+          "The exp claim is earlier than this device's clock. Access tokens are often valid for only minutes; request a new one, or check your device's date and time.",
+      },
+      {
+        question: "Can JWT contents be secret?",
+        answer:
+          "Not in a normal signed JWT: the payload is only encoded, not encrypted. Never put passwords or other secrets in a JWT payload.",
+      },
+    ],
+  },
+
+  "hash-generator": {
+    seoTitle: "Hash Generator — SHA-256, MD5, SHA-512 and HMAC",
+    seoDescription:
+      "Generate MD5, SHA-1, SHA-256, SHA-384 and SHA-512 hashes or HMACs of any text, in hex or Base64. Calculated in your browser with Web Crypto.",
+    intro:
+      "Type or paste text to see its MD5, SHA-1, SHA-256, SHA-384 and SHA-512 hashes at once, in hex or Base64. Add a secret key to get HMACs for signing API requests and webhooks. Text is hashed as UTF-8, so results match sha256sum and other tools. Everything is calculated in your browser.",
+    howToUse: [
+      "Type or paste the text to hash.",
+      "Choose hex or Base64 output, and upper-case hex if a system expects it.",
+      "Tick HMAC and enter a secret key to get keyed hashes instead.",
+      "Copy the hash you need with its copy button.",
+    ],
+    howItWorks: [
+      "A hash function turns any input into a fixed-length fingerprint: SHA-256 always gives 256 bits, written as 64 hex characters. The same input always gives the same hash, and changing a single character changes it completely. It cannot be reversed to recover the input.",
+      "The SHA family is calculated with your browser's built-in Web Crypto API. MD5 is not part of Web Crypto, so it comes from the same WebAssembly library the file checksum tool uses.",
+      "Text is converted to UTF-8 bytes before hashing, exactly as typed. A trailing space or line break changes the result, which is the usual reason two tools seem to disagree — echo adds a line break unless you use echo -n.",
+      "HMAC combines a secret key with the message, as defined in RFC 2104, so only someone with the key can produce or check the value. It is offered for the SHA family, which is what APIs and webhook signatures use.",
+      "MD5 and SHA-1 have known collision attacks. They are fine for matching an existing checksum, not for security. Passwords should never be stored as plain hashes; they need a slow, salted algorithm such as Argon2 or bcrypt.",
+      PRIVACY_NOTE,
+    ],
+    example: {
+      scenario: "Hashing the text “abc” with SHA-256",
+      steps: [
+        "Input bytes (UTF-8): 61 62 63",
+        "SHA-256 → ba7816bf 8f01cfea 414140de 5dae2223 b00361a3 96177a9c b410ff61 f20015ad (spaces added for reading)",
+      ],
+      result: "The standard test vector from the SHA-2 specification, so you can confirm the tool is correct.",
+    },
+    faq: [
+      {
+        question: "Why is my hash different from another tool's?",
+        answer:
+          "Almost always because the input differs by an invisible character — a trailing space or line break, or a different text encoding. Here, text is hashed exactly as typed, as UTF-8.",
+      },
+      {
+        question: "Can a hash be decrypted?",
+        answer:
+          "No. A hash is one-way. Sites that claim to “decrypt” MD5 just look the hash up in lists of common inputs, which is why short or common inputs are not safe to hash on their own.",
+      },
+      {
+        question: "Which algorithm should I use?",
+        answer:
+          "SHA-256 for anything new. Use MD5 or SHA-1 only to match a checksum that was published that way.",
+      },
+      {
+        question: "How do I hash a file?",
+        answer:
+          "Use the File Checksum Verifier, which hashes files of any size in your browser and compares the result with a published checksum.",
+      },
+    ],
+  },
+
+  "cron-expression-explainer": {
+    seoTitle: "Cron Expression Explainer — Next Run Times",
+    seoDescription:
+      "Paste a cron expression to see what it means in plain English, field by field, and the next 10 run times in your time zone. Standard five-field cron.",
+    intro:
+      "Paste a cron expression such as 0 9 * * 1-5 to see it in plain English — here, “At 09:00 on weekdays” — with each field explained and the next ten run times in your time zone. It reads standard five-field cron, including ranges, steps, names like MON and shortcuts like @daily. It runs in your browser.",
+    howToUse: [
+      "Type or paste a cron expression, or pick an example.",
+      "Read the plain-English description and the field-by-field table.",
+      "Check the next ten run times, shown in your own time zone.",
+      "Adjust the expression until the schedule matches what you want.",
+    ],
+    howItWorks: [
+      "Standard cron has five fields: minute (0–59), hour (0–23), day of month (1–31), month (1–12 or JAN–DEC) and day of week (0–6 or SUN–SAT, with 7 also meaning Sunday). Each field can be * for every value, a list (1,15), a range (1-5), a step (*/15 or 0-30/10) or a combination.",
+      "The shortcuts @hourly, @daily (or @midnight), @weekly, @monthly and @yearly (or @annually) are expanded to their five-field equivalents. @reboot has no schedule, so it is explained rather than expanded.",
+      "When both the day-of-month and day-of-week fields are restricted, standard cron runs on days that match either one, not both. 0 0 13 * 5 therefore runs on every 13th and on every Friday. If either field starts with *, only the other one counts.",
+      "Upcoming runs are calculated in this device's time zone by checking each day for up to five years ahead, so schedules that run rarely — such as 29 February — are still found. Times that do not exist on a daylight-saving change day are skipped.",
+      "Quartz and Spring schedulers use six or seven fields (adding seconds and a year) and symbols such as ?, L, W and #. Those are reported as not standard cron rather than guessed at.",
+      PRIVACY_NOTE,
+    ],
+    example: {
+      scenario: "*/15 9-17 * * 1-5",
+      steps: [
+        "Minute */15 → 0, 15, 30, 45",
+        "Hour 9-17 → 09:00 to 17:59",
+        "Day of week 1-5 → Monday to Friday",
+      ],
+      result: "Every 15 minutes between 09:00 and 17:59 on weekdays — the last run each day is 17:45.",
+    },
+    faq: [
+      {
+        question: "What does * * * * * mean?",
+        answer:
+          "Every minute of every day. Each * means “every value” for its field.",
+      },
+      {
+        question: "How do I run a job every 5 minutes?",
+        answer:
+          "Use */5 * * * *. The step /5 means every fifth value, starting from 0.",
+      },
+      {
+        question: "Which time zone does cron use?",
+        answer:
+          "The time zone of the machine or service running it, which on servers and many cloud schedulers is UTC. The run times here are shown in your own time zone, so adjust if your server differs.",
+      },
+      {
+        question: "Why does my schedule run on more days than I expected?",
+        answer:
+          "If you restricted both day of month and day of week, cron runs when either matches. To run on the 13th only if it is a Friday, schedule the 13th and check the weekday inside the job.",
+      },
+    ],
+  },
 };

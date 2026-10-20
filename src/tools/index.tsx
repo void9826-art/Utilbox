@@ -12,7 +12,7 @@ const Loading = () => <ToolSkeleton />;
 
 /**
  * Every tool is a separate lazily-loaded chunk, so visiting one tool page never
- * downloads the code for the other 130.
+ * downloads the code for the other 134.
  */
 const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "merge-pdf": dynamic(() => import("./pdf/merge-pdf"), { loading: Loading }),
@@ -146,6 +146,10 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "email-syntax-checker": dynamic(() => import("./developer/email-syntax-checker"), { loading: Loading }),
   "password-strength-checker": dynamic(() => import("./developer/password-strength-checker"), { loading: Loading }),
   "og-preview": dynamic(() => import("./developer/og-preview"), { loading: Loading }),
+  "csv-to-json": dynamic(() => import("./developer/csv-to-json"), { loading: Loading }),
+  "jwt-decoder": dynamic(() => import("./developer/jwt-decoder"), { loading: Loading }),
+  "hash-generator": dynamic(() => import("./developer/hash-generator"), { loading: Loading }),
+  "cron-expression-explainer": dynamic(() => import("./developer/cron-expression-explainer"), { loading: Loading }),
 };
 
 export function ToolMount({ slug }: { slug: string }) {

@@ -178,5 +178,20 @@ const thirty = ukTakeHome({ ...england, gross: 30000 });
 check("uk 30k take-home", Number(thirty.net.toFixed(2)), 25119.6);
 check("uk 30k monthly", Number((thirty.net / 12).toFixed(2)), 2093.3);
 
+/* hash-generator, cron-expression-explainer, csv-to-json, jwt-decoder */
+{
+  const { hashText } = await import("../src/lib/hash.ts");
+  check("sha256 of abc", await hashText("abc", "SHA-256"), "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
+  const { parseCron, describeCron } = await import("../src/lib/cron.ts");
+  const weekdays = parseCron("0 9 * * 1-5");
+  check("cron intro example", weekdays.ok ? describeCron(weekdays.cron) : "", "At 09:00, on weekdays (Monday to Friday).");
+  const office = parseCron("*/15 9-17 * * 1-5");
+  check("cron worked example minutes", office.ok ? office.cron.minute.values.join(",") : "", "0,15,30,45");
+  check("cron worked example", office.ok ? describeCron(office.cron) : "", "Every 15 minutes, between 09:00 and 17:59, on weekdays (Monday to Friday).");
+  const { parseCsv, csvRowsToJson, DEFAULT_CSV_TO_JSON } = await import("../src/lib/csv-parse.ts");
+  const csv = csvRowsToJson(parseCsv('id,name,postcode\n1,"Hopper, Grace",01234', ",").rows, DEFAULT_CSV_TO_JSON);
+  check("csv worked example", JSON.stringify(csv.records), '[{"id":1,"name":"Hopper, Grace","postcode":"01234"}]');
+}
+
 console.log(problems === 0 ? "ALL DOCUMENTED EXAMPLES MATCH THE CODE" : `${problems} EXAMPLE(S) DISAGREE WITH THE CODE`);
 if (problems > 0) process.exitCode = 1;
