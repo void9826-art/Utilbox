@@ -12,7 +12,7 @@ const Loading = () => <ToolSkeleton />;
 
 /**
  * Every tool is a separate lazily-loaded chunk, so visiting one tool page never
- * downloads the code for the other 149.
+ * downloads the code for the other 153.
  */
 const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "merge-pdf": dynamic(() => import("./pdf/merge-pdf"), { loading: Loading }),
@@ -73,6 +73,9 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "unit-price-calculator": dynamic(() => import("./calculators/unit-price-calculator"), { loading: Loading }),
   "sip-calculator": dynamic(() => import("./calculators/sip-calculator"), { loading: Loading }),
   "bmr-calculator": dynamic(() => import("./calculators/bmr-calculator"), { loading: Loading }),
+  "loan-comparison-calculator": dynamic(() => import("./calculators/loan-comparison-calculator"), { loading: Loading }),
+  "savings-goal-calculator": dynamic(() => import("./calculators/savings-goal-calculator"), { loading: Loading }),
+  "time-duration-calculator": dynamic(() => import("./calculators/time-duration-calculator"), { loading: Loading }),
   "compress-image": dynamic(() => import("./image/compress-image"), { loading: Loading }),
   "resize-image": dynamic(() => import("./image/resize-image"), { loading: Loading }),
   "jpg-to-png": dynamic(() => import("./image/jpg-to-png"), { loading: Loading }),
@@ -131,6 +134,7 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "schema-generator": dynamic(() => import("./generators/schema-generator"), { loading: Loading }),
   "utm-builder": dynamic(() => import("./generators/utm-builder"), { loading: Loading }),
   "qr-code-wifi-vcard": dynamic(() => import("./generators/qr-code-wifi-vcard"), { loading: Loading }),
+  "list-randomizer": dynamic(() => import("./generators/list-randomizer"), { loading: Loading }),
   "word-counter": dynamic(() => import("./text/word-counter"), { loading: Loading }),
   "character-counter": dynamic(() => import("./text/character-counter"), { loading: Loading }),
   "case-converter": dynamic(() => import("./text/case-converter"), { loading: Loading }),

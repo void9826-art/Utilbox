@@ -1,4 +1,5 @@
 import {
+  Shuffle,
   Barcode,
   Bot,
   Dices,
@@ -180,5 +181,17 @@ export const generatorTools: ToolMeta[] = [
     requiresFile: false,
     processing: "client",
     addedOn: "2026-09-10",
+  },
+  {
+    slug: "list-randomizer",
+    name: "Random Team Generator",
+    category: "generators",
+    description: "Split a list of names into random teams, pick winners, or shuffle the order.",
+    keywords: ["random team generator", "random name picker", "list randomizer", "random group generator", "split into teams"],
+    icon: Shuffle,
+    related: ["random-number-generator", "sort-lines", "remove-duplicate-lines", "password-generator"],
+    requiresFile: false,
+    processing: "client",
+    addedOn: "2026-10-20",
   },
 ];

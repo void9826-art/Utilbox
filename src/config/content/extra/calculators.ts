@@ -670,4 +670,67 @@ export const calculatorExtra: Record<string, ToolContentExtra> = {
       },
     ],
   },
+
+  "loan-comparison-calculator": {
+    tips: [
+      "Compare loans over the same term first, then see what a longer term would add.",
+      "Ask each lender for the total amount repayable — it should match this calculator closely.",
+      "Check for early-repayment charges if you might pay the loan off sooner.",
+      "A fee paid up front and a fee added to the loan cost different amounts; model the one you will actually have.",
+    ],
+    faq: [
+      {
+        question: "Can I compare a car loan and a personal loan?",
+        answer:
+          "Yes. Enter each offer's figures; the comparison works for any fixed-rate loan with level monthly payments.",
+      },
+      {
+        question: "Are my figures saved?",
+        answer:
+          "No. Everything is calculated in your browser and nothing is stored.",
+      },
+    ],
+  },
+
+  "savings-goal-calculator": {
+    tips: [
+      "Set up an automatic transfer on payday for the monthly amount.",
+      "Round the monthly amount up to leave a margin for rate changes.",
+      "Use a separate account for each goal so progress is easy to see.",
+      "Keep an emergency fund separate from goals with a deadline.",
+    ],
+    faq: [
+      {
+        question: "Can I use it for a house deposit?",
+        answer:
+          "Yes. Enter the deposit as the goal and the time until you plan to buy. See also the guide on how much deposit you need.",
+      },
+      {
+        question: "Is my data stored?",
+        answer:
+          "No. The calculation runs in your browser.",
+      },
+    ],
+  },
+
+  "time-duration-calculator": {
+    tips: [
+      "Use decimal hours on timesheets that ask for hours as a number.",
+      "For a whole week of shifts with breaks and overtime, use the Time Card Calculator.",
+      "Write durations with units (1h 30m) when sharing them, to avoid the 1:30 ambiguity.",
+      "Check that times use the same time zone before subtracting them.",
+    ],
+    faq: [
+      {
+        question: "Does it handle times in different time zones?",
+        answer:
+          "No. Convert both times to the same zone first, or use the Time Zone Meeting Planner.",
+      },
+      {
+        question: "Is anything sent to a server?",
+        answer:
+          "No. Everything is calculated in your browser.",
+      },
+    ],
+  },
 };

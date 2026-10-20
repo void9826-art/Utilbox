@@ -1498,4 +1498,174 @@ export const calculatorContent: Record<string, ToolContent> = {
     ],
     disclaimer: "These are estimates for general information, not medical or nutritional advice. If you are pregnant, have a health condition, take medication that affects weight, or are planning a significant diet change, speak to a doctor or registered dietitian.",
   },
+
+  "loan-comparison-calculator": {
+    seoTitle: "Loan Comparison Calculator — Rate, Fees, Term",
+    seoDescription:
+      "Compare up to three loan offers side by side: monthly payment, total interest, fees and a rate that includes fees. See which loan costs least overall.",
+    intro:
+      "Enter up to three loan offers with their amount, interest rate, term and up-front fees to compare the monthly payment, total interest and total cost side by side. A rate that includes fees shows when a lower headline rate is really dearer: 10,000 at 5% with a 500 fee costs more than 6% with no fee over three years.",
+    howToUse: [
+      "Enter each offer's amount, annual interest rate, term in years and any up-front fees.",
+      "Compare the monthly payment, total interest and interest plus fees.",
+      "Check the rate including fees to compare offers with different fees fairly.",
+      "Read the summary for the offer that costs least overall.",
+    ],
+    howItWorks: [
+      "Each loan is a standard level-payment loan: payment = P × r × (1 + r)ⁿ ÷ ((1 + r)ⁿ − 1), with r the annual rate ÷ 12 and n the number of months. Total interest is the payments minus the amount borrowed, and the total cost adds the up-front fees.",
+      "The rate including fees is found by working out which annual rate would make the same payments repay only the money you actually receive after fees. It is calculated by bisection and quoted as a nominal annual rate (monthly rate × 12), the convention used for US APR disclosures; UK-style APRs compound it and come out slightly higher. Lenders' official APRs can include other charges as well.",
+      "The lowest monthly payment is not always the cheapest loan: a longer term lowers the payment but usually raises the total interest. Comparing total cost answers “which costs least”, while the payment answers “which can I afford each month”.",
+      "Insurance, early-repayment charges and variable rates are not modelled. Check each offer's full terms.",
+    ],
+    formula: {
+      expression: "payment = P × r × (1 + r)ⁿ ÷ ((1 + r)ⁿ − 1)      total cost = payment × n − P + fees",
+      where: [
+        "P — amount borrowed",
+        "r — monthly rate: annual rate ÷ 12 ÷ 100",
+        "n — number of monthly payments",
+      ],
+    },
+    example: {
+      scenario: "10,000 over 3 years: 6% with no fee, or 5% with a 500 fee",
+      steps: [
+        "6%, no fee: payment 304.22, interest 951.90, total cost 951.90",
+        "5%, 500 fee: payment 299.71, interest 789.52, total cost 1,289.52",
+        "Rate including the fee: about 8.46%",
+      ],
+      result: "The 5% loan has the lower payment but costs about 338 more overall.",
+    },
+    faq: [
+      {
+        question: "Is a lower interest rate always cheaper?",
+        answer:
+          "No. Fees can outweigh a lower rate, especially on smaller or shorter loans. Compare the total cost or the rate including fees.",
+      },
+      {
+        question: "Should I choose the lowest monthly payment?",
+        answer:
+          "Only if affordability each month matters most. A longer term lowers the payment but usually adds a lot of interest; check the total cost too.",
+      },
+      {
+        question: "What if the fee is added to the loan?",
+        answer:
+          "Enter the larger amount you will actually borrow as the loan amount and set the fee to 0, so the interest on the fee is included.",
+      },
+      {
+        question: "Why is the rate including fees different from the lender's APR?",
+        answer:
+          "An official APR may include other compulsory charges and, in some countries, is compounded. Use this figure to compare offers on the same basis, and the lender's APR for the full picture.",
+      },
+    ],
+    disclaimer: "This comparison is a general illustration, not financial advice. Lenders apply their own fees, rounding and day-count rules, so real figures will differ; check each offer's terms before committing.",
+  },
+
+  "savings-goal-calculator": {
+    seoTitle: "Savings Goal Calculator — How Much to Save Monthly",
+    seoDescription:
+      "Work out how much to save each month to reach a savings goal by a date, or how long it will take at a given monthly saving, with interest included.",
+    intro:
+      "Enter a savings goal, what you have already saved and an interest rate to see how much to save each month to reach it in time — or switch modes to see how long it will take at a set monthly amount. To turn 1,000 into 10,000 in two years at 5% interest, save about 353 a month.",
+    howToUse: [
+      "Choose “How much each month?” or “How long will it take?”.",
+      "Enter the goal, what you already have and the interest rate (0 for cash).",
+      "Enter the time you have, or the amount you can save each month.",
+      "Read the result and the balance over time.",
+    ],
+    howItWorks: [
+      "Interest is compounded monthly at the annual rate ÷ 12, and deposits are made at the end of each month. What you already have grows on its own; the monthly deposit covers the rest.",
+      "The monthly amount needed is the shortfall × r ÷ ((1 + r)ⁿ − 1), where the shortfall is the goal minus what your current savings will have grown to, r is the monthly rate and n the number of months. With no interest it is simply the shortfall ÷ n.",
+      "The time to reach a goal is found by adding a month at a time until the balance reaches the goal, so it is a whole number of months.",
+      "Tax on interest, changing rates and missed months are not included, so leave yourself a margin.",
+    ],
+    formula: {
+      expression: "monthly = (goal − current × (1 + r)ⁿ) × r ÷ ((1 + r)ⁿ − 1)",
+      where: [
+        "r — monthly rate: annual rate ÷ 12 ÷ 100",
+        "n — number of months",
+        "current — what you have already saved",
+      ],
+    },
+    example: {
+      scenario: "Reaching 10,000 in 2 years from 1,000, at 5% interest",
+      steps: [
+        "1,000 grows to about 1,104.94 in 24 months",
+        "Shortfall: 10,000 − 1,104.94 = 8,895.06",
+        "Monthly: 8,895.06 × 0.004167 ÷ (1.004167²⁴ − 1) ≈ 353.18",
+      ],
+      result: "Save about 353.18 a month; you pay in 9,476.32 and interest adds the rest.",
+    },
+    faq: [
+      {
+        question: "How much should I save each month for a goal?",
+        answer:
+          "Divide the shortfall by the number of months for a no-interest estimate, or use this calculator to include interest on what you save.",
+      },
+      {
+        question: "What interest rate should I use?",
+        answer:
+          "The rate on the account you will actually use. For cash in a current account, use 0.",
+      },
+      {
+        question: "Does it include tax on interest?",
+        answer:
+          "No. If your interest is taxed, use a slightly lower rate, or add a margin to the monthly amount.",
+      },
+      {
+        question: "What if I miss a month?",
+        answer:
+          "Missed deposits push the date back. Re-run the calculation from your new balance to see the new monthly amount.",
+      },
+    ],
+  },
+
+  "time-duration-calculator": {
+    seoTitle: "Time Duration Calculator — Hours Between Times",
+    seoDescription:
+      "Find the hours and minutes between two times, add or subtract a duration from a time, or add up a list of durations such as 1:45 and 2:30.",
+    intro:
+      "Find the time between two clock times — 09:15 to 17:40 is 8 hours 25 minutes — add or subtract hours and minutes from a time, or add up a list of durations such as 1:45, 2:30 and 50 minutes. Times past midnight are handled, and totals show in hours and minutes and decimal hours, in your browser.",
+    howToUse: [
+      "Choose Between times, Add / subtract, or Add up.",
+      "Enter the times, or a duration such as 3h 45m, 2:30 or 90 (minutes).",
+      "For a list, put one duration per line and say whether 1:30 means hours:minutes or minutes:seconds.",
+      "Read the result in hours and minutes and in decimal hours.",
+    ],
+    howItWorks: [
+      "Between two times, the start is subtracted from the end. If the end is earlier than the start, it is taken to be the next day, so 22:00 to 06:00 is 8 hours.",
+      "Adding or subtracting works in minutes and wraps round midnight, saying when the result falls on the next or previous day: 22:30 plus 3 hours 45 minutes is 02:15 the next day.",
+      "Durations can be typed as 1:30:15, 1:30, 1h 30m, 90m, 45s, 1.5h or a plain number of minutes. A two-part value like 1:30 is ambiguous — hours and minutes for timesheets, minutes and seconds for music and video — so you choose which.",
+      "Totals are added in seconds and only rounded for display. Decimal hours divide by 60: 45 minutes is 0.75 hours, not 0.45.",
+    ],
+    example: {
+      scenario: "Adding 1:45, 2:30, 0:50 and 1h 15m",
+      steps: [
+        "105 + 150 + 50 + 75 = 380 minutes",
+        "380 minutes = 6 hours 20 minutes",
+        "6 h 20 min = 6.33 hours",
+      ],
+      result: "6:20 in total, or 6.33 decimal hours.",
+    },
+    faq: [
+      {
+        question: "How do I calculate hours between two times?",
+        answer:
+          "Subtract the start from the end. If the end is past midnight, add 24 hours first. 09:15 to 17:40 is 8 hours 25 minutes.",
+      },
+      {
+        question: "How do I add hours and minutes?",
+        answer:
+          "Add the minutes, carry every 60 minutes into an hour, then add the hours — or list the durations in Add up and let the calculator do it.",
+      },
+      {
+        question: "How do I convert minutes to decimal hours?",
+        answer:
+          "Divide by 60. 25 minutes is 0.42 hours, so 8 hours 25 minutes is 8.42 hours.",
+      },
+      {
+        question: "Can I add video or song lengths?",
+        answer:
+          "Yes. In Add up, set two-part values to minutes:seconds and enter lengths such as 3:45.",
+      },
+    ],
+  },
 };

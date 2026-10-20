@@ -276,5 +276,28 @@ check("uk 30k monthly", Number((thirty.net / 12).toFixed(2)), 2093.3);
   check("border example", `${framed.border}/${framed.width}x${framed.height}`, "150/4300x3300");
 }
 
+/* loan-comparison, savings-goal, time-duration */
+{
+  const { summariseLoan } = await import("../src/lib/loan-compare.ts");
+  const a = summariseLoan({ amount: 10000, annualRate: 6, months: 36, fees: 0 });
+  const b = summariseLoan({ amount: 10000, annualRate: 5, months: 36, fees: 500 });
+  check("loan A payment", Number(a.payment.toFixed(2)), 304.22);
+  check("loan A interest", Number(a.totalInterest.toFixed(2)), 951.9);
+  check("loan B payment", Number(b.payment.toFixed(2)), 299.71);
+  check("loan B interest", Number(b.totalInterest.toFixed(2)), 789.52);
+  check("loan B total cost", Number(b.totalCost.toFixed(2)), 1289.52);
+  check("loan B rate with fees", Number(b.aprWithFees.toFixed(2)), 8.46);
+  check("loan difference", Math.round(b.totalCost - a.totalCost), 338);
+  const { monthlyDepositNeeded } = await import("../src/lib/savings-goal.ts");
+  const needed = monthlyDepositNeeded(10000, 1000, 5, 24);
+  check("goal monthly", Number(needed.toFixed(2)), 353.18);
+  check("goal grown current", Number((1000 * (1 + 5 / 1200) ** 24).toFixed(2)), 1104.94);
+  check("goal paid in", Number((1000 + 353.18 * 24).toFixed(2)), 9476.32);
+  const { parseDuration, parseTime, shiftMinutes, addToClock } = await import("../src/lib/timecard.ts");
+  check("duration sum example", ["1:45", "2:30", "0:50", "1h 15m"].reduce((t, d) => t + parseDuration(d), 0) / 60, 380);
+  check("between example", shiftMinutes(parseTime("09:15"), parseTime("17:40")), 505);
+  check("add example", JSON.stringify(addToClock(parseTime("22:30"), 225)), '{"minutes":135,"dayOffset":1}');
+}
+
 console.log(problems === 0 ? "ALL DOCUMENTED EXAMPLES MATCH THE CODE" : `${problems} EXAMPLE(S) DISAGREE WITH THE CODE`);
 if (problems > 0) process.exitCode = 1;

@@ -899,3 +899,49 @@ const lq = (name, cond, detail = "") => { if (!cond) { console.log(`FAIL ${name}
 }
 console.log(f16 === 0 ? "IMAGE LAYOUT TESTS OK" : `${f16} FAILURES`);
 if (f16 > 0) process.exitCode = 1;
+
+/* ---- loans, savings goals, durations, teams ---- */
+import { summariseLoan, levelPayment, aprWithFees } from "../src/lib/loan-compare.ts";
+import { monthlyDepositNeeded, monthsToGoal, goalSchedule } from "../src/lib/savings-goal.ts";
+import { parseDuration, formatDuration, addToClock } from "../src/lib/timecard.ts";
+import { parseEntries, dealIntoGroups, chunkBySize } from "../src/lib/teams.ts";
+let f17 = 0;
+const fq = (name, cond, detail = "") => { if (!cond) { console.log(`FAIL ${name} ${detail}`); f17++; } };
+{
+  const plainLoan = summariseLoan({ amount: 10000, annualRate: 6, months: 36, fees: 0 });
+  fq("loan payment", Math.abs(plainLoan.payment - 304.22) < 0.005, String(plainLoan.payment));
+  fq("loan apr without fees equals rate", plainLoan.aprWithFees === 6);
+  const feeLoan = summariseLoan({ amount: 10000, annualRate: 5, months: 36, fees: 500 });
+  fq("loan cost includes fees", Math.abs(feeLoan.totalCost - (feeLoan.totalInterest + 500)) < 1e-9);
+  fq("loan apr with fees higher", feeLoan.aprWithFees > 8.4 && feeLoan.aprWithFees < 8.5, String(feeLoan.aprWithFees));
+  fq("zero rate payment", levelPayment(1200, 0, 12) === 100);
+  fq("apr zero rate with fee", aprWithFees({ amount: 1200, annualRate: 0, months: 12, fees: 100 }) > 0);
+  fq("loan rejects fee above amount", summariseLoan({ amount: 100, annualRate: 5, months: 12, fees: 100 }) === null);
+
+  fq("goal no interest", Math.abs(monthlyDepositNeeded(10000, 0, 0, 24) - 416.6667) < 1e-3);
+  const needed = monthlyDepositNeeded(10000, 1000, 5, 24);
+  fq("goal with interest", Math.abs(needed - 353.18) < 0.01, String(needed));
+  fq("goal already met", monthlyDepositNeeded(1000, 2000, 0, 12) === 0);
+  fq("months to goal", monthsToGoal(10000, 1000, 353.18, 5) === 24, String(monthsToGoal(10000, 1000, 353.18, 5)));
+  fq("months never", monthsToGoal(100, 0, 0, 0) === null);
+  const schedule = goalSchedule(1000, needed, 5, 24);
+  fq("goal schedule reaches target", Math.abs(schedule[schedule.length - 1].balance - 10000) < 0.01, JSON.stringify(schedule.at(-1)));
+
+  fq("duration hm", parseDuration("1:30") === 5400 && parseDuration("1:30", "ms") === 90);
+  fq("duration hms", parseDuration("1:30:15") === 5415);
+  fq("duration words", parseDuration("1h 30m") === 5400 && parseDuration("1 hour 5 minutes") === 3900 && parseDuration("1h30") === 5400 && parseDuration("45s") === 45);
+  fq("duration bare minutes", parseDuration("90") === 5400 && parseDuration("1.5h") === 5400);
+  fq("duration invalid", parseDuration("2:75") === null && parseDuration("abc") === null && parseDuration("5 parsecs") === null);
+  fq("duration negative", parseDuration("-0:15") === -900);
+  fq("format duration", formatDuration(5025) === "1:23:45" && formatDuration(5025, false) === "1:24" && formatDuration(90000) === "25:00:00");
+  fq("clock wraps forward", JSON.stringify(addToClock(23 * 60, 120)) === '{"minutes":60,"dayOffset":1}');
+  fq("clock wraps back", JSON.stringify(addToClock(30, -60)) === '{"minutes":1410,"dayOffset":-1}');
+
+  fq("entries trimmed and deduped", JSON.stringify(parseEntries(" Ann\n\nbob\nBob \nCara", true)) === '["Ann","bob","Cara"]');
+  const teams = dealIntoGroups(["a", "b", "c", "d", "e"], 2);
+  fq("deal balanced", teams[0].length === 3 && teams[1].length === 2 && teams[0][0] === "a" && teams[1][0] === "b");
+  fq("deal never more groups than items", dealIntoGroups(["a", "b"], 5).length === 2);
+  fq("chunk by size", JSON.stringify(chunkBySize([1, 2, 3, 4, 5], 2)) === "[[1,2],[3,4],[5]]");
+}
+console.log(f17 === 0 ? "LOAN, GOAL, DURATION AND TEAM TESTS OK" : `${f17} FAILURES`);
+if (f17 > 0) process.exitCode = 1;

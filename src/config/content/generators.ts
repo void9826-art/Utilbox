@@ -541,4 +541,46 @@ export const generatorContent: Record<string, ToolContent> = {
       },
     ],
   },
+
+  "list-randomizer": {
+    seoTitle: "Random Team Generator — Split Names Into Teams",
+    seoDescription:
+      "Paste a list of names to split them into random, evenly sized teams, pick random winners, or shuffle the order. Fair cryptographic randomness, nothing uploaded.",
+    intro:
+      "Paste a list of names, one per line, then split them into random teams, pick one or more winners, or shuffle the whole list. Teams are dealt out evenly, so sizes never differ by more than one, and duplicates can be ignored. The shuffle uses your browser's cryptographic randomness, so every order is equally likely. Nothing is uploaded.",
+    howToUse: [
+      "Paste or type the names, one per line.",
+      "Choose Make teams, Pick winners or Shuffle.",
+      "Set the number of teams, the people per team, or how many to pick.",
+      "Press the button, then copy the result.",
+    ],
+    howItWorks: [
+      "The list is shuffled with the Fisher-Yates algorithm driven by crypto.getRandomValues, the browser's cryptographically secure random source, so every ordering is equally likely. Shortcuts such as sorting by a random number are not uniform and are not used.",
+      "Teams by number are dealt from the shuffled list like cards — first name to team 1, second to team 2 and so on — so team sizes differ by at most one. Teams by size fill each team in turn, so only the last team can be smaller.",
+      "Picking winners takes the first names of the shuffled list, so nobody can be picked twice.",
+      "With “Ignore duplicate entries” on, a name that appears twice — ignoring capitals and spaces at the ends — counts once. The list stays in your browser and is not stored.",
+    ],
+    faq: [
+      {
+        question: "Is it really random?",
+        answer:
+          "Yes. It uses the browser's cryptographic random number generator with an unbiased shuffle, so each order and each team split is equally likely.",
+      },
+      {
+        question: "Can I make teams of a set size?",
+        answer:
+          "Yes. Choose People per team and enter the size; the last team takes whoever is left over.",
+      },
+      {
+        question: "How do I run a fair prize draw?",
+        answer:
+          "Share the list of entries first, pick with this tool in front of witnesses or on a call, and record the result and the time shown.",
+      },
+      {
+        question: "Can someone be picked twice?",
+        answer:
+          "No. Winners are taken from a shuffled list without replacement. Turn on Ignore duplicate entries if a name might appear twice.",
+      },
+    ],
+  },
 };

@@ -84,3 +84,62 @@ export function weeklyPay(
     totalPay: round(regularPay + overtimePay),
   };
 }
+
+/* -------------------------------------------------------------------------- */
+/* Durations                                                                  */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Reads a duration in seconds: 1:30:15, 1h 30m, 90m, 45s, 1.5h, or a
+ * two-part value such as 1:30, read as hours:minutes or minutes:seconds.
+ */
+export function parseDuration(value: string, twoPart: "hm" | "ms" = "hm"): number | null {
+  const text = value.trim().toLowerCase().replace(/,/g, ".");
+  if (!text) return null;
+  const negative = text.startsWith("-");
+  const body = negative ? text.slice(1).trim() : text;
+
+  let seconds: number | null = null;
+  const colon = body.match(/^(\d+):(\d{1,2})(?::(\d{1,2}(?:\.\d+)?))?$/);
+  if (colon) {
+    const [, a, b, c] = colon;
+    if (Number(b) > 59 || (c !== undefined && Number(c) >= 60)) return null;
+    if (c !== undefined) seconds = Number(a) * 3600 + Number(b) * 60 + Number(c);
+    else seconds = twoPart === "hm" ? Number(a) * 3600 + Number(b) * 60 : Number(a) * 60 + Number(b);
+  } else if (/^\d+(\.\d+)?$/.test(body)) {
+    // A bare number is minutes, the most common way people type a duration.
+    seconds = Number(body) * 60;
+  } else {
+    // "1h30" means 1 hour 30 minutes.
+    const compact = body.match(/^(\d+)\s*h\s*(\d{1,2})$/);
+    if (compact) return (Number(compact[1]) * 3600 + Number(compact[2]) * 60) * (negative ? -1 : 1);
+    // Longer unit names first, so "hours" is not read as "h" followed by junk.
+    const units = [...body.matchAll(/(\d+(?:\.\d+)?)\s*(days?|d|hours?|hrs|hr|h|minutes?|mins|min|m|seconds?|secs|sec|s)(?![a-z])/g)];
+    const consumed = units.map((match) => match[0]).join("").replace(/\s/g, "");
+    if (units.length === 0 || consumed !== body.replace(/\s/g, "")) return null;
+    seconds = units.reduce((total, [, amount, unit]) => {
+      const factor = unit.startsWith("d") ? 86400 : unit.startsWith("h") ? 3600 : unit.startsWith("m") ? 60 : 1;
+      return total + Number(amount) * factor;
+    }, 0);
+  }
+  return seconds === null ? null : Math.round(seconds) * (negative ? -1 : 1);
+}
+
+/** 5025 → "1:23:45". Hours keep counting past 24 rather than rolling into days. */
+export function formatDuration(totalSeconds: number, showSeconds = true): string {
+  const sign = totalSeconds < 0 ? "−" : "";
+  let rest = Math.abs(Math.round(totalSeconds));
+  if (!showSeconds) rest = Math.round(rest / 60) * 60;
+  const hours = Math.floor(rest / 3600);
+  const minutes = Math.floor((rest % 3600) / 60);
+  const seconds = rest % 60;
+  const pad = (value: number) => String(value).padStart(2, "0");
+  return showSeconds ? `${sign}${hours}:${pad(minutes)}:${pad(seconds)}` : `${sign}${hours}:${pad(minutes)}`;
+}
+
+/** A clock time plus or minus minutes, wrapping round midnight. */
+export function addToClock(minutesOfDay: number, deltaMinutes: number): { minutes: number; dayOffset: number } {
+  const total = minutesOfDay + deltaMinutes;
+  const day = 24 * 60;
+  return { minutes: ((total % day) + day) % day, dayOffset: Math.floor(total / day) };
+}

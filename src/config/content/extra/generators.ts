@@ -305,4 +305,25 @@ export const generatorExtra: Record<string, ToolContentExtra> = {
       },
     ],
   },
+
+  "list-randomizer": {
+    tips: [
+      "Number entries in a fixed list before a public draw so the result can be checked.",
+      "Press the button once and keep the result; re-rolling until you like it defeats the point.",
+      "For balanced sports teams, randomise first and then swap one or two players by hand if skills are very uneven.",
+      "Use Shuffle to set a random presentation or speaking order.",
+    ],
+    faq: [
+      {
+        question: "Is there a limit on names?",
+        answer:
+          "No fixed limit; thousands of names work in any modern browser.",
+      },
+      {
+        question: "Are the names uploaded?",
+        answer:
+          "No. The list is shuffled in your browser and never sent anywhere.",
+      },
+    ],
+  },
 };
