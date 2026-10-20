@@ -12,10 +12,15 @@ type PdfJsModule = typeof import("pdfjs-dist");
 
 let modulePromise: Promise<PdfJsModule> | null = null;
 
+/**
+ * Loads pdf.js's legacy build. The modern build calls very new built-ins
+ * (Map.prototype.getOrInsertComputed) that browsers released before 2026 lack,
+ * which made every page render fail there; the legacy build polyfills them.
+ */
 export function loadPdfJs(): Promise<PdfJsModule> {
   if (!modulePromise) {
-    modulePromise = import("pdfjs-dist").then((module) => {
-      module.GlobalWorkerOptions.workerSrc = "/pdfjs/pdf.worker.min.mjs";
+    modulePromise = (import("pdfjs-dist/legacy/build/pdf.mjs") as Promise<PdfJsModule>).then((module) => {
+      module.GlobalWorkerOptions.workerSrc = "/pdfjs/pdf.worker.legacy.min.mjs";
       return module;
     });
   }
@@ -37,8 +42,16 @@ export function describePdfError(error: unknown, fileName?: string): string {
   if (/password/i.test(message)) {
     return `${name} is password protected. Remove the password in a PDF reader first, then try again.`;
   }
-  if (/invalid|corrupt|structure|xref/i.test(message)) {
+  // pdf-lib reports any encryption this way, including PDFs that open without a
+  // password but carry editing restrictions.
+  if (/encrypt/i.test(message)) {
+    return `${name} is encrypted or has editing restrictions, so it cannot be changed here. If you are allowed to, open it in a PDF reader and save or print an unprotected copy, then try again.`;
+  }
+  if (/invalid|corrupt|structure|xref|parse|header|unexpected end/i.test(message)) {
     return `${name} could not be read — the file appears to be damaged or is not a valid PDF.`;
+  }
+  if (/memory|allocation|array buffer|too large/i.test(message)) {
+    return `${name} is too large for this device's memory. Try a smaller file, or close other tabs and try again.`;
   }
   if (/worker/i.test(message)) {
     return "The PDF engine failed to start. Reload the page and try again.";

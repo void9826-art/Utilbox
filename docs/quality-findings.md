@@ -50,3 +50,28 @@ What moved into libraries:
   - temperature at −40 and absolute zero
   - zero, negative, NaN and huge unit inputs
 - `scripts/verify-examples.mjs`: the age page's 25 years 5 months 21 days and 191-day examples now run through the real code, plus the 31 January cases.
+
+## Part 2: file tools with odd inputs
+
+Tested in a real browser (Chromium 141) with these files: encrypted (user password), restricted (owner password only), truncated, empty, renamed non-PDF, PDF with bytes before the `%PDF` header, a 9000 × 9000 PNG, a transparent PNG, an EXIF-rotated JPEG, a fake HEIC, and mixed good and bad batches.
+
+### Bugs fixed
+
+- **PDF page previews failed in every tool that renders pages** (rotate, delete pages, watermark, page numbers, PDF to JPG and others). pdf.js 6's modern build calls `Map.prototype.getOrInsertComputed`, which browsers released before 2026 (Chromium 141 here, and current Safari) do not have. These tools now load pdf.js's legacy build, which includes the polyfill. The worker file has a new name (`/pdfjs/pdf.worker.legacy.min.mjs`), so a service-worker cache can't pair the old worker with the new library. `public/sw.js` is unchanged.
+- **Encrypted and restricted PDFs gave a generic "could not be processed" message.** pdf-lib refuses any encrypted file, including ones that open without a password but have editing restrictions. The message now says the file is encrypted or restricted and how to fix it. Damaged files (parse, xref or structure errors) and out-of-memory failures also get their own clear messages.
+- **PDFs with junk before the header were rejected as "not a PDF".** Acrobat accepts the `%PDF-` marker anywhere in the first 1,024 bytes, and pdf.js does too. The file check now matches that.
+- **In a mixed batch, the message about rejected files vanished.** Dropzone reported the error first and then passed on the good files, and the tools clear their errors when new files arrive. Good files now go first, so the rejection message stays (checked in image converter, merge PDF, JPG to PDF, compress image and combine images).
+
+Already fine: empty files, oversized files, fake HEIC (clear decode error), huge, transparent and EXIF-rotated images.
+
+### Tests added
+
+- `scripts/test-lib.mjs` → "FILE ROBUSTNESS TESTS": 14 checks.
+  - Error messages, tested with pdf-lib and pdf.js's exact error text: encryption, password, parse failure, invalid structure, memory, unknown.
+  - File sniffing: a PDF, a PDF after a junk prefix, a renamed JPEG, text, HEIC brands.
+  - Rejection messages for empty, wrong-type and oversized files.
+
+### Not tested (no way to check it here)
+
+- Real HEIC photos from iPhones: no HEIC encoder was available to make test files.
+- Safari's canvas limit (about 16.7 million pixels) and other browsers' maximum canvas sizes. Very large images may still fail on iOS with the generic decode message.

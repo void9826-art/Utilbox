@@ -19,7 +19,7 @@ type Warmup = () => Promise<unknown>;
  */
 const PDF_LIB: Warmup = () => import("pdf-lib");
 const PDF_JS: Warmup = () =>
-  import("@/lib/pdf").then((module) => module.loadPdfJs()).then(() => fetch("/pdfjs/pdf.worker.min.mjs"));
+  import("@/lib/pdf").then((module) => module.loadPdfJs()).then(() => fetch("/pdfjs/pdf.worker.legacy.min.mjs"));
 const PDF_LAYOUT: Warmup = () => import("@/lib/pdf-document");
 const ZIP: Warmup = () => import("@/lib/download");
 

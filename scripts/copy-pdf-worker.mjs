@@ -17,12 +17,17 @@ const targetRoot = path.join("public", "pdfjs");
 
 fs.mkdirSync(targetRoot, { recursive: true });
 
-const worker = path.join(packageRoot, "build", "pdf.worker.min.mjs");
+// The legacy build carries polyfills for recent built-ins such as
+// Map.prototype.getOrInsertComputed, which the modern build calls directly
+// and which browsers released before 2026 do not have. It is served under its
+// own name so a stale cached copy of the modern worker is never paired with
+// the legacy library.
+const worker = path.join(packageRoot, "legacy", "build", "pdf.worker.min.mjs");
 if (!fs.existsSync(worker)) {
   console.error(`pdf.js worker not found at ${worker}`);
   process.exit(1);
 }
-fs.copyFileSync(worker, path.join(targetRoot, "pdf.worker.min.mjs"));
+fs.copyFileSync(worker, path.join(targetRoot, "pdf.worker.legacy.min.mjs"));
 
 /** Copies a directory, skipping licence files that are not needed at runtime. */
 function copyDirectory(name, filter = () => true) {

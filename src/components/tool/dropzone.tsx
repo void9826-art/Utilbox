@@ -63,11 +63,13 @@ export function Dropzone({
 
       setChecking(false);
 
-      if (problems.length > 0) {
-        onError(problems.length === 1 ? problems[0] : `${problems.length} files were skipped. ${problems[0]}`);
-      }
+      // Hand over the good files first: tools clear their error state when new
+      // files arrive, which used to wipe the message about the rejected ones.
       if (accepted.length > 0) {
         onFiles(accepted);
+      }
+      if (problems.length > 0) {
+        onError(problems.length === 1 ? problems[0] : `${problems.length} files were skipped. ${problems[0]}`);
       }
     },
     [accept, multiple, onError, onFiles],

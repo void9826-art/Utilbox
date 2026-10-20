@@ -63,6 +63,13 @@ export async function sniffFileKind(file: File): Promise<FileKind> {
     if (matches(header, signature.offset, signature.bytes)) return signature.kind;
   }
 
+  // The PDF specification lets the %PDF- header start anywhere in the first
+  // 1,024 bytes, and some generators write a few bytes of junk before it.
+  if (file.size > 5) {
+    const prefix = readAscii(new Uint8Array(await file.slice(0, 1024).arrayBuffer()), 0, 1024);
+    if (prefix.includes("%PDF-")) return "pdf";
+  }
+
   // RIFF....WEBP / RIFF....WAVE
   if (readAscii(header, 0, 4) === "RIFF" && readAscii(header, 8, 4) === "WEBP") return "webp";
   if (readAscii(header, 0, 4) === "RIFF" && readAscii(header, 8, 4) === "WAVE") return "audio";

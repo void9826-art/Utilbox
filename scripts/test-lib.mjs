@@ -1009,3 +1009,35 @@ const qa = (name, cond, detail = "") => { if (!cond) { console.log(`FAIL ${name}
 }
 console.log(f18 === 0 ? "QUALITY AUDIT TESTS OK" : `${f18} FAILURES`);
 if (f18 > 0) process.exitCode = 1;
+
+/* ---- file robustness: PDF error messages and file sniffing ---- */
+import { describePdfError as qDescribe } from "../src/lib/pdf.ts";
+import { sniffFileKind as qSniff, acceptFile as qAccept, MAX_FILE_SIZE as qMax } from "../src/lib/files.ts";
+let f19 = 0;
+const rb = (name, cond, detail = "") => { if (!cond) { console.log(`FAIL ${name} ${detail}`); f19++; } };
+{
+  const err = (message, name = "Error") => Object.assign(new Error(message), { name });
+  // Messages exactly as pdf-lib 1.17 and pdf.js 6 throw them.
+  const encrypted = qDescribe(err("Input document to `PDFDocument.load` is encrypted. You can use `PDFDocument.load(..., { ignoreEncryption: true })` if you wish to load the document anyways."), "a.pdf");
+  rb("pdf-lib encryption explained", /encrypted or has editing restrictions/.test(encrypted) && encrypted.startsWith('"a.pdf"'), encrypted);
+  rb("pdf.js password explained", /password protected/.test(qDescribe(err("No password given", "PasswordException"), "b.pdf")));
+  rb("pdf-lib parse failure is damage", /damaged/.test(qDescribe(err("Failed to parse PDF document (line:34 col:58 offset=268): Failed to parse invalid PDF object"))));
+  rb("pdf.js invalid structure is damage", /damaged/.test(qDescribe(err("Invalid PDF structure.", "InvalidPDFException"))));
+  rb("memory failure explained", /memory/.test(qDescribe(err("Array buffer allocation failed", "RangeError"))));
+  rb("unknown failure still readable", /could not be processed/.test(qDescribe("weird")));
+
+  const file = (bytes, name) => new File([bytes], name);
+  const pdfBody = new TextEncoder().encode("%PDF-1.7\n1 0 obj<<>>endobj\ntrailer<<>>\n%%EOF");
+  rb("sniff pdf", (await qSniff(file(pdfBody, "x.pdf"))) === "pdf");
+  const prefixed = new Uint8Array([0xef, 0xbb, 0xbf, 0x0d, 0x0a, 0x20, ...pdfBody]);
+  rb("sniff pdf after junk prefix", (await qSniff(file(prefixed, "x.pdf"))) === "pdf");
+  rb("sniff renamed jpeg", (await qSniff(file(new Uint8Array([0xff, 0xd8, 0xff, 0xe0, 0, 0, 0, 0]), "photo.pdf"))) === "jpeg");
+  rb("sniff text is unknown", (await qSniff(file(new TextEncoder().encode("hello world"), "x.jpg"))) === "unknown");
+  rb("sniff heic brand", (await qSniff(file(new Uint8Array([0, 0, 0, 0x18, ...new TextEncoder().encode("ftypheic"), 0, 0, 0, 0, ...new TextEncoder().encode("mif1heic")]), "a.heic"))) === "heic");
+  const reject = async (f, options) => { try { await qAccept(f, options); return null; } catch (e) { return e.message; } };
+  rb("empty file rejected clearly", (await reject(file(new Uint8Array(), "e.pdf"), { kinds: ["pdf"], maxBytes: qMax.pdf, label: "PDF" })) === '"e.pdf" is empty.');
+  rb("wrong type rejected clearly", /does not look like a valid PDF/.test(await reject(file(new TextEncoder().encode("nope"), "n.pdf"), { kinds: ["pdf"], maxBytes: qMax.pdf, label: "PDF" })));
+  rb("oversize rejected clearly", /larger than the 1 MB limit/.test(await reject(file(new Uint8Array(1024 * 1024 + 1), "big.pdf"), { kinds: ["pdf"], maxBytes: 1024 * 1024, label: "PDF" })));
+}
+console.log(f19 === 0 ? "FILE ROBUSTNESS TESTS OK" : `${f19} FAILURES`);
+if (f19 > 0) process.exitCode = 1;
