@@ -23,6 +23,16 @@ export const imageExtra: Record<string, ToolContentExtra> = {
         question: "Can I compress many images at once?",
         answer: "Yes. Add a batch, compress them together and download them as a ZIP.",
       },
+      {
+        question: "Why did my image get bigger after compressing it?",
+        answer:
+          "That happens when the original was already compressed at a lower quality, or when a photo is kept as PNG. Start from the original file, lower the quality or the pixel size, and keep the original if the result is not smaller.",
+      },
+      {
+        question: "Why do two photos with the same pixel size compress to such different sizes?",
+        answer:
+          "File size depends on detail as well as pixels. Sky and plain walls compress well; foliage, small text and noise from low light do not. Setting a target size such as 200 KB lets the tool find a suitable quality for each photo.",
+      },
     ],
   },
 
@@ -146,6 +156,16 @@ export const imageExtra: Record<string, ToolContentExtra> = {
       {
         question: "Is there a limit on how many photos I can convert?",
         answer: "No fixed limit on the number of files. Very large batches use more memory, so on a phone work in groups.",
+      },
+      {
+        question: "Can I just rename a .heic file to .jpg?",
+        answer:
+          "No. Renaming changes only the name; the file inside is still HEIC, and many websites check the contents and reject it. Convert it here, then upload the new JPG.",
+      },
+      {
+        question: "How can I tell whether a photo is HEIC or JPG?",
+        answer:
+          "On a Mac, select the file and press Cmd+I to see its Kind. On Windows, turn on file name extensions in File Explorer and check the file's Properties. On an iPhone, swipe up on the photo in Photos to see its details.",
       },
     ],
   },

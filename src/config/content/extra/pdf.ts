@@ -126,6 +126,16 @@ export const pdfExtra: Record<string, ToolContentExtra> = {
         answer:
           "Turn the photos into a PDF first with JPG to PDF, then merge that file with the others.",
       },
+      {
+        question: "Why are the pages in my merged PDF different sizes?",
+        answer:
+          "Merging keeps every page exactly as it was, so an A4 scan next to a US Letter page stays a different size. To make them uniform, run the merged file through the PDF Page Size Converter and choose one size with Scale to fit.",
+      },
+      {
+        question: "An upload portal rejected my merged PDF. What should I check?",
+        answer:
+          "Size is only one rule. Check that the file has no password, that form fields are flattened, that the page count and page size match the instructions, and that the file name uses plain letters, numbers and hyphens.",
+      },
     ],
   },
 
@@ -177,6 +187,16 @@ export const pdfExtra: Record<string, ToolContentExtra> = {
         question: "Does compression keep links, form fields and bookmarks?",
         answer:
           "No. Each page is rebuilt as a picture in a new document, so interactive parts of the original do not survive. Keep the original if you need them.",
+      },
+      {
+        question: "Why does the text look blurry after compressing?",
+        answer:
+          "Compression redraws each page as an image, so text becomes pixels rather than letters. For scans that changes little. For a typed document, re-export it from the original program instead, or try the Light level.",
+      },
+      {
+        question: "A form rejects my PDF even though it is under the limit. Will compressing help?",
+        answer:
+          "Probably not. Portals also reject password-protected files, unflattened form fields, unusual file names and the wrong number of pages. Check those before compressing further.",
       },
     ],
   },

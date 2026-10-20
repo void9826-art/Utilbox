@@ -23,6 +23,16 @@ export const calculatorExtra: Record<string, ToolContentExtra> = {
         answer:
           "Subtract the new value from the old, divide by the old value and multiply by 100. From 80 to 60 is (80 − 60) ÷ 80 × 100 = 25%.",
       },
+      {
+        question: "Can I average percentages?",
+        answer:
+          "Only when each one is out of the same total. Otherwise add up the underlying amounts and totals and divide once: 9 out of 10 and 60 out of 100 is 69 out of 110, which is 62.7%, not the 75% a simple average gives.",
+      },
+      {
+        question: "Why don't my percentages add up to exactly 100%?",
+        answer:
+          "Usually because each figure was rounded separately: three equal shares of 33.3% round to 33% each, totalling 99%. Show one decimal place, add a note about rounding, or give the missing point to the figure with the largest remainder.",
+      },
     ],
   },
 
@@ -177,6 +187,16 @@ export const calculatorExtra: Record<string, ToolContentExtra> = {
         question: "How much EMI can I afford?",
         answer:
           "A common rule of thumb is to keep all loan repayments together under about 40% of take-home pay. Lenders apply their own limits, and leaving room for savings and emergencies matters as much as the lender's yes.",
+      },
+      {
+        question: "Is 1% a month the same as 12% a year?",
+        answer:
+          "For an EMI, yes: like lenders, the calculator divides the annual rate by 12 and each instalment pays that month's interest in full. If unpaid interest is added to the balance instead, 1% a month compounds to about 12.68% a year.",
+      },
+      {
+        question: "Should I enter the APR or the interest rate?",
+        answer:
+          "The interest rate. An APR also includes fees, so entering it gives a higher instalment than the lender will charge. If fees are added to the loan, include them in the loan amount instead.",
       },
     ],
   },
