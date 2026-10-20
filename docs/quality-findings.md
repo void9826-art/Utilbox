@@ -2,6 +2,27 @@
 
 A correctness, robustness, accessibility, mobile, performance and SEO pass over the existing tools. Fixes are small and local; anything risky is listed under "Not fixed".
 
+## Summary
+
+- **Calculators (Part 1):** four wrong results fixed: age, attendance, CGPA percentage and percentage-change wording. Currency formatting now uses each currency's own decimals.
+- **File tools (Part 2):** PDF page rendering failed in browsers without `Map.prototype.getOrInsertComputed` (Chromium 141 in testing). It is fixed by loading pdf.js's legacy build. Encrypted, restricted and damaged PDFs now get clear messages, and rejection messages no longer vanish in mixed batches.
+- **Accessibility (Part 3):** axe was run on 177 pages in light and dark mode. Fixed:
+  - invalid definition lists
+  - unnamed landmarks
+  - an empty table header
+  - low-contrast placeholders
+  - form wiring in `Field`, `Checkbox`, `Slider` and `Progress`
+  - missing focus rings
+- **Mobile (Part 4):** 7 pages overflowed at 320px; now 0 of 410.
+- **Performance (Part 5):** the hash generator loads 197 KB less JS. The timestamp converter's layout shift went from 0.074 to 0.016.
+- **SEO (Part 6):** a duplicate H1 fixed. The audit is now clean on 410 pages.
+- **Tests (Parts 1, 2 and 7):** 49 + 14 + 77 new checks. The new tests found an accent bug in tool search.
+
+**Not fixed, needs a decision:**
+- Tool UIs render behind a Suspense fallback, so without JavaScript only a skeleton shows (Part 5).
+- Markdown task-list checkboxes have no labels in the generated HTML (Part 3).
+- Real HEIC files and Safari canvas limits are untested (Part 2).
+
 ## 1. Calculators and converters
 
 Every formula was checked against its standard definition. These were correct and are now covered by edge-case tests:
@@ -57,7 +78,7 @@ Tested in a real browser (Chromium 141) with these files: encrypted (user passwo
 
 ### Bugs fixed
 
-- **PDF page previews failed in every tool that renders pages** (rotate, delete pages, watermark, page numbers, PDF to JPG and others). pdf.js 6's modern build calls `Map.prototype.getOrInsertComputed`, which browsers released before 2026 (Chromium 141 here, and current Safari) do not have. These tools now load pdf.js's legacy build, which includes the polyfill. The worker file has a new name (`/pdfjs/pdf.worker.legacy.min.mjs`), so a service-worker cache can't pair the old worker with the new library. `public/sw.js` is unchanged.
+- **PDF page previews failed in every tool that renders pages** (rotate, delete pages, watermark, page numbers, PDF to JPG and others). pdf.js 6's modern build calls `Map.prototype.getOrInsertComputed`, which many browsers in use don't have yet (Chromium 141, used for testing here, doesn't). These tools now load pdf.js's legacy build, which includes the polyfill. The worker file has a new name (`/pdfjs/pdf.worker.legacy.min.mjs`), so a service-worker cache can't pair the old worker with the new library. `public/sw.js` is unchanged.
 - **Encrypted and restricted PDFs gave a generic "could not be processed" message.** pdf-lib refuses any encrypted file, including ones that open without a password but have editing restrictions. The message now says the file is encrypted or restricted and how to fix it. Damaged files (parse, xref or structure errors) and out-of-memory failures also get their own clear messages.
 - **PDFs with junk before the header were rejected as "not a PDF".** Acrobat accepts the `%PDF-` marker anywhere in the first 1,024 bytes, and pdf.js does too. The file check now matches that.
 - **In a mixed batch, the message about rejected files vanished.** Dropzone reported the error first and then passed on the good files, and the tools clear their errors when new files arrive. Good files now go first, so the rejection message stays (checked in image converter, merge PDF, JPG to PDF, compress image and combine images).
@@ -150,3 +171,51 @@ Method:
 | Markdown to HTML had two H1s: the live preview rendered the sample's `# Release notes` | The sample's headings start at `##`. The converter is unchanged. |
 
 After the fix the audit reports `SEO AUDIT CLEAN — 410 pages, 410 link targets`. No duplicate titles or descriptions, no broken internal links or anchors, no images without `alt` (the 11 `alt=""` images are thumbnails next to a visible page label), and every JSON-LD block parses. No URLs, slugs, robots.txt or sitemap logic were changed.
+
+## Part 7: tests for untested libraries
+
+`src/lib` modules that no test imported: analytics, currencies, download, image, pdf-document, pdf-meta, random, rates, search and utils.
+
+New file `scripts/test-lib-more.mjs` (77 checks, part of `npm test`):
+
+- **utils:**
+  - `cn` with nesting and falsy values
+  - `clamp`
+  - `formatBytes` (each unit boundary, the TB cap, invalid input)
+  - `formatNumber`
+  - `formatDecimal` (float noise such as 0.1 + 0.2, exponent form at both ends, no grouping)
+  - `formatLongDate` (fixed to UTC)
+- **random:**
+  - `randomInt` uniformity over 60,000 draws
+  - inclusive, order-free `randomIntBetween`
+  - `shuffle` is a uniform permutation and doesn't mutate its input
+  - `sampleUnique` on both the dense and the sparse path, plus its error
+  - UUID v4 and v7 formats and v7's embedded millisecond time and sort order
+  - ULID format and timestamp
+- **currencies:** labels, and every code is a valid ISO 4217 code for `Intl`.
+- **image:** `fitWithin` (width, height, both, no upscale by default, upscale on request, never below 1 px) and `formatDimensions`.
+- **rates:** fetch is mocked, so there are no network calls.
+  - provider selection from the environment
+  - the base currency is added at 1
+  - HTTP errors, empty feeds and a missing API key give readable errors
+  - Open Exchange Rates dates
+- **pdf-meta:** creator and producer come from `siteConfig`.
+- **search:**
+  - exact-name ranking, case and punctuation, word prefixes, all-terms-must-match, the limit, descending scores
+  - accent folding
+  - `filterTools`
+
+Search and pdf-meta import through the `@/` alias, which Node can't resolve. `scripts/lib/register-ts-alias.mjs` adds small Node resolve hooks: `@/` → `src/`, extensionless `.ts` imports, and JSON imports.
+
+To check the tests could fail, I broke `randomInt`, `fitWithin` and the search normaliser in turn. Each change made the matching tests fail.
+
+### Bug found by the new tests
+
+| Function | Input | Before | After |
+| --- | --- | --- | --- |
+| Tool search `normalise` | "mérge pdf", "résumé" | Accents were replaced with a space, splitting words ("résumé" became the terms "re" and "sume"). Scores differed from the unaccented query (merge-pdf 221 vs 166), and fragments could match unrelated tools. | Accents are dropped; accented and plain queries score the same |
+
+### Still untested
+
+- `download`, `image` decoding and encoding, and `pdf-document` layout need a real DOM, canvas or pdf-lib rendering. They are covered only by the browser runs in Part 2.
+- `analytics` was left alone, as instructed.

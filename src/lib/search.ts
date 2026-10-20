@@ -15,6 +15,9 @@ function normalise(value: string): string {
   return value
     .toLowerCase()
     .normalize("NFKD")
+    // Drop the accents NFKD splits off; replacing them with a space as well
+    // turned "résumé" into the two terms "re" and "sume".
+    .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
 }
