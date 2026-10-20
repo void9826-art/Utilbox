@@ -269,5 +269,12 @@ check("uk 30k monthly", Number((thirty.net / 12).toFixed(2)), 2093.3);
   check("base 755 octal", base.groupDigits(base.formatInBase(BigInt(0o755), 2), 3), "111 101 101");
 }
 
+/* image-border */
+{
+  const { borderLayout } = await import("../src/lib/image-layout.ts");
+  const framed = borderLayout(4000, 3000, { borderPercent: 5, imageRadiusPercent: 0, outerRadiusPercent: 0 });
+  check("border example", `${framed.border}/${framed.width}x${framed.height}`, "150/4300x3300");
+}
+
 console.log(problems === 0 ? "ALL DOCUMENTED EXAMPLES MATCH THE CODE" : `${problems} EXAMPLE(S) DISAGREE WITH THE CODE`);
 if (problems > 0) process.exitCode = 1;

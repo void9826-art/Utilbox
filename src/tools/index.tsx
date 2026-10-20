@@ -12,7 +12,7 @@ const Loading = () => <ToolSkeleton />;
 
 /**
  * Every tool is a separate lazily-loaded chunk, so visiting one tool page never
- * downloads the code for the other 147.
+ * downloads the code for the other 149.
  */
 const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "merge-pdf": dynamic(() => import("./pdf/merge-pdf"), { loading: Loading }),
@@ -102,6 +102,8 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "image-dpi-changer": dynamic(() => import("./image/image-dpi-changer"), { loading: Loading }),
   "grayscale-image": dynamic(() => import("./image/grayscale-image"), { loading: Loading }),
   "color-blindness-simulator": dynamic(() => import("./image/color-blindness-simulator"), { loading: Loading }),
+  "image-border": dynamic(() => import("./image/image-border"), { loading: Loading }),
+  "combine-images": dynamic(() => import("./image/combine-images"), { loading: Loading }),
   "currency-converter": dynamic(() => import("./converters/currency-converter"), { loading: Loading }),
   "length-converter": dynamic(() => import("./converters/length-converter"), { loading: Loading }),
   "weight-converter": dynamic(() => import("./converters/weight-converter"), { loading: Loading }),

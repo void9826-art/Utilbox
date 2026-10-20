@@ -873,3 +873,29 @@ const nq = (name, cond, detail = "") => { if (!cond) { console.log(`FAIL ${name}
 }
 console.log(f15 === 0 ? "SIP, BMR, ROMAN, WORDS AND BASE TESTS OK" : `${f15} FAILURES`);
 if (f15 > 0) process.exitCode = 1;
+
+/* ---- image layout ---- */
+import { borderLayout, combineLayout, DEFAULT_COMBINE } from "../src/lib/image-layout.ts";
+let f16 = 0;
+const lq = (name, cond, detail = "") => { if (!cond) { console.log(`FAIL ${name} ${detail}`); f16++; } };
+{
+  const b = borderLayout(1000, 500, { borderPercent: 10, imageRadiusPercent: 20, outerRadiusPercent: 100 });
+  lq("border from shorter side", b.border === 50 && b.width === 1100 && b.height === 600, JSON.stringify(b));
+  lq("border image rect", b.image.x === 50 && b.image.y === 50 && b.image.width === 1000);
+  lq("radius clamped to half", b.imageRadius === 100 && b.outerRadius === 300, JSON.stringify(b));
+  lq("no border", borderLayout(10, 10, { borderPercent: 0, imageRadiusPercent: 0, outerRadiusPercent: 0 }).width === 10);
+
+  const h = combineLayout([{ width: 400, height: 300 }, { width: 300, height: 600 }], { ...DEFAULT_COMBINE, gap: 10 });
+  lq("horizontal same height", h.rects[0].height === 600 && h.rects[1].height === 600 && h.rects[0].width === 800, JSON.stringify(h));
+  lq("horizontal total width", h.width === 800 + 10 + 300 && h.height === 600, JSON.stringify(h));
+  const v = combineLayout([{ width: 400, height: 300 }, { width: 200, height: 200 }], { ...DEFAULT_COMBINE, direction: "vertical", margin: 5 });
+  lq("vertical same width", v.rects[1].width === 400 && v.rects[1].height === 400 && v.width === 410 && v.height === 300 + 400 + 10, JSON.stringify(v));
+  const g = combineLayout([{ width: 100, height: 100 }, { width: 200, height: 100 }, { width: 100, height: 50 }], { ...DEFAULT_COMBINE, direction: "grid", columns: 2, gap: 0 });
+  lq("grid size", g.width === 400 && g.height === 200, JSON.stringify(g));
+  lq("grid fitted and centred", g.rects[0].width === 100 && g.rects[0].x === 50 && g.rects[2].width === 200 && g.rects[2].y === 100, JSON.stringify(g.rects));
+  const big = combineLayout([{ width: 8000, height: 6000 }, { width: 8000, height: 6000 }], DEFAULT_COMBINE);
+  lq("scaled to fit canvas limit", big.scale < 1 && big.width * big.height <= 16_000_000 && big.width <= 16000, JSON.stringify({ w: big.width, h: big.height, s: big.scale }));
+  lq("empty", combineLayout([], DEFAULT_COMBINE).rects.length === 0);
+}
+console.log(f16 === 0 ? "IMAGE LAYOUT TESTS OK" : `${f16} FAILURES`);
+if (f16 > 0) process.exitCode = 1;

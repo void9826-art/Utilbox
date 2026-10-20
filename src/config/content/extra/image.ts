@@ -737,4 +737,46 @@ export const imageExtra: Record<string, ToolContentExtra> = {
       },
     ],
   },
+
+  "image-border": {
+    tips: [
+      "Use a border colour taken from the photo, or plain white or black, for a clean look.",
+      "Thin borders (2–4%) suit web pages; thicker ones (8–15%) look like a printed mount.",
+      "Choose PNG when the picture will sit on a coloured background and has rounded corners.",
+      "Keep your original; the border cannot be removed later without cropping.",
+    ],
+    faq: [
+      {
+        question: "Is my photo uploaded?",
+        answer:
+          "No. It is redrawn in your browser and never leaves your device.",
+      },
+      {
+        question: "Can I add a border to several pictures at once?",
+        answer:
+          "One at a time here. Each picture keeps the same settings until you change them, so repeating it is quick.",
+      },
+    ],
+  },
+
+  "combine-images": {
+    tips: [
+      "Crop pictures to the same shape first for a neat grid with no gaps.",
+      "Use JPG for photos and PNG for screenshots or diagrams.",
+      "A small gap (1–2%) separates pictures clearly without wasting space.",
+      "Compress the result afterwards if it needs to fit an upload limit.",
+    ],
+    faq: [
+      {
+        question: "Are my pictures uploaded?",
+        answer:
+          "No. They are combined on a canvas in your browser and never leave your device.",
+      },
+      {
+        question: "Can I turn the combined pictures into a PDF instead?",
+        answer:
+          "Use Image to PDF, which puts each picture on its own page in one PDF.",
+      },
+    ],
+  },
 };

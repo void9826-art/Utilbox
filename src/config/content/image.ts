@@ -1153,4 +1153,98 @@ export const imageContent: Record<string, ToolContent> = {
       },
     ],
   },
+
+  "image-border": {
+    seoTitle: "Add Border to Image — Colour, Padding, Round Corners",
+    seoDescription:
+      "Add a white or coloured border or transparent padding to a photo, and round its corners. Full resolution kept, PNG or JPG. Free, nothing uploaded.",
+    intro:
+      "Add a picture, then set the border width, pick a colour or transparent padding, and round the picture's corners or the outer frame. The border is measured from the shorter side, so it looks even on portrait and landscape photos, and the original resolution is kept. Download as PNG or JPG. Nothing is uploaded.",
+    howToUse: [
+      "Add a JPG, PNG, WebP, GIF or BMP picture.",
+      "Set the border width and choose a colour, or tick transparent padding.",
+      "Round the picture's corners, the outer corners, or both.",
+      "Choose PNG or JPG and download.",
+    ],
+    howItWorks: [
+      "The border width is a percentage of the picture's shorter side and is the same on all four edges, so a 5% border on a 4,000 × 3,000 photo adds 150 pixels on each side, making it 4,300 × 3,300. The picture itself is drawn at its original size and is not resampled.",
+      "Rounded corners are a radius in percent of the shorter side; 50% on a square picture makes a circle. Rounding the picture leaves the border colour showing in the corners, while rounding the outer edge cuts the whole result, leaving transparent corners.",
+      "JPG has no transparency, so whenever the result has transparent areas — transparent padding or rounded outer corners — it is saved as PNG automatically. Otherwise you can choose JPG for a smaller file.",
+      LOCAL_NOTE,
+    ],
+    example: {
+      scenario: "A 4,000 × 3,000 photo with a 5% white border",
+      steps: [
+        "Border = 5% of 3,000 = 150 px",
+        "Width = 4,000 + 2 × 150 = 4,300 px",
+        "Height = 3,000 + 2 × 150 = 3,300 px",
+      ],
+      result: "A 4,300 × 3,300 picture with an even 150-pixel white border.",
+    },
+    faq: [
+      {
+        question: "How do I add a white border to a photo for Instagram?",
+        answer:
+          "Add a white border here for an even frame. If you need the photo padded to a square instead, use the Instagram Image Resizer, which adds bars only where needed.",
+      },
+      {
+        question: "Why is my picture saved as PNG when I chose JPG?",
+        answer:
+          "Transparent padding and rounded outer corners need transparency, which JPG cannot store. Turn those off to save as JPG.",
+      },
+      {
+        question: "Does it reduce the quality of my photo?",
+        answer:
+          "The picture is drawn at its original size. Saving as PNG keeps every pixel; JPG re-compresses at high quality, which is usually invisible.",
+      },
+      {
+        question: "Can I make a circular picture?",
+        answer:
+          "Set the picture's corner rounding to 50% on a square photo, or use Circle Crop Image, which crops any photo to a circle.",
+      },
+    ],
+  },
+
+  "combine-images": {
+    seoTitle: "Combine Images — Side by Side, Stacked or Grid",
+    seoDescription:
+      "Combine two or more pictures into one image: side by side, stacked vertically or in a grid, with optional spacing and background. Free, nothing uploaded.",
+    intro:
+      "Add two or more pictures, put them in order, and choose side by side, stacked or a grid to join them into one image. Pictures are scaled to the same height side by side, or the same width when stacked, so nothing is stretched. Add spacing and a background colour, then download as JPG, PNG or WebP. Nothing is uploaded.",
+    howToUse: [
+      "Add two or more pictures (up to 20).",
+      "Use the arrows to put them in order.",
+      "Choose Side by side, Stacked or Grid, and any spacing and background colour.",
+      "Pick a format and download the combined picture.",
+    ],
+    howItWorks: [
+      "Side by side, every picture is scaled to the height of the tallest one, keeping its proportions, and placed in a row. Stacked, every picture is scaled to the width of the widest. In a grid, each cell is the size of the largest picture and each picture is fitted and centred in its cell, so pictures of different shapes leave a little background showing.",
+      "Scaling to the largest picture keeps the best detail of your sharpest photo, but a much smaller picture is enlarged to match and may look soft. For the cleanest result, combine pictures of similar resolution.",
+      "Spacing is a percentage of the smallest picture's shorter side, so it looks the same whatever the resolution. The optional edge margin uses the same amount.",
+      "Browsers limit how large a canvas can be — Safari to about 16.7 million pixels. If the combined picture would be bigger, it is scaled down to fit and the tool tells you by how much.",
+      LOCAL_NOTE,
+    ],
+    faq: [
+      {
+        question: "How do I put two pictures side by side?",
+        answer:
+          "Add both pictures, choose Side by side, and download. They are matched to the same height so neither is stretched.",
+      },
+      {
+        question: "Can I make a before-and-after image?",
+        answer:
+          "Yes. Add the before picture first and the after picture second, choose Side by side and add a small gap so the two are clearly separate.",
+      },
+      {
+        question: "Why does one picture look blurry?",
+        answer:
+          "Pictures are scaled up to match the largest one. If one is much smaller, it is enlarged and loses sharpness; use pictures of similar size where you can.",
+      },
+      {
+        question: "Can the background be transparent?",
+        answer:
+          "Yes, if you save as PNG. JPG has no transparency, so the background colour is used instead.",
+      },
+    ],
+  },
 };

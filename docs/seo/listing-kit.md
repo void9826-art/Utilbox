@@ -12,23 +12,23 @@ Every claim below is true as of 2026-10-19. If a number changes (tool count, for
 | URL | https://www.utilboxes.xyz |
 | Logo | `public/logo-mark.png` (square) · `brand/logo-lockup.jpg` (wide) |
 | Tagline (≤ 60 chars) | Free online tools that run in your browser |
-| One line (≤ 160 chars) | 148 free PDF, image, text, calculator and converter tools. No sign-up, no limits, no watermark — most run entirely in your browser. |
+| One line (≤ 160 chars) | 150 free PDF, image, text, calculator and converter tools. No sign-up, no limits, no watermark — most run entirely in your browser. |
 | Pricing | Free (supported by ads) |
 | Platforms | Web; works on desktop and mobile browsers |
 | Founded | 2026 |
 
 **Short description (about 50 words)**
-> Utilboxes is a set of 148 free online tools for PDFs, images, calculations, unit conversion, text and developer data. There is no sign-up, no usage limit and no watermark. 126 of the tools run entirely in your browser, so your files are never uploaded, and most keep working offline once a page has loaded.
+> Utilboxes is a set of 150 free online tools for PDFs, images, calculations, unit conversion, text and developer data. There is no sign-up, no usage limit and no watermark. 126 of the tools run entirely in your browser, so your files are never uploaded, and most keep working offline once a page has loaded.
 
 **Long description (about 120 words)**
-> Utilboxes collects the small digital jobs that come up every day: merging and compressing PDFs, converting iPhone HEIC photos, compressing an image to a size limit such as 100 KB, removing EXIF location data, working out an EMI, a GPA or a percentage, formatting JSON, and more — 148 tools in all.
+> Utilboxes collects the small digital jobs that come up every day: merging and compressing PDFs, converting iPhone HEIC photos, compressing an image to a size limit such as 100 KB, removing EXIF location data, working out an EMI, a GPA or a percentage, formatting JSON, and more — 150 tools in all.
 >
 > Most of them run entirely in your browser. Your files are processed on your own device and never uploaded, which you can check yourself: open your browser's network panel, or switch off Wi-Fi after the page loads and the tool still works. The five exceptions say so on their own pages: three live checks (SSL, Open Graph, email MX) send only a domain or address, and two fetch public reference data.
 >
 > No account, no limits, no watermark.
 
 **Privacy facts, stated precisely** (use these words; do not shorten to "nothing ever leaves your device")
-- 143 of 148 tools process everything in the browser.
+- 145 of 150 tools process everything in the browser.
 - 3 tools (SSL Certificate Checker, Email Address Validator's optional MX check, Open Graph Preview) send a domain name or URL — never a file — to the site's own server, and store nothing.
 - 2 tools (Currency Converter, YouTube Thumbnail Grabber) download public data; your input stays in the browser.
 - Image to Text and Voice to Text download a recognition model once; the image or recording is not uploaded. They need a connection the first time.
@@ -56,7 +56,7 @@ Add product → the short description → category "Productivity" or "File conve
 ## Product Hunt
 
 - **Name:** Utilboxes
-- **Tagline (60 max):** 148 free tools that run in your browser, not a server
+- **Tagline (60 max):** 150 free tools that run in your browser, not a server
 - **Description (260 max):**
   > PDF, image, text and calculator tools with no sign-up, no limits and no watermark. Most run entirely in your browser, so files are never uploaded — and they keep working with Wi-Fi off once the page has loaded.
 - **Topics:** Productivity, Privacy, Developer Tools, Design Tools
@@ -64,7 +64,7 @@ Add product → the short description → category "Productivity" or "File conve
 - **First comment (maker):**
   > Hi Product Hunt — I built Utilboxes because most "free" PDF and image sites upload your files to a server, cap you at a few uses a day, or stamp a watermark on the result.
   >
-  > Utilboxes is 148 tools that do the work in your browser instead. You can verify it: open DevTools → Network while you merge a PDF, or switch off Wi-Fi after the page loads — it still works.
+  > Utilboxes is 150 tools that do the work in your browser instead. You can verify it: open DevTools → Network while you merge a PDF, or switch off Wi-Fi after the page loads — it still works.
   >
   > Five tools are honest exceptions (SSL/OG/MX checks and two that fetch public data), and each says so on its page.
   >
