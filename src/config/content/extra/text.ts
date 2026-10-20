@@ -263,4 +263,46 @@ export const textExtra: Record<string, ToolContentExtra> = {
       },
     ],
   },
+
+  "find-and-replace": {
+    tips: [
+      "Use Whole words only for names and short words so you do not change parts of longer words.",
+      "Check the replacement count before copying — a count far higher than expected means the search is too broad.",
+      "In regex mode, escape special characters such as . ? ( with a backslash to match them literally.",
+      "Keep the original text until you have checked the result.",
+    ],
+    faq: [
+      {
+        question: "Can I swap two words?",
+        answer:
+          "Not in one step. Replace the first with a temporary marker such as @@1, replace the second with the first, then the marker with the second.",
+      },
+      {
+        question: "Is my text uploaded?",
+        answer:
+          "No. The search and replace run in your browser, inside this page.",
+      },
+    ],
+  },
+
+  "slug-generator": {
+    tips: [
+      "Keep the slug to the words people would search for; drop dates if the page will be updated.",
+      "Use the same separator across a whole site.",
+      "Avoid stop-word removal if it changes the meaning, as in “to-do” or “how-to” titles.",
+      "Decide the slug before publishing; changing it later needs a redirect.",
+    ],
+    faq: [
+      {
+        question: "Can I make many slugs at once?",
+        answer:
+          "Yes. Put one title per line and you get one slug per line, with a button to copy them all.",
+      },
+      {
+        question: "Is anything sent to a server?",
+        answer:
+          "No. Slugs are made in your browser.",
+      },
+    ],
+  },
 };

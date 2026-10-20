@@ -826,4 +826,100 @@ export const developerContent: Record<string, ToolContent> = {
       },
     ],
   },
+
+  "regex-tester": {
+    seoTitle: "Regex Tester — Test JavaScript Regular Expressions",
+    seoDescription:
+      "Test a JavaScript regular expression against your text with live highlighting, capture groups, flags and replacement preview. Runs in your browser.",
+    intro:
+      "Type a regular expression and some test text to see every match highlighted, with its position and capture groups, as you type. Toggle the g, i, m, s, u and y flags and preview a replacement using $1 or $<name>. It uses your browser's JavaScript engine, and a runaway pattern is stopped after 1.5 seconds. Nothing is uploaded.",
+    howToUse: [
+      "Type the pattern without the surrounding slashes.",
+      "Tick the flags you need — g to find every match, i to ignore case.",
+      "Paste the text to test against and read the highlighted matches and the groups table.",
+      "Optionally tick Test a replacement and enter a template such as $3/$2/$1.",
+    ],
+    howItWorks: [
+      "Matching uses the browser's own RegExp engine, so a pattern behaves exactly as it will in JavaScript and TypeScript code. Other languages' engines — PCRE in PHP, Python's re, Java — share most syntax but differ in details such as lookbehind support and named-group syntax.",
+      "Without the g flag only the first match is found, which is what JavaScript's match() and exec() return. With g, every match is listed; empty matches (from patterns like a*) are shown as a thin marker and the search moves on one character, as matchAll does.",
+      "Capture groups are numbered from 1 in the order their opening brackets appear. A group that did not take part in a match is shown as “not matched”, which is different from matching an empty string.",
+      "The replacement preview uses String.replace: $1 to $99 insert numbered groups, $<name> a named group, $& the whole match, $` and $' the text before and after, and $$ a literal dollar sign.",
+      "The pattern runs in a background worker. Nested quantifiers such as (a+)+ can take exponentially long on some inputs — catastrophic backtracking — so the worker is stopped after 1.5 seconds and the page stays usable. The first 1,000 matches are listed.",
+      PRIVACY_NOTE,
+    ],
+    example: {
+      scenario: "Reformatting ISO dates with (\\d{4})-(\\d{2})-(\\d{2}) and the g flag",
+      steps: [
+        "Text: Due 2026-10-20 and 2026-11-03",
+        "Matches: 2026-10-20 and 2026-11-03, each with groups $1 year, $2 month, $3 day",
+        "Replacement $3/$2/$1 → Due 20/10/2026 and 03/11/2026",
+      ],
+      result: "Two matches, each split into three groups, and both dates rewritten day first.",
+    },
+    faq: [
+      {
+        question: "Why does my regex only find the first match?",
+        answer:
+          "Without the g (global) flag, JavaScript stops after the first match. Tick g to find them all.",
+      },
+      {
+        question: "Why does the same regex behave differently in Python or PHP?",
+        answer:
+          "Each language has its own regex engine. Most syntax is shared, but features such as lookbehind, possessive quantifiers, named-group syntax and Unicode classes differ. This tester matches JavaScript exactly.",
+      },
+      {
+        question: "What does the timeout message mean?",
+        answer:
+          "The pattern took more than 1.5 seconds, usually because nested repeats such as (a+)+ or (.*)* make the engine try an enormous number of combinations. Make the inner part more specific or use a bounded quantifier.",
+      },
+      {
+        question: "Do I need to escape the slash?",
+        answer:
+          "No. Type the pattern without the surrounding slashes; a / inside it needs no escaping here, although it would in a /…/ literal in code.",
+      },
+    ],
+  },
+
+  "markdown-to-html": {
+    seoTitle: "Markdown to HTML Converter With Live Preview",
+    seoDescription:
+      "Convert Markdown to clean HTML with a live preview: headings, lists, tables, task lists, code blocks and links. Download a fragment or a full page. Private.",
+    intro:
+      "Type or paste Markdown on the left to see a live preview, then switch to HTML code to copy or download the result. Headings, emphasis, links, images, lists, task lists, tables, quotes and fenced code are supported. Raw HTML in the input is shown as text, so the output is safe to paste. Nothing is uploaded.",
+    howToUse: [
+      "Type or paste Markdown, or load a .md file.",
+      "Check the rendered preview on the right.",
+      "Switch to HTML code to see the markup, and tick the full-page option if you need a standalone file.",
+      "Copy the HTML or download it.",
+    ],
+    howItWorks: [
+      "The converter covers the everyday syntax of CommonMark plus the GitHub-flavoured additions most people expect: # headings and underlined headings, paragraphs and line breaks, **bold**, *italic*, ~~strikethrough~~, `code`, fenced and indented code blocks, block quotes, nested bullet and numbered lists, - [ ] task lists, | tables | with alignment, horizontal rules, links, images and bare web addresses.",
+      "Every piece of text is HTML-escaped, and HTML typed into the Markdown is shown as text rather than passed through. Link and image addresses are kept only for http, https, mailto and tel, or relative paths; anything else, such as a javascript: link, becomes #. That is why the preview is safe to render, and why the HTML is safe to paste into a page.",
+      "Fenced code keeps its language as a class such as language-js, which syntax highlighters such as Prism and highlight.js pick up. Table alignment is written as an inline text-align style.",
+      "Markdown has many dialects. Rare constructs — reference-style links, footnotes, definition lists, HTML blocks — are not converted. Check the preview if your source uses them.",
+      PRIVACY_NOTE,
+    ],
+    faq: [
+      {
+        question: "Why is my HTML tag shown as text?",
+        answer:
+          "Raw HTML in the Markdown is escaped on purpose, so the output cannot carry scripts or broken markup. Write the content in Markdown instead, or add the HTML after converting.",
+      },
+      {
+        question: "Does it support GitHub tables and task lists?",
+        answer:
+          "Yes. Pipe tables with a --- separator row (and : for alignment) become HTML tables, and - [ ] and - [x] become checkboxes.",
+      },
+      {
+        question: "Can I get a complete HTML file?",
+        answer:
+          "Tick “Wrap in a complete HTML page” to add the doctype, head and a title taken from the first heading, then download.",
+      },
+      {
+        question: "Will code blocks be highlighted?",
+        answer:
+          "Code blocks are output with a language-… class, which a syntax highlighter on your page can colour. The converter itself adds no colours.",
+      },
+    ],
+  },
 };

@@ -193,5 +193,18 @@ check("uk 30k monthly", Number((thirty.net / 12).toFixed(2)), 2093.3);
   check("csv worked example", JSON.stringify(csv.records), '[{"id":1,"name":"Hopper, Grace","postcode":"01234"}]');
 }
 
+/* regex-tester, find-and-replace, slug-generator */
+{
+  const { compileRegex, findMatches, findAndReplace } = await import("../src/lib/regex.ts");
+  const dates = compileRegex("(\\d{4})-(\\d{2})-(\\d{2})", "g");
+  const text = "Due 2026-10-20 and 2026-11-03";
+  check("regex example matches", dates.ok ? findMatches(dates.regex, text).matches.length : 0, 2);
+  check("regex example replacement", dates.ok ? text.replace(dates.regex, "$3/$2/$1") : "", "Due 20/10/2026 and 03/11/2026");
+  const colour = findAndReplace("Colour charts and watercolour paints", "colour", "color", { useRegex: false, caseSensitive: false, wholeWord: true, multiline: false });
+  check("find-replace example", colour.ok ? `${colour.output}|${colour.count}` : "", "color charts and watercolour paints|1");
+  const { slugify } = await import("../src/lib/slug.ts");
+  check("slug example", slugify("Crème Brûlée: 10 Easy Recipes for Beginners (2026)"), "creme-brulee-10-easy-recipes-for-beginners-2026");
+}
+
 console.log(problems === 0 ? "ALL DOCUMENTED EXAMPLES MATCH THE CODE" : `${problems} EXAMPLE(S) DISAGREE WITH THE CODE`);
 if (problems > 0) process.exitCode = 1;

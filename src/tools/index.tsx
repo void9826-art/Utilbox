@@ -12,7 +12,7 @@ const Loading = () => <ToolSkeleton />;
 
 /**
  * Every tool is a separate lazily-loaded chunk, so visiting one tool page never
- * downloads the code for the other 134.
+ * downloads the code for the other 138.
  */
 const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "merge-pdf": dynamic(() => import("./pdf/merge-pdf"), { loading: Loading }),
@@ -131,6 +131,8 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "voice-to-text": dynamic(() => import("./text/voice-to-text"), { loading: Loading }),
   "resume-ats-checker": dynamic(() => import("./text/resume-ats-checker"), { loading: Loading }),
   "text-compare": dynamic(() => import("./text/text-compare"), { loading: Loading }),
+  "find-and-replace": dynamic(() => import("./text/find-and-replace"), { loading: Loading }),
+  "slug-generator": dynamic(() => import("./text/slug-generator"), { loading: Loading }),
   "json-formatter": dynamic(() => import("./developer/json-formatter"), { loading: Loading }),
   "json-validator": dynamic(() => import("./developer/json-validator"), { loading: Loading }),
   "json-to-csv": dynamic(() => import("./developer/json-to-csv"), { loading: Loading }),
@@ -150,6 +152,8 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "jwt-decoder": dynamic(() => import("./developer/jwt-decoder"), { loading: Loading }),
   "hash-generator": dynamic(() => import("./developer/hash-generator"), { loading: Loading }),
   "cron-expression-explainer": dynamic(() => import("./developer/cron-expression-explainer"), { loading: Loading }),
+  "regex-tester": dynamic(() => import("./developer/regex-tester"), { loading: Loading }),
+  "markdown-to-html": dynamic(() => import("./developer/markdown-to-html"), { loading: Loading }),
 };
 
 export function ToolMount({ slug }: { slug: string }) {

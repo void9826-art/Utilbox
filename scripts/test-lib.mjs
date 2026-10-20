@@ -677,3 +677,69 @@ eq("cron leap day found", leapRuns.length === 1 && leapRuns[0].getFullYear() ===
 
 console.log(f12 === 0 ? "CSV, JWT, HASH AND CRON TESTS OK" : `${f12} FAILURES`);
 if (f12 > 0) process.exitCode = 1;
+
+/* ---- regex, markdown, slugs ---- */
+import { compileRegex, findMatches, findAndReplace, escapeRegExp } from "../src/lib/regex.ts";
+import { markdownToHtml, renderInline, safeUrl, escapeHtml } from "../src/lib/markdown.ts";
+import { slugify, transliterate, DEFAULT_SLUG_OPTIONS } from "../src/lib/slug.ts";
+
+let f13 = 0;
+const rq = (name, cond, detail = "") => { if (!cond) { console.log(`FAIL ${name} ${detail}`); f13++; } };
+{
+
+const dates = compileRegex("(\\d{4})-(\\d{2})-(?<day>\\d{2})", "g");
+const found = dates.ok ? findMatches(dates.regex, "a 2026-10-20 b 2026-11-03") : { matches: [] };
+rq("regex finds all with g", found.matches.length === 2 && found.matches[1].index === 15, JSON.stringify(found));
+rq("regex groups and named", found.matches[0].groups[0] === "2026" && found.matches[0].named.day === "20");
+const first = compileRegex("\\d+", "");
+rq("regex without g finds first only", first.ok && findMatches(first.regex, "1 2 3").matches.length === 1);
+rq("regex empty matches terminate", findMatches(compileRegex("a*", "g").regex, "baa").matches.length === 3);
+rq("regex match limit", findMatches(compileRegex(".", "g").regex, "x".repeat(50), 10).truncated);
+const badPattern = compileRegex("(", "");
+rq("regex error message trimmed", !badPattern.ok && badPattern.message === "Unterminated group", JSON.stringify(badPattern));
+rq("regex unknown flag", !compileRegex("a", "q").ok);
+rq("escape regexp", new RegExp(escapeRegExp("a.b*(c)$")).test("xa.b*(c)$"));
+const plain = { useRegex: false, caseSensitive: false, wholeWord: true, multiline: false };
+const whole = findAndReplace("Cat cat concat cats", "cat", "dog", plain);
+rq("replace whole words", whole.ok && whole.output === "dog dog concat cats" && whole.count === 2, JSON.stringify(whole));
+const dollars = findAndReplace("price", "price", "$1.00", { ...plain, wholeWord: false });
+rq("replace literal dollar", dollars.ok && dollars.output === "$1.00", JSON.stringify(dollars));
+const regexMode = findAndReplace("2026-10-20", "(\\d+)-(\\d+)-(\\d+)", "$3/$2/$1", { ...plain, useRegex: true, wholeWord: false });
+rq("replace regex groups", regexMode.ok && regexMode.output === "20/10/2026");
+const accentWord = findAndReplace("café cafés", "café", "tea", plain);
+rq("whole word with accents", accentWord.ok && accentWord.output === "tea cafés", JSON.stringify(accentWord));
+rq("replace regex identity escape allowed", findAndReplace("a-b", "\\-", "+", { ...plain, useRegex: true, wholeWord: false }).ok);
+
+rq("md escapes raw html", markdownToHtml("<script>alert(1)</script>").includes("&lt;script&gt;"));
+rq("md javascript link blocked", renderInline("[x](javascript:alert(1))") === '<a href="#">x</a>', renderInline("[x](javascript:alert(1))"));
+rq("md link with brackets in url", renderInline("[w](https://en.wikipedia.org/wiki/A_(b))") === '<a href="https://en.wikipedia.org/wiki/A_(b)">w</a>', renderInline("[w](https://en.wikipedia.org/wiki/A_(b))"));
+rq("md safeUrl keeps relative", safeUrl("/docs/a") === "/docs/a" && safeUrl("data:text/html,x") === "#");
+rq("md emphasis", renderInline("**b** *i* ~~s~~ `c*d`") === "<strong>b</strong> <em>i</em> <del>s</del> <code>c*d</code>", renderInline("**b** *i* ~~s~~ `c*d`"));
+rq("md snake case untouched", renderInline("snake_case_name") === "snake_case_name");
+rq("md headings", markdownToHtml("# A\n\nB\n---") === "<h1>A</h1>\n<h2>B</h2>\n", JSON.stringify(markdownToHtml("# A\n\nB\n---")));
+rq("md tight list", markdownToHtml("- a\n- b") === "<ul>\n<li>a</li>\n<li>b</li>\n</ul>\n", JSON.stringify(markdownToHtml("- a\n- b")));
+rq("md nested list", markdownToHtml("- a\n  - b").includes("<li>a\n<ul>\n<li>b</li>"), JSON.stringify(markdownToHtml("- a\n  - b")));
+rq("md ordered start", markdownToHtml("3. x\n4. y").startsWith('<ol start="3">'));
+rq("md task list", markdownToHtml("- [x] done").includes('<input type="checkbox" disabled checked> done'));
+rq("md table align", markdownToHtml("| a | b |\n|:-:|--:|\n| 1 | 2 |").includes('<td style="text-align:center">1</td><td style="text-align:right">2</td>'));
+rq("md fenced code escaped", markdownToHtml("```js\n<b>\n```") === '<pre><code class="language-js">&lt;b&gt;\n</code></pre>\n', JSON.stringify(markdownToHtml("```js\n<b>\n```")));
+rq("md blockquote", markdownToHtml("> q") === "<blockquote>\n<p>q</p>\n</blockquote>\n");
+rq("md hard break", markdownToHtml("a  \nb") === "<p>a<br>\nb</p>\n");
+rq("md bare url", renderInline("see https://x.org.") === 'see <a href="https://x.org">https://x.org</a>.');
+rq("md escape html attr", escapeHtml(`"'<>&`) === "&quot;&#39;&lt;&gt;&amp;");
+
+rq("slug basic", slugify("Hello, World!") === "hello-world");
+rq("slug accents and special letters", slugify("Crème Brûlée & Straße") === "creme-brulee-and-strasse", slugify("Crème Brûlée & Straße"));
+rq("slug apostrophe joins", slugify("Don't stop") === "dont-stop");
+rq("slug underscore", slugify("A b", { ...DEFAULT_SLUG_OPTIONS, separator: "_" }) === "a_b");
+rq("slug max length whole words", slugify("one two three four", { ...DEFAULT_SLUG_OPTIONS, maxLength: 10 }) === "one-two", slugify("one two three four", { ...DEFAULT_SLUG_OPTIONS, maxLength: 10 }));
+rq("slug long single word cut", slugify("supercalifragilistic", { ...DEFAULT_SLUG_OPTIONS, maxLength: 5 }) === "super");
+rq("slug stop words", slugify("The Best Way to Learn", { ...DEFAULT_SLUG_OPTIONS, removeStopWords: true }) === "best-way-learn");
+rq("slug stop words never empty", slugify("The Of And", { ...DEFAULT_SLUG_OPTIONS, removeStopWords: true }) === "the-of-and");
+rq("slug keep case", slugify("Hello World", { ...DEFAULT_SLUG_OPTIONS, lowercase: false }) === "Hello-World");
+rq("transliterate", transliterate("Łódź Ærø") === "Lodz Aero", transliterate("Łódź Ærø"));
+
+}
+
+console.log(f13 === 0 ? "REGEX, MARKDOWN AND SLUG TESTS OK" : `${f13} FAILURES`);
+if (f13 > 0) process.exitCode = 1;

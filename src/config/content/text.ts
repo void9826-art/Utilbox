@@ -445,4 +445,109 @@ export const textContent: Record<string, ToolContent> = {
       },
     ],
   },
+
+  "find-and-replace": {
+    seoTitle: "Find and Replace Text Online — Regex Supported",
+    seoDescription:
+      "Find and replace words or patterns in any text, with match case, whole words and regular expressions. Shows how many replacements were made. Private.",
+    intro:
+      "Paste your text, type what to find and what to replace it with, and the result updates with a count of the replacements made. Tick match case or whole words only so “cat” leaves “concat” alone, or switch on regular expressions for patterns and $1 groups. Leave the replacement empty to delete matches. Nothing is uploaded.",
+    howToUse: [
+      "Paste or load the text.",
+      "Type the word or phrase to find, and what to replace it with.",
+      "Tick Match case, Whole words only or Use regular expressions as needed.",
+      "Check the replacement count, then copy or download the result.",
+    ],
+    howItWorks: [
+      "In plain mode the search text is matched literally — dots, brackets and dollar signs mean themselves — and the replacement is inserted exactly as typed. Every occurrence is replaced in one pass, so replacing “a” with “aa” cannot loop.",
+      "Whole words only means the match may not have a letter, digit or underscore directly before or after it, in any alphabet, so “cat” matches in “the cat sat” but not in “concat” or “cats”.",
+      "With regular expressions on, the find box takes JavaScript regex syntax and the replacement understands $1, $2 and $<name> for groups and $& for the whole match. ^ and $ match at the start and end of each line unless you untick that option.",
+      "Searching runs in a background worker and is stopped after 1.5 seconds, so a regular expression that backtracks badly cannot freeze the page.",
+      PRIVACY_NOTE,
+    ],
+    example: {
+      scenario: "Replace “colour” with “color”, whole words only, case-insensitive",
+      steps: [
+        "Text: Colour charts and watercolour paints",
+        "“Colour” matches; “watercolour” does not, because a letter comes before it",
+        "Result: color charts and watercolour paints",
+      ],
+      result: "1 replacement. With Whole words off, both would change.",
+    },
+    faq: [
+      {
+        question: "How do I delete every occurrence of a word?",
+        answer:
+          "Type the word in Find and leave Replace with empty. Every match is removed.",
+      },
+      {
+        question: "Why was my replacement inserted in lower case?",
+        answer:
+          "The replacement is inserted exactly as you typed it, whatever the case of the text it replaces. Use Match case and run separate replacements if you need to keep capitals.",
+      },
+      {
+        question: "How do I replace line breaks?",
+        answer:
+          "Turn on regular expressions and find \\n, for example replacing \\n+ with a space to join lines.",
+      },
+      {
+        question: "Is there a size limit?",
+        answer:
+          "No fixed limit; it is limited only by your browser's memory. Very large texts with complex regular expressions may hit the 1.5-second safety stop.",
+      },
+    ],
+  },
+
+  "slug-generator": {
+    seoTitle: "Slug Generator — Turn Titles Into Clean URL Slugs",
+    seoDescription:
+      "Convert titles into SEO-friendly URL slugs: lower case, hyphens, accents removed and an optional length limit. Several titles at once. Runs in your browser.",
+    intro:
+      "Type a title to get a clean URL slug such as creme-brulee-10-easy-recipes: lower case, words joined by hyphens, accents removed and punctuation dropped. Choose underscores instead, set a maximum length cut at a whole word, or remove short words like “the” and “of”. Paste several titles to make one slug per line.",
+    howToUse: [
+      "Type or paste a title, or several titles one per line.",
+      "Choose hyphens or underscores, and whether to keep lower case.",
+      "Optionally set a maximum length and remove short common words.",
+      "Copy a slug, or copy them all.",
+    ],
+    howItWorks: [
+      "Accented letters are reduced to their base letter using Unicode normalisation, so é becomes e and ü becomes u. Letters that do not decompose are spelled out: ß becomes ss, æ becomes ae, ø becomes o and ł becomes l. & becomes and, and @ becomes at.",
+      "Apostrophes are removed so “don't” becomes dont rather than don-t. Every other run of spaces and punctuation becomes a single separator, and separators are never left at the start or end.",
+      "A maximum length cuts the slug at the last whole word that fits, so it never ends in half a word. Removing short words drops common words such as a, the, of and for — but never all of them, so a title made only of short words still produces a slug.",
+      "Hyphens are the usual choice for web addresses: Google's own guidance recommends hyphens rather than underscores to separate words in URLs. Underscores suit file names and some systems' identifiers.",
+      "Scripts without a Latin form, such as Chinese or Arabic, are not transliterated and are removed, so check slugs made from such titles.",
+      PRIVACY_NOTE,
+    ],
+    example: {
+      scenario: "Crème Brûlée: 10 Easy Recipes for Beginners (2026)",
+      steps: [
+        "Accents removed: Creme Brulee",
+        "Punctuation and brackets become separators",
+        "Lower-cased and joined with hyphens",
+      ],
+      result: "creme-brulee-10-easy-recipes-for-beginners-2026",
+    },
+    faq: [
+      {
+        question: "Should a slug use hyphens or underscores?",
+        answer:
+          "Hyphens for web pages. Search engines treat hyphens as word separators, and Google recommends them over underscores in URLs.",
+      },
+      {
+        question: "How long should a URL slug be?",
+        answer:
+          "There is no fixed rule. Short slugs of three to six meaningful words are easier to read and share; set a maximum length to keep them tidy.",
+      },
+      {
+        question: "Should I change the slug of a published page?",
+        answer:
+          "Only if you must. Changing it breaks existing links unless you add a permanent (301) redirect from the old address.",
+      },
+      {
+        question: "Does it handle accents and other languages?",
+        answer:
+          "Accented Latin letters are converted to plain ones (é to e, ß to ss). Scripts without a Latin equivalent are removed, so write those slugs by hand or use a transliteration.",
+      },
+    ],
+  },
 };

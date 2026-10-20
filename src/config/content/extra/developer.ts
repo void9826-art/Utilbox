@@ -456,4 +456,46 @@ export const developerExtra: Record<string, ToolContentExtra> = {
       },
     ],
   },
+
+  "regex-tester": {
+    tips: [
+      "Start with a small sample text where you know which parts should match.",
+      "Use non-capturing groups (?:…) when you only need grouping, so $1 and $2 stay predictable.",
+      "Prefer specific classes such as [^,]+ over .* — they are faster and match less by accident.",
+      "Anchor with ^ and $ (and the m flag for lines) when validating whole values.",
+    ],
+    faq: [
+      {
+        question: "Is my test text sent anywhere?",
+        answer:
+          "No. The pattern and text are processed in a worker inside this page and never leave your browser.",
+      },
+      {
+        question: "How do I match a literal dot or bracket?",
+        answer:
+          "Escape it with a backslash: \\. for a dot, \\( for a bracket, \\\\ for a backslash itself.",
+      },
+    ],
+  },
+
+  "markdown-to-html": {
+    tips: [
+      "Leave a blank line between paragraphs, lists and headings — Markdown needs it to start a new block.",
+      "End a line with two spaces or a backslash to force a line break inside a paragraph.",
+      "Indent nested list items by two or more spaces under the parent item's text.",
+      "Use fenced code blocks with a language name, such as ```js, for code samples.",
+    ],
+    faq: [
+      {
+        question: "Is my document uploaded?",
+        answer:
+          "No. The conversion runs in your browser, so drafts and internal notes stay on your device.",
+      },
+      {
+        question: "Why does an underscore in a word not make italics?",
+        answer:
+          "Underscores inside words, as in snake_case_names, are left alone, following GitHub's rules. Use *asterisks* for emphasis inside words.",
+      },
+    ],
+  },
 };
