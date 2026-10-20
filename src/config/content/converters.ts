@@ -602,4 +602,158 @@ export const converterContent: Record<string, ToolContent> = {
       },
     ],
   }),
+
+  "roman-numeral-converter": {
+    seoTitle: "Roman Numeral Converter — Numbers to Roman and Back",
+    seoDescription:
+      "Convert numbers to Roman numerals and Roman numerals to numbers, from 1 to 3,999, with each symbol's value shown. Flags non-standard numerals.",
+    intro:
+      "Type a number from 1 to 3,999 to get its Roman numeral, or type a numeral to get the number, with each part's value shown so you can check the working. 2026 is MMXXVI and 1994 is MCMXCIV. Non-standard numerals such as IIII are read and the standard spelling suggested. Everything runs in your browser.",
+    howToUse: [
+      "Type a number in the Number box, or a numeral in the Roman numeral box.",
+      "Read the result in the other box — both update as you type.",
+      "Check “How it adds up” to see the value of each part.",
+      "Copy the numeral with the copy button.",
+    ],
+    howItWorks: [
+      "Roman numerals use seven letters: I = 1, V = 5, X = 10, L = 50, C = 100, D = 500 and M = 1,000. Values are added from left to right, except that a smaller numeral before a larger one is subtracted.",
+      "Standard form allows only six subtractive pairs: IV (4), IX (9), XL (40), XC (90), CD (400) and CM (900), and no letter repeats more than three times. That is why 4 is IV, 1999 is MCMXCIX and not MIM, and 3,999 (MMMCMXCIX) is the largest number written this way.",
+      "Numbers are converted by taking the largest value that fits — 1,000, 900, 500, 400 and so on down to 1 — as many times as it fits. Numerals are read by adding each letter's value, subtracting it when the next letter is larger.",
+      "Older and decorative numerals sometimes use other forms, such as IIII on clock faces. Those are read as intended and the standard spelling is suggested, so you can choose which to use.",
+    ],
+    example: {
+      scenario: "Writing 1994",
+      steps: [
+        "1,000 → M",
+        "900 → CM",
+        "90 → XC",
+        "4 → IV",
+      ],
+      result: "MCMXCIV",
+    },
+    faq: [
+      {
+        question: "What is the largest Roman numeral?",
+        answer:
+          "In standard form, 3,999 (MMMCMXCIX). Larger numbers were written with a bar over a numeral to multiply it by 1,000, which has no standard keyboard form.",
+      },
+      {
+        question: "Is there a Roman numeral for zero?",
+        answer:
+          "No. The Romans had no numeral for zero; the word nulla was sometimes used.",
+      },
+      {
+        question: "Why do clocks show IIII instead of IV?",
+        answer:
+          "It is a long-standing clock-making tradition, often said to balance the dial visually. IV is the standard form, but both are read as 4.",
+      },
+      {
+        question: "How do I write a year such as 2026?",
+        answer:
+          "2026 is MM (2,000) + XX (20) + VI (6) = MMXXVI. Type any year from 1 to 3,999 to convert it.",
+      },
+    ],
+  },
+
+  "number-to-words": {
+    seoTitle: "Number to Words — Amounts in Words for Cheques",
+    seoDescription:
+      "Write numbers and money amounts in words for cheques, invoices and forms: dollars, pounds, euros or rupees, with lakh and crore or million and billion.",
+    intro:
+      "Type a number or an amount to see it written in words, ready for a cheque, invoice or legal form: 1234.56 becomes “One thousand two hundred thirty-four dollars and fifty-six cents”, with a cheque line “… and 56/100”. Choose dollars, pounds, euros or rupees, lakh and crore or millions, and British “and”. Nothing is uploaded.",
+    howToUse: [
+      "Choose Money / cheque for amounts, or Plain number for any number.",
+      "Type the number; commas and spaces are ignored.",
+      "Pick the currency, the number system and whether to use British “and”.",
+      "Copy the words, the cheque line or the ordinal.",
+    ],
+    howItWorks: [
+      "The number is read as text, not converted to a floating-point value, so large amounts and decimals are never rounded by accident. Whole numbers are split into groups of three digits and each group is written with its scale word: thousand, million, billion and so on (the short scale used in modern English).",
+      "In the Indian system the groups are thousand, lakh (1,00,000) and crore (1,00,00,000), with larger amounts written as a number of crores — so 12,34,56,789 is twelve crore thirty-four lakh fifty-six thousand seven hundred eighty-nine. Rupees default to this system.",
+      "British and Indian English put “and” before the last part (one hundred and five; one thousand and five); American usage on cheques usually leaves it out. Tens and units are hyphenated: twenty-one, ninety-nine.",
+      "Money is rounded half up to two decimal places. The cheque line uses the common format of the whole amount in words followed by the cents or pence as a fraction over 100, such as “and 05/100 dollars”, which is hard to alter.",
+    ],
+    example: {
+      scenario: "1234.56 in US dollars",
+      steps: [
+        "1,234 → one thousand two hundred thirty-four",
+        "0.56 → fifty-six cents",
+        "Cheque: … and 56/100 dollars",
+      ],
+      result: "One thousand two hundred thirty-four dollars and fifty-six cents.",
+    },
+    faq: [
+      {
+        question: "How do I write a cheque amount in words?",
+        answer:
+          "Write the whole amount in words, then the cents or pence as a fraction over 100, such as “One hundred twenty-five and 50/100 dollars”. Draw a line through any space left so nothing can be added.",
+      },
+      {
+        question: "Should I use “and” in numbers?",
+        answer:
+          "In British and Indian English, yes: one hundred and five. In American English it is usually left out, especially on cheques, where “and” separates dollars from cents.",
+      },
+      {
+        question: "How do I write a number in lakhs and crores?",
+        answer:
+          "Choose the Lakh, crore number system. 1,50,000 is one lakh fifty thousand, and 2,50,00,000 is two crore fifty lakh.",
+      },
+      {
+        question: "How are decimals written?",
+        answer:
+          "In plain-number mode each digit after the point is read separately: 3.14 is three point one four. Money amounts use cents or pence instead.",
+      },
+    ],
+  },
+
+  "number-base-converter": {
+    seoTitle: "Number Base Converter — Binary, Hex, Decimal",
+    seoDescription:
+      "Convert numbers between binary, octal, decimal, hexadecimal and any base from 2 to 36, with no size limit. Shows bit length and two's complement.",
+    intro:
+      "Type a number and choose its base to see it in binary, octal, decimal and hexadecimal at once, plus any base from 2 to 36. 255 is 11111111 in binary and FF in hex. Numbers of any size convert exactly, prefixes such as 0x and 0b are accepted, and negative numbers show their two's complement. It runs in your browser.",
+    howToUse: [
+      "Type the number. Spaces, underscores and a 0x, 0b or 0o prefix are fine.",
+      "Choose the base it is written in.",
+      "Read the binary, octal, decimal and hexadecimal values, or set a custom base.",
+      "Copy any result; copied binary, octal and hex include their prefix.",
+    ],
+    howItWorks: [
+      "A number in base b is read digit by digit: each step multiplies the running total by b and adds the next digit. Digits beyond 9 are the letters a to z, so hexadecimal uses 0–9 and A–F, and base 36 uses every letter.",
+      "The arithmetic uses JavaScript's BigInt, so there is no size limit and no rounding. Ordinary JavaScript numbers lose precision above 2⁵³ (about 9 × 10¹⁵), which is why some converters give wrong answers for long binary or hex values.",
+      "Digits are grouped in fours for binary and hex (one hex digit is exactly four bits) and in threes for decimal and octal, purely for readability; copying gives the plain digits.",
+      "Negative numbers are shown with a minus sign and, below, as the two's complement bit pattern computers use to store signed integers in 8, 16, 32 and 64 bits — for example −1 is 11111111 in 8 bits.",
+    ],
+    example: {
+      scenario: "Converting 255 from decimal",
+      steps: [
+        "Binary: 255 = 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 → 11111111",
+        "Octal: 255 = 3 × 64 + 7 × 8 + 7 → 377",
+        "Hex: 255 = 15 × 16 + 15 → FF",
+      ],
+      result: "11111111 (binary), 377 (octal), FF (hex).",
+    },
+    faq: [
+      {
+        question: "How do I convert binary to decimal?",
+        answer:
+          "Choose Binary as the input base and type the digits. By hand, add the powers of two for each 1: 1011 is 8 + 0 + 2 + 1 = 11.",
+      },
+      {
+        question: "How do I convert decimal to hex?",
+        answer:
+          "Type the number with Decimal as the input base and read the hexadecimal row. By hand, divide by 16 repeatedly and read the remainders backwards.",
+      },
+      {
+        question: "What does 0x mean?",
+        answer:
+          "It is the prefix programming languages use for hexadecimal, as 0b is for binary and 0o for octal. The converter accepts them when they match the input base.",
+      },
+      {
+        question: "What is two's complement?",
+        answer:
+          "The standard way computers store negative integers: invert every bit of the positive value and add one. In 8 bits, −5 is 11111011.",
+      },
+    ],
+  },
 };

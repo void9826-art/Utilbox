@@ -239,5 +239,35 @@ check("uk 30k monthly", Number((thirty.net / 12).toFixed(2)), 2093.3);
   check("unit price premiums", ranked.map((r) => Math.round(r.premium * 100)).join(","), "0,20,67");
 }
 
+/* sip-calculator, bmr-calculator, roman-numeral-converter, number-to-words, number-base-converter */
+{
+  const { sipProjection } = await import("../src/lib/sip.ts");
+  const sip = sipProjection({ monthly: 5000, annualReturn: 12, years: 10, stepUp: 0 });
+  check("sip example value", Math.round(sip.value), 1161695);
+  check("sip example invested", sip.invested, 600000);
+  check("sip example gains (lakh)", Math.round(sip.gains / 1000) / 100, 5.62);
+  const { mifflinStJeor, dailyCalories } = await import("../src/lib/bmr.ts");
+  const bmr = mifflinStJeor("female", 68, 168, 35);
+  check("bmr example", bmr, 1394);
+  check("bmr example maintenance", Math.round(dailyCalories(bmr, "light")), 1917);
+  const { toRoman } = await import("../src/lib/roman.ts");
+  check("roman 2026", toRoman(2026), "MMXXVI");
+  check("roman 1994", toRoman(1994), "MCMXCIV");
+  check("roman 1999", toRoman(1999), "MCMXCIX");
+  const words = await import("../src/lib/number-words.ts");
+  check("words example", words.amountToWords("1234.56", words.CURRENCY_WORDS[0], words.DEFAULT_WORDS).spoken, "One thousand two hundred thirty-four dollars and fifty-six cents");
+  check("words cheque", words.amountToWords("125.50", words.CURRENCY_WORDS[0], words.DEFAULT_WORDS).cheque, "One hundred twenty-five and 50/100 dollars");
+  check("words indian", words.numberToWords("12,34,56,789", { scale: "indian", useAnd: false }), "twelve crore thirty-four lakh fifty-six thousand seven hundred eighty-nine");
+  check("words lakh", words.numberToWords("150000", { scale: "indian", useAnd: false }), "one lakh fifty thousand");
+  check("words two crore fifty lakh", words.numberToWords("25000000", { scale: "indian", useAnd: false }), "two crore fifty lakh");
+  check("words pi", words.numberToWords("3.14"), "three point one four");
+  const base = await import("../src/lib/number-base.ts");
+  check("base 255 binary", base.formatInBase(BigInt(255), 2), "11111111");
+  check("base 255 octal", base.formatInBase(BigInt(255), 8), "377");
+  check("base 255 hex", base.formatInBase(BigInt(255), 16, true), "FF");
+  check("base -5 twos", base.twosComplement(BigInt(-5), 8), "11111011");
+  check("base 755 octal", base.groupDigits(base.formatInBase(BigInt(0o755), 2), 3), "111 101 101");
+}
+
 console.log(problems === 0 ? "ALL DOCUMENTED EXAMPLES MATCH THE CODE" : `${problems} EXAMPLE(S) DISAGREE WITH THE CODE`);
 if (problems > 0) process.exitCode = 1;

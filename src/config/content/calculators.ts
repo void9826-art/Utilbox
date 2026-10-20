@@ -1378,4 +1378,124 @@ export const calculatorContent: Record<string, ToolContent> = {
       },
     ],
   },
+
+  "sip-calculator": {
+    seoTitle: "SIP Calculator — Monthly Investment Returns",
+    seoDescription:
+      "Estimate what a monthly SIP grows to at an expected return, with an optional yearly step-up. Shows invested amount, gains and a year-by-year table.",
+    intro:
+      "Enter a monthly investment, an expected annual return and a period to see what a SIP could grow to, how much you put in and the estimated gains, with a year-by-year table. Add a yearly step-up if you plan to raise the amount. ₹5,000 a month for 10 years at 12% comes to about ₹11.6 lakh.",
+    howToUse: [
+      "Enter the amount you will invest each month.",
+      "Enter the annual return you expect and the number of years.",
+      "Optionally enter a yearly step-up, such as 10% if you will raise the SIP each year.",
+      "Read the estimated value, the amount invested, the gains and the year-by-year table.",
+    ],
+    howItWorks: [
+      "The calculator uses the convention most fund houses' SIP calculators use: the monthly rate is the annual rate ÷ 12, and each instalment is invested at the start of its month and grows until the end of the period. For a level SIP that gives the closed formula FV = P × ((1 + i)ⁿ − 1) ÷ i × (1 + i).",
+      "With a step-up, the monthly amount rises by the chosen percentage at the start of each new year, so a 10% step-up turns 5,000 a month into 5,500 in year two and 6,050 in year three.",
+      "Gains are the estimated value minus everything invested. They are before any tax, exit load or fund expenses not already reflected in the return you entered.",
+      "Real market returns vary from year to year and can be negative. A steady assumed rate shows the effect of time and compounding; it is not a prediction of what a fund will return.",
+    ],
+    formula: {
+      expression: "FV = P × ((1 + i)ⁿ − 1) ÷ i × (1 + i)",
+      where: [
+        "P — monthly investment",
+        "i — monthly rate: annual return ÷ 12 ÷ 100",
+        "n — number of monthly instalments",
+      ],
+    },
+    example: {
+      scenario: "₹5,000 a month for 10 years at an expected 12% a year",
+      steps: [
+        "i = 12 ÷ 12 ÷ 100 = 0.01, n = 120",
+        "FV = 5,000 × (1.01¹²⁰ − 1) ÷ 0.01 × 1.01 ≈ 11,61,695",
+        "Invested = 5,000 × 120 = 6,00,000",
+      ],
+      result: "About ₹11.62 lakh, of which about ₹5.62 lakh is estimated gains.",
+    },
+    faq: [
+      {
+        question: "Is the SIP return guaranteed?",
+        answer:
+          "No. Mutual fund returns depend on the market and are not guaranteed. The calculator assumes a steady rate to show how compounding works over time.",
+      },
+      {
+        question: "What return should I assume?",
+        answer:
+          "Use a cautious figure based on the fund type and your horizon, and try a lower rate too. Past returns do not guarantee future ones.",
+      },
+      {
+        question: "What is a step-up SIP?",
+        answer:
+          "A SIP whose monthly amount rises by a set percentage each year, usually in line with salary increases. Even a small yearly step-up makes a large difference over long periods.",
+      },
+      {
+        question: "Why is my fund's actual value different?",
+        answer:
+          "Real returns vary month to month, units are bought at different prices, and expenses, exit loads and taxes affect what you receive. This is a projection, not a statement.",
+      },
+    ],
+    disclaimer: "This projection is arithmetic on an assumed steady return, not investment advice or a forecast. Mutual fund investments are subject to market risk, returns are not guaranteed, and tax and charges are not included.",
+  },
+
+  "bmr-calculator": {
+    seoTitle: "BMR and Calorie Calculator — Mifflin-St Jeor",
+    seoDescription:
+      "Estimate your basal metabolic rate and maintenance calories (TDEE) from age, sex, height, weight and activity, using the Mifflin-St Jeor equation.",
+    intro:
+      "Enter your age, sex, height, weight and activity level to estimate your basal metabolic rate — the calories your body uses at rest — and the daily calories that would keep your weight steady. It uses the Mifflin-St Jeor equation, the estimate most dietitians use. A 35-year-old woman, 168 cm and 68 kg, has a BMR of about 1,394 kcal.",
+    howToUse: [
+      "Choose metric or imperial units and enter your age, height and weight.",
+      "Choose the sex the equation should use.",
+      "Pick the activity level closest to a typical week.",
+      "Read your BMR and the maintenance calories, and compare activity levels in the table.",
+    ],
+    howItWorks: [
+      "BMR is estimated with the Mifflin-St Jeor equation, published in the American Journal of Clinical Nutrition in 1990: 10 × weight in kg + 6.25 × height in cm − 5 × age in years, then + 5 for men or − 161 for women.",
+      "Maintenance calories, often called total daily energy expenditure (TDEE), multiply BMR by an activity factor from 1.2 for sedentary to 1.9 for very physical work and training. These factors are the standard ones used alongside the equation, but they are broad bands: choose the one that matches an ordinary week, not your most active one.",
+      "Both figures are population averages. Body composition, genetics, health conditions and medication can move an individual's real needs well above or below the estimate. Weight trends over a few weeks are a better guide than any formula.",
+      "The equation was developed for adults, so ages under 15 are not calculated. Everything is calculated in your browser.",
+    ],
+    formula: {
+      expression: "BMR = 10 × weight + 6.25 × height − 5 × age + s      maintenance = BMR × activity factor",
+      where: [
+        "weight — kilograms; height — centimetres; age — years",
+        "s — +5 for men, −161 for women",
+        "activity factor — 1.2, 1.375, 1.55, 1.725 or 1.9",
+      ],
+    },
+    example: {
+      scenario: "A 35-year-old woman, 168 cm, 68 kg, lightly active",
+      steps: [
+        "BMR = 10 × 68 + 6.25 × 168 − 5 × 35 − 161",
+        "= 680 + 1,050 − 175 − 161 = 1,394 kcal",
+        "Maintenance = 1,394 × 1.375 ≈ 1,917 kcal",
+      ],
+      result: "About 1,394 kcal at rest and about 1,917 kcal a day to maintain weight.",
+    },
+    faq: [
+      {
+        question: "What is the difference between BMR and TDEE?",
+        answer:
+          "BMR is the energy your body uses at complete rest just to keep running. TDEE, or maintenance calories, adds everything you do in a day, from walking to exercise.",
+      },
+      {
+        question: "Is Mifflin-St Jeor accurate?",
+        answer:
+          "It is the most widely recommended equation for adults, but it is an estimate. Individual results commonly differ from it, which is why progress over a few weeks is the real test.",
+      },
+      {
+        question: "How many calories should I eat to lose weight?",
+        answer:
+          "That depends on your health and goals; a doctor or registered dietitian can advise. Eating below your maintenance estimate leads to weight loss over time, but very low intakes are not safe without supervision.",
+      },
+      {
+        question: "Why does the equation ask for sex?",
+        answer:
+          "On average, men and women of the same height and weight have different body composition, so the equation uses a different constant. Choose the one that best fits your body, or ask a clinician if neither does.",
+      },
+    ],
+    disclaimer: "These are estimates for general information, not medical or nutritional advice. If you are pregnant, have a health condition, take medication that affects weight, or are planning a significant diet change, speak to a doctor or registered dietitian.",
+  },
 };

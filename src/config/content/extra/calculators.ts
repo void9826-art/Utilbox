@@ -628,4 +628,46 @@ export const calculatorExtra: Record<string, ToolContentExtra> = {
       },
     ],
   },
+
+  "sip-calculator": {
+    tips: [
+      "Compare a few return rates rather than relying on one optimistic figure.",
+      "Starting earlier usually matters more than investing a little more later — try both in the calculator.",
+      "Use the step-up to model raising your SIP with your salary.",
+      "Check what the fund's own factsheet says about charges and risk before investing.",
+    ],
+    faq: [
+      {
+        question: "How is SIP different from a lump sum?",
+        answer:
+          "A lump sum is invested once and compounds for the whole period; a SIP invests a little each month, so later instalments have less time to grow.",
+      },
+      {
+        question: "Is my data stored?",
+        answer:
+          "No. The calculation runs in your browser and nothing is saved.",
+      },
+    ],
+  },
+
+  "bmr-calculator": {
+    tips: [
+      "Pick the activity level for a normal week, not your best one; overestimating activity is the most common mistake.",
+      "Re-calculate after a significant change in weight, since BMR falls as weight falls.",
+      "Use the estimate as a starting point and adjust based on how your weight changes over several weeks.",
+      "Weigh yourself at the same time of day when tracking trends.",
+    ],
+    faq: [
+      {
+        question: "Does it work for athletes?",
+        answer:
+          "Very muscular people often burn more than the equation predicts, because it does not know body composition. Treat the result as a lower estimate.",
+      },
+      {
+        question: "Is my information saved?",
+        answer:
+          "No. Everything is calculated in your browser and nothing is stored or sent.",
+      },
+    ],
+  },
 };

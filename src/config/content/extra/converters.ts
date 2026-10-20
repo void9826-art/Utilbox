@@ -300,4 +300,67 @@ export const converterExtra: Record<string, ToolContentExtra> = {
       },
     ],
   },
+
+  "roman-numeral-converter": {
+    tips: [
+      "Check film and book copyright years by pasting the numeral in.",
+      "For tattoos and engravings, double-check the standard form and the date order before committing.",
+      "Use upper case for formal writing; lower case (iv, ix) is common for page numbers in prefaces.",
+      "Remember that no symbol repeats more than three times in standard form.",
+    ],
+    faq: [
+      {
+        question: "Can I type lower-case numerals?",
+        answer:
+          "Yes. Lower case is accepted and converted to capitals.",
+      },
+      {
+        question: "Is anything sent to a server?",
+        answer:
+          "No. The conversion runs in your browser.",
+      },
+    ],
+  },
+
+  "number-to-words": {
+    tips: [
+      "Check the requirements of the bank or form; some ask for “only” at the end, as in “… rupees only”.",
+      "Write cheque amounts close to the left edge and fill the remaining space with a line.",
+      "Make sure the amount in words matches the figures exactly; banks may refuse a cheque where they differ.",
+      "Use the ordinal output for dates and rankings, such as twenty-first.",
+    ],
+    faq: [
+      {
+        question: "What is the largest number it can write?",
+        answer:
+          "Whole numbers up to the sextillions (21 digits). Larger numbers are rarely written in words.",
+      },
+      {
+        question: "Is the amount sent anywhere?",
+        answer:
+          "No. It is converted in your browser.",
+      },
+    ],
+  },
+
+  "number-base-converter": {
+    tips: [
+      "Use hex to read binary quickly: each hex digit is exactly four bits.",
+      "Check colour codes such as #FF8800 by converting each pair of hex digits to decimal.",
+      "For file permissions on Unix, octal 755 is binary 111 101 101.",
+      "Watch the input base: 10 means ten in decimal but two in binary.",
+    ],
+    faq: [
+      {
+        question: "Can it convert fractions?",
+        answer:
+          "No. It converts whole numbers only, positive or negative.",
+      },
+      {
+        question: "Is anything uploaded?",
+        answer:
+          "No. Conversion happens in your browser.",
+      },
+    ],
+  },
 };

@@ -810,3 +810,66 @@ const dt = (name, cond, detail = "") => { if (!cond) { console.log(`FAIL ${name}
 }
 console.log(f14 === 0 ? "DATE, TIME CARD, FUEL AND UNIT PRICE TESTS OK" : `${f14} FAILURES`);
 if (f14 > 0) process.exitCode = 1;
+
+/* ---- SIP, BMR, Roman numerals, number words, number bases ---- */
+import { sipProjection, sipFutureValue } from "../src/lib/sip.ts";
+import { mifflinStJeor, dailyCalories } from "../src/lib/bmr.ts";
+import { toRoman, fromRoman, romanParts } from "../src/lib/roman.ts";
+import { numberToWords, integerToWords, toOrdinal, amountToWords, CURRENCY_WORDS, parseDecimal } from "../src/lib/number-words.ts";
+import { parseInBase, formatInBase, groupDigits, bitLength, twosComplement } from "../src/lib/number-base.ts";
+
+let f15 = 0;
+const nq = (name, cond, detail = "") => { if (!cond) { console.log(`FAIL ${name} ${detail}`); f15++; } };
+{
+  const level = sipProjection({ monthly: 5000, annualReturn: 12, years: 10, stepUp: 0 });
+  nq("sip invested", level.invested === 600000);
+  nq("sip matches closed form", Math.abs(level.value - sipFutureValue(5000, 12, 10)) < 1e-6 && Math.abs(level.value - 1161695.38) < 0.01, String(level.value));
+  nq("sip yearly rows", level.rows.length === 10 && level.rows[0].invested === 60000);
+  const stepped = sipProjection({ monthly: 5000, annualReturn: 12, years: 10, stepUp: 10 });
+  nq("sip step-up invests more", Math.abs(stepped.invested - 956245.48) < 0.01, String(stepped.invested));
+  nq("sip zero return", Math.abs(sipProjection({ monthly: 100, annualReturn: 0, years: 1, stepUp: 0 }).value - 1200) < 1e-9);
+  nq("sip rejects bad input", sipProjection({ monthly: 0, annualReturn: 12, years: 10, stepUp: 0 }) === null);
+
+  nq("bmr male", mifflinStJeor("male", 70, 175, 30) === 1648.75);
+  nq("bmr female", mifflinStJeor("female", 60, 165, 30) === 1320.25);
+  nq("bmr rejects child", mifflinStJeor("male", 40, 150, 10) === null);
+  nq("tdee moderate", Math.abs(dailyCalories(1648.75, "moderate") - 2555.5625) < 1e-9);
+
+  nq("roman 2026", toRoman(2026) === "MMXXVI" && toRoman(3999) === "MMMCMXCIX" && toRoman(4) === "IV");
+  nq("roman range", toRoman(0) === null && toRoman(4000) === null && toRoman(2.5) === null);
+  const parsedRoman = fromRoman("mcmxciv");
+  nq("roman parse lower case", parsedRoman.ok && parsedRoman.value === 1994 && parsedRoman.standard);
+  const loose = fromRoman("IIII");
+  nq("roman non-standard suggested", loose.ok && !loose.standard && loose.suggestion === "IV" && loose.value === 4);
+  nq("roman bad letters", !fromRoman("ABC").ok);
+  nq("roman parts", romanParts(1994).map((p) => p.symbol).join(" ") === "M CM XC IV");
+  for (let n = 1; n <= 3999; n += 1) { const r = fromRoman(toRoman(n)); if (!r.ok || r.value !== n || !r.standard) { nq(`roman round trip ${n}`, false); break; } }
+
+  nq("words basic", numberToWords("1234") === "one thousand two hundred thirty-four");
+  nq("words british and", numberToWords("105", { scale: "international", useAnd: true }) === "one hundred and five");
+  nq("words thousand and", numberToWords("1005", { scale: "international", useAnd: true }) === "one thousand and five");
+  nq("words decimal", numberToWords("3.14") === "three point one four");
+  nq("words negative", numberToWords("-42") === "minus forty-two" && numberToWords("-0") === "zero");
+  nq("words big exact", numberToWords("9007199254740993").endsWith("nine hundred ninety-three"), numberToWords("9007199254740993"));
+  nq("words separators", numberToWords("1,000,000") === "one million" && parseDecimal("abc") === null);
+  nq("indian lakh crore", integerToWords(BigInt(12345678), { scale: "indian", useAnd: false }) === "one crore twenty-three lakh forty-five thousand six hundred seventy-eight", integerToWords(BigInt(12345678), { scale: "indian", useAnd: false }));
+  nq("ordinals", toOrdinal("twenty-one") === "twenty-first" && toOrdinal("forty") === "fortieth" && toOrdinal("one hundred") === "one hundredth" && toOrdinal("twelve") === "twelfth");
+  const usd = amountToWords("1234.56", CURRENCY_WORDS[0], { scale: "international", useAnd: false });
+  nq("amount spoken", usd.spoken === "One thousand two hundred thirty-four dollars and fifty-six cents", usd.spoken);
+  nq("amount cheque", usd.cheque === "One thousand two hundred thirty-four and 56/100 dollars", usd.cheque);
+  nq("amount rounds half up", amountToWords("0.995", CURRENCY_WORDS[0], { scale: "international", useAnd: false }).spoken === "One dollar");
+  nq("amount singular penny", amountToWords("1.01", CURRENCY_WORDS[1], { scale: "international", useAnd: true }).spoken === "One pound and one penny");
+
+  const hex = parseInBase("0xFF", 16);
+  nq("base hex prefix", hex.ok && hex.value === BigInt(255));
+  nq("base binary spaces", (() => { const r = parseInBase("1111 0000", 2); return r.ok && r.value === BigInt(240); })());
+  nq("base invalid digit", !parseInBase("102", 2).ok && !parseInBase("g", 16).ok);
+  nq("base negative", (() => { const r = parseInBase("-1010", 2); return r.ok && r.value === BigInt(-10); })());
+  nq("base 36", formatInBase(BigInt(35), 36) === "z" && formatInBase(BigInt(255), 16, true) === "FF");
+  nq("base huge exact", (() => { const r = parseInBase("123456789012345678901234567890", 10); return r.ok && formatInBase(r.value, 16) === "18ee90ff6c373e0ee4e3f0ad2"; })());
+  nq("group digits", groupDigits("11110000", 4) === "1111 0000" && groupDigits("1234567", 3, ",") === "1,234,567" && groupDigits("-12345", 3, ",") === "-12,345");
+  nq("bit length", bitLength(BigInt(255)) === 8 && bitLength(BigInt(0)) === 1);
+  nq("twos complement", twosComplement(BigInt(-1), 8) === "11111111" && twosComplement(BigInt(-128), 8) === "10000000" && twosComplement(BigInt(128), 8) === null);
+}
+console.log(f15 === 0 ? "SIP, BMR, ROMAN, WORDS AND BASE TESTS OK" : `${f15} FAILURES`);
+if (f15 > 0) process.exitCode = 1;

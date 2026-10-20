@@ -12,7 +12,7 @@ const Loading = () => <ToolSkeleton />;
 
 /**
  * Every tool is a separate lazily-loaded chunk, so visiting one tool page never
- * downloads the code for the other 142.
+ * downloads the code for the other 147.
  */
 const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "merge-pdf": dynamic(() => import("./pdf/merge-pdf"), { loading: Loading }),
@@ -71,6 +71,8 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "time-card-calculator": dynamic(() => import("./calculators/time-card-calculator"), { loading: Loading }),
   "fuel-cost-calculator": dynamic(() => import("./calculators/fuel-cost-calculator"), { loading: Loading }),
   "unit-price-calculator": dynamic(() => import("./calculators/unit-price-calculator"), { loading: Loading }),
+  "sip-calculator": dynamic(() => import("./calculators/sip-calculator"), { loading: Loading }),
+  "bmr-calculator": dynamic(() => import("./calculators/bmr-calculator"), { loading: Loading }),
   "compress-image": dynamic(() => import("./image/compress-image"), { loading: Loading }),
   "resize-image": dynamic(() => import("./image/resize-image"), { loading: Loading }),
   "jpg-to-png": dynamic(() => import("./image/jpg-to-png"), { loading: Loading }),
@@ -112,6 +114,9 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "shoe-size-converter": dynamic(() => import("./converters/shoe-size-converter"), { loading: Loading }),
   "engine-cc-to-hp": dynamic(() => import("./converters/engine-cc-to-hp"), { loading: Loading }),
   "timezone-meeting-planner": dynamic(() => import("./converters/timezone-meeting-planner"), { loading: Loading }),
+  "roman-numeral-converter": dynamic(() => import("./converters/roman-numeral-converter"), { loading: Loading }),
+  "number-to-words": dynamic(() => import("./converters/number-to-words"), { loading: Loading }),
+  "number-base-converter": dynamic(() => import("./converters/number-base-converter"), { loading: Loading }),
   "qr-code-generator": dynamic(() => import("./generators/qr-code-generator"), { loading: Loading }),
   "barcode-generator": dynamic(() => import("./generators/barcode-generator"), { loading: Loading }),
   "password-generator": dynamic(() => import("./generators/password-generator"), { loading: Loading }),
