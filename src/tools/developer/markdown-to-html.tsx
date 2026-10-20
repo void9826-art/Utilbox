@@ -10,11 +10,12 @@ import { Checkbox, Segmented } from "@/components/ui/field";
 import { downloadText } from "@/lib/download";
 import { htmlDocument, markdownToHtml } from "@/lib/markdown";
 
-const SAMPLE = `# Release notes
+// Starts at ## so the live preview does not add a second h1 to the page.
+const SAMPLE = `## Release notes
 
 Version **2.1** adds *dark mode* and fixes the export bug.
 
-## What changed
+### What changed
 
 - Faster start-up
 - [x] Dark mode

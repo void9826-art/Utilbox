@@ -138,3 +138,15 @@ Every other page measured CLS ≤ 0.05. One engine cc to hp reading of 0.104 hap
   - With JavaScript off, visitors and non-rendering crawlers see only the skeleton. With JavaScript on, the swap usually happens before first paint, but on a cold load it can show the skeleton briefly.
   - Fixing it means changing how the generated tool map loads components, for example importing the active tool statically per route. That affects every page and the bundle split, so I haven't changed it.
 - `public/sw.js`, caching headers and the offline warm-up list were not touched. The warm-up still loads the full hash-wasm for the checksum tool, which uses several algorithms.
+
+## Part 6: SEO hygiene
+
+Method:
+- `scripts/audit-seo.mjs` against a local production build: all 410 sitemap URLs and 410 internal link targets. It checks titles and descriptions for uniqueness, canonicals, a single H1, Open Graph tags, structured data and 404 links.
+- Two extra crawls: in-page `#anchor` links pointing at missing ids, and `<img>` elements with no `alt` or JSON-LD that fails to parse.
+
+| Problem | Fix |
+| --- | --- |
+| Markdown to HTML had two H1s: the live preview rendered the sample's `# Release notes` | The sample's headings start at `##`. The converter is unchanged. |
+
+After the fix the audit reports `SEO AUDIT CLEAN — 410 pages, 410 link targets`. No duplicate titles or descriptions, no broken internal links or anchors, no images without `alt` (the 11 `alt=""` images are thumbnails next to a visible page label), and every JSON-LD block parses. No URLs, slugs, robots.txt or sitemap logic were changed.
