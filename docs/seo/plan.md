@@ -246,3 +246,66 @@ Also on the template list:
 - [x] Approve or edit the 5 pilot intros (approved; all 129 shipped)
 - [ ] Approve or skip the "How did you hear" prompt
 - [ ] Pick which hub pages to publish
+
+## Shipped 2026-10-20 (cloud session)
+
+40 new "why is this happening / common mistake" guides, each answer-first and ending in the tools that fix the problem, plus FAQ additions on six key tool pages. No new tools.
+
+**PDF and images** (`src/guides/why-pdf-and-images.tsx`)
+- https://www.utilboxes.xyz/guides/file-got-bigger-after-compressing — Why a PDF or image got bigger after compressing it
+- https://www.utilboxes.xyz/guides/pdf-rejected-by-upload-form — Why a form rejects your PDF even though it is under the size limit
+- https://www.utilboxes.xyz/guides/pdf-text-blurry-and-cannot-be-selected — Why the text in a PDF looks blurry and cannot be selected
+- https://www.utilboxes.xyz/guides/filled-pdf-form-shows-blank — Why your filled-in PDF form looks blank to someone else
+- https://www.utilboxes.xyz/guides/signature-white-box-on-pdf — Why your signature has a white box around it on a PDF
+- https://www.utilboxes.xyz/guides/website-says-image-format-not-supported — Why a website says your photo’s format is not supported
+- https://www.utilboxes.xyz/guides/image-blurry-after-making-it-bigger — Why an image goes blurry when you make it bigger
+- https://www.utilboxes.xyz/guides/same-size-photos-different-file-sizes — Why two photos the same size in pixels have very different file sizes
+
+**Calculations** (`src/guides/why-calculations.tsx`)
+- https://www.utilboxes.xyz/guides/why-you-cant-average-percentages — Why you can’t just average percentages
+- https://www.utilboxes.xyz/guides/why-percentages-dont-add-up-to-100 — Why percentages don’t add up to 100% — and how to fix it
+- https://www.utilboxes.xyz/guides/pay-rise-higher-tax-bracket — Will a pay rise put me in a higher tax bracket and cut my take-home pay?
+- https://www.utilboxes.xyz/guides/emi-does-not-match-bank-quote — Why your EMI calculation doesn’t match the bank’s figure
+- https://www.utilboxes.xyz/guides/monthly-interest-rate-vs-annual-rate — Why 1.5% a month is not 18% a year
+- https://www.utilboxes.xyz/guides/tip-before-or-after-tax — Tip before or after tax? And does the discount come first?
+- https://www.utilboxes.xyz/guides/invoice-tax-total-off-by-a-cent — Why an invoice’s tax total is off by a cent
+- https://www.utilboxes.xyz/guides/buy-one-get-one-free-real-discount — Buy one get one free, 3 for 2, second half price: what discount is it really?
+
+**Text, data and web** (`src/guides/why-text-and-data.tsx`)
+- https://www.utilboxes.xyz/guides/unexpected-token-in-json-at-position-0 — “Unexpected token < in JSON at position 0”: what it means and how to fix it
+- https://www.utilboxes.xyz/guides/fix-garbled-characters-in-text — Why text shows â€™, Ã© or � instead of apostrophes and accents
+- https://www.utilboxes.xyz/guides/csv-opens-in-one-column-in-excel — Why a CSV file opens in one column in Excel — and how to fix it
+- https://www.utilboxes.xyz/guides/stop-excel-changing-numbers-in-a-csv — How to stop Excel turning numbers into dates and dropping leading zeros
+- https://www.utilboxes.xyz/guides/word-count-differs-between-apps — Why Word, Google Docs and online counters give different word counts
+- https://www.utilboxes.xyz/guides/ssl-certificate-name-mismatch-www — Why a site shows a certificate name error on www or without it
+- https://www.utilboxes.xyz/guides/link-breaks-when-pasted — Why a link breaks when you paste it into an email, chat or document
+- https://www.utilboxes.xyz/guides/site-rejects-strong-password — Why a website rejects your strong password
+
+**Unit conversions** (`src/guides/why-units.tsx`)
+- https://www.utilboxes.xyz/guides/celsius-to-fahrenheit-in-your-head — Celsius to Fahrenheit in your head: the shortcut and where it fails
+- https://www.utilboxes.xyz/guides/square-metres-vs-metres-squared — Square metres vs metres squared: area conversion mistakes
+- https://www.utilboxes.xyz/guides/stones-and-pounds-to-kg — Stones and pounds to kg: why 11.5 stone isn’t 11 st 5 lb
+- https://www.utilboxes.xyz/guides/ton-vs-tonne — Ton vs tonne: metric, short and long tons explained
+- https://www.utilboxes.xyz/guides/us-vs-uk-pints-gallons-fluid-ounces — US vs UK pints, gallons and fluid ounces: why they differ
+- https://www.utilboxes.xyz/guides/km-to-miles-in-your-head — Kilometres to miles in your head: three quick methods
+- https://www.utilboxes.xyz/guides/troy-ounce-vs-ounce — Troy ounce vs ounce: why gold is weighed differently
+- https://www.utilboxes.xyz/guides/kw-vs-kwh — kW vs kWh: the difference, and why your bill uses kWh
+
+**Web, codes and text** (`src/guides/why-web-and-codes.tsx`)
+- https://www.utilboxes.xyz/guides/text-compare-shows-invisible-differences — Why two texts look identical but a comparison says they differ
+- https://www.utilboxes.xyz/guides/monthly-vs-annual-subscription — Monthly vs annual subscription: when the yearly plan really saves
+- https://www.utilboxes.xyz/guides/formatting-html-changed-the-layout — Why formatting or minifying HTML changed how the page looks
+- https://www.utilboxes.xyz/guides/why-css-is-not-applying — Why your CSS isn’t being applied: a checklist
+- https://www.utilboxes.xyz/guides/valid-email-address-still-bounces — Why an email bounces even though the address looks valid
+- https://www.utilboxes.xyz/guides/printed-barcode-wont-scan — Why a printed barcode won’t scan — and how to fix it
+- https://www.utilboxes.xyz/guides/why-random-numbers-repeat — Why a random number generator keeps repeating numbers
+- https://www.utilboxes.xyz/guides/utm-links-show-as-direct-traffic — Why visits from your UTM links show up as direct or unassigned
+
+The last batch gives Text Compare, the Subscription Cost Tracker and the HTML and CSS formatters their first guides. Only Text Reverser still has none. Every guide sets `tools`, so each tool page lists it under Guides automatically. No hand-edited cross-links were needed.
+
+**FAQs.** Two new questions each on Compress Image, HEIC to JPG, Merge PDF, Compress PDF, the Percentage Calculator and the EMI Calculator, taken from the new guides. Dates for those six tools were restamped.
+
+**Skipped:**
+- Cooking converter (prompt 42). Both permitted sources, King Arthur's ingredient weight chart and USDA FoodData Central, were blocked by this session's network policy. Densities from memory would break the "cited source" rule, so the gap stays open. A future session with network access to either source can build it.
+- Unlock PDF: not built, as instructed.
+- Topics already covered by existing guides: scanned PDF size, PDFs too big to email, EXIF orientation, percentage points, reverse percentages, early EMI interest, age off-by-one and leap-day birthdays, Base64 vs encryption, %20 encoding, timestamps showing 1970, daylight-saving meeting shifts, QR codes that won't scan, checksum mismatches, half-hour time zones and weekly pay × 4.
