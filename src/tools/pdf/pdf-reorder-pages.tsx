@@ -149,7 +149,7 @@ export default function PdfReorderPages() {
                       // eslint-disable-next-line @next/next/no-img-element
                       <img src={info.thumbnails[pageNumber - 1]} alt="" className="block h-auto w-full" />
                     ) : (
-                      <span className="flex aspect-[1/1.414] items-center justify-center text-xs text-neutral-400">
+                      <span className="flex aspect-[1/1.414] items-center justify-center text-xs text-neutral-500">
                         {pageNumber}
                       </span>
                     )}

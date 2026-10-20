@@ -75,3 +75,28 @@ Already fine: empty files, oversized files, fake HEIC (clear decode error), huge
 
 - Real HEIC photos from iPhones: no HEIC encoder was available to make test files.
 - Safari's canvas limit (about 16.7 million pixels) and other browsers' maximum canvas sizes. Very large images may still fail on iOS with the generic decode message.
+
+## Part 3: accessibility
+
+Method: axe-core (WCAG 2.x A/AA rules) on every tool page, category page, the home page and a sample of guides (177 pages), in both light and dark mode. Then a keyboard pass on eight representative pages, checking that every element reached with Tab has a visible focus indicator.
+
+### Fixed
+
+| Problem | Where | Fix |
+| --- | --- | --- |
+| Invalid `<dl>` markup: a `<p>` hint inside the dt/dd group, so screen readers mis-announce the label/value pairs | `Stat`, `StatStrip` and the text tools' `Metric`, which together cover 16 tool pages and the home page | The hint is now a second `<dd>` (same look) |
+| Invalid `<dl>`: copy buttons outside the `<dd>` | Timestamp converter, checksum verifier | Button moved into a `<dd>` |
+| Two unlabelled `<aside>` landmarks on one page | Scientific calculator, QR code and barcode generators | Tool sidebars named "Calculation history", "QR code preview" and "Barcode preview" |
+| Empty table header | Take-home pay deductions table | First column is now "Item" |
+| Placeholder text at about 2.5:1 contrast | Resume preview, invoice blank lines, PDF page placeholders | `neutral-400` changed to `neutral-500` (4.7:1 on white) |
+| `aria-describedby` pointed at the hint even while it was hidden by an error | `Field` (every form) | Only the visible hint or error describes the control |
+| A checkbox's description wasn't linked to it | `Checkbox` | `aria-describedby` added |
+| Sliders announced the raw number ("12") instead of the label shown ("12 months") | `Slider` | `aria-valuetext` set from the visible label |
+| Progress bars re-announced every percent inside a live region | `Progress` | The percent text is `aria-hidden`; the progressbar still exposes its value |
+| No visible keyboard focus on the scientific calculator's expression input; the code editor lost its focus border while showing an error | Scientific calculator, `CodeEditor` (JSON, YAML, XML and similar tools) | The same focus ring the other inputs use |
+
+Already fine: skip link, the `Field` label/error wiring, segmented controls (real radio inputs), `role="alert"` on errors, a polite live region on the toast, and the colour-token contrast script (`npm run contrast`).
+
+### Left as is
+
+- **Markdown to HTML:** task-list checkboxes have no label (axe "label", critical). They are disabled `<input type="checkbox">` elements in the HTML the tool generates, which is the same markup GitHub produces. Adding labels would change what users copy out, so this needs a product decision.

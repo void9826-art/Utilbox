@@ -116,7 +116,7 @@ export function CodeEditor({
 
       <div
         className={cn(
-          "flex overflow-hidden rounded-lg border bg-surface-sunken transition-colors",
+          "flex overflow-hidden rounded-lg border bg-surface-sunken transition-colors focus-within:ring-2 focus-within:ring-accent/35",
           errorLine !== null ? "border-danger" : "border-border focus-within:border-accent",
         )}
       >

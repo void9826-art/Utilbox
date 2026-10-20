@@ -151,7 +151,7 @@ export function Stat({ label, value, hint, emphasis, className }: StatProps) {
       >
         {value}
       </dd>
-      {hint ? <p className="mt-0.5 text-xs text-fg-subtle">{hint}</p> : null}
+      {hint ? <dd className="mt-0.5 text-xs text-fg-subtle">{hint}</dd> : null}
     </div>
   );
 }

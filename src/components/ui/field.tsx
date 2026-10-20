@@ -19,7 +19,8 @@ export interface FieldProps {
 }
 
 export function Field({ label, htmlFor, hint, error, action, className, children }: FieldProps) {
-  const hintId = hint ? `${htmlFor}-hint` : undefined;
+  // The hint is hidden while an error shows, so only one of them describes the control.
+  const hintId = hint && !error ? `${htmlFor}-hint` : undefined;
   const errorId = error ? `${htmlFor}-error` : undefined;
 
   return (
@@ -175,6 +176,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(functi
 ) {
   const generated = React.useId();
   const inputId = id ?? generated;
+  const descriptionId = description ? `${inputId}-description` : undefined;
 
   return (
     <div className={cn("flex items-start gap-2.5", className)}>
@@ -182,6 +184,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(functi
         ref={ref}
         id={inputId}
         type="checkbox"
+        aria-describedby={descriptionId}
         className="mt-0.5 size-4 shrink-0 cursor-pointer rounded border-border-strong accent-[var(--accent)]"
         {...props}
       />
@@ -189,7 +192,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(functi
         <label htmlFor={inputId} className="cursor-pointer text-sm text-fg select-none">
           {label}
         </label>
-        {description ? <p className="text-xs text-fg-subtle">{description}</p> : null}
+        {description ? <p id={descriptionId} className="text-xs text-fg-subtle">{description}</p> : null}
       </div>
     </div>
   );
@@ -220,6 +223,8 @@ export const Slider = React.forwardRef<HTMLInputElement, SliderProps>(function S
         id={inputId}
         type="range"
         className="h-5 w-full cursor-pointer accent-[var(--accent)]"
+        // Screen readers otherwise read the raw number, not "12 months" or "80%".
+        aria-valuetext={typeof valueLabel === "string" ? valueLabel : undefined}
         {...props}
       />
     </div>

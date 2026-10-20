@@ -239,7 +239,7 @@ export default function ScientificCalculator() {
               autoComplete="off"
               spellCheck={false}
               aria-describedby="calc-preview"
-              className="tabular mt-3 w-full bg-transparent text-right font-mono text-2xl text-fg outline-none placeholder:text-[0.9375rem] placeholder:font-sans placeholder:text-fg-subtle sm:text-3xl"
+              className="tabular mt-3 w-full rounded-md bg-transparent text-right font-mono text-2xl text-fg outline-none focus-visible:ring-2 focus-visible:ring-accent/35 placeholder:text-[0.9375rem] placeholder:font-sans placeholder:text-fg-subtle sm:text-3xl"
             />
 
             <p
@@ -305,7 +305,7 @@ export default function ScientificCalculator() {
           </div>
         </div>
 
-        <aside className="min-w-0">
+        <aside className="min-w-0" aria-label="Calculation history">
           <div className="flex items-center justify-between gap-2">
             {/* h2, not h3: this is the first heading under the page h1, and
                 jumping a level leaves a screen reader announcing a subsection

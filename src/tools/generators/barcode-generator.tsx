@@ -293,7 +293,7 @@ export default function BarcodeGenerator() {
           </Alert>
         </div>
 
-        <aside className="min-w-0 space-y-3">
+        <aside className="min-w-0 space-y-3" aria-label="Barcode preview">
           <h2 className="text-[0.8125rem] font-medium text-fg">Preview</h2>
 
           <div className="flex min-h-40 items-center justify-center overflow-x-auto rounded-[var(--radius-card)] border border-border bg-white p-4">

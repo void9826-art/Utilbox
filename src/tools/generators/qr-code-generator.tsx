@@ -461,7 +461,7 @@ export default function QrCodeGenerator() {
           <ErrorMessage message={error} />
         </div>
 
-        <aside className="min-w-0 space-y-3">
+        <aside className="min-w-0 space-y-3" aria-label="QR code preview">
           <h2 className="text-[0.8125rem] font-medium text-fg">Preview</h2>
 
           <div className="flex aspect-square items-center justify-center rounded-[var(--radius-card)] border border-border bg-surface-sunken p-4">

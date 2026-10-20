@@ -292,16 +292,19 @@ function ResultRow({
   return (
     <div className="flex items-center gap-3 border-b border-border px-3 py-2 last:border-b-0">
       <dt className="w-32 shrink-0 text-[0.8125rem] text-fg-muted">{label}</dt>
-      <dd
-        className={
-          mono
-            ? "tabular min-w-0 flex-1 font-mono text-[0.8125rem] break-all text-fg"
-            : "min-w-0 flex-1 text-[0.8125rem] text-fg"
-        }
-      >
-        {value}
+      {/* The copy button sits inside the dd: a dl group may only hold dt and dd. */}
+      <dd className="flex min-w-0 flex-1 items-center gap-3">
+        <span
+          className={
+            mono
+              ? "tabular min-w-0 flex-1 font-mono text-[0.8125rem] break-all text-fg"
+              : "min-w-0 flex-1 text-[0.8125rem] text-fg"
+          }
+        >
+          {value}
+        </span>
+        {copyable ? <CopyButton value={value} iconOnly variant="ghost" /> : null}
       </dd>
-      {copyable ? <CopyButton value={value} iconOnly variant="ghost" /> : null}
     </div>
   );
 }

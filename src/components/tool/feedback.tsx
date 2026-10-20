@@ -27,7 +27,8 @@ export function ProgressIndicator({ value, label, className }: ProgressIndicator
       <div className="flex items-baseline justify-between gap-3">
         <p className="text-sm font-medium text-fg">{label}</p>
         {determinate ? (
-          <p className="tabular text-sm text-fg-muted">{Math.round(percent)}%</p>
+          // The progressbar carries the value; announcing every percent would drown the label out.
+          <p className="tabular text-sm text-fg-muted" aria-hidden="true">{Math.round(percent)}%</p>
         ) : null}
       </div>
       <div

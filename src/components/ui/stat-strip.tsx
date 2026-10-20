@@ -24,7 +24,7 @@ export function StatStrip({ items, className }: { items: StatStripItem[]; classN
         >
           <dt className="text-xs font-medium tracking-wide text-fg-subtle uppercase">{item.label}</dt>
           <dd className="tabular mt-1 text-2xl font-semibold text-fg">{item.value}</dd>
-          {item.hint ? <p className="mt-1 text-[0.8125rem] text-fg-muted">{item.hint}</p> : null}
+          {item.hint ? <dd className="mt-1 text-[0.8125rem] text-fg-muted">{item.hint}</dd> : null}
         </div>
       ))}
     </dl>

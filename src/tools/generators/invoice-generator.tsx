@@ -610,7 +610,7 @@ export default function InvoiceGenerator() {
             <tbody>
               {totals.lines.map((item) => (
                 <tr key={item.id} className="border-b border-neutral-200">
-                  <td className="px-3 py-2">{item.description || <span className="text-neutral-400">—</span>}</td>
+                  <td className="px-3 py-2">{item.description || <span className="text-neutral-500">—</span>}</td>
                   <td className="tabular px-3 py-2 text-right">{item.quantity}</td>
                   <td className="tabular px-3 py-2 text-right">{money(item.unitPrice)}</td>
                   <td className="tabular px-3 py-2 text-right font-medium">{money(item.total)}</td>

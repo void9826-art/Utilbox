@@ -205,7 +205,7 @@ export default function TakeHomePayCalculator() {
             </StatGrid>
             <ScheduleTable
               caption="Deductions"
-              columns={["", "Per year", "Per month"]}
+              columns={["Item", "Per year", "Per month"]}
               rows={[
                 ["Gross pay", money(result.gross), money(result.gross / 12)],
                 ...result.lines.map((line) => [

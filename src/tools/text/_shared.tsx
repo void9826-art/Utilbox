@@ -169,7 +169,7 @@ export function Metric({
       >
         {typeof value === "number" ? formatNumber(value) : value}
       </dd>
-      {hint ? <p className="mt-0.5 text-[0.6875rem] text-fg-subtle">{hint}</p> : null}
+      {hint ? <dd className="mt-0.5 text-[0.6875rem] text-fg-subtle">{hint}</dd> : null}
     </div>
   );
 }

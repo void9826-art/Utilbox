@@ -226,12 +226,13 @@ export default function ChecksumVerifier() {
         {Object.keys(results).length > 0 ? (
           <dl className="space-y-2" aria-live="polite">
             {ALGORITHMS.filter((entry) => results[entry.id]).map((entry) => (
-              <div key={entry.id} className="rounded-lg border border-border bg-surface p-3">
-                <div className="flex items-center justify-between gap-2">
-                  <dt className="text-xs font-medium tracking-wide text-fg-muted uppercase">{entry.label}</dt>
+              // A grid rather than a nested row: a dl group may only hold dt and dd directly.
+              <div key={entry.id} className="grid grid-cols-[1fr_auto] items-center gap-x-2 rounded-lg border border-border bg-surface p-3">
+                <dt className="text-xs font-medium tracking-wide text-fg-muted uppercase">{entry.label}</dt>
+                <dd className="col-start-2 row-start-1">
                   <CopyButton value={results[entry.id] ?? ""} />
-                </div>
-                <dd className="mt-1 font-mono text-[0.8125rem] break-all text-fg">{results[entry.id]}</dd>
+                </dd>
+                <dd className="col-span-2 mt-1 font-mono text-[0.8125rem] break-all text-fg">{results[entry.id]}</dd>
               </div>
             ))}
           </dl>

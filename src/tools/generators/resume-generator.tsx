@@ -309,7 +309,7 @@ export default function ResumeGenerator() {
           {contactLine ? <p className="mt-2 text-xs text-neutral-500">{contactLine}</p> : null}
 
           {!hasContent ? (
-            <p className="py-12 text-center text-sm text-neutral-400">
+            <p className="py-12 text-center text-sm text-neutral-500">
               Fill in the form above and your CV appears here.
             </p>
           ) : null}
