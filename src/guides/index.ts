@@ -33,6 +33,7 @@ import { whyCalculationsGuides } from "./why-calculations";
 import { whyPdfAndImagesGuides } from "./why-pdf-and-images";
 import { whyTextAndDataGuides } from "./why-text-and-data";
 import { whyUnitsGuides } from "./why-units";
+import { whyWebAndCodesGuides } from "./why-web-and-codes";
 import { workAndDocumentsGuides } from "./work-and-documents";
 import { workLongTailGuides } from "./work-long-tail";
 
@@ -102,6 +103,7 @@ export const GUIDES: Guide[] = [
   ...whyCalculationsGuides,
   ...whyTextAndDataGuides,
   ...whyUnitsGuides,
+  ...whyWebAndCodesGuides,
 ];
 
 const bySlug = new Map(GUIDES.map((guide) => [guide.slug, guide]));
