@@ -125,7 +125,8 @@ export default function TimestampConverter() {
     <ToolFrame>
       <div className="space-y-6">
         <section className="space-y-3">
-          <div className="flex flex-wrap items-center justify-between gap-2">
+          {/* min-h matches the clock row, so starting the clock doesn't shift the page. */}
+          <div className="flex min-h-8 flex-wrap items-center justify-between gap-2">
             <h2 className="text-sm font-semibold text-fg">Current Unix time</h2>
             {now ? (
               <div className="flex items-center gap-1.5">

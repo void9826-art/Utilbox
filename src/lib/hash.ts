@@ -47,7 +47,10 @@ export async function hashText(
 ): Promise<string> {
   const data = new TextEncoder().encode(text);
   if (algorithm === "MD5") {
-    const { md5 } = await import("hash-wasm");
+    // The single-algorithm build is 10 KB; the package entry pulls in every
+    // algorithm (about 210 KB) and this runs as soon as the page opens.
+    const md5Module = await import("hash-wasm/dist/md5.umd.min.js");
+    const md5 = md5Module.md5 ?? md5Module.default.md5;
     return encode(hexToBytes(await md5(data)), encoding);
   }
   const digest = await crypto.subtle.digest(algorithm, buffer(data));

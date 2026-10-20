@@ -113,3 +113,28 @@ Method: all 410 pages in the sitemap loaded at 320 × 700, flagging any page who
 | Fixed 176 px + 96 px columns around the limit bars | Character counter | Narrower columns below the `sm` breakpoint |
 
 Not covered: pages in states that need input (results tables, long file names) were checked only for the tools exercised in Parts 2 and 3.
+
+## Part 5: performance
+
+Method:
+- JS downloaded on first load for every non-guide page, measured in a fresh browser context with the service worker blocked. Sizes are uncompressed.
+- Cumulative layout shift (CLS) for the same pages at 390 px and 1280 px.
+- A search for heavy libraries imported at the top level of a module.
+
+Every heavy library (pdf-lib, pdf.js, heic-to, mammoth, qrcode, JsBarcode, exifr) is already loaded with `import()` when it's needed. Each tool is its own chunk. Pages load 600–700 KB of JS, almost all of it the shared React/Next runtime. The font is a subset `next/font`, and no image in `public/` is over 100 KB.
+
+### Fixed
+
+| Problem | Before | After |
+| --- | --- | --- |
+| The hash generator loaded the whole hash-wasm package (every algorithm, 214 KB) as soon as the page opened, only to compute MD5 | 870 KB JS | 673 KB JS. It now imports hash-wasm's single-algorithm MD5 build (10 KB). Output was checked against the existing MD5 test and in the browser. |
+| Timestamp converter layout shift: the "Starting the clock…" line was shorter than the clock row that replaced it | CLS 0.074 (desktop) | 0.016. The row's height is reserved. |
+
+Every other page measured CLS ≤ 0.05. One engine cc to hp reading of 0.104 happened only on a cold first load and was 0 on three repeat runs.
+
+### Left as is (needs a decision)
+
+- **Tool UIs are streamed behind a Suspense fallback.** `next/dynamic` in `src/tools/index.tsx` suspends during static prerender. The HTML therefore holds the `ToolSkeleton` in place, and the real tool markup sits in a hidden `<div>` that an inline script swaps in.
+  - With JavaScript off, visitors and non-rendering crawlers see only the skeleton. With JavaScript on, the swap usually happens before first paint, but on a cold load it can show the skeleton briefly.
+  - Fixing it means changing how the generated tool map loads components, for example importing the active tool statically per route. That affects every page and the bundle split, so I haven't changed it.
+- `public/sw.js`, caching headers and the offline warm-up list were not touched. The warm-up still loads the full hash-wasm for the checksum tool, which uses several algorithms.
