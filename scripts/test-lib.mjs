@@ -945,3 +945,67 @@ const fq = (name, cond, detail = "") => { if (!cond) { console.log(`FAIL ${name}
 }
 console.log(f17 === 0 ? "LOAN, GOAL, DURATION AND TEAM TESTS OK" : `${f17} FAILURES`);
 if (f17 > 0) process.exitCode = 1;
+
+/* ---- quality audit: age, attendance, money formatting, edge cases ---- */
+import { exactAge, nextBirthday, parseLocalDate, wholeDaysBetween, birthdayInYear, addMonthsClamped } from "../src/lib/age.ts";
+import { attendanceStatus, bestPossible } from "../src/lib/attendance.ts";
+import { formatMoney as qMoney, amortise as qAmortise, compoundGrowth as qGrowth, roundMoney as qRound } from "../src/lib/money.ts";
+import { convertTemperature as qTemp, convertUnits as qUnits, LENGTH_UNITS as qLength, DATA_UNITS as qData, TIME_UNITS as qTime } from "../src/lib/units.ts";
+let f18 = 0;
+const qa = (name, cond, detail = "") => { if (!cond) { console.log(`FAIL ${name} ${detail}`); f18++; } };
+{
+  const d = parseLocalDate;
+  const age = (a, b) => { const r = exactAge(d(a), d(b)); return `${r.years}/${r.months}/${r.days}`; };
+  qa("age never negative days (31 Jan → 1 Mar)", age("2000-01-31", "2026-03-01") === "26/1/1", age("2000-01-31", "2026-03-01"));
+  qa("age 30 Jan → 1 Mar", age("2000-01-30", "2026-03-01") === "26/1/1", age("2000-01-30", "2026-03-01"));
+  qa("age 31 Jan → 28 Feb is one month", age("2026-01-31", "2026-02-28") === "0/1/0");
+  qa("age leap birthday before 1 March", age("2000-02-29", "2001-02-28") === "0/11/30", age("2000-02-29", "2001-02-28"));
+  qa("age leap birthday on 1 March", age("2000-02-29", "2001-03-01") === "1/0/0");
+  qa("age leap birthday in leap year", age("2000-02-29", "2004-02-29") === "4/0/0");
+  qa("age same day", age("2026-10-20", "2026-10-20") === "0/0/0");
+  qa("age day before birthday", age("1990-06-15", "2026-06-14") === "35/11/30", age("1990-06-15", "2026-06-14"));
+  qa("age worked example", age("2001-03-15", "2026-09-05") === "25/5/21");
+  qa("age future birth clamps to zero", age("2030-01-01", "2026-01-01") === "0/0/0");
+  qa("age rejects impossible date", d("2025-02-30") === null && d("2025-13-01") === null && d("") === null);
+  qa("days across DST", wholeDaysBetween(d("2026-03-28"), d("2026-03-30")) === 2 && wholeDaysBetween(d("2026-10-24"), d("2026-10-26")) === 2);
+  qa("birthday in common year", birthdayInYear(d("2000-02-29"), 2027).getMonth() === 2);
+  qa("add months clamped", addMonthsClamped(d("2026-01-31"), 1).getDate() === 28);
+  const nb = nextBirthday(d("2000-02-29"), d("2026-10-20"));
+  qa("next leap birthday is 1 March in common year", nb.date.getMonth() === 2 && nb.date.getDate() === 1 && nb.turning === 27);
+  qa("birthday today is 0 days away", nextBirthday(d("2000-10-20"), d("2026-10-20")).daysAway === 0);
+
+  const s80 = attendanceStatus(10, 7, 80);
+  qa("attendance 80% float bug fixed", s80.mustAttend === 5, JSON.stringify(s80));
+  qa("attendance 75% must attend", attendanceStatus(52, 38, 75).mustAttend === 4);
+  qa("attendance can skip exact", attendanceStatus(100, 75, 75).canSkip === 0 && attendanceStatus(100, 80, 75).canSkip === 6);
+  qa("attendance at exactly the line counts as above", attendanceStatus(4, 3, 75).above === true);
+  qa("attendance 70%", attendanceStatus(10, 6, 70).mustAttend === 4);
+  qa("attendance fractional requirement", attendanceStatus(40, 29, 72.5).above && attendanceStatus(40, 29, 72.5).canSkip === 0);
+  qa("attendance invalid input", attendanceStatus(0, 0, 75) === null && attendanceStatus(10, 11, 75) === null && attendanceStatus(10, 5, 100) === null);
+  qa("attendance zero attended", attendanceStatus(10, 0, 75).mustAttend === 30);
+  qa("best possible", Math.abs(bestPossible(52, 38, 20) - (58 / 72) * 100) < 1e-12);
+
+  qa("money yen has no decimals", qMoney(1234.5, "JPY", "en-US") === "¥1,235", qMoney(1234.5, "JPY", "en-US"));
+  qa("money dollars keep two", qMoney(1234.5, "USD", "en-US") === "$1,234.50");
+  qa("money dinar keeps three", qMoney(1.2345, "KWD", "en-US").replace(/\s/, " ") === "KWD 1.235", qMoney(1.2345, "KWD", "en-US"));
+  qa("money non-finite", qMoney(NaN) === "—" && qMoney(Infinity) === "—");
+  qa("money unknown currency falls back", qMoney(2, "XX") === "XX 2.00");
+  qa("round half up negative", qRound(-2.675) === -2.68 && qRound(1.005) === 1.01 && qRound(0) === 0);
+
+  const one = qAmortise(1000, 0.01, 1);
+  qa("amortise single period", one.payment === 1010 && one.rows[0].balance === 0);
+  const year30 = qAmortise(250000, 0.065 / 12, 360);
+  qa("amortise 30-year ends at zero", year30.rows.at(-1).balance === 0 && Math.abs(year30.payment - 1580.17) < 0.01, String(year30.payment));
+  qa("amortise huge principal finite", Number.isFinite(qAmortise(1e13, 0.01, 360).payment));
+  qa("growth negative rate", Math.abs(qGrowth({ principal: 1000, annualRate: -0.1, years: 2, compoundsPerYear: 1 }).finalBalance - 810) < 1e-9);
+  qa("growth zero years", qGrowth({ principal: 1000, annualRate: 0.1, years: 0, compoundsPerYear: 12 }).finalBalance === 1000);
+
+  qa("temperature -40 meets", Math.abs(qTemp(-40, "c", "f") + 40) < 1e-9);
+  qa("temperature absolute zero", Math.abs(qTemp(0, "k", "c") + 273.15) < 1e-12 && Math.abs(qTemp(0, "r", "f") + 459.67) < 1e-9);
+  qa("units zero and negative", qUnits(qLength, 0, "m", "ft") === 0 && Math.abs(qUnits(qLength, -1, "mi", "km") + 1.609344) < 1e-12);
+  qa("units huge", Math.abs(qUnits(qData, 1, "PiB", "B") - 1024 ** 5) < 1);
+  qa("units NaN input", Number.isNaN(qUnits(qLength, NaN, "m", "ft")));
+  qa("year is Gregorian average", qUnits(qTime, 1, "yr", "d") === 365.2425);
+}
+console.log(f18 === 0 ? "QUALITY AUDIT TESTS OK" : `${f18} FAILURES`);
+if (f18 > 0) process.exitCode = 1;

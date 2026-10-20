@@ -5,6 +5,7 @@ import * as React from "react";
 import { ResetButton } from "@/components/tool/feedback";
 import { ToolFrame } from "@/components/tool/tool-frame";
 import { Alert, Stat, StatGrid } from "@/components/ui/surfaces";
+import { attendanceStatus, bestPossible as bestPossiblePercent } from "@/lib/attendance";
 import { formatNumber } from "@/lib/utils";
 
 import { EmptyResult, NumberField, ResultCard, Working, parseNumber } from "./_shared";
@@ -37,22 +38,16 @@ export default function AttendanceCalculator() {
       return null;
     }
 
-    const current = (attendedValue / heldValue) * 100;
+    const status = attendanceStatus(heldValue, attendedValue, requiredValue);
+    if (!status) return null;
+    const { current, above, canSkip, mustAttend } = status;
     const rate = requiredValue / 100;
-    const above = current >= requiredValue;
-
-    // How many classes can be skipped while staying at or above the requirement.
-    const canSkip = above ? Math.floor(attendedValue / rate - heldValue) : 0;
-
-    // How many consecutive classes must be attended to reach the requirement.
-    const mustAttend = above ? 0 : Math.ceil((rate * heldValue - attendedValue) / (1 - rate));
-
     const upcoming = remainingValue !== null && remainingValue > 0 ? remainingValue : null;
     const reachable = upcoming === null ? null : mustAttend <= upcoming;
 
     // Best possible final percentage if every remaining class is attended.
     const bestPossible =
-      upcoming === null ? null : ((attendedValue + upcoming) / (heldValue + upcoming)) * 100;
+      upcoming === null ? null : bestPossiblePercent(heldValue, attendedValue, upcoming);
 
     return { current, canSkip, mustAttend, above, upcoming, reachable, bestPossible, rate };
   }, [attendedValue, heldValue, remainingValue, requiredValue]);

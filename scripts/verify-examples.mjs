@@ -112,6 +112,16 @@ check("timestamp UTC string", stamp.toUTCString(), "Sat, 05 Sep 2026 10:30:00 GM
 const birth = Date.UTC(2001, 2, 15);
 const today = Date.UTC(2026, 8, 5);
 check("age total days", Math.round((today - birth) / 86400000), 9305);
+{
+  const age = await import("../src/lib/age.ts");
+  const parts = age.exactAge(age.parseLocalDate("2001-03-15"), age.parseLocalDate("2026-09-05"));
+  check("age years/months/days", `${parts.years}/${parts.months}/${parts.days}`, "25/5/21");
+  check("age next birthday days", age.nextBirthday(age.parseLocalDate("2001-03-15"), age.parseLocalDate("2026-09-05")).daysAway, 191);
+  const jan31 = age.exactAge(age.parseLocalDate("2026-01-31"), age.parseLocalDate("2026-02-28"));
+  check("age 31 Jan to 28 Feb is 1 month", `${jan31.months}/${jan31.days}`, "1/0");
+  const mar1 = age.exactAge(age.parseLocalDate("2026-01-31"), age.parseLocalDate("2026-03-01"));
+  check("age 31 Jan to 1 Mar", `${mar1.months}/${mar1.days}`, "1/1");
+}
 
 /* pdf-resize-page: the formula note and the Letter-to-A4 worked example */
 import { fitToPaper, PAPER_SIZES } from "../src/lib/pdf-geometry.ts";

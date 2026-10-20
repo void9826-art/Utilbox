@@ -54,11 +54,18 @@ export default function CgpaCalculator() {
     let weighted = 0;
     let credits = 0;
     let counted = 0;
+    let skipped = 0;
 
     for (const semester of semesters) {
       const gpa = parseNumber(semester.gpa);
       const semesterCredits = parseNumber(semester.credits);
       if (gpa === null || semesterCredits === null || semesterCredits <= 0 || gpa < 0) continue;
+      // A GPA above the scale's maximum is a typo (8.5 entered on a 4-point scale);
+      // it is left out rather than allowed to inflate the result.
+      if (gpa > scale) {
+        skipped += 1;
+        continue;
+      }
 
       weighted += gpa * semesterCredits;
       credits += semesterCredits;
@@ -66,8 +73,8 @@ export default function CgpaCalculator() {
     }
 
     if (credits === 0) return null;
-    return { cgpa: weighted / credits, weighted, credits, counted };
-  }, [semesters]);
+    return { cgpa: weighted / credits, weighted, credits, counted, skipped };
+  }, [scale, semesters]);
 
   const projection = React.useMemo(() => {
     if (!result) return null;
@@ -172,20 +179,23 @@ export default function CgpaCalculator() {
             <ResultCard
               label="Cumulative GPA"
               value={result.cgpa.toFixed(2)}
-              sublabel={`Across ${result.counted} semester${result.counted === 1 ? "" : "s"} and ${formatNumber(result.credits, { maximumFractionDigits: 1 })} credits`}
+              sublabel={`Across ${result.counted} semester${result.counted === 1 ? "" : "s"} and ${formatNumber(result.credits, { maximumFractionDigits: 1 })} credits${result.skipped > 0 ? ` — ${result.skipped} left out for a GPA above ${formatNumber(scale)}` : ""}`}
               breakdown={[
                 { label: "Weighted points", value: formatNumber(result.weighted, { maximumFractionDigits: 2 }) },
                 { label: "Total credits", value: formatNumber(result.credits, { maximumFractionDigits: 1 }) },
               ]}
             />
 
-            <StatGrid className="sm:grid-cols-3">
+            <StatGrid className={scale === 10 ? "sm:grid-cols-3" : "sm:grid-cols-2"}>
               <Stat label="CGPA" value={result.cgpa.toFixed(2)} emphasis />
-              <Stat
-                label="Percentage (CGPA × 9.5)"
-                value={`${(result.cgpa * 9.5).toFixed(1)}%`}
-                hint="Common approximation — check your institution's table"
-              />
+              {scale === 10 ? (
+                // The × 9.5 rule (CBSE and many Indian universities) only applies to 10-point scales.
+                <Stat
+                  label="Percentage (CGPA × 9.5)"
+                  value={`${(result.cgpa * 9.5).toFixed(1)}%`}
+                  hint="Common approximation — check your institution's table"
+                />
+              ) : null}
               <Stat label="Percentage of scale" value={`${((result.cgpa / scale) * 100).toFixed(1)}%`} />
             </StatGrid>
 

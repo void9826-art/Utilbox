@@ -6,85 +6,16 @@ import { ResetButton } from "@/components/tool/feedback";
 import { ToolFrame } from "@/components/tool/tool-frame";
 import { Field, Input } from "@/components/ui/field";
 import { Stat, StatGrid } from "@/components/ui/surfaces";
+import { exactAge, nextBirthday, parseLocalDate as toDateOnly, wholeDaysBetween } from "@/lib/age";
 import { formatNumber } from "@/lib/utils";
 
 import { EmptyResult, ResultCard, Working } from "./_shared";
-
-function toDateOnly(value: string): Date | null {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
-  const [year, month, day] = value.split("-").map(Number);
-  const date = new Date(year, month - 1, day);
-  // Reject impossible dates such as 2025-02-30, which Date silently rolls over.
-  if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
-    return null;
-  }
-  return date;
-}
 
 function todayString(): string {
   const now = new Date();
   const month = String(now.getMonth() + 1).padStart(2, "0");
   const day = String(now.getDate()).padStart(2, "0");
   return `${now.getFullYear()}-${month}-${day}`;
-}
-
-interface AgeParts {
-  years: number;
-  months: number;
-  days: number;
-}
-
-/**
- * Counts whole years, then whole months, then the remaining days — borrowing
- * from the real previous calendar month so month lengths are respected.
- */
-function exactAge(from: Date, to: Date): AgeParts {
-  let years = to.getFullYear() - from.getFullYear();
-  let months = to.getMonth() - from.getMonth();
-  let days = to.getDate() - from.getDate();
-
-  if (days < 0) {
-    months -= 1;
-    // Day 0 of the target's month is the last day of the month before it.
-    const daysInPreviousMonth = new Date(to.getFullYear(), to.getMonth(), 0).getDate();
-    days += daysInPreviousMonth;
-  }
-
-  if (months < 0) {
-    years -= 1;
-    months += 12;
-  }
-
-  return { years, months, days };
-}
-
-const MS_PER_DAY = 86_400_000;
-
-function wholeDaysBetween(from: Date, to: Date): number {
-  // Compare at UTC midnight so daylight-saving shifts cannot round a day away.
-  const a = Date.UTC(from.getFullYear(), from.getMonth(), from.getDate());
-  const b = Date.UTC(to.getFullYear(), to.getMonth(), to.getDate());
-  return Math.round((b - a) / MS_PER_DAY);
-}
-
-function nextBirthday(birth: Date, reference: Date): { date: Date; daysAway: number; turning: number } {
-  const month = birth.getMonth();
-  const day = birth.getDate();
-
-  let candidate = new Date(reference.getFullYear(), month, day);
-  // 29 February in a common year is observed on 1 March.
-  if (candidate.getMonth() !== month) candidate = new Date(reference.getFullYear(), month + 1, 1);
-
-  if (wholeDaysBetween(reference, candidate) < 0) {
-    candidate = new Date(reference.getFullYear() + 1, month, day);
-    if (candidate.getMonth() !== month) candidate = new Date(reference.getFullYear() + 1, month + 1, 1);
-  }
-
-  return {
-    date: candidate,
-    daysAway: wholeDaysBetween(reference, candidate),
-    turning: candidate.getFullYear() - birth.getFullYear(),
-  };
 }
 
 const DATE_FORMAT = new Intl.DateTimeFormat(undefined, {

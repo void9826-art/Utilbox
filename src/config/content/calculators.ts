@@ -349,8 +349,8 @@ export const calculatorContent: Record<string, ToolContent> = {
       "Read the exact age, followed by the totals and the next birthday countdown.",
     ],
     howItWorks: [
-      "Age is counted the way people actually count it: whole years first, then whole months, then the days left over. The tool takes the year difference, subtracts one if the birthday has not happened yet this year, then borrows days from the previous calendar month when the day-of-month has not been reached.",
-      "Borrowing from the real previous month is what makes the result correct across months of different lengths. A person born on 31 January is 1 month old on 28 February in a common year, because February has no 31st.",
+      "Age is counted the way people actually count it: whole years first, then whole months, then the days left over. The tool finds the most recent birthday, counts the whole months since it, and the days remaining after the last whole month.",
+      "Months are counted on the real calendar, so their different lengths are respected. When a month is too short for the birth day, the month is complete on its last day: a person born on 31 January is 1 month old on 28 February in a common year, because February has no 31st, and 1 month and 1 day old on 1 March.",
       "Leap years are handled by the calendar itself rather than by assuming 365.25 days. Someone born on 29 February has their anniversary treated as 1 March in common years, which is the most widely used convention.",
     ],
     example: {
@@ -460,7 +460,7 @@ export const calculatorContent: Record<string, ToolContent> = {
     howItWorks: [
       "A CGPA is a weighted average of semester GPAs, using each semester's credit load as its weight. Semesters where you took more credits therefore pull the cumulative figure harder — which is why a light semester with a perfect GPA moves the total less than students often expect.",
       "The projection tool answers the practical question directly: given where you are now, what GPA does the next semester need for you to reach a target? It rearranges the same weighted-average formula to solve for the unknown term, and tells you plainly when the target is not reachable in one semester.",
-      "The percentage conversion uses the widely published CGPA × 9.5 formula. It is an approximation adopted by several boards, not a universal standard — your institution's own conversion table always takes precedence.",
+      "The percentage conversion, shown when the scale is 10, uses the widely published CGPA × 9.5 formula. It is an approximation adopted by several boards, not a universal standard — your institution's own conversion table always takes precedence.",
     ],
     formula: {
       expression: "CGPA = Σ (semester GPA × semester credits) ÷ Σ semester credits",

@@ -95,7 +95,10 @@ export default function PercentageCalculator() {
           };
         }
         const difference = b - a;
-        const value = (difference / a) * 100;
+        // Measured against the size of the starting value, so a move from −50
+        // to −25 is a 50% increase rather than a "−50%" one.
+        const base = Math.abs(a);
+        const value = (difference / base) * 100;
         const direction = difference > 0 ? "increase" : difference < 0 ? "decrease" : "no change";
         return {
           label: `Change from ${formatDecimal(a)} to ${formatDecimal(b)}`,
@@ -103,8 +106,8 @@ export default function PercentageCalculator() {
           sublabel: `That is ${direction === "no change" ? "no change" : `a ${direction}`} of ${formatDecimal(Math.abs(difference))}.`,
           working: [
             `${formatDecimal(b)} − ${formatDecimal(a)} = ${formatDecimal(difference)}`,
-            `${formatDecimal(difference)} ÷ ${formatDecimal(a)} = ${formatDecimal(difference / a)}`,
-            `${formatDecimal(difference / a)} × 100 = ${formatDecimal(value)}%`,
+            `${formatDecimal(difference)} ÷ ${a < 0 ? `|${formatDecimal(a)}|` : formatDecimal(a)} = ${formatDecimal(difference / base)}`,
+            `${formatDecimal(difference / base)} × 100 = ${formatDecimal(value)}%`,
           ],
           breakdown: [
             { label: "Absolute difference", value: formatDecimal(Math.abs(difference)) },

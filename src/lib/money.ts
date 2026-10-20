@@ -26,15 +26,15 @@ export function roundMoney(amount: number): number {
   return rounded / MINOR_UNITS;
 }
 
+/**
+ * Formats with the currency's own number of decimals, as Intl defines them:
+ * two for dollars and euros, none for yen, three for the Kuwaiti dinar.
+ * Forcing two decimals used to print yen as "¥1,234.50".
+ */
 export function formatMoney(amount: number, currency = "USD", locale?: string): string {
   if (!Number.isFinite(amount)) return "—";
   try {
-    return new Intl.NumberFormat(locale, {
-      style: "currency",
-      currency,
-      maximumFractionDigits: 2,
-      minimumFractionDigits: 2,
-    }).format(amount);
+    return new Intl.NumberFormat(locale, { style: "currency", currency }).format(amount);
   } catch {
     return `${currency} ${amount.toFixed(2)}`;
   }
