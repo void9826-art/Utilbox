@@ -1143,4 +1143,239 @@ export const calculatorContent: Record<string, ToolContent> = {
       },
     ],
   },
+
+  "date-calculator": {
+    seoTitle: "Date Calculator — Days and Working Days Between",
+    seoDescription:
+      "Count calendar days and working days between two dates, skipping weekends and holidays, or add days, weeks, months or business days to a date.",
+    intro:
+      "Choose two dates to count the calendar days and working days between them, or pick a date and add or subtract days, weeks, months, years or working days. Weekends are skipped for working days, and you can list public holidays to skip too. 1 to 31 October 2026 is 30 days, of which 21 are working days.",
+    howToUse: [
+      "Choose Days between dates or Add or subtract.",
+      "Pick the start date, and the end date or the amount and unit to add.",
+      "Optionally list public holidays, one YYYY-MM-DD date per line.",
+      "Read the result; tick Count the start date as well if your rule counts both ends.",
+    ],
+    howItWorks: [
+      "Days between two dates are counted from the day after the start up to and including the end date, so 1 to 2 March is 1 day — the same as subtracting the dates in a spreadsheet. Tick the option to count the start date as well, which is how Excel's NETWORKDAYS counts working days.",
+      "Working days are Monday to Friday, minus any holidays you list. Holidays that fall on a weekend are not subtracted twice. Weekend and holiday rules differ between countries and employers, so list the holidays that apply to you.",
+      "Adding working days follows Excel's WORKDAY: the start date is not counted, so 1 working day after a Friday is the following Monday. Subtracting works backwards the same way.",
+      "Adding months keeps the day of the month where it can. When that day does not exist, the result is the last day of the month: 31 January plus one month is 28 February, or 29 in a leap year. Years work the same way, so 29 February plus a year is 28 February.",
+      "Dates are handled as whole days in UTC, so a daylight-saving change can never shift a result by a day. Everything is calculated in your browser.",
+    ],
+    formula: {
+      expression: "days = end date − start date      working days = days that are Mon–Fri and not holidays",
+      where: [
+        "start date — not counted unless you tick “Count the start date as well”",
+        "end date — always counted",
+      ],
+    },
+    example: {
+      scenario: "1 October to 31 October 2026",
+      steps: [
+        "Calendar days: 31 − 1 = 30",
+        "Days counted: 2 to 31 October",
+        "Of those 30 days, 9 fall on a Saturday or Sunday, leaving 21 working days",
+      ],
+      result: "30 days, 21 working days — or 31 and 22 if the start date is counted too.",
+    },
+    faq: [
+      {
+        question: "Does it include the start and end dates?",
+        answer:
+          "By default it counts from the day after the start date up to and including the end date, like subtracting two dates. Tick “Count the start date as well” to include both ends.",
+      },
+      {
+        question: "How do I count business days excluding holidays?",
+        answer:
+          "Open Public holidays to skip and list each holiday as YYYY-MM-DD, one per line. They are left out of working-day counts and skipped when adding working days.",
+      },
+      {
+        question: "What is 30 days from today?",
+        answer:
+          "Choose Add or subtract, keep today's date as the start, enter 30 and choose Days. Choose Working days instead for 30 business days.",
+      },
+      {
+        question: "Why does adding a month to 31 January give 28 February?",
+        answer:
+          "February has no 31st, so the result is the last day of February — the same rule spreadsheets and most date libraries use.",
+      },
+    ],
+  },
+
+  "time-card-calculator": {
+    seoTitle: "Time Card Calculator — Weekly Hours and Overtime",
+    seoDescription:
+      "Add up a week of start and finish times, minus breaks, in hours and minutes and decimal hours. Works out overtime and gross pay. Free, private timesheet maths.",
+    intro:
+      "Enter a start time, finish time and unpaid break for each day to get the week's total in hours and minutes and in decimal hours for payroll. Add an hourly rate to see regular pay, overtime above 40 hours (or your own threshold) and the total. Night shifts that finish after midnight are handled. Nothing is uploaded.",
+    howToUse: [
+      "Enter the start and finish time for each day you worked, and the unpaid break in minutes.",
+      "Leave days you did not work blank.",
+      "Enter your hourly rate, the weekly hours after which overtime starts, and the overtime rate.",
+      "Read the total hours, the decimal hours and the gross pay.",
+    ],
+    howItWorks: [
+      "Each day's hours are the finish time minus the start time, minus the break. A finish earlier than the start is treated as the next day, so 22:00 to 06:00 is 8 hours.",
+      "Times are added in whole minutes and only then shown as hours and minutes (7:45) and as decimal hours (7.75). Decimal hours are what most payroll systems want: 45 minutes is 0.75 of an hour, not 0.45.",
+      "Overtime here is weekly: hours above the threshold — 40 by default, as under the US federal rule for many employees — are paid at the overtime rate, such as 1.5 for time and a half. Some places and contracts use daily overtime, double time or different thresholds, so set the numbers your employer uses.",
+      "Pay is gross, before tax and other deductions. Rounding rules for clocking in and out (such as to the nearest quarter hour) vary by employer and are not applied.",
+    ],
+    formula: {
+      expression: "hours = finish − start − break      pay = regular hours × rate + overtime hours × rate × multiplier",
+      where: [
+        "regular hours — up to the weekly overtime threshold",
+        "overtime hours — anything above the threshold",
+        "multiplier — 1.5 for time and a half, 2 for double time",
+      ],
+    },
+    example: {
+      scenario: "45 hours in a week at 20.00 an hour, time and a half after 40 hours",
+      steps: [
+        "Regular: 40 h × 20.00 = 800.00",
+        "Overtime: 5 h × 20.00 × 1.5 = 150.00",
+        "Total: 800.00 + 150.00",
+      ],
+      result: "950.00 gross for the week.",
+    },
+    faq: [
+      {
+        question: "How do I convert minutes to decimal hours?",
+        answer:
+          "Divide the minutes by 60: 15 minutes is 0.25, 30 is 0.5 and 45 is 0.75. So 7 hours 45 minutes is 7.75 hours.",
+      },
+      {
+        question: "Does it handle overnight shifts?",
+        answer:
+          "Yes. If the finish time is earlier than the start, the shift is taken to end the next day.",
+      },
+      {
+        question: "Should breaks be included?",
+        answer:
+          "Enter unpaid breaks in the break column and they are subtracted. Paid breaks count as working time, so leave them out.",
+      },
+      {
+        question: "When does overtime start?",
+        answer:
+          "That depends on your country, state and contract. 40 hours a week is common in the US; set 0 if you have no overtime, or your own threshold.",
+      },
+    ],
+  },
+
+  "fuel-cost-calculator": {
+    seoTitle: "Fuel Cost Calculator — Trip Cost From mpg or L/100 km",
+    seoDescription:
+      "Work out the fuel cost of a journey from the distance, your car's mpg (US or UK), L/100 km or km/L and the fuel price. Return trips and cost sharing included.",
+    intro:
+      "Enter the distance, fuel economy and fuel price to see the fuel a trip needs and its cost in total, per person and per mile or km. Economy can be L/100 km, km/L, or US or UK mpg. Driving 300 km each way at 6 L/100 km, with fuel at 1.80 a litre, uses 36 litres and costs 64.80.",
+    howToUse: [
+      "Enter the one-way distance in kilometres or miles, and tick Return journey if you are coming back.",
+      "Enter your car's fuel economy and choose its unit.",
+      "Enter the fuel price per litre or per gallon.",
+      "Optionally enter how many people are sharing the cost.",
+    ],
+    howItWorks: [
+      "Everything is converted to kilometres and litres first. Fuel needed = distance in km × litres per 100 km ÷ 100, and cost = litres × price per litre.",
+      "Miles per gallon is converted with exact definitions: a mile is 1.609344 km, a US gallon 3.785411784 litres and a UK (imperial) gallon 4.54609 litres. That is why 30 mpg in the US (7.84 L/100 km) uses more fuel than 30 mpg in the UK (9.42 L/100 km) — a UK gallon is about 20% bigger.",
+      "Official economy figures are measured in test conditions; motorway speed, traffic, load, cold weather and air conditioning usually raise real consumption. Use your car's trip computer or a recent fill-up for a more realistic figure.",
+      "The cost covers fuel only, not tolls, parking, wear or depreciation. Everything is calculated in your browser.",
+    ],
+    formula: {
+      expression: "fuel (L) = distance (km) × economy (L/100 km) ÷ 100      cost = fuel × price per litre",
+      where: [
+        "mpg (US) → L/100 km: 235.215 ÷ mpg",
+        "mpg (UK) → L/100 km: 282.481 ÷ mpg",
+        "km/L → L/100 km: 100 ÷ km/L",
+      ],
+    },
+    example: {
+      scenario: "A 300 km drive each way, 6 L/100 km, fuel at 1.80 a litre, three people sharing",
+      steps: [
+        "Distance: 300 × 2 = 600 km",
+        "Fuel: 600 × 6 ÷ 100 = 36 litres",
+        "Cost: 36 × 1.80 = 64.80, or 21.60 each",
+      ],
+      result: "64.80 for the trip, 21.60 per person.",
+    },
+    faq: [
+      {
+        question: "How do I calculate fuel cost per mile?",
+        answer:
+          "Divide the price per gallon by the miles per gallon. At 3.50 a US gallon and 25 mpg, each mile costs 0.14.",
+      },
+      {
+        question: "Is UK mpg the same as US mpg?",
+        answer:
+          "No. The UK gallon is about 20% larger, so the same car shows a higher mpg figure in the UK. Choose the right one, or use L/100 km.",
+      },
+      {
+        question: "How do I find my car's real fuel economy?",
+        answer:
+          "Fill the tank, reset the trip meter, and at the next fill-up divide the distance driven by the fuel added. Many cars also show an average on the trip computer.",
+      },
+      {
+        question: "Does it include tolls or parking?",
+        answer:
+          "No. It covers fuel only; add other trip costs separately.",
+      },
+    ],
+  },
+
+  "unit-price-calculator": {
+    seoTitle: "Unit Price Calculator — Which Pack Is Cheaper?",
+    seoDescription:
+      "Compare pack sizes by price per 100 g, per kg, per litre, per ounce or per item to see which is cheapest and by how much. Handles multipacks.",
+    intro:
+      "Enter the price and size of two or more packs to see each one's price per 100 g, per kg, per litre or per item, with the cheapest marked and how much more the others cost. Multipacks, grams, kilograms, ounces, pounds, millilitres and litres can be mixed. A 1.5 kg bag at 4.50 is 0.30 per 100 g.",
+    howToUse: [
+      "Enter each option's price and the size of one pack, and choose its unit.",
+      "For multipacks, enter the number of packs included in the price.",
+      "Add more options if you are comparing several sizes.",
+      "Choose the unit to compare by, such as per 100 g or per litre, and read which is cheapest.",
+    ],
+    howItWorks: [
+      "Each option is converted to a base unit — grams, millilitres or items — using exact definitions such as 1 lb = 453.59237 g and 1 US fl oz = 29.5735 ml. The unit price is the price divided by the total amount: size of one pack × number of packs.",
+      "The cheapest option is the one with the lowest price per base unit. The others show how much more they cost per unit as a percentage, so 0.36 against 0.30 per 100 g is 20% more.",
+      "Weight and volume cannot be compared without knowing the product's density, so options measured differently from the first option are left out of the comparison rather than guessed.",
+      "Small unit prices are shown with up to four decimal places, because two decimals can make different prices look the same. Everything is calculated in your browser.",
+    ],
+    formula: {
+      expression: "unit price = price ÷ (pack size × packs) × comparison amount",
+      where: [
+        "pack size — converted to grams, millilitres or items",
+        "comparison amount — 100 for per 100 g, 1000 for per kg or per litre",
+      ],
+    },
+    example: {
+      scenario: "1.5 kg for 4.50, 500 g for 1.80, or four 250 g packs for 5.00",
+      steps: [
+        "4.50 ÷ 1500 g × 100 = 0.30 per 100 g",
+        "1.80 ÷ 500 g × 100 = 0.36 per 100 g",
+        "5.00 ÷ (4 × 250 g) × 100 = 0.50 per 100 g",
+      ],
+      result: "The 1.5 kg bag is cheapest; the 500 g bag costs 20% more per gram and the multipack 67% more.",
+    },
+    faq: [
+      {
+        question: "Is the bigger pack always cheaper?",
+        answer:
+          "No. Offers and multibuys on smaller packs often beat the large size, which is why comparing unit prices is worth it.",
+      },
+      {
+        question: "Why can't I compare grams with millilitres?",
+        answer:
+          "A millilitre of oil weighs less than a gram, and a millilitre of honey more. Without the density, weight and volume cannot be compared fairly.",
+      },
+      {
+        question: "How do I compare a multipack?",
+        answer:
+          "Enter the size of one pack, and the number of packs you get for the price. The unit price uses the total amount.",
+      },
+      {
+        question: "Does the shelf label already show unit prices?",
+        answer:
+          "Many shops show one, but sometimes per 100 g on one product and per kg on another, or per item. Converting everything to the same basis makes the comparison fair.",
+      },
+    ],
+  },
 };

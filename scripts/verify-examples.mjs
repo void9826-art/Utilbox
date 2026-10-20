@@ -206,5 +206,38 @@ check("uk 30k monthly", Number((thirty.net / 12).toFixed(2)), 2093.3);
   check("slug example", slugify("Crème Brûlée: 10 Easy Recipes for Beginners (2026)"), "creme-brulee-10-easy-recipes-for-beginners-2026");
 }
 
+/* date-calculator, time-card-calculator, fuel-cost-calculator, unit-price-calculator */
+{
+  const { parseIsoDate, dateDifference } = await import("../src/lib/date-math.ts");
+  const october = dateDifference(parseIsoDate("2026-10-01"), parseIsoDate("2026-10-31"));
+  check("date example days", october.calendarDays, 30);
+  check("date example working days", october.workingDays, 21);
+  check("date example weekend days", october.weekendDays, 9);
+  const inclusive = dateDifference(parseIsoDate("2026-10-01"), parseIsoDate("2026-10-31"), new Set(), true);
+  check("date example inclusive", `${inclusive.calendarDays}/${inclusive.workingDays}`, "31/22");
+  const { weeklyPay } = await import("../src/lib/timecard.ts");
+  const pay = weeklyPay(45 * 60, 20, 40, 1.5);
+  check("time card example", `${pay.regularPay}/${pay.overtimePay}/${pay.totalPay}`, "800/150/950");
+  const { tripCost, toLitresPer100km } = await import("../src/lib/fuel.ts");
+  const trip = tripCost({ distance: 300, distanceUnit: "km", economy: 6, economyUnit: "l100km", price: 1.8, priceUnit: "litre", roundTrip: true, people: 3 });
+  check("fuel example litres", trip.litres, 36);
+  check("fuel example cost", trip.cost, 64.8);
+  check("fuel example each", trip.costPerPerson, 21.6);
+  check("fuel us 30 mpg", toLitresPer100km(30, "mpgUS"), 7.84);
+  check("fuel uk 30 mpg", toLitresPer100km(30, "mpgUK"), 9.42);
+  const perMile = tripCost({ distance: 1, distanceUnit: "mi", economy: 25, economyUnit: "mpgUS", price: 3.5, priceUnit: "galUS", roundTrip: false, people: 1 });
+  check("fuel cost per mile faq", perMile.cost, 0.14);
+  const { pricePerBase, rankOffers } = await import("../src/lib/unit-price.ts");
+  check("unit price large bag", pricePerBase({ price: 4.5, quantity: 1.5, unit: "kg", packs: 1 }) * 100, 0.3);
+  check("unit price small bag", pricePerBase({ price: 1.8, quantity: 500, unit: "g", packs: 1 }) * 100, 0.36);
+  check("unit price multipack", pricePerBase({ price: 5, quantity: 250, unit: "g", packs: 4 }) * 100, 0.5);
+  const ranked = rankOffers([
+    { price: 4.5, quantity: 1.5, unit: "kg", packs: 1 },
+    { price: 1.8, quantity: 500, unit: "g", packs: 1 },
+    { price: 5, quantity: 250, unit: "g", packs: 4 },
+  ], "mass");
+  check("unit price premiums", ranked.map((r) => Math.round(r.premium * 100)).join(","), "0,20,67");
+}
+
 console.log(problems === 0 ? "ALL DOCUMENTED EXAMPLES MATCH THE CODE" : `${problems} EXAMPLE(S) DISAGREE WITH THE CODE`);
 if (problems > 0) process.exitCode = 1;

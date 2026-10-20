@@ -544,4 +544,88 @@ export const calculatorExtra: Record<string, ToolContentExtra> = {
       },
     ],
   },
+
+  "date-calculator": {
+    tips: [
+      "Check whether a deadline counts calendar days or working days; contracts and forms often say “business days”.",
+      "For notice periods, check whether the day notice is given counts — that is the start-date option.",
+      "List regional holidays before counting working days in December and around Easter.",
+      "Use ISO dates (YYYY-MM-DD) when sharing deadlines internationally.",
+    ],
+    faq: [
+      {
+        question: "Can I count weeks between two dates?",
+        answer:
+          "Yes. The result shows the difference as whole weeks plus days, and as years, months and days.",
+      },
+      {
+        question: "Are my dates sent anywhere?",
+        answer:
+          "No. The calculation runs in your browser.",
+      },
+    ],
+  },
+
+  "time-card-calculator": {
+    tips: [
+      "Record times as you go rather than reconstructing the week on Friday.",
+      "Use decimal hours on timesheets that ask for “hours” as a number.",
+      "Check whether your employer rounds clock-in times before comparing with your payslip.",
+      "Keep your own copy of hours worked in case of a pay dispute.",
+    ],
+    faq: [
+      {
+        question: "Are my hours saved or sent anywhere?",
+        answer:
+          "No. Everything is calculated in your browser and nothing is stored, so note the totals before closing the page.",
+      },
+      {
+        question: "Can I calculate double time?",
+        answer:
+          "Set the overtime rate to 2. For time and a half, use 1.5.",
+      },
+    ],
+  },
+
+  "fuel-cost-calculator": {
+    tips: [
+      "Use a recent real-world figure rather than the brochure economy for long trips.",
+      "For a car share, agree whether to split fuel only or a per-mile rate that includes wear.",
+      "Check the fuel price where you will fill up; motorway stations are often dearer.",
+      "Compare with the EV Charging Cost Calculator if you are choosing between cars.",
+    ],
+    faq: [
+      {
+        question: "Can I use it for a motorbike or van?",
+        answer:
+          "Yes. It works for any vehicle; enter that vehicle's fuel economy.",
+      },
+      {
+        question: "Is anything sent to a server?",
+        answer:
+          "No. The calculation runs in your browser.",
+      },
+    ],
+  },
+
+  "unit-price-calculator": {
+    tips: [
+      "Only compare unit prices for things you will actually use before they spoil.",
+      "Compare per 100 g for small items and per kg or per litre for bulk.",
+      "Check drained weight for tinned food; the label's net weight includes the liquid.",
+      "Factor in a voucher or loyalty discount by entering the price you will actually pay.",
+    ],
+    faq: [
+      {
+        question: "Can I compare items sold individually?",
+        answer:
+          "Yes. Choose items as the unit and enter how many are in the pack, such as 12 eggs or 4 batteries.",
+      },
+      {
+        question: "Is my shopping list saved?",
+        answer:
+          "No. Nothing is stored or sent; the comparison runs in your browser.",
+      },
+    ],
+  },
 };

@@ -743,3 +743,70 @@ rq("transliterate", transliterate("Łódź Ærø") === "Lodz Aero", transliterat
 
 console.log(f13 === 0 ? "REGEX, MARKDOWN AND SLUG TESTS OK" : `${f13} FAILURES`);
 if (f13 > 0) process.exitCode = 1;
+
+/* ---- dates, time cards, fuel, unit prices ---- */
+import { parseIsoDate, toIsoDate, addDays, addMonths, addWorkingDays, dateDifference, parseHolidays } from "../src/lib/date-math.ts";
+import { parseTime, shiftMinutes, formatHoursMinutes, decimalHours, weeklyPay } from "../src/lib/timecard.ts";
+import { tripCost, toLitresPer100km } from "../src/lib/fuel.ts";
+import { pricePerBase, rankOffers } from "../src/lib/unit-price.ts";
+
+let f14 = 0;
+const dt = (name, cond, detail = "") => { if (!cond) { console.log(`FAIL ${name} ${detail}`); f14++; } };
+{
+  const d = (s) => parseIsoDate(s);
+  dt("date rejects 30 Feb", d("2026-02-30") === null);
+  dt("date round trip", toIsoDate(d("2028-02-29")) === "2028-02-29");
+  dt("add days across DST", toIsoDate(addDays(d("2026-03-28"), 2)) === "2026-03-30");
+  dt("add month clamps", toIsoDate(addMonths(d("2026-01-31"), 1)) === "2026-02-28");
+  dt("add month leap", toIsoDate(addMonths(d("2028-01-31"), 1)) === "2028-02-29");
+  dt("subtract months across year", toIsoDate(addMonths(d("2026-02-15"), -3)) === "2025-11-15");
+  dt("add 12 months from 29 Feb", toIsoDate(addMonths(d("2028-02-29"), 12)) === "2029-02-28");
+  // Friday 23 October 2026
+  dt("1 working day after Friday is Monday", toIsoDate(addWorkingDays(d("2026-10-23"), 1)) === "2026-10-26");
+  dt("10 working days", toIsoDate(addWorkingDays(d("2026-10-20"), 10)) === "2026-11-03");
+  dt("working days skip holiday", toIsoDate(addWorkingDays(d("2026-12-24"), 1, parseHolidays("2026-12-25"))) === "2026-12-28");
+  dt("working days backwards", toIsoDate(addWorkingDays(d("2026-10-26"), -1)) === "2026-10-23");
+  const diff = dateDifference(d("2026-10-01"), d("2026-10-31"));
+  dt("calendar days", diff.calendarDays === 30, JSON.stringify(diff));
+  dt("working days in Oct 2026 after the 1st", diff.workingDays === 21, JSON.stringify(diff));
+  const inclusive = dateDifference(d("2026-10-01"), d("2026-10-31"), new Set(), true);
+  dt("networkdays-style inclusive", inclusive.workingDays === 22 && inclusive.calendarDays === 31, JSON.stringify(inclusive));
+  const ymd = dateDifference(d("2024-01-31"), d("2026-03-01"));
+  dt("years months days", ymd.years === 2 && ymd.months === 1 && ymd.days === 1, JSON.stringify(ymd));
+  dt("negative difference", dateDifference(d("2026-10-31"), d("2026-10-01")).calendarDays === -30);
+  dt("weeks and days", diff.weeks === 4 && diff.remainderDays === 2);
+  dt("holidays counted", dateDifference(d("2026-12-24"), d("2026-12-31"), parseHolidays("2026-12-25, 2026-12-26 nonsense")).holidaysSkipped === 1);
+
+  dt("parse 24h", parseTime("21:30") === 1290);
+  dt("parse pm", parseTime("9:30 pm") === 1290 && parseTime("12am") === 0 && parseTime("12pm") === 720);
+  dt("parse compact", parseTime("0930") === 570 && parseTime("9") === 540 && parseTime("9.15") === 555);
+  dt("parse invalid", parseTime("25:00") === null && parseTime("9:75") === null && parseTime("13pm") === null);
+  dt("shift with break", shiftMinutes(540, 1050, 30) === 480);
+  dt("overnight shift", shiftMinutes(1320, 360, 0) === 480);
+  dt("format h:mm", formatHoursMinutes(475) === "7:55" && decimalHours(475) === 7.92);
+  const pay = weeklyPay(45 * 60, 20, 40, 1.5);
+  dt("overtime pay", pay.regularPay === 800 && pay.overtimePay === 150 && pay.totalPay === 950, JSON.stringify(pay));
+  dt("no overtime threshold", weeklyPay(45 * 60, 20, 0, 1.5).overtimeMinutes === 0);
+
+  dt("mpg US to l/100km", Math.abs(toLitresPer100km(30, "mpgUS") - 7.84049) < 1e-4);
+  dt("mpg UK to l/100km", Math.abs(toLitresPer100km(40, "mpgUK") - 7.06202) < 1e-4);
+  dt("km/l to l/100km", toLitresPer100km(20, "kml") === 5);
+  const trip = tripCost({ distance: 300, distanceUnit: "km", economy: 6, economyUnit: "l100km", price: 1.8, priceUnit: "litre", roundTrip: true, people: 3 });
+  dt("trip litres and cost", trip && Math.abs(trip.litres - 36) < 1e-9 && Math.abs(trip.cost - 64.8) < 1e-9 && Math.abs(trip.costPerPerson - 21.6) < 1e-9, JSON.stringify(trip));
+  const usTrip = tripCost({ distance: 250, distanceUnit: "mi", economy: 25, economyUnit: "mpgUS", price: 3.5, priceUnit: "galUS", roundTrip: false, people: 1 });
+  dt("US trip is 10 gallons", usTrip && Math.abs(usTrip.usGallons - 10) < 1e-9 && Math.abs(usTrip.cost - 35) < 1e-9, JSON.stringify(usTrip));
+  dt("trip rejects zero economy", tripCost({ distance: 1, distanceUnit: "km", economy: 0, economyUnit: "l100km", price: 1, priceUnit: "litre", roundTrip: false, people: 1 }) === null);
+
+  dt("price per gram", Math.abs(pricePerBase({ price: 3, quantity: 1.5, unit: "kg", packs: 1 }) - 0.002) < 1e-12);
+  const ranked = rankOffers([
+    { price: 3, quantity: 1.5, unit: "kg", packs: 1 },
+    { price: 1.2, quantity: 500, unit: "g", packs: 1 },
+    { price: 2, quantity: 1, unit: "l", packs: 1 },
+    { price: 4, quantity: 250, unit: "g", packs: 4 },
+  ], "mass");
+  dt("rank cheapest first", ranked[0].index === 0 && ranked[0].cheapest && ranked.length === 3, JSON.stringify(ranked));
+  dt("premium computed", Math.abs(ranked[1].premium - 0.2) < 1e-9 && ranked[1].index === 1, JSON.stringify(ranked));
+  dt("multipack counted", Math.abs(pricePerBase({ price: 4, quantity: 250, unit: "g", packs: 4 }) - 0.004) < 1e-12);
+}
+console.log(f14 === 0 ? "DATE, TIME CARD, FUEL AND UNIT PRICE TESTS OK" : `${f14} FAILURES`);
+if (f14 > 0) process.exitCode = 1;

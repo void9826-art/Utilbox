@@ -12,7 +12,7 @@ const Loading = () => <ToolSkeleton />;
 
 /**
  * Every tool is a separate lazily-loaded chunk, so visiting one tool page never
- * downloads the code for the other 138.
+ * downloads the code for the other 142.
  */
 const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "merge-pdf": dynamic(() => import("./pdf/merge-pdf"), { loading: Loading }),
@@ -67,6 +67,10 @@ const TOOL_COMPONENTS: Record<string, ComponentType> = {
   "ev-charging-cost-calculator": dynamic(() => import("./calculators/ev-charging-cost-calculator"), { loading: Loading }),
   "subscription-cost-tracker": dynamic(() => import("./calculators/subscription-cost-tracker"), { loading: Loading }),
   "tip-calculator": dynamic(() => import("./calculators/tip-calculator"), { loading: Loading }),
+  "date-calculator": dynamic(() => import("./calculators/date-calculator"), { loading: Loading }),
+  "time-card-calculator": dynamic(() => import("./calculators/time-card-calculator"), { loading: Loading }),
+  "fuel-cost-calculator": dynamic(() => import("./calculators/fuel-cost-calculator"), { loading: Loading }),
+  "unit-price-calculator": dynamic(() => import("./calculators/unit-price-calculator"), { loading: Loading }),
   "compress-image": dynamic(() => import("./image/compress-image"), { loading: Loading }),
   "resize-image": dynamic(() => import("./image/resize-image"), { loading: Loading }),
   "jpg-to-png": dynamic(() => import("./image/jpg-to-png"), { loading: Loading }),
