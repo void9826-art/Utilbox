@@ -4,7 +4,7 @@ import { ArrowRight, Gauge, Lock, Sparkles } from "lucide-react";
 
 import { AdSlot } from "@/components/ads/ad-slot";
 import { HeroSearch } from "@/components/home/hero-search";
-import { ToolCard, ToolGrid } from "@/components/tool/tool-card";
+import { ToolGrid } from "@/components/tool/tool-card";
 import { GlowFrame } from "@/components/ui/glow-frame";
 import { StatStrip } from "@/components/ui/stat-strip";
 import { CATEGORIES } from "@/config/categories";
@@ -15,11 +15,29 @@ import {
   TOOLS,
   TOOLS_BY_CATEGORY,
   TOOL_COUNT,
+  toolHref,
 } from "@/config/tools";
 import { buildMetadata } from "@/lib/seo";
 
 /** Every tool that makes a network request, derived so the homepage copy cannot drift from the registry. */
 const NETWORK_TOOLS = TOOLS.filter((tool) => tool.processing !== "client");
+const LOCAL_TOOL_COUNT = TOOL_COUNT - NETWORK_TOOLS.length;
+
+/**
+ * Twelve popular tools, taken in turn from each category so no one category
+ * fills the grid. The full list of every tool sits further down the page.
+ */
+const HOME_POPULAR = (() => {
+  const queues = CATEGORIES.map((category) => POPULAR_TOOLS.filter((tool) => tool.category === category.id));
+  const picked: typeof POPULAR_TOOLS = [];
+  while (picked.length < 12 && queues.some((queue) => queue.length)) {
+    for (const queue of queues) {
+      const next = queue.shift();
+      if (next && picked.length < 12) picked.push(next);
+    }
+  }
+  return picked;
+})();
 
 export const metadata: Metadata = buildMetadata({
   // The root page sits outside the layout's title template, so the brand is written in here.
@@ -109,7 +127,7 @@ export default function HomePage() {
                 <ArrowRight className="size-3.5" aria-hidden="true" />
               </Link>
             </div>
-            <ToolGrid tools={POPULAR_TOOLS} showCategory className="mt-5" />
+            <ToolGrid tools={HOME_POPULAR} showCategory className="mt-5" />
           </section>
 
           <AdSlot placement="leaderboard" />
@@ -129,9 +147,9 @@ export default function HomePage() {
                   hint: "PDF, image, text, converters, calculators and more",
                 },
                 {
-                  label: "Files uploaded",
-                  value: "0",
-                  hint: "Almost every tool runs entirely in your browser",
+                  label: "Run in your browser",
+                  value: String(LOCAL_TOOL_COUNT),
+                  hint: "Your files never leave your device on these",
                 },
               ]}
             />
@@ -183,11 +201,16 @@ export default function HomePage() {
                 </Link>
               </div>
 
-              <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {tools.slice(0, 6).map((tool) => (
-                  <ToolCard key={tool.slug} tool={tool} />
+              {/* Every tool as a plain link rather than six full cards: one
+                  click from the homepage to any tool, at a fraction of the
+                  bytes a card costs. */}
+              <ul className="home-tool-list mt-4">
+                {tools.map((tool) => (
+                  <li key={tool.slug}>
+                    <Link href={toolHref(tool)}>{tool.name}</Link>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </section>
           ))}
 

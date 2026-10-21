@@ -198,6 +198,36 @@
   }
 }
 
+/* The tool card's styling lives here rather than inline: a page can render
+   dozens of cards, and every class string is sent twice (once in the HTML,
+   once in the React payload), so the homepage was 400 KB of mostly repeats. */
+@layer components {
+  .tool-card {
+    @apply relative flex items-start gap-3 rounded-[var(--radius-card)] border border-border bg-surface p-3.5 transition-[border-color,box-shadow,transform] duration-150 hover:-translate-y-px hover:border-border-strong hover:shadow-raised focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
+  }
+
+  .tool-card-icon {
+    @apply flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-surface-sunken text-fg-muted transition-colors group-hover:border-accent-soft-border group-hover:bg-accent-soft group-hover:text-accent-text;
+  }
+
+  .home-tool-list {
+    @apply grid gap-x-6 gap-y-1 text-sm sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .home-tool-list a {
+    @apply inline-flex min-h-6 items-center py-0.5 text-fg underline-offset-2 hover:text-accent-text hover:underline;
+  }
+
+  /* A text arrow, not an icon: an inline SVG per card cost ~800 bytes each. */
+  .tool-card-arrow {
+    @apply shrink-0 -translate-x-1 text-sm leading-none text-accent-text opacity-0 transition-all duration-150 group-hover:translate-x-0 group-hover:opacity-100;
+  }
+
+  .tool-card-arrow::before {
+    content: "\2192";
+  }
+}
+
 @layer utilities {
   .container-page {
     width: 100%;

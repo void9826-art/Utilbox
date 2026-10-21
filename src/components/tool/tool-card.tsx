@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 import { CATEGORY_BY_ID } from "@/config/categories";
 import { toolHref } from "@/config/tools";
@@ -20,24 +19,16 @@ export function ToolCard({ tool, showCategory = false, className }: ToolCardProp
   return (
     <Link
       href={toolHref(tool)}
-      className={cn(
-        "group relative flex items-start gap-3 rounded-[var(--radius-card)] border border-border bg-surface p-3.5 transition-[border-color,box-shadow,transform] duration-150",
-        "hover:-translate-y-px hover:border-border-strong hover:shadow-raised",
-        "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
-        className,
-      )}
+      className={cn("group tool-card", className)}
     >
-      <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-surface-sunken text-fg-muted transition-colors group-hover:border-accent-soft-border group-hover:bg-accent-soft group-hover:text-accent-text">
+      <span className="tool-card-icon">
         <Icon className="size-[1.125rem]" aria-hidden="true" />
       </span>
 
       <span className="min-w-0 flex-1">
         <span className="flex items-center gap-1.5">
           <span className="text-sm font-semibold text-fg">{tool.name}</span>
-          <ArrowRight
-            className="size-3.5 shrink-0 -translate-x-1 text-accent-text opacity-0 transition-all duration-150 group-hover:translate-x-0 group-hover:opacity-100"
-            aria-hidden="true"
-          />
+          <span className="tool-card-arrow" aria-hidden="true" />
         </span>
         <span className="mt-0.5 block text-[0.8125rem] leading-relaxed text-fg-muted">
           {tool.description}
