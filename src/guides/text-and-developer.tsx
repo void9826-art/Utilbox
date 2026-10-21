@@ -713,15 +713,60 @@ export const textAndDeveloperGuides: Guide[] = [
     description:
       "What robots.txt can and cannot do, how the rules are matched, examples for common cases including AI crawlers, and the mistakes that hide a site from search.",
     published: PUBLISHED,
-    updated: PUBLISHED,
+    updated: "2026-10-21",
     tools: ["robots-txt-generator", "og-preview", "schema-generator"],
     Body: function Body() {
       return (
         <>
           <p>
-            A robots.txt file tells crawlers which parts of a website they may fetch. It is a short text
-            file, but a single wrong line can stop search engines crawling an entire site — so it is
-            worth understanding before editing.
+            A robots.txt file is a plain text file at <code>/robots.txt</code> that tells crawlers which
+            paths they may fetch, using <code>User-agent</code>, <code>Disallow</code> and{" "}
+            <code>Allow</code> lines. Copy one of the examples below, or{" "}
+            <Link href="/generators/robots-txt-generator">create a robots.txt file with the generator</Link>{" "}
+            and test your URLs against it. A single wrong line can stop search engines crawling an entire
+            site, so check it before uploading.
+          </p>
+
+          <h2>robots.txt examples to copy</h2>
+          <p>Allow every crawler to fetch everything, and list the sitemap:</p>
+          <pre>
+            <code>{`User-agent: *
+Disallow:
+
+Sitemap: https://example.com/sitemap.xml`}</code>
+          </pre>
+          <p>Keep every crawler out of one folder:</p>
+          <pre>
+            <code>{`User-agent: *
+Disallow: /admin/`}</code>
+          </pre>
+          <p>Block one crawler completely and leave the rest alone:</p>
+          <pre>
+            <code>{`User-agent: BadBot
+Disallow: /
+
+User-agent: *
+Disallow:`}</code>
+          </pre>
+          <p>Ask AI training crawlers to stay out while search engines carry on as normal:</p>
+          <pre>
+            <code>{`User-agent: GPTBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+Disallow: /
+
+User-agent: *
+Disallow:`}</code>
+          </pre>
+          <p>Block the whole site (for a staging copy only — never on a live site):</p>
+          <pre>
+            <code>{`User-agent: *
+Disallow: /`}</code>
+          </pre>
+          <p>
+            Replace example.com with your own domain. Several <code>User-agent</code> lines in a row share
+            the rules beneath them.
           </p>
 
           <h2>Where it goes</h2>

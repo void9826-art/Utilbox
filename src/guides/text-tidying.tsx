@@ -13,11 +13,54 @@ export const textTidyingGuides: Guide[] = [
     description:
       "How title case works, which small words stay lowercase, how AP, APA and Chicago styles differ, and when sentence case is the better choice.",
     published: PUBLISHED,
-    updated: PUBLISHED,
+    updated: "2026-10-21",
     tools: ["case-converter", "word-counter", "text-cleaner"],
     Body: function Body() {
       return (
         <>
+          <p>
+            In title case, capitalise the first and last words and every major word (nouns, verbs including
+            &ldquo;is&rdquo;, adjectives, adverbs and pronouns), and keep short articles, conjunctions and
+            prepositions such as a, the, and, of and to in lower case. To do it automatically,{" "}
+            <Link href="/text/case-converter">convert text to title case</Link> with the Case Converter.
+          </p>
+
+          <h2>Sentence case and title case side by side</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Sentence case</th>
+                <th>Title case</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>The rise and fall of the Roman Empire</td>
+                <td>The Rise and Fall of the Roman Empire</td>
+              </tr>
+              <tr>
+                <td>A beginner&apos;s guide to the stars</td>
+                <td>A Beginner&apos;s Guide to the Stars</td>
+              </tr>
+              <tr>
+                <td>What is it for?</td>
+                <td>What Is It For?</td>
+              </tr>
+              <tr>
+                <td>Ten tips for writing better emails</td>
+                <td>Ten Tips for Writing Better Emails</td>
+              </tr>
+              <tr>
+                <td>How to save money on groceries</td>
+                <td>How to Save Money on Groceries</td>
+              </tr>
+              <tr>
+                <td>Why the sky is blue</td>
+                <td>Why the Sky Is Blue</td>
+              </tr>
+            </tbody>
+          </table>
+
           <p>
             &ldquo;The Rise And Fall Of The House&rdquo; looks wrong to most readers, and &ldquo;The Rise
             and Fall of the House&rdquo; looks right. The difference is title case, which capitalises the

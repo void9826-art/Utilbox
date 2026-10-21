@@ -393,11 +393,19 @@ export const imagesQuickFixesGuides: Guide[] = [
     description:
       "A photo upright on your phone shows sideways on a website or computer. Here is why orientation data causes it, and how to rotate the picture permanently.",
     published: PUBLISHED,
-    updated: PUBLISHED,
+    updated: "2026-10-21",
     tools: ["rotate-image", "exif-remover", "crop-image"],
     Body: function Body() {
       return (
         <>
+          <p>
+            Photos appear sideways because phones often save the picture in one orientation and record the
+            correct rotation in a small EXIF tag; a program that ignores the tag shows the picture on its side.
+            To fix it for good, rotate the pixels themselves and save a new copy:{" "}
+            <Link href="/image/rotate-image">rotate the photo permanently</Link>, and it displays upright
+            everywhere.
+          </p>
+
           <p>
             The photo looks perfect on your phone. You upload it to a website, attach it to an email or
             open it on a computer — and it is lying on its side. Nothing is wrong with the picture. It is
@@ -711,7 +719,7 @@ export const imagesQuickFixesGuides: Guide[] = [
     description:
       "What aspect ratios mean, which one each screen, camera and platform uses, and how to crop a picture to a ratio without stretching it.",
     published: PUBLISHED,
-    updated: PUBLISHED,
+    updated: "2026-10-21",
     tools: ["crop-image", "resize-image", "instagram-image-resizer"],
     Body: function Body() {
       return (
@@ -762,6 +770,11 @@ export const imagesQuickFixesGuides: Guide[] = [
                 <td>4:5</td>
                 <td>Portrait feed posts</td>
                 <td>1080 × 1350</td>
+              </tr>
+              <tr>
+                <td>21:9</td>
+                <td>Ultrawide monitors and cinema-style video (2.33:1)</td>
+                <td>2560 × 1080 (sold as 21:9, strictly 64:27)</td>
               </tr>
             </tbody>
           </table>

@@ -966,11 +966,19 @@ export const percentagesAndLoansGuides: Guide[] = [
     description:
       "The interest rate is what you pay on the balance; APR adds the fees. A worked example where an 8% loan has an APR of 10%, and how to compare loans fairly.",
     published: PUBLISHED,
-    updated: PUBLISHED,
+    updated: "2026-10-21",
     tools: ["loan-calculator", "emi-calculator"],
     Body: function Body() {
       return (
         <>
+          <p>
+            The interest rate is the yearly cost of borrowing the balance. The APR (annual percentage rate) is
+            the interest rate plus compulsory fees, such as an arrangement fee, expressed as one yearly rate, so
+            it is usually the higher number. Compare loans by APR; exactly which fees count depends on local
+            rules. To see the monthly cost of a loan,{" "}
+            <Link href="/calculators/loan-calculator">use the loan calculator</Link>.
+          </p>
+
           <p>
             Two loans are both advertised at 8%. One has no fees; the other charges an arrangement fee. They are
             not the same price, and the interest rate alone cannot tell you that. The APR, or annual percentage

@@ -368,6 +368,25 @@
   padding: 0.1em 0.35em;
 }
 
+/* Copy-ready blocks, such as a whole robots.txt file. */
+.prose-content pre {
+  margin-block: 0.75rem 1.25rem;
+  overflow-x: auto;
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.prose-content pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: inherit;
+}
+
 /**
  * The brand mark in the header and footer.
  *

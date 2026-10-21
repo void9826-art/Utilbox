@@ -246,11 +246,17 @@ export const healthHomeUnitsGuides: Guide[] = [
     description:
       "Is 37.8 °C a fever? What is 101 °F in Celsius? A body temperature conversion chart, where a fever starts, and how the thermometer site changes the reading.",
     published: PUBLISHED,
-    updated: PUBLISHED,
+    updated: "2026-10-21",
     tools: ["temperature-converter"],
     Body: function Body() {
       return (
         <>
+          <p>
+            A fever is a temperature of 38.0 °C (100.4 °F) or higher, the threshold most health services use.
+            To convert, °F = °C × 9/5 + 32: 37.0 °C is 98.6 °F, 38.5 °C is 101.3 °F and 39.0 °C is 102.2 °F.
+            The full chart below covers 36.0 to 41.0 °C in steps of 0.1.
+          </p>
+
           <p>
             Thermometers, medicine leaflets and health advice do not always use the same scale. A parent reading
             101 °F on a thermometer bought abroad, or a leaflet that says to seek help above 39 °C, needs a quick
@@ -318,6 +324,34 @@ export const healthHomeUnitsGuides: Guide[] = [
             For any other value, use the <Link href="/converters/temperature-converter">Temperature Converter</Link>,
             which shows Celsius, Fahrenheit and Kelvin side by side.
           </p>
+
+          <h2>Full chart: 36.0 to 41.0 °C</h2>
+          <p>Every tenth of a degree, converted with °F = °C × 9/5 + 32 and rounded to one decimal place.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>°C</th>
+                <th>°F</th>
+                <th>°C</th>
+                <th>°F</th>
+                <th>°C</th>
+                <th>°F</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Array.from({ length: 17 }, (_, row) => (
+                <tr key={row}>
+                  {[row, row + 17, row + 34].flatMap((step) => {
+                    const celsius = (360 + step) / 10;
+                    return [
+                      <td key={"c" + step}>{celsius.toFixed(1)}</td>,
+                      <td key={"f" + step}>{((celsius * 9) / 5 + 32).toFixed(1)}</td>,
+                    ];
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
 
           <h2>Where a fever starts</h2>
           <p>
@@ -1213,7 +1247,7 @@ export const healthHomeUnitsGuides: Guide[] = [
     description:
       "7 hours 45 minutes is 7.75 hours, not 7.45. A minutes-to-decimal table, the formula, and how to avoid the most common timesheet and invoicing mistake.",
     published: PUBLISHED,
-    updated: PUBLISHED,
+    updated: "2026-10-21",
     tools: ["time-converter", "salary-calculator", "invoice-generator"],
     Body: function Body() {
       return (
@@ -1229,6 +1263,7 @@ export const healthHomeUnitsGuides: Guide[] = [
           <p>7 h 45 min = 7 + 45 ÷ 60 = 7 + 0.75 = 7.75 hours.</p>
 
           <h2>Minutes to decimal table</h2>
+          <p>Every minute from 1 to 60, as minutes ÷ 60 rounded to two decimal places.</p>
           <table>
             <thead>
               <tr>
@@ -1236,45 +1271,21 @@ export const healthHomeUnitsGuides: Guide[] = [
                 <th>Hours</th>
                 <th>Min</th>
                 <th>Hours</th>
+                <th>Min</th>
+                <th>Hours</th>
+                <th>Min</th>
+                <th>Hours</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>5</td>
-                <td>0.08</td>
-                <td>35</td>
-                <td>0.58</td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>0.10</td>
-                <td>40</td>
-                <td>0.67</td>
-              </tr>
-              <tr>
-                <td>10</td>
-                <td>0.17</td>
-                <td>45</td>
-                <td>0.75</td>
-              </tr>
-              <tr>
-                <td>15</td>
-                <td>0.25</td>
-                <td>50</td>
-                <td>0.83</td>
-              </tr>
-              <tr>
-                <td>20</td>
-                <td>0.33</td>
-                <td>55</td>
-                <td>0.92</td>
-              </tr>
-              <tr>
-                <td>30</td>
-                <td>0.50</td>
-                <td>60</td>
-                <td>1.00</td>
-              </tr>
+              {Array.from({ length: 15 }, (_, row) => (
+                <tr key={row}>
+                  {[row + 1, row + 16, row + 31, row + 46].flatMap((minutes) => [
+                    <td key={"m" + minutes}>{minutes}</td>,
+                    <td key={"h" + minutes}>{(minutes / 60).toFixed(2)}</td>,
+                  ])}
+                </tr>
+              ))}
             </tbody>
           </table>
           <p>

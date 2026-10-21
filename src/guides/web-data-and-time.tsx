@@ -13,7 +13,7 @@ export const webDataAndTimeGuides: Guide[] = [
     description:
       "Two ways to get JSON data into a spreadsheet: Excel's Power Query import, or converting to CSV first. How nested data is flattened and how to avoid broken numbers.",
     published: PUBLISHED,
-    updated: PUBLISHED,
+    updated: "2026-10-21",
     tools: ["json-to-csv", "json-formatter", "json-validator"],
     Body: function Body() {
       return (
@@ -27,9 +27,23 @@ export const webDataAndTimeGuides: Guide[] = [
           <h2>Option 1: import with Excel</h2>
           <p>
             Excel for Microsoft 365 on Windows can read JSON directly through Power Query: Data → Get Data → From
-            File → From JSON. Excel opens the Power Query editor, where you convert the data to a table and expand
-            nested records into columns, then load it into a sheet. This is powerful and can be refreshed when the
-            file changes, but it takes a few clicks to learn, and not every version of Excel has it.
+            File → From JSON. This is powerful and can be refreshed when the file changes, but not every version of
+            Excel has it.
+          </p>
+          <ol>
+            <li>On the Data tab, choose Get Data → From File → From JSON, pick the file and click Import.</li>
+            <li>
+              The Power Query editor opens. If it shows a List, click To Table on the Transform tab, then OK.
+            </li>
+            <li>
+              Click the expand button (two arrows) in the column header, tick the fields you want and click OK.
+            </li>
+            <li>Repeat for any column that still says Record or List, which holds nested data.</li>
+            <li>Choose Home → Close &amp; Load. The data lands in a new sheet as a table.</li>
+          </ol>
+          <p>
+            If the file is a single object rather than a list, the editor shows a Record instead: use Into Table
+            first, then expand as above.
           </p>
 
           <h2>Option 2: convert to CSV first</h2>

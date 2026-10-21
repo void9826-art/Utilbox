@@ -108,16 +108,23 @@ export const imagesFixesGuides: Guide[] = [
   {
     slug: "flip-a-mirrored-selfie",
     topic: "Images",
-    title: "Why selfies are mirrored, and how to flip them back",
-    seoTitle: "Why Selfies Are Mirrored and How to Flip Them",
+    title: "Why are selfies backwards? How to flip a mirrored photo",
+    seoTitle: "Why Are Selfies Backwards? How to Flip Them Back",
     description:
-      "Front cameras show a mirror image, and text in selfies can come out backwards. Why it happens, how to flip a photo, and the phone setting that stops it.",
+      "Selfies look backwards because the front camera shows a mirror image, and some phones save it that way. How to flip a selfie, and the setting that stops it.",
     published: PUBLISHED,
-    updated: PUBLISHED,
+    updated: "2026-10-21",
     tools: ["rotate-image", "crop-image"],
     Body: function Body() {
       return (
         <>
+          <p>
+            Selfies come out backwards because the front camera&apos;s preview is mirrored, like a bathroom
+            mirror, and some phones save the photo exactly as the preview showed it. To fix one, flip it
+            horizontally: <Link href="/image/rotate-image">flip a mirrored photo in your browser</Link> with
+            Rotate Image. To stop it happening, change the mirror setting in your camera app, described below.
+          </p>
+
           <p>
             You take a selfie in front of a shop sign and the lettering is backwards. Or the photo looks oddly
             unfamiliar: your parting is on the wrong side. Both come from the same thing: the difference between

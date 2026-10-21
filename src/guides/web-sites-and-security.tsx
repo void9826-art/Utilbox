@@ -566,15 +566,22 @@ export const webSitesAndSecurityGuides: Guide[] = [
     slug: "meta-description-length",
     topic: "Web & developer",
     title: "How long should a meta description be?",
-    seoTitle: "How Long Should a Meta Description Be?",
+    seoTitle: "Meta Description Length: About 150–160 Characters",
     description:
       "Google cuts descriptions by pixel width, about 150 to 160 characters on desktop. How to write one that fits, why Google rewrites it, and what it does for clicks.",
     published: PUBLISHED,
-    updated: PUBLISHED,
+    updated: "2026-10-21",
     tools: ["character-counter", "og-preview"],
     Body: function Body() {
       return (
         <>
+          <p>
+            Keep a meta description to about 150–160 characters, and aim for 120–155 with the important words
+            first. Google has no official character limit: it cuts snippets by pixel width, which on desktop
+            works out at roughly 150 to 160 characters. Check yours with the{" "}
+            <Link href="/text/character-counter">character counter</Link> as you write.
+          </p>
+
           <p>
             The meta description is the short summary a page offers search engines. Google may show it under your
             title in results, where it works as an advert for the click. Too long and it is cut off mid-sentence; too

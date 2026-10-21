@@ -811,15 +811,66 @@ export const workLongTailGuides: Guide[] = [
     slug: "name-files-so-they-sort-correctly",
     topic: "Work & documents",
     title: "How to name files so they sort in the right order",
-    seoTitle: "How to Name Files So They Sort in the Right Order",
+    seoTitle: "How to Name Files in Order: Patterns That Sort",
     description:
       "Dates as YYYY-MM-DD, numbers with leading zeros and no final_FINAL_v2. A file naming scheme that sorts correctly on every computer and makes files easy to find.",
     published: PUBLISHED,
-    updated: PUBLISHED,
+    updated: "2026-10-21",
     tools: ["sort-lines", "case-converter"],
     Body: function Body() {
       return (
         <>
+          <p>
+            To make files sort in order, start each name with a date written YYYY-MM-DD or with a number padded
+            with leading zeros (01, 02 &hellip; 10), then a short description, and use hyphens or underscores
+            instead of spaces. Many programs sort names character by character, so &ldquo;10&rdquo; lands
+            before &ldquo;2&rdquo; unless it is written &ldquo;02&rdquo;; leading zeros make the order the same
+            everywhere.
+          </p>
+
+          <h2>Naming patterns to copy</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>For</th>
+                <th>Pattern</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Dated documents</td>
+                <td>YYYY-MM-DD_description</td>
+                <td>2026-03-14_invoice-acme.pdf</td>
+              </tr>
+              <tr>
+                <td>Monthly reports</td>
+                <td>YYYY-MM_description</td>
+                <td>2026-01_sales-report.xlsx</td>
+              </tr>
+              <tr>
+                <td>A numbered sequence (up to 99)</td>
+                <td>NN_description</td>
+                <td>01_intro.docx &hellip; 10_appendix.docx</td>
+              </tr>
+              <tr>
+                <td>Longer sequences</td>
+                <td>NNN_description</td>
+                <td>001_scan.jpg &hellip; 120_scan.jpg</td>
+              </tr>
+              <tr>
+                <td>Versions of one file</td>
+                <td>description_vNN</td>
+                <td>proposal_v01.docx, proposal_v02.docx</td>
+              </tr>
+              <tr>
+                <td>Photos from an event</td>
+                <td>YYYY-MM-DD_event_NNN</td>
+                <td>2026-07-04_beach_001.jpg</td>
+              </tr>
+            </tbody>
+          </table>
+
           <p>
             A folder where &ldquo;report 10&rdquo; sorts before &ldquo;report 2&rdquo;, where March comes before
             January, and where three files are called &ldquo;final&rdquo; costs a few seconds every time you open
