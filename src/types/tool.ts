@@ -55,6 +55,14 @@ export interface ToolFormula {
   note?: string;
 }
 
+export interface ToolReference {
+  title: string;
+  /** One sentence above the table saying what it shows. */
+  intro: string;
+  columns: string[];
+  rows: string[][];
+}
+
 export interface ToolExample {
   scenario: string;
   steps: string[];
@@ -78,6 +86,8 @@ export interface ToolContent {
   howItWorks: string[];
   formula?: ToolFormula;
   example?: ToolExample;
+  /** A quick-reference table of common values, computed rather than typed. */
+  reference?: ToolReference;
   faq: FaqItem[];
   /** Practical advice and common mistakes, listed after the worked example. */
   tips?: string[];

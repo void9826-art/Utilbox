@@ -15,6 +15,7 @@ import { textExtra } from "./extra/text";
 import { generatorContent } from "./generators";
 import { imageContent } from "./image";
 import { pdfContent } from "./pdf";
+import { TOOL_REFERENCES } from "./reference";
 import { textContent } from "./text";
 
 const BASE: Record<string, ToolContent> = {
@@ -45,7 +46,9 @@ const EXTRA: Record<string, ToolContentExtra> = {
 const CONTENT: Record<string, ToolContent> = Object.fromEntries(
   Object.entries(BASE).map(([slug, content]) => {
     const extra = EXTRA[slug];
-    return [slug, extra ? { ...content, tips: extra.tips, faq: [...content.faq, ...extra.faq] } : content];
+    const merged = extra ? { ...content, tips: extra.tips, faq: [...content.faq, ...extra.faq] } : content;
+    const reference = TOOL_REFERENCES[slug];
+    return [slug, reference ? { ...merged, reference } : merged];
   }),
 );
 

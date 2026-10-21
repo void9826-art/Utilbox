@@ -148,6 +148,32 @@ export default async function ToolPage({ params }: { params: Promise<RouteParams
               </InfoSection>
             ) : null}
 
+            {content.reference ? (
+              <InfoSection id="reference" title={content.reference.title}>
+                <p>{content.reference.intro}</p>
+                <table>
+                  <thead>
+                    <tr>
+                      {content.reference.columns.map((column) => (
+                        <th key={column} scope="col">
+                          {column}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {content.reference.rows.map((row) => (
+                      <tr key={row[0]}>
+                        {row.map((cell, index) => (
+                          <td key={index}>{cell}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </InfoSection>
+            ) : null}
+
             {content.tips && content.tips.length > 0 ? (
               <InfoSection id="tips" title="Tips and common mistakes">
                 <ul>
@@ -192,6 +218,7 @@ export default async function ToolPage({ params }: { params: Promise<RouteParams
                   <TocLink href="#how-it-works">How it works</TocLink>
                   {content.formula ? <TocLink href="#formula">The formula</TocLink> : null}
                   {content.example ? <TocLink href="#example">Worked example</TocLink> : null}
+                  {content.reference ? <TocLink href="#reference">Quick reference</TocLink> : null}
                   {content.tips && content.tips.length > 0 ? <TocLink href="#tips">Tips</TocLink> : null}
                   <TocLink href="#faq">FAQ</TocLink>
                   <TocLink href="#related-heading">Related tools</TocLink>

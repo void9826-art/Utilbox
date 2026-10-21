@@ -236,9 +236,9 @@ export const converterContent: Record<string, ToolContent> = {
 
   "length-converter": unitContent({
     name: "Length",
-    seoTitle: "Length Converter — Metres, Feet, Inches, Miles",
+    seoTitle: "Length Converter — cm to Inches, Feet to Metres",
     seoDescription:
-      "Convert length and distance between metric and imperial units — millimetres to inches, metres to feet, kilometres to miles and more.",
+      "Convert cm to inches, feet to metres, km to miles and more. 1 inch is exactly 2.54 cm. Instant results, with a table of common length and height conversions.",
     intro:
       "Convert length and distance across fifteen units, from millimetres and inches to kilometres, miles and nautical miles; type in one box and every other updates. One inch is exactly 2.54 cm by definition, so 5 ft 11 in is precisely 1.8034 metres. A nautical mile is 1,852 metres and a land mile 1,609.344.",
     units:
@@ -379,9 +379,9 @@ export const converterContent: Record<string, ToolContent> = {
 
   "time-converter": unitContent({
     name: "Time",
-    seoTitle: "Time Converter — Seconds, Minutes, Hours, Days, Years",
+    seoTitle: "Time Converter — Hours, Minutes, Seconds, Days",
     seoDescription:
-      "Convert seconds to minutes, hours, days, weeks, months and years instantly. Type in any box and all twelve units update, from nanoseconds to years.",
+      "Convert hours to minutes, minutes to seconds, days to hours and more. 1 hour is 3,600 seconds and 1 day is 1,440 minutes. Includes a table of common conversions.",
     intro:
       "Type a duration in any box to see it in every unit from nanoseconds to years at once. Up to a week the conversions are exact: a day is 86,400 seconds. Months and years are averages — a year is 365.2425 days and a month 30.44 — so for the time between two real dates, use the age calculator.",
     units:

@@ -260,9 +260,9 @@ export const imageContent: Record<string, ToolContent> = {
   },
 
   "resize-image": {
-    seoTitle: "Resize Image Online — Change Dimensions Free",
+    seoTitle: "Resize Image Online — Exact Pixels, No Upload",
     seoDescription:
-      "Resize images by pixel dimensions or percentage with the aspect ratio locked. Includes presets for common social and web sizes.",
+      "Resize an image to exact pixel dimensions or a percentage with the aspect ratio locked, then save as JPG, PNG or WebP. Free, and the image never leaves your device.",
     intro:
       "To resize an image, add it, then type a new width or height in pixels or drag the percentage slider. The aspect ratio stays locked by default, so nothing is stretched. Shrinking keeps photos smooth; enlarging beyond about 150% starts to look soft, and the tool warns you when you do. The image is resized in your browser.",
     howToUse: [
