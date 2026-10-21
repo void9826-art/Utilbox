@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { absoluteUrl, siteConfig } from "@/config/site";
+import { absoluteUrl } from "@/config/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -13,9 +13,8 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/"],
       },
     ],
+    // No Host line: it was a Yandex-only directive that Google and Bing ignore.
+    // The canonical host is set by the www redirect and every page's canonical.
     sitemap: absoluteUrl("/sitemap.xml"),
-    // Host takes a bare hostname — a full URL with a scheme and a trailing
-    // slash is not valid there, and crawlers that read the directive ignore it.
-    host: new URL(siteConfig.url).host,
   };
 }
