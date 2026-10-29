@@ -35,6 +35,9 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     locale: siteConfig.locale,
   },
+  verification: {
+    other: { "defexity-verification": "lg-verify-301b0b22fbce7de336af65e9" },
+  },
 };
 
 export const viewport: Viewport = {
