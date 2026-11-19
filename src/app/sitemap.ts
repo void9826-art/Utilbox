@@ -9,6 +9,7 @@ import { GUIDES, guideHref } from "@/guides";
  * Generated from the registry, so a new tool appears here automatically —
  * there is no list of URLs to keep in step by hand.
  */
+// No changeFrequency or priority: Google and Bing both ignore them; lastModified is the signal they use.
 export default function sitemap(): MetadataRoute.Sitemap {
   const newestTool = TOOLS.reduce(
     (latest, tool) => (tool.addedOn > latest ? tool.addedOn : latest),
@@ -19,42 +20,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const toolsChanged = day(newestUpdate(TOOLS));
 
   const staticPages: MetadataRoute.Sitemap = [
-    { url: absoluteUrl("/"), lastModified: toolsChanged, changeFrequency: "weekly", priority: 1 },
-    { url: absoluteUrl("/tools"), lastModified: toolsChanged, changeFrequency: "weekly", priority: 0.9 },
-    { url: absoluteUrl("/about"), lastModified, changeFrequency: "yearly", priority: 0.4 },
-    { url: absoluteUrl("/contact"), lastModified, changeFrequency: "yearly", priority: 0.3 },
-    { url: absoluteUrl("/privacy"), lastModified, changeFrequency: "yearly", priority: 0.3 },
-    { url: absoluteUrl("/terms"), lastModified, changeFrequency: "yearly", priority: 0.3 },
-    { url: absoluteUrl("/cookies"), lastModified, changeFrequency: "yearly", priority: 0.3 },
+    { url: absoluteUrl("/"), lastModified: toolsChanged },
+    { url: absoluteUrl("/tools"), lastModified: toolsChanged },
+    { url: absoluteUrl("/about"), lastModified },
+    { url: absoluteUrl("/contact"), lastModified },
+    { url: absoluteUrl("/privacy"), lastModified },
+    { url: absoluteUrl("/terms"), lastModified },
+    { url: absoluteUrl("/cookies"), lastModified },
   ];
 
   const categoryPages: MetadataRoute.Sitemap = CATEGORIES.map((category) => ({
     url: absoluteUrl(`/${category.id}`),
     lastModified: day(newestUpdate(getToolsByCategory(category.id))),
-    changeFrequency: "weekly",
-    priority: 0.8,
   }));
 
   const toolPages: MetadataRoute.Sitemap = TOOLS.map((tool) => ({
     url: absoluteUrl(toolHref(tool)),
     // When the page last changed, not when the tool first shipped.
     lastModified: day(toolUpdated(tool)),
-    changeFrequency: "monthly",
-    // Popular tools are the ones worth crawling first.
-    priority: tool.popular ? 0.8 : 0.7,
   }));
 
   // Dated by when each guide's text last changed, not by the deploy.
   const newestGuide = GUIDES.reduce((latest, guide) => (guide.updated > latest ? guide.updated : latest), "");
   const guidePages: MetadataRoute.Sitemap = [
     ...(newestGuide
-      ? [{ url: absoluteUrl("/guides"), lastModified: new Date(`${newestGuide}T00:00:00Z`), changeFrequency: "monthly" as const, priority: 0.6 }]
+      ? [{ url: absoluteUrl("/guides"), lastModified: new Date(`${newestGuide}T00:00:00Z`) }]
       : []),
     ...GUIDES.map((guide) => ({
       url: absoluteUrl(guideHref(guide)),
       lastModified: new Date(`${guide.updated}T00:00:00Z`),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
     })),
   ];
 

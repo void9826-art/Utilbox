@@ -35,7 +35,7 @@ export function GET() {
     ...(serverChecks.length > 0
       ? [`- ${serverChecks.length} send only a domain name or URL — never a file — to this site's own server, which makes a network check a browser cannot, and store nothing: ${names(serverChecks)}.`]
       : []),
-    `- Tool pages were last updated on ${newestUpdate(TOOLS)}. Each page shows its own date.`,
+    `- The most recent tool page update was on ${newestUpdate(TOOLS)}; each page shows its own date.`,
     "",
   ];
 
@@ -54,9 +54,9 @@ export function GET() {
     link("Privacy policy", "/privacy", "What is and is not collected."),
     link("Contact", "/contact", "How to reach the site."),
     "",
-    // "Optional" is the llms.txt convention for links a reader can skip when
-    // short on context: the guides support the tools rather than replace them.
-    "## Optional",
+    // Not "## Optional": that is the llms.txt section a reader may skip when short on context, and the guides are
+    // the pages answer engines actually quote.
+    "## Guides",
     "",
     link("All guides", "/guides", "Plain-language guides to everyday jobs with PDFs, photos, numbers and passwords."),
   );

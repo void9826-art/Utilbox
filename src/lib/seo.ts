@@ -87,8 +87,11 @@ export function toolSchema(tool: ToolMeta, content: ToolContent): JsonLd {
   return {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: `${tool.name} — ${siteConfig.name}`,
+    "@id": `${absoluteUrl(toolHref(tool))}#webapp`,
+    // The tool's own name: the brand is the publisher, not part of what the tool is called.
+    name: tool.name,
     url: absoluteUrl(toolHref(tool)),
+    mainEntityOfPage: absoluteUrl(toolHref(tool)),
     description: content.seoDescription,
     applicationCategory: "UtilitiesApplication",
     applicationSubCategory: category.name,
@@ -99,7 +102,8 @@ export function toolSchema(tool: ToolMeta, content: ToolContent): JsonLd {
     inLanguage: "en",
     datePublished: tool.addedOn,
     dateModified: toolUpdated(tool),
-    publisher: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
+    // A reference, not an inline copy: an id-less copy is a second, unlinked organisation.
+    publisher: { "@id": ORGANISATION_ID },
   };
 }
 
@@ -160,7 +164,8 @@ export function faqSchema(content: ToolContent): JsonLd {
 }
 
 /** Stable node id so the website and the organisation are one linked graph. */
-const ORGANISATION_ID = `${siteConfig.url}#organization`;
+const ORGANISATION_ID = `${siteConfig.url}/#organization`;
+const WEBSITE_ID = `${siteConfig.url}/#website`;
 
 /**
  * A guide article. The author is the organisation, because that is who wrote
@@ -184,7 +189,7 @@ export function articleSchema(article: {
     dateModified: article.updated,
     image: absoluteUrl("/opengraph-image"),
     inLanguage: "en",
-    author: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
+    author: { "@id": ORGANISATION_ID },
     publisher: { "@id": ORGANISATION_ID },
   };
 }
@@ -215,6 +220,7 @@ export function websiteSchema(): JsonLd {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": WEBSITE_ID,
     name: siteConfig.name,
     url: siteConfig.url,
     publisher: { "@id": ORGANISATION_ID },
