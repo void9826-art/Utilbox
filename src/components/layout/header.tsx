@@ -154,7 +154,7 @@ export function Header() {
           <button
             type="button"
             onClick={search.open}
-            className="inline-flex size-9 items-center justify-center rounded-lg text-fg-muted transition-colors hover:bg-bg-muted hover:text-fg md:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-lg text-fg-muted transition-colors hover:bg-bg-muted hover:text-fg md:hidden"
             aria-label="Search tools"
           >
             <Search className="size-[1.125rem]" aria-hidden="true" />
@@ -168,7 +168,7 @@ export function Header() {
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-expanded={mobileOpen}
             aria-controls="mobile-navigation"
-            className="inline-flex size-9 items-center justify-center rounded-lg text-fg-muted transition-colors hover:bg-bg-muted hover:text-fg lg:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-lg text-fg-muted transition-colors hover:bg-bg-muted hover:text-fg lg:hidden"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
             {mobileOpen ? (

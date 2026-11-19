@@ -30,7 +30,8 @@ export function Breadcrumbs({ crumbs }: { crumbs: Crumb[] }) {
               ) : (
                 <Link
                   href={crumb.href}
-                  className="rounded transition-colors hover:text-fg hover:underline underline-offset-2"
+                  // 24px tall: the WCAG 2.2 AA target size, without pushing the tool further down the page.
+                  className="inline-flex min-h-6 items-center rounded transition-colors hover:text-fg hover:underline underline-offset-2"
                 >
                   {crumb.name}
                 </Link>

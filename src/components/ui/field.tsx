@@ -5,7 +5,8 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 export const controlClass =
-  "w-full rounded-lg border border-border-strong bg-surface px-3 py-2 text-sm text-fg shadow-subtle transition-colors placeholder:text-fg-subtle hover:border-fg-subtle focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/35 disabled:cursor-not-allowed disabled:bg-bg-muted disabled:text-fg-subtle aria-[invalid=true]:border-fg aria-[invalid=true]:border-2";
+  // Phones: 44px tall and 16px text (below 16px, iOS zooms the page on focus). Desktop keeps the compact size.
+  "w-full min-h-11 rounded-lg border border-border-strong bg-surface px-3 py-2 text-base sm:min-h-0 sm:text-sm text-fg shadow-subtle transition-colors placeholder:text-fg-subtle hover:border-fg-subtle focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/35 disabled:cursor-not-allowed disabled:bg-bg-muted disabled:text-fg-subtle aria-[invalid=true]:border-fg aria-[invalid=true]:border-2";
 
 export interface FieldProps {
   label: React.ReactNode;

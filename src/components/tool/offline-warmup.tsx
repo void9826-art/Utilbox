@@ -70,6 +70,9 @@ export function OfflineWarmup({ category, slug }: { category: CategoryId; slug: 
     if (process.env.NODE_ENV !== "production" || !("serviceWorker" in navigator)) return;
     const warmups = [...(BY_CATEGORY[category] ?? []), ...(BY_SLUG[slug] ?? [])];
     if (warmups.length === 0) return;
+    // Pre-fetching a large library is a bad trade on a metered or slow connection: it loads on first use instead.
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    if (connection?.saveData || connection?.effectiveType === "slow-2g" || connection?.effectiveType === "2g") return;
 
     let cancelled = false;
     idle(() => {

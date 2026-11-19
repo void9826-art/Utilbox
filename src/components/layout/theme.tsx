@@ -74,7 +74,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       type="button"
       onClick={cycle}
       className={cn(
-        "inline-flex size-9 items-center justify-center rounded-lg text-fg-muted transition-colors hover:bg-bg-muted hover:text-fg",
+        "inline-flex size-11 items-center justify-center rounded-lg text-fg-muted transition-colors hover:bg-bg-muted hover:text-fg md:size-9",
         className,
       )}
       aria-label={`Theme: ${current.label}. Click to change.`}
