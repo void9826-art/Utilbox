@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/tool/sections";
 import { ToolGrid } from "@/components/tool/tool-card";
 import { getRelatedTools, getTool, toolHref } from "@/config/tools";
-import { GUIDES, getGuide, guideHref } from "@/guides";
+import { GUIDES, getGuide, guideHref, type Guide } from "@/guides";
 import { articleSchema, breadcrumbSchema, buildMetadata, jsonLdScript } from "@/lib/seo";
 import { formatLongDate } from "@/lib/utils";
 import type { ToolMeta } from "@/types/tool";
@@ -61,6 +61,18 @@ function followOnTools(tools: ToolMeta[], limit = 3): ToolMeta[] {
   return picked;
 }
 
+/**
+ * Other guides a reader of this one is likely to want: those that use the same tools first, then the same topic.
+ * Guides used to link only to tools, so most were reachable from no other guide.
+ */
+function relatedGuides(guide: Guide, limit = 4): Guide[] {
+  const others = GUIDES.filter((candidate) => candidate.slug !== guide.slug);
+  const sharedTools = (candidate: Guide) => candidate.tools.filter((slug) => guide.tools.includes(slug)).length;
+  const byTools = others.filter((candidate) => sharedTools(candidate) > 0).sort((a, b) => sharedTools(b) - sharedTools(a));
+  const byTopic = others.filter((candidate) => candidate.topic === guide.topic && !byTools.includes(candidate));
+  return [...byTools, ...byTopic].slice(0, limit);
+}
+
 export default async function GuidePage({ params }: { params: Promise<RouteParams> }) {
   const guide = getGuide((await params).slug);
   if (!guide) notFound();
@@ -72,6 +84,7 @@ export default async function GuidePage({ params }: { params: Promise<RouteParam
   ];
   const tools = guide.tools.map(getTool).filter((tool): tool is ToolMeta => Boolean(tool));
   const nextTools = followOnTools(tools);
+  const moreGuides = relatedGuides(guide);
   const { Body } = guide;
 
   const schemas = [
@@ -148,6 +161,26 @@ export default async function GuidePage({ params }: { params: Promise<RouteParam
               More tools for this job
             </h2>
             <ToolGrid tools={nextTools} showCategory className="mt-4" />
+          </section>
+        ) : null}
+
+        {moreGuides.length > 0 ? (
+          <section className="mt-10" aria-labelledby="guide-related-heading">
+            <h2 id="guide-related-heading" className="text-lg font-semibold tracking-tight text-fg">
+              Related guides
+            </h2>
+            <ul className="mt-3 grid gap-x-6 sm:grid-cols-2">
+              {moreGuides.map((related) => (
+                <li key={related.slug}>
+                  <Link
+                    href={guideHref(related)}
+                    className="flex min-h-11 items-center text-sm font-medium text-accent-text underline-offset-2 hover:underline"
+                  >
+                    {related.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </section>
         ) : null}
 

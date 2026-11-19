@@ -7,7 +7,8 @@ import { TOOLS, TOOLS_BY_CATEGORY, TOOL_COUNT } from "@/config/tools";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: `About ${siteConfig.name}`,
+  // The layout title template already appends the brand; naming it here too printed the brand twice.
+  title: "About: free tools that run in your browser",
   description: `Why ${siteConfig.name} exists, how the tools work, and what happens to your files.`,
   path: "/about",
 });

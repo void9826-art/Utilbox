@@ -92,16 +92,14 @@ export function ToolHeader({
 
   return (
     <header className="space-y-3">
-      <div className="flex items-start gap-3.5">
-        <span className="mt-0.5 flex size-11 shrink-0 items-center justify-center rounded-xl border border-accent-soft-border bg-accent-soft text-accent-text">
+      {/* Phones: icon beside the title, intro full width underneath. Squeezed into the column next to the icon, the
+          intro wrapped to nine lines and pushed the tool itself below the fold. Desktop layout is unchanged. */}
+      <div className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-x-3 gap-y-2 sm:items-start sm:gap-x-3.5 sm:gap-y-1.5">
+        <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-accent-soft-border bg-accent-soft text-accent-text sm:row-span-2 sm:mt-0.5">
           <Icon className="size-5" aria-hidden="true" />
         </span>
-        <div className="min-w-0">
-          <h1 className="text-2xl font-semibold tracking-tight text-balance text-fg sm:text-3xl">
-            {tool.name}
-          </h1>
-          <p className="mt-1.5 max-w-2xl text-[0.9375rem] leading-relaxed text-fg-muted">{intro}</p>
-        </div>
+        <h1 className="min-w-0 text-2xl font-semibold tracking-tight text-balance text-fg sm:text-3xl">{tool.name}</h1>
+        <p className="col-span-2 max-w-2xl text-[0.9375rem] leading-relaxed text-fg-muted sm:col-span-1 sm:col-start-2">{intro}</p>
       </div>
       <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
         <PrivacyBadge tool={tool} />

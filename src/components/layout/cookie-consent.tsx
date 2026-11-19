@@ -93,14 +93,16 @@ export function CookieConsent({ measurementId }: { measurementId: string }) {
           role="dialog"
           aria-labelledby="cookie-consent-title"
           aria-describedby="cookie-consent-text"
-          className="fixed inset-x-0 bottom-0 z-40 p-4 print-hidden sm:p-6"
+          className="fixed inset-x-0 bottom-0 z-40 p-2 print-hidden sm:p-6"
         >
-          <div className="mx-auto flex max-w-3xl flex-col gap-4 rounded-xl border border-border bg-surface p-4 shadow-[var(--shadow-overlay)] sm:flex-row sm:items-center sm:gap-6 sm:p-5">
+          {/* Compact on phones: at full size it covered most of a tool's drop zone on a first visit. The label stays
+              for screen readers; it is a label, not a heading, so it no longer appears in every page outline. */}
+          <div className="mx-auto flex max-w-3xl flex-col gap-3 rounded-xl border border-border bg-surface p-3 shadow-[var(--shadow-overlay)] sm:flex-row sm:items-center sm:gap-6 sm:p-5">
             <div className="text-sm leading-relaxed text-fg-muted">
-              <h2 id="cookie-consent-title" className="font-semibold text-fg">
+              <p id="cookie-consent-title" className="sr-only font-semibold text-fg sm:not-sr-only">
                 Analytics cookies
-              </h2>
-              <p id="cookie-consent-text" className="mt-1">
+              </p>
+              <p id="cookie-consent-text" className="sm:mt-1">
                 May we use Google Analytics to count visits and see which tools are used? It never sees
                 your files or anything you type. Read the{" "}
                 <Link href="/cookies" className="text-accent-text underline underline-offset-2 hover:no-underline">
