@@ -1,0 +1,5 @@
+Crawling 410 sitemap URLs at https://www.utilboxes.xyz
+
+Checking 410 distinct internal link targets
+
+SEO AUDIT CLEAN — 410 pages, 410 link targets
