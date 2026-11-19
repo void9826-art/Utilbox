@@ -989,6 +989,7 @@ const qa = (name, cond, detail = "") => { if (!cond) { console.log(`FAIL ${name}
   qa("money dollars keep two", qMoney(1234.5, "USD", "en-US") === "$1,234.50");
   qa("money dinar keeps three", qMoney(1.2345, "KWD", "en-US").replace(/\s/, " ") === "KWD 1.235", qMoney(1.2345, "KWD", "en-US"));
   qa("money non-finite", qMoney(NaN) === "—" && qMoney(Infinity) === "—");
+  qa("money rupees group in lakh", qMoney(1000000, "INR") === "₹10,00,000.00", qMoney(1000000, "INR"));
   qa("money unknown currency falls back", qMoney(2, "XX") === "XX 2.00");
   qa("round half up negative", qRound(-2.675) === -2.68 && qRound(1.005) === 1.01 && qRound(0) === 0);
 

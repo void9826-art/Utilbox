@@ -212,9 +212,11 @@ export const imageContent: Record<string, ToolContent> = {
   },
 
   "compress-image": {
-    seoTitle: "Compress Image Online — Reduce Photo Size Free",
+    // Leads with exact sizes: searches like "compress image to 100kb" are answered by exact-size pages, and this
+    // one tool already does any target size, so one page carries that intent instead of a page per size.
+    seoTitle: "Compress Image to 100 KB, 50 KB or Any Size — Free",
     seoDescription:
-      "Shrink JPG, PNG and WebP images by quality or to a target size such as 100 KB, with a before-and-after preview. Free, unlimited, and done in your browser.",
+      "Compress a JPG or WebP to 100 KB, 50 KB, 20 KB or any exact size, or by quality, with a before-and-after preview. Free, unlimited, and done in your browser.",
     intro:
       "To shrink a JPG, PNG or WebP image, drag the quality slider or set a target file size such as 100 KB, then check the result before you download. At quality 80, photos typically lose 50–80% of their size with no visible change, and resizing saves far more. Images are processed in your browser and never uploaded.",
     howToUse: [

@@ -33,8 +33,10 @@ export function roundMoney(amount: number): number {
  */
 export function formatMoney(amount: number, currency = "USD", locale?: string): string {
   if (!Number.isFinite(amount)) return "—";
+  // Rupee amounts read in lakh and crore groups (₹10,00,000) whatever the browser's own locale is.
+  const groupingLocale = locale ?? (currency === "INR" ? "en-IN" : undefined);
   try {
-    return new Intl.NumberFormat(locale, { style: "currency", currency }).format(amount);
+    return new Intl.NumberFormat(groupingLocale, { style: "currency", currency }).format(amount);
   } catch {
     return `${currency} ${amount.toFixed(2)}`;
   }
